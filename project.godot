@@ -20,7 +20,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-UpgradeScreen="*res://UpgradeScreen/UpgradeScreen.gd"
+UpgradeWindow="*res://UpgradeScreen/UpgradeWindow.gd"
 
 [input]
 

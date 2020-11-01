@@ -27,4 +27,4 @@ func _transition_progress():
 func _on_button_up(fill_mode:int, next_pos:Vector2)->void:
 	# fill_mode debe ser 0-8. Ver en documentacion de TextureProgress.
 	transition.set_fill_mode(fill_mode)
-	UpgradeScreen.change_pannel_to(next_pos)
+	UpgradeWindow.change_panel_to(next_pos)
