@@ -39,7 +39,6 @@ func _on_end_animation():
 	actualPanel.show_behind_parent = true
 	_add_actual_panel()
 	emit_signal("start_animation")
-	print(actualPanel)
 
 func _add_actual_panel()->void:
 	get_node("/root/UpgradeWindow").add_child(actualPanel)
