@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UpgradeScreen/UpgradeWindow.gd" type="Script" id=1]
+[ext_resource path="res://UpgradeScreen/TransitionAnimation.gd" type="Script" id=2]
+[ext_resource path="res://Fondos/Negro_de_transicion.png" type="Texture" id=3]
+
+[node name="UpgradeWindow" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TransitionAnimation" type="TextureProgress" parent="."]
+light_mask = 0
+margin_right = 1024.0
+margin_bottom = 600.0
+texture_progress = ExtResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="start_animation" from="." to="TransitionAnimation" method="_start_animation"]
+[connection signal="end_animation" from="TransitionAnimation" to="." method="_on_end_animation"]

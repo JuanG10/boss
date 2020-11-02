@@ -18,10 +18,6 @@ _global_script_class_icons={
 config/name="Boss"
 config/icon="res://icon.png"
 
-[autoload]
-
-UpgradeWindow="*res://UpgradeScreen/UpgradeWindow.gd"
-
 [input]
 
 next_color={

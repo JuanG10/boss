@@ -1,29 +1,45 @@
 extends Node2D
 
-const BASE = preload("res://UpgradeScreen/BasePanel.tscn")
-const RED = preload("res://UpgradeScreen/RedPanel.tscn")
-const GREEN = preload("res://UpgradeScreen/GreenPanel.tscn")
-# Quería hacer esto con exports pero siempre daba null.
-onready var color_level = [RED,GREEN]
-onready var base_level = [BASE]
-onready var panel_matrix = [color_level,base_level] # y = [0,1]
+const PANELS = {
+	BASE = preload("res://UpgradeScreen/BasePanel.tscn"),
+	RED = preload("res://UpgradeScreen/RedPanel.tscn"),
+	GREEN = preload("res://UpgradeScreen/GreenPanel.tscn")
+}
+
+const LEVELS = {
+	color_level = [PANELS.RED,PANELS.GREEN],
+	base_level = [PANELS.BASE]
+}
+
+onready var panel_matrix = [LEVELS.color_level,LEVELS.base_level] # y
 var actualPanel:Panel
 var actual_pos = Vector2(0,1) # Cuidado, 'y' es el segundo argumento
 
+onready var transition:TextureProgress = $TransitionAnimation
+signal start_animation
+
 func _ready():
 	actualPanel = panel_matrix[actual_pos.y][actual_pos.x].instance()
-	get_tree().get_root().get_node("Main").add_child(actualPanel)
-	print(get_tree().get_root().get_node("Main").get_children())
+	actualPanel.show_behind_parent = true
+	_add_actual_panel()
 
-func change_panel_to(next_panel:Vector2)->void:
+func change_panel_to(fill_mode:int, next_panel:Vector2)->void:
 	actual_pos += next_panel
 	if _array_problems(): actual_pos -= next_panel
 	else:
-		actualPanel.queue_free()
-		actualPanel = panel_matrix[actual_pos.y][actual_pos.x].instance()
-		get_tree().get_root().get_node("Main").add_child(actualPanel)
-		print(actual_pos)
-		print(actualPanel)
+		transition.set_fill_mode(fill_mode)
+		emit_signal("start_animation")
 
 func _array_problems()->bool:
 	return actual_pos.y < 0 || actual_pos.x < 0 || actual_pos.y > panel_matrix.size() - 1 || actual_pos.x > panel_matrix[actual_pos.y].size() - 1
+
+func _on_end_animation():
+	actualPanel.queue_free()
+	actualPanel = panel_matrix[actual_pos.y][actual_pos.x].instance()
+	actualPanel.show_behind_parent = true
+	_add_actual_panel()
+	emit_signal("start_animation")
+	print(actualPanel)
+
+func _add_actual_panel()->void:
+	get_node("/root/UpgradeWindow").add_child(actualPanel)
