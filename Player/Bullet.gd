@@ -8,5 +8,9 @@ func start(pos, dir):
 	position = pos
 	velocity = Vector2(speed, 0).rotated(rotation)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += velocity
+
+func remove():
+	get_parent().remove_child(self)
+	queue_free()
