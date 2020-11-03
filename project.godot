@@ -19,6 +19,10 @@ config/name="Boss"
 run/main_scene="res://proof of concept.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+mouse_cursor/custom_image="res://cursor.png"
+
 [input]
 
 next_color={

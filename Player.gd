@@ -20,6 +20,8 @@ func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(atk_speed)
 	add_child(timer)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 func _physics_process(_delta):
 	look_at(get_global_mouse_position())
