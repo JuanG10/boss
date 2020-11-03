@@ -1,6 +1,6 @@
 extends Area2D
 
-var Bullet = preload("res://Bullet.tscn") 
+var Bullet = preload("res:") 
 
 var speed = 3
 var atk_speed = .5

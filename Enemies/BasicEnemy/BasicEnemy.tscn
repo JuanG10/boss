@@ -17,3 +17,4 @@ shape = SubResource( 1 )
 
 [node name="Muzzle" type="Position2D" parent="."]
 position = Vector2( 8.37688, 0.0590906 )
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

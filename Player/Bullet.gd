@@ -8,6 +8,8 @@ func start(pos, dir):
 	position = pos
 	velocity = Vector2(speed, 0).rotated(rotation)
 
+
+	
 func _physics_process(_delta):
 	position += velocity
 

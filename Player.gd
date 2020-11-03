@@ -10,6 +10,12 @@ var magnet_radius = 10
 
 var timer = Timer.new()
 
+var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0),Color(0.937255,0.796078,0.031373)]
+var n      = 0
+var color_activado = false
+
+
+
 func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(atk_speed)
@@ -24,7 +30,9 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("next_color"):
 		collision_layer = 2
 		collision_mask  = 2
-		$Sprite.modulate = Color(0, 0, 1) # blue shade
+		next_color() # blue shade
+	if Input.is_action_just_pressed("previous_color"):
+		previous_color()		
 	if Input.is_action_pressed("shoot"):
 		if(timer.is_stopped()):
 			shoot()
@@ -44,6 +52,33 @@ func takeDamage(n):
 
 func shoot():
 	var b = Bullet.instance()
+	if(color_activado):
+		b.modulate = colores[n-1]
 	b.start($Muzzle.global_position, rotation)
 	get_parent().add_child(b)
 	timer.start()
+	
+	
+func modulate_color():
+	 return $Sprite.modulate
+	
+	
+func next_color():
+	if(n < colores.size()):
+		$Sprite.modulate = colores[n]
+		n = n +1
+	else:
+		n = 0
+		$Sprite.modulate = colores[n]
+		n = n + 1	  
+	color_activado = true	
+	
+func previous_color():
+	if(n >= 0):
+		n = n - 1
+		$Sprite.modulate = colores[n-1] 
+	else:
+		n = 3
+		$Sprite.modulate = colores[n]
+		n = n -1
+	color_activado = true			
