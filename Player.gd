@@ -33,8 +33,8 @@ func _physics_process(_delta):
 		next_color() # blue shade
 	if Input.is_action_just_pressed("previous_color"):
 		previous_color()		
-	if Input.is_action_pressed("shoot"):
-		if(timer.is_stopped()):
+	#if Input.is_action_pressed("shoot"):
+	if(timer.is_stopped()):
 			shoot()
 	if Input.is_action_pressed('right'):
 		position.x += speed
