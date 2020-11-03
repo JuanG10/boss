@@ -18,12 +18,12 @@ func _process(_delta):
 	if timer.is_stopped():
 		timer.start()
 		if points < 100:
-			spawnMelee(4)
+			spawnMelee(6)
 		elif points < 300:
-			spawnMelee(3)
+			spawnMelee(4)
 			spawnBasic(2)
 		elif points < 500:
-			spawnMelee(2)
+			spawnMelee(3)
 			spawnBasic(2)
 			spawnAdvanced(1)
 		elif points < 1000:
