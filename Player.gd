@@ -13,6 +13,7 @@ var timer = Timer.new()
 var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0),Color(0.937255,0.796078,0.031373)]
 var n      = 0
 var color_activado = false
+var rng = RandomNumberGenerator.new()
 
 
 
@@ -20,7 +21,8 @@ func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(atk_speed)
 	add_child(timer)
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+
 
 
 func _physics_process(_delta):

@@ -18,7 +18,6 @@ func _physics_process(_delta):
 func _on_player_collision(area):
 	#Si coliona con el jugador y las balas son del mismo color, lo daña
 	if area.name == "Area2D" && $Sprite.modulate == player.modulate_color():
-			print("entra")
 			player.takeDamage(dmg)
 			remove()
 			
