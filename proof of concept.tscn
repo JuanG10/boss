@@ -16,6 +16,9 @@ script = ExtResource( 3 )
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 zoom = Vector2( 0.6, 0.6 )
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 
