@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UpgradeScreen/UpgradeWindow.gd" type="Script" id=1]
 [ext_resource path="res://UpgradeScreen/TransitionAnimation.gd" type="Script" id=2]
 [ext_resource path="res://Fondos/Negro_de_transicion.png" type="Texture" id=3]
+[ext_resource path="res://Sound/PassingTime.ogg" type="AudioStream" id=4]
 
 [node name="UpgradeWindow" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,5 +17,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="start_animation" from="." to="TransitionAnimation" method="_start_animation"]
 [connection signal="end_animation" from="TransitionAnimation" to="." method="_on_end_animation"]

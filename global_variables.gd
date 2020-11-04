@@ -10,4 +10,3 @@ var atk_speed = .4
 var health = 100
 var dmg = 10
 var magnet_radius = 10
-

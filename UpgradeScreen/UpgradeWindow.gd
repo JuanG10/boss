@@ -19,6 +19,7 @@ signal start_animation
 
 func _ready():
 	_add_actual_panel()
+	$bg_music.play()
 
 func change_panel_to(fill_mode:int, next_panel:Vector2)->void:
 	actual_pos += next_panel

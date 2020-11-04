@@ -58,7 +58,7 @@ func takeDamage(n):
 	health -= n
 	label.on_update(health)
 	if health <= 0:
-		get_tree().reload_current_scene()
+		get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 
 func shoot():
 	var b = Bullet.instance()
