@@ -5,26 +5,27 @@ var velocity = Vector2()
 var player
 var dmg
 
-func start(pos, dir, p, damage):
+var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0)]
+var collisiones = [0b1, 0b10, 0b100]
+
+func start(pos, dir, p, damage, n):
 	rotation = dir
 	position = pos
 	player   = p
 	dmg      = damage
 	velocity = Vector2(speed, 0).rotated(rotation)
+	$Sprite.modulate = colores[n]
+	collision_layer = collisiones[n]
+	collision_mask  = collisiones[n]
 
 func _physics_process(_delta):
 	position += velocity
 
 func _on_player_collision(area):
-	#Si coliona con el jugador y las balas son del mismo color, lo daña
-	if area.name == "Area2D" && $Sprite.modulate == player.modulate_color():
-			player.takeDamage(dmg)
-			remove()
-			
-#Set del color a las balas			
-func color_set(un_color):
-	$Sprite.modulate = un_color
-		
+	if area == player:
+		player.takeDamage(dmg)
+		remove()
+
 func remove():
 	get_parent().remove_child(self)
 	queue_free()
