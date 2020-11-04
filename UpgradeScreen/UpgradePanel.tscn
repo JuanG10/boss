@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UpgradeScreen/Pannels.gd" type="Script" id=1]
 [ext_resource path="res://UpgradeScreen/upgrade_list.gd" type="Script" id=2]
 [ext_resource path="res://Iconos/Flecha.png" type="Texture" id=3]
+[ext_resource path="res://Coins.gd" type="Script" id=4]
 
-[node name="Panel" type="Panel"]
+[node name="UpgradePanel" type="Panel"]
 margin_right = 1024.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
@@ -76,7 +77,23 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Play_again_button" type="Button" parent="."]
+margin_left = 24.0
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 128.0
+text = "Jugar de nuevo"
+
+[node name="Coins" type="Label" parent="."]
+margin_left = 768.0
+margin_top = 112.0
+margin_right = 832.0
+margin_bottom = 128.0
+text = "Coins: 0"
+script = ExtResource( 4 )
 [connection signal="button_up" from="Left_button" to="." method="_on_button_up" binds= [ 0, Vector2( -1, 0 ) ]]
 [connection signal="button_up" from="Right_button" to="." method="_on_button_up" binds= [ 1, Vector2( 1, 0 ) ]]
 [connection signal="button_up" from="Bottom_button" to="." method="_on_button_up" binds= [ 3, Vector2( 0, 1 ) ]]
 [connection signal="button_up" from="Top_button" to="." method="_on_button_up" binds= [ 8, Vector2( 0, -1 ) ]]
+[connection signal="button_up" from="Play_again_button" to="." method="_on_Play_again_button_up"]

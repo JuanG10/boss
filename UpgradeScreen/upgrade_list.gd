@@ -37,6 +37,7 @@ func _on_list_item_activated(index):
 	# Muchos if hardcodeados, refactor junto con el jugador.
 	if GlobalVariables.money >= intPrecio:
 		GlobalVariables.money -= intPrecio
+		get_parent().get_node("Coins").on_update()
 		if _get_selected_item() == 0: GlobalVariables.atk_speed *= 0.9
 		elif _get_selected_item() == 1: GlobalVariables.speed += .5
 		elif _get_selected_item() == 2: GlobalVariables.health *= 1.1
