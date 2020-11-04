@@ -20,7 +20,6 @@ func _ready():
 	if parent_name == "BasePanel":
 		add_item("Bala: +Cadencia", BASE.bala)
 		add_item("Escudo: +Vida", BASE.escudo)
-		add_item("Espada: +Daño corta distancia", BASE.espada)
 		add_item("Pistola: +Daño a distancia", BASE.pistola)
 	elif parent_name == "RedPanel":
 		add_item("Cuchillo: +Daño a corta distancia contra rojo", GREEN.cuchillo)
