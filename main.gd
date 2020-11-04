@@ -9,7 +9,7 @@ var timer = Timer.new()
 var points = 0
 
 func _ready():
-	$Player.initialize($Player/CanvasLayer/Label, $Player/CanvasLayer/Coins)
+	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)

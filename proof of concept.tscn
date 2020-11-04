@@ -22,7 +22,7 @@ drag_margin_v_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
 
-[node name="Label" type="Label" parent="Player/CanvasLayer"]
+[node name="HP" type="Label" parent="Player/CanvasLayer"]
 margin_right = 50.0
 margin_bottom = 14.0
 text = "HP: 100"
@@ -32,10 +32,10 @@ __meta__ = {
 }
 
 [node name="Coins" type="Label" parent="Player/CanvasLayer"]
-margin_left = -0.37101
-margin_top = 11.0918
-margin_right = 50.629
-margin_bottom = 25.0918
+margin_left = 0.00356674
+margin_top = 11.2791
+margin_right = 51.0036
+margin_bottom = 25.2791
 text = "Coins: 0"
 script = ExtResource( 7 )
 __meta__ = {
