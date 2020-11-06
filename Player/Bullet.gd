@@ -15,10 +15,12 @@ func start(pos, dir, damage, col):
 func _physics_process(_delta):
 	position += velocity
 
-
 func remove():
 	get_parent().remove_child(self)
 	queue_free()
 
 func takeDamage():
 	pass
+
+func _on_Timer_timeout():
+	remove()

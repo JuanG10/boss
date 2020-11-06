@@ -2,6 +2,7 @@ extends Area2D
 
 var Bullet = preload("res://Player/Bullet.tscn") 
 var label
+var coins
 
 var speed = GlobalVariables.speed
 var atk_speed = GlobalVariables.atk_speed
@@ -15,8 +16,9 @@ var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0)]
 var collisiones = [0b110, 0b101, 0b011]
 var n       = 0
 
-func initialize(l):
+func initialize(l,c):
 	label = l
+	coins = c
 	label.on_update(health)
 
 func _ready():
@@ -58,7 +60,7 @@ func takeDamage(n):
 	health -= n
 	label.on_update(health)
 	if health <= 0:
-		get_tree().reload_current_scene()
+		get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 
 func shoot():
 	var b = Bullet.instance()
@@ -77,3 +79,4 @@ func previous_color():
 
 func _on_grab_coin(area):
 	area.grab()
+	coins.on_update()

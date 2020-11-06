@@ -8,6 +8,7 @@ func remove():
 	queue_free()
 
 func grab():
+	$PickUpSound.play(0)
 	GlobalVariables.money += 10
 	remove()
 

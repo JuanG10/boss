@@ -29,3 +29,7 @@ func _on_player_collision(area):
 func remove():
 	get_parent().remove_child(self)
 	queue_free()
+
+
+func _on_Timer_timeout():
+	remove()
