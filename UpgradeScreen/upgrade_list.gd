@@ -33,7 +33,7 @@ func _ready():
 		add_item("Pistola: +Daño a distancia contra verde", GREEN.pistola)
 
 
-func _on_list_item_activated(index):
+func _on_list_item_activated(_index):
 	# Muchos if hardcodeados, refactor junto con el jugador.
 	if GlobalVariables.money >= intPrecio:
 		GlobalVariables.money -= intPrecio

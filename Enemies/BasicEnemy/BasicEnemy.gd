@@ -42,7 +42,7 @@ func _process(delta):
 func takeDamage(n):
 	health -= n
 	if health <= 0:
-		get_parent().remove_child(self)
+		get_parent().call_deferred("remove_child", self)
 		queue_free()
 
 func _on_area_entered(area):
@@ -63,4 +63,4 @@ func _on_death():
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
 		c.initialize(position + Vector2(i,0))
-		get_parent().add_child(c)
+		get_parent().call_deferred("add_child", c)

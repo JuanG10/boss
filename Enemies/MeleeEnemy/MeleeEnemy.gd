@@ -28,11 +28,19 @@ func _process(delta):
 func takeDamage(n):
 	health -= n
 	if health <= 0:
-		get_parent().remove_child(self)
+		get_parent().call_deferred("remove_child", self)
 		queue_free()
+
+func burn():
+	for i in range(10):
+		takeDamage(player.brn_dmg)
+		yield(get_tree().create_timer(.1), "timeout")
+
 
 func _on_area_entered(area):
 	if area.filename == "res://Player/Bullet.tscn":
+		if area.burn:
+			burn()
 		takeDamage(player.dmg)
 		area.remove()
 	if area.name == player.name: 
@@ -43,4 +51,4 @@ func _on_death():
 	get_parent().points += 10
 	var c = GlobalVariables.coin.instance()
 	c.initialize(position)
-	get_parent().add_child(c)
+	get_parent().call_deferred("add_child", c)

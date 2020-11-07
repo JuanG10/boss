@@ -53,7 +53,7 @@ func _on_area_entered(area):
 		player.takeDamage(10)
 
 func shoot():
-	for i in range(3):
+	for _i in range(3):
 		var b = Bullet.instance()
 		b.start($Muzzle.global_position, rotation, player, dmg, tipo)
 		get_parent().add_child(b)
@@ -66,4 +66,4 @@ func _on_death():
 	for i in range(5):
 		var c = GlobalVariables.coin.instance()
 		c.initialize(position + Vector2(i,0))
-		get_parent().add_child(c)
+		get_parent().call_deferred("add_child", c)

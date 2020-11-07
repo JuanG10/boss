@@ -13,9 +13,10 @@ func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
+	spawnMelee(2)
 
 func _process(_delta):
-	if timer.is_stopped():
+	if timer.is_stopped() and not timer.is_stopped():
 		timer.start()
 		if points < 100:
 			spawnMelee(6)
@@ -39,21 +40,21 @@ func _process(_delta):
 			spawnAdvanced(6)
 
 func spawnMelee(n):
-	for i in range(n):
+	for _i in range(n):
 		var enemy:Area2D = melee_template.instance()
 		enemy.initialize($Player,rand_range(0,3))
 		enemy.set_position(RandomPos()) 
 		add_child(enemy)
 
 func spawnBasic(n):
-	for i in range(n):
+	for _i in range(n):
 		var enemy:Area2D = basic_template.instance()
 		enemy.initialize($Player,rand_range(0,3))
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
 	
 func spawnAdvanced(n):
-	for i in range(n):
+	for _i in range(n):
 		var enemy:Area2D = advanced_tmplt.instance()
 		enemy.initialize($Player,rand_range(0,3))
 		enemy.set_position(Vector2(RandomPos())) 
