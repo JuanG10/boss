@@ -13,10 +13,9 @@ func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
-	spawnMelee(2)
 
 func _process(_delta):
-	if timer.is_stopped() and not timer.is_stopped():
+	if timer.is_stopped():
 		timer.start()
 		if points < 100:
 			spawnMelee(6)
