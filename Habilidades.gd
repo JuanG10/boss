@@ -14,4 +14,4 @@ func on_update():
 
 func set_names_habilidades():
 	for name_habilidad in GlobalVariables.habilidadres:
-		set_text(text + "," + str(name_habilidad))
+		set_text(text + " " + str(name_habilidad))

@@ -49,11 +49,16 @@ __meta__ = {
 }
 
 [node name="Habilidades" type="Label" parent="Player/CanvasLayer"]
-margin_left = 514.636
-margin_top = 344.352
-margin_right = 610.636
-margin_bottom = 358.352
-text = "asddssddassda"
+anchor_left = 0.549
+anchor_top = 0.574
+anchor_right = 0.549
+anchor_bottom = 0.574
+margin_left = 156.559
+margin_top = 233.597
+margin_right = 252.559
+margin_bottom = 247.597
+align = 1
+valign = 1
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false

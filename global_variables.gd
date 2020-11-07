@@ -17,3 +17,24 @@ var shield_speed = 5
 var habilidadres = []
 
 var player
+
+
+func add_habilidad(name_habilidad):
+	if(!existe_habilidad(name_habilidad)):
+		habilidadres.append(name_habilidad)
+
+
+func existe_habilidad(nombre_habilidad):
+	var boolean = false 
+	for name_habilidad in GlobalVariables.habilidadres:
+		boolean = nombre_habilidad == name_habilidad
+	return boolean		
+	
+	
+	
+	
+	
+	
+	
+
+

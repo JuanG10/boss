@@ -51,13 +51,13 @@ func _on_list_item_activated(_index):
 		get_parent().get_node("Coins").on_update()
 		#print(get_parent().get_parent().get_parent().name)
 		if _get_selected_item()   == 0: 
-			GlobalVariables.habilidadres.append("atk_spped")
+			GlobalVariables.add_habilidad("atk_spped")
 		elif _get_selected_item() == 1: 
-			GlobalVariables.habilidadres.append("Speed")
+			GlobalVariables.add_habilidad("Speed")
 		elif _get_selected_item() == 2: 
-			GlobalVariables.habilidadres.append("shield")
+			GlobalVariables.add_habilidad("shield")
 		elif _get_selected_item() == 3: 
-			GlobalVariables.habilidadres.append("damage")
+			GlobalVariables.add_habilidad("damage")
 
 		else: pass
 	#print("VelocidadAtaque: ", GlobalVariables.atk_speed," Velocidad: ", GlobalVariables.speed, " Vida: ",GlobalVariables.health, " Daño: ", GlobalVariables.dmg)

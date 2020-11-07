@@ -31,8 +31,10 @@ onready var B = get_node("States/Blue")
 
 var habilidades = GlobalVariables.habilidadres
 
-var puedo_activar = false
-
+var habilidad_health 	= true 
+var habilidad_speed  	= true
+var habilidad_atk_speed = true 
+var habilidad_damage    = true
 
 func initialize(l,c):
 	label = l
@@ -91,22 +93,48 @@ func _physics_process(_delta):
 		position.y += speed
 	if Input.is_action_pressed('up'):
 		position.y -= speed
+	
+	#Si tiene la habiladad la usa	
+	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield") && habilidad_health:
+		efecto_de_health()
+		activar_timer()
 		
-	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield"):
-		GlobalVariables.health *= 1.1
-		health = GlobalVariables.health
-		label.on_update(health)
-	if Input.is_action_just_pressed("Activate_speed") && existe_habilidad("speed"):
-		GlobalVariables.speed += .5
-		speed = GlobalVariables.speed
-	if Input.is_action_just_pressed("Activate_damage") && existe_habilidad("damage"):
-		GlobalVariables.dmg += 1
-		dmg = GlobalVariables.dmg
-	if Input.is_action_just_pressed("Activate_atk_speed") && existe_habilidad("atk_speed"):
-		GlobalVariables.atk_speed *= 0.9
-		atk_speed = GlobalVariables.atk_speed	
+	if Input.is_action_just_pressed("Activate_speed") && existe_habilidad("speed") && habilidad_speed:
+		efecto_de_speed()
+		activar_timer()
+	if Input.is_action_just_pressed("Activate_damage") && existe_habilidad("damage") && habilidad_damage:
+		efecto_de_damage()
+		activar_timer()
+	if Input.is_action_just_pressed("Activate_atk_speed") && existe_habilidad("atk_speed") && habilidad_atk_speed:
+		efecto_de_atk_speed()
+		activar_timer()	
+
+func efecto_de_health():
+	GlobalVariables.health *= 1.1
+	health = GlobalVariables.health
+	label.on_update(health)
+	habilidad_health = false	
+
+func efecto_de_speed():
+	GlobalVariables.speed += .5
+	speed = GlobalVariables.speed
+	habilidad_speed = false
+
+func efecto_de_damage():
+	GlobalVariables.dmg += 1
+	dmg = GlobalVariables.dmg
+	habilidad_damage = false
+func efecto_de_atk_speed():
+	GlobalVariables.atk_speed *= 0.9
+	atk_speed = GlobalVariables.atk_speed
+	habilidad_atk_speed = false
+	
+	
+func activar_timer():
+	$Timer.set_wait_time(5)
+	$Timer.start()
 		
-			
+
 
 func existe_habilidad(nombre_habilidad):
 	var boolean = false 
@@ -157,11 +185,25 @@ func _on_grab_coin(area):
 	area.grab()
 	coins.on_update()
 
-func puede_activar_habilidad():
-	 puedo_activar = true 
+func active_health():
+	 habilidad_health = true 
+	 $Timer.stop()
+
+func active_speed():
+	habilidad_speed = true
+	$Timer.stop()
+	
+func active_atk_speed():
+	habilidad_atk_speed = true 
+	$Timer.stop()
+	
+func active_damage():
+	habilidad_damage = true
+	$Timer.stop()			
 
 func _on_Timer_timeout():
-	pass 
+	if !habilidad_health:
+		active_health() 
 
 
 
