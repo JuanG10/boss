@@ -13,7 +13,9 @@ radius = 12.9594
 [sub_resource type="CircleShape2D" id=2]
 radius = 47.2431
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=[
+"Player",
+]]
 position = Vector2( 309, 184 )
 script = ExtResource( 1 )
 
@@ -48,4 +50,7 @@ collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
 [connection signal="area_entered" from="Area2D" to="." method="_on_grab_coin"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

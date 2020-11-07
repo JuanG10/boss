@@ -2,7 +2,7 @@ extends Area2D
 
 var Bullet = preload("res://Player/Bullet.tscn") 
 var label
-var coins
+var coins  
 
 var speed         = GlobalVariables.speed
 var atk_speed     = GlobalVariables.atk_speed
@@ -12,6 +12,8 @@ var magnet_radius = GlobalVariables.magnet_radius
 var brn_dmg       = GlobalVariables.brn_dmg
 var heal_speed    = GlobalVariables.heal_speed
 var shield_speed  = GlobalVariables.shield_speed
+
+
 
 var shootT  = Timer.new()
 var healT   = Timer.new()
@@ -26,6 +28,11 @@ var n           = 0
 onready var R = get_node("States/Red")
 onready var G = get_node("States/Green")
 onready var B = get_node("States/Blue")
+
+var habilidades = GlobalVariables.habilidadres
+
+var puedo_activar = false
+
 
 func initialize(l,c):
 	label = l
@@ -48,6 +55,7 @@ func _ready():
 	add_child(shieldT)
 
 func _physics_process(_delta):
+	#print(habilidad)
 	look_at(get_global_mouse_position())
 	#if Input.is_action_just_pressed("ui_accept"):
 	#	speed *= 3
@@ -83,6 +91,29 @@ func _physics_process(_delta):
 		position.y += speed
 	if Input.is_action_pressed('up'):
 		position.y -= speed
+		
+	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield"):
+		GlobalVariables.health *= 1.1
+		health = GlobalVariables.health
+		label.on_update(health)
+	if Input.is_action_just_pressed("Activate_speed") && existe_habilidad("speed"):
+		GlobalVariables.speed += .5
+		speed = GlobalVariables.speed
+	if Input.is_action_just_pressed("Activate_damage") && existe_habilidad("damage"):
+		GlobalVariables.dmg += 1
+		dmg = GlobalVariables.dmg
+	if Input.is_action_just_pressed("Activate_atk_speed") && existe_habilidad("atk_speed"):
+		GlobalVariables.atk_speed *= 0.9
+		atk_speed = GlobalVariables.atk_speed	
+		
+			
+
+func existe_habilidad(nombre_habilidad):
+	var boolean = false 
+	for name_habilidad in GlobalVariables.habilidadres:
+		boolean = nombre_habilidad == name_habilidad
+	return boolean	
+
 
 func heal(x):
 	if(health + x > GlobalVariables.health):
@@ -125,3 +156,17 @@ func previous_color():
 func _on_grab_coin(area):
 	area.grab()
 	coins.on_update()
+
+func puede_activar_habilidad():
+	 puedo_activar = true 
+
+func _on_Timer_timeout():
+	pass 
+
+
+
+
+
+
+
+

@@ -13,3 +13,7 @@ var magnet_radius = 10
 var brn_dmg = 1
 var heal_speed = 1.5
 var shield_speed = 5
+
+var habilidadres = []
+
+var player

@@ -17,6 +17,16 @@ const GREEN = {
 	cuchillo = preload("res://Iconos/cuchillo_azul-violeta.png"),
 	pistola = preload("res://Iconos/pistola_azul-violeta.png")
 }
+func _input(event):
+	if event is InputEventMouseButton :
+			if get_selected_items().size() > 0:
+				print(get_selected_items()[0])
+
+func _physics_process(delta):
+	if parent_name == "BasePanel":
+		#print(get_item_text(0))
+		#print(1)
+		pass
 
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
@@ -35,13 +45,20 @@ func _ready():
 
 func _on_list_item_activated(_index):
 	# Muchos if hardcodeados, refactor junto con el jugador.
-	if GlobalVariables.money >= intPrecio:
+	#GlobalVariables.money >= intPrecio
+	if true:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
-		if _get_selected_item() == 0: GlobalVariables.atk_speed *= 0.9
-		elif _get_selected_item() == 1: GlobalVariables.speed += .5
-		elif _get_selected_item() == 2: GlobalVariables.health *= 1.1
-		elif _get_selected_item() == 3: GlobalVariables.dmg += 1
+		#print(get_parent().get_parent().get_parent().name)
+		if _get_selected_item()   == 0: 
+			GlobalVariables.habilidadres.append("atk_spped")
+		elif _get_selected_item() == 1: 
+			GlobalVariables.habilidadres.append("Speed")
+		elif _get_selected_item() == 2: 
+			GlobalVariables.habilidadres.append("shield")
+		elif _get_selected_item() == 3: 
+			GlobalVariables.habilidadres.append("damage")
+
 		else: pass
 	#print("VelocidadAtaque: ", GlobalVariables.atk_speed," Velocidad: ", GlobalVariables.speed, " Vida: ",GlobalVariables.health, " Daño: ", GlobalVariables.dmg)
 
