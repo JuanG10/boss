@@ -5,6 +5,7 @@ code = "shader_type canvas_item;
 
 uniform vec3 color; // AZUL_INICIAL = vec3(0.35, 0.48, 0.95)
 uniform int OCTAVES = 4;
+uniform float acceleration = 0.3;
 
 float rand(vec2 coord){
 	return fract(sin(dot(coord.xy ,vec2(12.9898,78.233))) * 43758.5453);
@@ -39,7 +40,7 @@ float fbm(vec2 coord){
 void fragment() {
 	vec2 coord = UV * 25.0;
 
-	vec2 motion = vec2( fbm(coord + vec2(TIME * -0.55, TIME * 0.55)) );
+	vec2 motion = vec2( fbm(coord + vec2(TIME * -acceleration, TIME * acceleration)) );
 
 	float final = fbm(coord + motion);
 
@@ -49,5 +50,6 @@ custom_defines = ""
 
 [resource]
 shader = SubResource( 1 )
-shader_param/color = Vector3( 0.35, 0.48, 0.95 )
+shader_param/color = Vector3( 0.35, 0.45, 0.8 )
 shader_param/OCTAVES = 4
+shader_param/acceleration = 0.3
