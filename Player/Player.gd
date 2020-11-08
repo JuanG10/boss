@@ -98,6 +98,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield") && habilidad_health:
 		efecto_de_health()
 		activar_timer()
+	
 		
 	if Input.is_action_just_pressed("Activate_speed") && existe_habilidad("speed") && habilidad_speed:
 		efecto_de_speed()

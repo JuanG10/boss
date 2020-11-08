@@ -9,31 +9,24 @@ const precio = "$" + str(intPrecio) # Debería ir incrementando.
 # Iconos. Hardcodeado por ahora.
 const BASE = {
 	bala = preload("res://Iconos/bala_base.png"),
-	escudo = preload("res://Iconos/defensa_base.png"),
 	limitador = preload("res://Iconos/limitador_base.png"),
 	pistola = preload("res://Iconos/pistola_base.png")
 }
 const GREEN = {
 	cuchillo = preload("res://Iconos/cuchillo_azul-violeta.png"),
+	escudo = preload("res://Iconos/defensa_base.png"),
 	pistola = preload("res://Iconos/pistola_azul-violeta.png")
 }
 func _input(event):
 	if event is InputEventMouseButton :
 			if get_selected_items().size() > 0:
-				print(get_selected_items()[0])
-
-func _physics_process(delta):
-	if parent_name == "BasePanel":
-		#print(get_item_text(0))
-		#print(1)
-		pass
-
+				_on_list_item_activated(1)
+				
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "BasePanel":
 		add_item("Bala: +Cadencia " + precio, BASE.bala) #0
 		add_item("Limitador: +Velocidad " + precio, BASE.limitador) #1
-		add_item("Escudo: +Vida " + precio, BASE.escudo) #2
 		add_item("Pistola: +Daño " + precio, BASE.pistola) #3
 	elif parent_name == "RedPanel":
 		add_item("Cuchillo: +Daño a corta distancia contra rojo", GREEN.cuchillo)
@@ -41,6 +34,7 @@ func _ready():
 	elif parent_name == "GreenPanel":
 		add_item("Cuchillo: +Daño a corta distancia contra verde", GREEN.cuchillo)
 		add_item("Pistola: +Daño a distancia contra verde", GREEN.pistola)
+		add_item("Escudo: +Vida " + precio, GREEN.escudo) #2
 
 
 func _on_list_item_activated(_index):

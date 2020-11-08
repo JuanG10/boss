@@ -8,6 +8,8 @@ var timer = Timer.new()
 
 var points = 0
 
+
+
 func _ready():
 	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
 	timer.set_one_shot(true)
