@@ -117,12 +117,12 @@ func shoot():
 func next_color():
 	n = (n + 1)%3
 	$Sprite.modulate = colores[n]
-	get_parent().get_node("Noise").modulate = colores[n]
+	FogBackground.change_bg_color(true)
 	
 func previous_color():
 	n = (n + 2)%3
 	$Sprite.modulate = colores[n]
-	get_parent().get_node("Noise").modulate = colores[n]
+	FogBackground.change_bg_color(false)
 
 func _on_grab_coin(area):
 	area.grab()

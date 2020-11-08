@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalVariables="*res://global_variables.gd"
+FogBackground="*res://Fondos/Fog/FogBackground.tscn"
 
 [input]
 
