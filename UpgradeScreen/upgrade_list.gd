@@ -7,6 +7,7 @@ const intPrecio = 30
 const precio = "$" + str(intPrecio) # Debería ir incrementando.
 
 # Iconos. Hardcodeado por ahora.
+
 const BASE = {
 	bala = preload("res://Iconos/bala_base.png"),
 	limitador = preload("res://Iconos/limitador_base.png"),
@@ -18,6 +19,12 @@ const GREEN = {
 	escudo = preload("res://Iconos/defensa_base.png"),
 	pistola = preload("res://Iconos/pistola_azul-violeta.png")
 }
+const BLUE = {
+	corazon = preload("res://Iconos/corazon.png")
+}
+
+var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
+
 func _input(event):
 	if event is InputEventMouseButton :
 			if get_selected_items().size() > 0:
@@ -38,6 +45,8 @@ func _ready():
 		#add_item("Cuchillo: +Daño a corta distancia contra verde", GREEN.cuchillo)
 		#add_item("Pistola: +Daño a distancia contra verde", GREEN.pistola)
 		add_item("Escudo: +Vida " + precio, GREEN.escudo) #2
+	elif parent_name == "BluePanel":
+		add_item("Corazon: +Vida" + precio,BLUE.corazon)
 
 
 func _on_list_item_activated(_index):
@@ -47,17 +56,70 @@ func _on_list_item_activated(_index):
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		#print(get_parent().get_parent().get_parent().name)
-		if _get_selected_item()   == 0: 
-			GlobalVariables.add_habilidad("atk_spped")
-		elif _get_selected_item() == 1: 
-			GlobalVariables.add_habilidad("Speed")
-		elif _get_selected_item() == 2: 
-			GlobalVariables.add_habilidad("damage")
-		elif _get_selected_item() == 3: 
-			GlobalVariables.add_habilidad("shield")
+		if parent_name == "BasePanel":
+			compra_base_panel()
+		elif parent_name == "RedPanel":
+			comprar_red_panel()	
+		elif parent_name == "GreenPanel":
+			comprar_green_panel()	
+		elif parent_name == "BluePanel":
+			comprar_blue_panel()	
 
 		else: pass
 	#print("VelocidadAtaque: ", GlobalVariables.atk_speed," Velocidad: ", GlobalVariables.speed, " Vida: ",GlobalVariables.health, " Daño: ", GlobalVariables.dmg)
+func compra_base_panel():
+	if _get_selected_item()   == 0: 
+			GlobalVariables.add_habilidad("atk_speed")
+			music_moneda_play()
+	elif _get_selected_item() == 1: 
+			GlobalVariables.add_habilidad("Speed")
+			music_moneda_play()
+	elif _get_selected_item() == 2: 
+			GlobalVariables.add_habilidad("damage")
+			music_moneda_play()
+	elif _get_selected_item() == 3: 
+			GlobalVariables.add_habilidad("shield")
+			music_moneda_play()
 
+
+
+func comprar_red_panel():
+	if _get_selected_item()   == 0: 
+			GlobalVariables.add_habilidad("Cuchillo")
+			music_moneda_play()
+	elif _get_selected_item() == 1: 
+			GlobalVariables.add_habilidad("damage_1")
+			music_moneda_play()
+	elif _get_selected_item()   == 2: 
+			GlobalVariables.add_habilidad("atk_speed")
+			music_moneda_play()
+
+func comprar_green_panel():
+	if _get_selected_item() == 0: 
+		GlobalVariables.add_habilidad("shield")
+		music_moneda_play()
+
+func comprar_blue_panel():
+	if _get_selected_item() == 0:
+		GlobalVariables.add_habilidad("Corazon")
+		music_moneda_play()
+
+
+
+
+
+
+
+func music_moneda_play():
+	get_parent().get_node("music_moneda").play() 
+	$Timer.set_wait_time(2)
+	$Timer.start()
+func music_moneda_stop():
+	get_parent().get_node("music_moneda").stop()
+	
 func _get_selected_item()->int:
 	return get_selected_items()[0]
+
+
+func _on_Timer_timeout():
+	music_moneda_stop()

@@ -8,7 +8,7 @@ const PANELS = {
 }
 
 const LEVELS = {
-	color_level = [PANELS.RED,PANELS.GREEN],
+	color_level = [PANELS.RED,PANELS.GREEN,PANELS.BLUE],
 	base_level = [PANELS.BASE]
 }
 

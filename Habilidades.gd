@@ -5,10 +5,13 @@ var position
 var posi_y = 0
 
 const HABILIDADES = {
-	ESCUDO 	= preload("res://Habilidades/Escudo.tscn"),
-	PISTOLA = preload("res://Habilidades/Pistola.tscn"),
-	BALA    = preload("res://Habilidades/Bala.tscn"),
-	SPEED   = preload("res://Habilidades/speed.tscn")
+	ESCUDO 	  = preload("res://Habilidades/Escudo.tscn"),
+	PISTOLA   = preload("res://Habilidades/Pistola.tscn"),
+	BALA      = preload("res://Habilidades/Bala.tscn"),
+	SPEED     = preload("res://Habilidades/speed.tscn"),
+	CORAZON   = preload("res://Habilidades/Corazon.tscn"),
+	CUCHILLO  = preload("res://Habilidades/Cuchillo.tscn"),
+	PISTOLA_2 = preload("res://Habilidades/Pistola_2.tscn")
 }
 
 func _ready():
@@ -33,24 +36,36 @@ func sprite_de_habilidad(name_habilidad):
 	if	name_habilidad == "shield":
 		scene = HABILIDADES.ESCUDO.instance()
 		position.add_child(HABILIDADES.ESCUDO.instance())
-		position.get_node('Escudo').position.x += posi_y
-		posi_y += 25 
-	if name_habilidad == "damage":
+		set_icono_habilidad('Escudo')
+	elif name_habilidad == "atk_speed":
 		scene = HABILIDADES.BALA.instance()
 		position.add_child(scene)
-		position.get_node('Bala').position.x += posi_y
-		posi_y += 25
-	if name_habilidad == "Speed":
+		set_icono_habilidad('Bala')
+	elif name_habilidad == "Speed":
 		scene = HABILIDADES.SPEED.instance()
 		position.add_child(scene)	
-		position.get_node('speed').position.x += posi_y
-		posi_y += 25 
-	if name_habilidad == 'atk_spped':
-		pass	
+		set_icono_habilidad('speed')
+	elif name_habilidad == 'Corazon':
+		scene = HABILIDADES.CORAZON.instance()
+		position.add_child(scene)
+		set_icono_habilidad(name_habilidad) 
+	elif name_habilidad == "damage":
+		scene = HABILIDADES.PISTOLA_2.instance()
+		position.add_child(scene)
+		set_icono_habilidad('Pistola_2')
+	elif name_habilidad == "damage_1":
+		scene = HABILIDADES.PISTOLA.instance()
+		position.add_child(scene)
+		set_icono_habilidad('Pistola')
+	elif name_habilidad == "Cuchillo":
+		scene = HABILIDADES.CUCHILLO.instance()
+		position.add_child(scene)
+		set_icono_habilidad(name_habilidad)
 
 
-
-
+func set_icono_habilidad(name_habilidad):
+		position.get_node(name_habilidad).position.x += posi_y
+		posi_y += 25
 
 
 

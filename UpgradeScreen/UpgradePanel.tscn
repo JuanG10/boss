@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UpgradeScreen/Pannels.gd" type="Script" id=1]
 [ext_resource path="res://UpgradeScreen/upgrade_list.gd" type="Script" id=2]
 [ext_resource path="res://Iconos/Flecha.png" type="Texture" id=3]
 [ext_resource path="res://Coins.gd" type="Script" id=4]
+[ext_resource path="res://moneda_particula/#SOUNDPERFECT  Money Coins In Hand  No Copyright SoundsSound Effect(HD).ogg" type="AudioStream" id=5]
 
 [node name="UpgradePanel" type="Panel"]
 margin_right = 1024.0
@@ -26,6 +27,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Timer" type="Timer" parent="upgrade_list"]
 
 [node name="Left_button" type="Button" parent="."]
 margin_left = 64.0
@@ -92,6 +95,10 @@ margin_right = 832.0
 margin_bottom = 128.0
 text = "Coins: 0"
 script = ExtResource( 4 )
+
+[node name="music_moneda" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+[connection signal="timeout" from="upgrade_list/Timer" to="upgrade_list" method="_on_Timer_timeout"]
 [connection signal="button_up" from="Left_button" to="." method="_on_button_up" binds= [ 0, Vector2( -1, 0 ) ]]
 [connection signal="button_up" from="Right_button" to="." method="_on_button_up" binds= [ 1, Vector2( 1, 0 ) ]]
 [connection signal="button_up" from="Bottom_button" to="." method="_on_button_up" binds= [ 3, Vector2( 0, 1 ) ]]
