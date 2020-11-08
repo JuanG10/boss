@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Money.png" type="Texture" id=1]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 800.0
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[node name="Moneda_particula" type="Particles2D"]
+position = Vector2( 11.2836, 2.00226 )
+scale = Vector2( 0.002, 0.002 )
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )

@@ -55,8 +55,19 @@ func _ready():
 	shieldT.set_one_shot(true)
 	shieldT.set_wait_time(shield_speed)
 	add_child(shieldT)
-
+	
+func color_actual():
+	var sprite_modulate = $Sprite.modulate
+	if sprite_modulate == Color(1,0,0,1):
+		return "Rojo"
+	elif sprite_modulate == Color(0,0,1,1):
+		return "Blue"
+	elif sprite_modulate == Color(0,1,0,1):
+		return "Verde"
+		
+		
 func _physics_process(_delta):
+
 	#print(habilidad)
 	look_at(get_global_mouse_position())
 	#if Input.is_action_just_pressed("ui_accept"):
@@ -95,11 +106,10 @@ func _physics_process(_delta):
 		position.y -= speed
 	
 	#Si tiene la habiladad la usa	
-	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield") && habilidad_health:
+	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield") && habilidad_health && color_actual() == "Verde":
+		print("holaaaaa")
 		efecto_de_health()
 		activar_timer()
-	
-		
 	if Input.is_action_just_pressed("Activate_speed") && existe_habilidad("speed") && habilidad_speed:
 		efecto_de_speed()
 		activar_timer()
@@ -109,22 +119,30 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Activate_atk_speed") && existe_habilidad("atk_speed") && habilidad_atk_speed:
 		efecto_de_atk_speed()
 		activar_timer()	
+		
 
+
+#El personaje recupera vida
 func efecto_de_health():
 	GlobalVariables.health *= 1.1
 	health = GlobalVariables.health
 	label.on_update(health)
 	habilidad_health = false	
 
+#La velocidad del personaje aumenta
 func efecto_de_speed():
 	GlobalVariables.speed += .5
 	speed = GlobalVariables.speed
 	habilidad_speed = false
-
+	
+#El daño del personaje aumenta en 1
 func efecto_de_damage():
 	GlobalVariables.dmg += 1
 	dmg = GlobalVariables.dmg
 	habilidad_damage = false
+	
+	
+#La velocidad de ataque del personaje aumenta	
 func efecto_de_atk_speed():
 	GlobalVariables.atk_speed *= 0.9
 	atk_speed = GlobalVariables.atk_speed

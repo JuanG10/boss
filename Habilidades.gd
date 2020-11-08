@@ -7,7 +7,8 @@ var posi_y = 0
 const HABILIDADES = {
 	ESCUDO 	= preload("res://Habilidades/Escudo.tscn"),
 	PISTOLA = preload("res://Habilidades/Pistola.tscn"),
-	BALA    = preload("res://Habilidades/Bala.tscn")
+	BALA    = preload("res://Habilidades/Bala.tscn"),
+	SPEED   = preload("res://Habilidades/speed.tscn")
 }
 
 func _ready():
@@ -28,8 +29,7 @@ func set_names_habilidades():
 		
 		
 func sprite_de_habilidad(name_habilidad):
-	var scene = null
-	
+	var scene 
 	if	name_habilidad == "shield":
 		scene = HABILIDADES.ESCUDO.instance()
 		position.add_child(HABILIDADES.ESCUDO.instance())
@@ -38,12 +38,15 @@ func sprite_de_habilidad(name_habilidad):
 	if name_habilidad == "damage":
 		scene = HABILIDADES.BALA.instance()
 		position.add_child(scene)
+		position.get_node('Bala').position.x += posi_y
+		posi_y += 25
 	if name_habilidad == "Speed":
-		position.add_child(HABILIDADES.PISTOLA.instance())	
-		position.get_node('Pistola').position.x += posi_y
+		scene = HABILIDADES.SPEED.instance()
+		position.add_child(scene)	
+		position.get_node('speed').position.x += posi_y
 		posi_y += 25 
-			
-
+	if name_habilidad == 'atk_spped':
+		pass	
 
 
 
