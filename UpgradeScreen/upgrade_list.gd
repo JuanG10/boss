@@ -30,6 +30,7 @@ func _input(event):
 			if get_selected_items().size() > 0:
 				_on_list_item_activated(1)
 				
+				
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "BasePanel":
@@ -48,6 +49,12 @@ func _ready():
 	elif parent_name == "BluePanel":
 		add_item("Corazon: +Vida" + precio,BLUE.corazon)
 
+func animacion_monedas():
+	var posicion_mondea = get_local_mouse_position()
+	var monedas         = preload("res://moneda_particula/Moneda_particula.tscn").instance()
+	monedas.position = posicion_mondea
+	add_child(monedas)
+	
 
 func _on_list_item_activated(_index):
 	# Muchos if hardcodeados, refactor junto con el jugador.
@@ -70,14 +77,18 @@ func _on_list_item_activated(_index):
 func compra_base_panel():
 	if _get_selected_item()   == 0: 
 			GlobalVariables.add_habilidad("atk_speed")
+			animacion_monedas()
 			music_moneda_play()
 	elif _get_selected_item() == 1: 
 			GlobalVariables.add_habilidad("Speed")
+			animacion_monedas()
 			music_moneda_play()
 	elif _get_selected_item() == 2: 
 			GlobalVariables.add_habilidad("damage")
+			animacion_monedas()
 			music_moneda_play()
-	elif _get_selected_item() == 3: 
+	elif _get_selected_item() == 3:
+			animacion_monedas() 
 			GlobalVariables.add_habilidad("shield")
 			music_moneda_play()
 

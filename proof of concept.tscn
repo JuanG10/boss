@@ -26,10 +26,15 @@ stream = ExtResource( 4 )
 volume_db = -10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+script = ExtResource( 8 )
 
 [node name="HP" type="Label" parent="Player/CanvasLayer"]
-margin_right = 50.0
-margin_bottom = 14.0
+anchor_top = -0.00148483
+anchor_bottom = -0.00148483
+margin_left = 2.64865
+margin_top = 0.529732
+margin_right = 52.6487
+margin_bottom = 14.5297
 text = "HP: 100"
 script = ExtResource( 2 )
 __meta__ = {
@@ -48,6 +53,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Position2D" type="Position2D" parent="Player/CanvasLayer"]
+position = Vector2( 810.138, 576.385 )
+
 [node name="Habilidades" type="Label" parent="Player/CanvasLayer"]
 anchor_left = 0.549
 anchor_top = 0.574
@@ -59,7 +67,6 @@ margin_right = 252.559
 margin_bottom = 247.597
 align = 1
 valign = 1
-script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,6 +75,3 @@ __meta__ = {
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 5 )
 script = ExtResource( 6 )
-
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 538.104, 351.211 )

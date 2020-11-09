@@ -13,7 +13,7 @@ orbit_velocity_random = 0.0
 
 [node name="Moneda_particula" type="Particles2D"]
 position = Vector2( 184.14, 135.232 )
-scale = Vector2( 0.01, 0.01 )
+scale = Vector2( 0.03, 0.03 )
 process_material = SubResource( 1 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

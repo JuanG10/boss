@@ -107,9 +107,8 @@ func _physics_process(_delta):
 	
 	#Si tiene la habiladad la usa	
 	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield") && habilidad_health && color_actual() == "Verde":
-		print("holaaaaa")
 		efecto_de_health()
-		activar_timer()
+		activar_timer()	
 	if Input.is_action_just_pressed("Activate_speed") && existe_habilidad("speed") && habilidad_speed:
 		efecto_de_speed()
 		activar_timer()
