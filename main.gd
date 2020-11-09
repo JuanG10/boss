@@ -18,23 +18,29 @@ func _process(_delta):
 	if timer.is_stopped():
 		timer.start()
 		if points < 100:
+			FogBackground.change_bg_octaves(2)
 			spawnMelee(6)
 		elif points < 300:
+			FogBackground.change_bg_octaves(3)
 			spawnMelee(4)
 			spawnBasic(2)
 		elif points < 500:
+			FogBackground.change_bg_octaves(4)
 			spawnMelee(3)
 			spawnBasic(2)
 			spawnAdvanced(1)
 		elif points < 1000:
+			FogBackground.change_bg_octaves(5)
 			spawnMelee(6)
 			spawnBasic(1)
 			spawnAdvanced(3)
 		elif points < 2000:
+			FogBackground.change_bg_octaves(6)
 			spawnMelee(4)
 			spawnBasic(6)
 			spawnAdvanced(2)
 		else:
+			FogBackground.change_bg_octaves(1)
 			spawnBasic(6)
 			spawnAdvanced(6)
 
