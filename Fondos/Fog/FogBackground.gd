@@ -8,11 +8,14 @@ const COLORS = {
 
 var pos:int = 0
 
+func change_bg_color_by_position(pos:int)->void:
+	material.set_shader_param("color", COLORS[pos])
+
 func change_bg_color(next:bool)->void:
 	if next: pos = (pos + 1) % COLORS.size()
 	else: pos = (pos + 2) % COLORS.size()
 	material.set_shader_param("color", COLORS[pos])
 
 func change_bg_octaves(octaves:int)->void:
-	material.set_shader_param("OCTAVES", octaves)
-	material.set_shader_param("acceleration", octaves/10.0)
+	material.set_shader_param("OCTAVES", octaves + 1)
+	material.set_shader_param("acceleration", (octaves/10.0) + 0.1)
