@@ -7,6 +7,6 @@
 [node name="FogBackground" type="Sprite"]
 material = ExtResource( 3 )
 position = Vector2( 512, 300 )
-scale = Vector2( 30, 20 )
+scale = Vector2( 80, 60 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

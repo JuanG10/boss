@@ -135,4 +135,5 @@ func _create_floating_text(amount:int, type:String)->void:
 	var text = DMG_TEXT.instance()
 	text.amount = amount
 	text.type = type
+	text.rotation_degrees = -45
 	add_child(text)
