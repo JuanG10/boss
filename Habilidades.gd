@@ -45,14 +45,12 @@ func set_habilidades():
 		habilidades_green(list_habi_green)
 		habilitar_habilidad_green = false
 	if player.color_actual() == "Red" && habilitar_habilidad_red && list_habi_red.size() > 0:
-		print("pepe")
 		habilidades_red(list_habi_red)
 		habilitar_habilidad_red = false
 	if player.color_actual() == "Blue" && habilitar_habilidad_blue && list_habi_blu.size() > 0:
 		habilidades_blue(list_habi_blu)
 		habilitar_habilidad_blue = false
 	if player.color_actual() != "Red" && !habilitar_habilidad_red:
-		print("pepaa")
 		limpiar_habilidades_Red()
 		habilitar_habilidad_red = true
 	if player.color_actual() != "Blue" && !habilitar_habilidad_blue:
@@ -90,6 +88,7 @@ func set_sprite_habilidad_rojo(name_habilidad):
 		elif name_habilidad == "Speed":
 			scene = HABILIDADES.SPEED.instance()
 			name = "speed"
+			print(scene)
 		elif name_habilidad == "damage":
 			scene = HABILIDADES.PISTOLA_2.instance()
 			name = "Pistola_2"

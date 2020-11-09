@@ -74,6 +74,7 @@ func compra_base_panel():
 		GlobalVariables.add_habilidad_Red("atk_speed")
 		music_compra_and_animation()
 	elif _get_selected_item() == 1: 
+			GlobalVariables.add_habilidad_Red("Speed")
 			music_compra_and_animation()
 	elif _get_selected_item() == 2: 
 			GlobalVariables.add_habilidad_Red("damage")
