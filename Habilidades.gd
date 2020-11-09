@@ -10,6 +10,13 @@ var habilitar_habilidad_green = true
 var habilitar_habilidad_red   = true
 var habilitar_habilidad_blue  = true 
 
+
+
+var habilidades_agregadas_verde = []
+var habilidades_agregadas_rojo  = []
+var habilidades_agregadas_azul  = []
+
+
 const HABILIDADES = {
 	ESCUDO 	  = preload("res://Habilidades/Escudo.tscn"),
 	PISTOLA   = preload("res://Habilidades/Pistola.tscn"),
@@ -35,24 +42,26 @@ func set_habilidades():
 	var list_habi_red   = GlobalVariables.habilidades_Red
 	var list_habi_blu   = GlobalVariables.habilidades_Blue
 	if player.color_actual() == "Green" && habilitar_habilidad_green && list_habi_green.size() > 0:
-		limpiar_habilidades()
 		habilidades_green(list_habi_green)
-		habilitar_habilidad_blue = true
 		habilitar_habilidad_green = false
-		habilitar_habilidad_red   = true
-	elif player.color_actual() == "Red" && habilitar_habilidad_red && list_habi_red.size() > 0:
-		limpiar_habilidades()
+	if player.color_actual() == "Red" && habilitar_habilidad_red && list_habi_red.size() > 0:
+		print("pepe")
 		habilidades_red(list_habi_red)
-		habilitar_habilidad_blue = true
-		habilitar_habilidad_green = true
-		habilitar_habilidad_red   = false
-	elif player.color_actual() == "Blue" && habilitar_habilidad_blue && list_habi_blu.size() > 0:
-		limpiar_habilidades()
+		habilitar_habilidad_red = false
+	if player.color_actual() == "Blue" && habilitar_habilidad_blue && list_habi_blu.size() > 0:
 		habilidades_blue(list_habi_blu)
 		habilitar_habilidad_blue = false
+	if player.color_actual() != "Red" && !habilitar_habilidad_red:
+		print("pepaa")
+		limpiar_habilidades_Red()
+		habilitar_habilidad_red = true
+	if player.color_actual() != "Blue" && !habilitar_habilidad_blue:
+		limpiar_habilidades_Blue()
+		habilitar_habilidad_blue = true
+	if player.color_actual() != "Green" && !habilitar_habilidad_green:
+		limpiar_habilidades_Green()		
 		habilitar_habilidad_green = true
-		habilitar_habilidad_red   = true
-	
+
 	
 
 		
@@ -91,7 +100,7 @@ func set_sprite_habilidad_rojo(name_habilidad):
 			name = "Cuchillo"
 			scene = HABILIDADES.CUCHILLO.instance()
 		add_child(scene)
-		habilidades_agregadas.append(scene)
+		habilidades_agregadas_rojo.append(scene)
 		set_icono_habilidad(name)
 
 
@@ -101,7 +110,7 @@ func set_sprite_habilidad_verde(name_habilidad):
 	if	name_habilidad == "shield":
 		scene = HABILIDADES.ESCUDO.instance()
 		add_child(scene)
-		habilidades_agregadas.append(scene)
+		habilidades_agregadas_verde.append(scene)
 		set_icono_habilidad('Escudo')
 
 #Con el estado azul
@@ -109,7 +118,7 @@ func set_sprite_habilidad_azul(name_habilidad):
 	if name_habilidad == 'Corazon':
 		scene = HABILIDADES.CORAZON.instance()
 		add_child(scene)
-		habilidades_agregadas.append(scene)
+		habilidades_agregadas_azul.append(scene)
 		set_icono_habilidad(name_habilidad)
 
 
@@ -129,4 +138,30 @@ func limpiar_habilidades():
 		remove_child(habilidad)
 	habilidades_agregadas = []	
 	posi_y = 0
+	
+func limpiar_habilidades_Green():
+	for habilidad in habilidades_agregadas_verde:
+		remove_child(habilidad)
+	habilidades_agregadas_verde = []
+	posi_y = 0		
+	
+func limpiar_habilidades_Red():
+	for habilidad in habilidades_agregadas_rojo:
+		remove_child(habilidad)
+	habilidades_agregadas_rojo = []
+	posi_y = 0		
+
+func limpiar_habilidades_Blue():
+	for habilidad in habilidades_agregadas_azul:
+		remove_child(habilidad)
+	habilidades_agregadas_azul = []
+	posi_y = 0		
+
+
+
+
+
+
+
+
 
