@@ -34,7 +34,8 @@ func set_names_habilidades():
 	
 		
 		
-		
+
+#Agrega como hijo/s al canvasLayer los iconos de las habilidades del estado rojo
 func set_sprite_habilidad_rojo(name_habilidad):
 	if get_parent().color_actual() == "Rojo":	
 		if name_habilidad == "atk_speed":
@@ -51,16 +52,14 @@ func set_sprite_habilidad_rojo(name_habilidad):
 		set_icono_habilidad(name_habilidad)
 
 
-
+#Lo mismo pero las habilidades del estado verde
 func set_sprite_habilidad_verde(name_habilidad):
 	if	name_habilidad == "shield":
 		scene = HABILIDADES.ESCUDO.instance()
 		add_child(scene)
 		set_icono_habilidad('Escudo')
 
-
-
-
+#Con el estado azul
 func set_sprite_habilidad_azul(name_habilidad):
 	if name_habilidad == 'Corazon':
 		limpiar_habilidades()
@@ -69,17 +68,16 @@ func set_sprite_habilidad_azul(name_habilidad):
 		set_icono_habilidad(name_habilidad)
 
 
-
-
-
-
+#Al icono que representa la habilidad del player lo agrega al CanvasLayer y le da un position
 func set_icono_habilidad(name_habilidad):
 		var icono_habilidad   		= get_node(name_habilidad)
-		icono_habilidad.position.x += get_node("Position2D").position.x + posi_y
-		icono_habilidad.position.y += get_node("Position2D").position.y
+		var position2d              = get_node("Position2D")
+		icono_habilidad.position.x += position2d.position.x + posi_y
+		icono_habilidad.position.y += position2d.position.y
 		posi_y += 25
 
 
+#Borra las habilidades agregadas 
 func limpiar_habilidades():
 	for habilidad in habilidades_agregadas:
 		remove_child(habilidad)

@@ -56,12 +56,9 @@ func animacion_monedas():
 	
 
 func _on_list_item_activated(_index):
-	# Muchos if hardcodeados, refactor junto con el jugador.
-	#GlobalVariables.money >= intPrecio
 	if true:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
-		#print(get_parent().get_parent().get_parent().name)
 		if parent_name == "BasePanel":
 			compra_base_panel()
 		elif parent_name == "RedPanel":
@@ -71,50 +68,49 @@ func _on_list_item_activated(_index):
 		elif parent_name == "BluePanel":
 			comprar_blue_panel()	
 
-		else: pass
-	#print("VelocidadAtaque: ", GlobalVariables.atk_speed," Velocidad: ", GlobalVariables.speed, " Vida: ",GlobalVariables.health, " Daño: ", GlobalVariables.dmg)
+
+#Si alguno cumple la condicion, compra, y agrega el nombre de la habilidad en un lista de GlobalVariables
 func compra_base_panel():
 	if _get_selected_item()   == 0: 
-			GlobalVariables.add_habilidad("atk_speed")
-			music_compra_and_animation()
+		GlobalVariables.add_habilidad_Red("atk_speed")
+		music_compra_and_animation()
 	elif _get_selected_item() == 1: 
-			GlobalVariables.add_habilidad("Speed")
 			music_compra_and_animation()
 	elif _get_selected_item() == 2: 
-			GlobalVariables.add_habilidad("damage")
+			GlobalVariables.add_habilidad_Red("damage")
 			music_compra_and_animation()
 	elif _get_selected_item() == 3:
-			GlobalVariables.add_habilidad("shield")
+			GlobalVariables.add_habilidad_Red("shield")
 			music_compra_and_animation()
-
-func music_compra_and_animation():
-	animacion_monedas()
-	music_moneda_play()
 
 func comprar_red_panel():
 	if _get_selected_item()   == 0: 
-			GlobalVariables.add_habilidad("Cuchillo")
+			GlobalVariables.add_habilidad_Red("Cuchillo")
 			music_compra_and_animation()
 	elif _get_selected_item() == 1: 
-			GlobalVariables.add_habilidad("damage_1")
+			GlobalVariables.add_habilidad_Red("damage_1")
 			music_compra_and_animation()
 	elif _get_selected_item()   == 2: 
-			GlobalVariables.add_habilidad("atk_speed")
-			music_moneda_play()
+			GlobalVariables.add_habilidad_Red("atk_speed")
+			music_compra_and_animation()
 
 
 func comprar_green_panel():
 	if _get_selected_item() == 0: 
-		GlobalVariables.add_habilidad("shield")
+		GlobalVariables.add_habilidad_Green("shield")
 		music_compra_and_animation()
+
 
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
-		GlobalVariables.add_habilidad("Corazon")
+		GlobalVariables.add_habilidad_Blue("Corazon")
 		music_compra_and_animation()
 
 
+func music_compra_and_animation():
+	animacion_monedas()
+	music_moneda_play()
 
 
 
@@ -124,6 +120,9 @@ func music_moneda_play():
 	get_parent().get_node("music_moneda").play() 
 	$Timer.set_wait_time(2)
 	$Timer.start()
+	
+	
+	
 func music_moneda_stop():
 	get_parent().get_node("music_moneda").stop()
 	

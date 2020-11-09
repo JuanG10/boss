@@ -15,6 +15,7 @@ var shield_speed  = GlobalVariables.shield_speed
 
 
 
+
 var shootT  = Timer.new()
 var healT   = Timer.new()
 var shieldT = Timer.new()
@@ -29,7 +30,7 @@ onready var R = get_node("States/Red")
 onready var G = get_node("States/Green")
 onready var B = get_node("States/Blue")
 
-var habilidades = GlobalVariables.habilidadres
+
 
 var habilidad_health 	= true 
 var habilidad_speed  	= true
@@ -56,6 +57,14 @@ func _ready():
 	shieldT.set_one_shot(true)
 	shieldT.set_wait_time(shield_speed)
 	add_child(shieldT)
+	set_habilidades()
+
+
+func set_habilidades():
+	$States.get_node("Red").set_habilidades(GlobalVariables.habilidades_Red)
+	$States.get_node("Blue").set_habilidades(GlobalVariables.habilidades_Blue)
+	$States.get_node("Green").set_habilidades(GlobalVariables.habilidades_Green)
+	
 	
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
@@ -131,6 +140,28 @@ func _physics_process(_delta):
 		efecto_de_atk_speed()
 		activar_timer()	
 		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 func efecto_de_corazon():
 	GlobalVariables.health += 30
