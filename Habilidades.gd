@@ -5,7 +5,7 @@ var position
 var posi_y = 0
 var scene 
 var habilidades_agregadas = []
-var player 
+var player  
 
 const HABILIDADES = {
 	ESCUDO 	  = preload("res://Habilidades/Escudo.tscn"),
@@ -17,24 +17,20 @@ const HABILIDADES = {
 	PISTOLA_2 = preload("res://Habilidades/Pistola_2.tscn")
 }
 
+
 func _ready():
 	position = get_parent()
-	player   = get_parent().get_parent().get_node("Player")
-		
-func _physics_process(delta):
-	#print(player.habilidades_player())
-	pass
+	player   =  get_parent().get_parent().get_node("Player")
 	
-	
-func set_names_habilidades():
-	for name_habilidad in player.habilidades_player():
-		set_sprite_habilidad_rojo(name_habilidad)
-		set_sprite_habilidad_azul(name_habilidad)
-		set_sprite_habilidad_verde(name_habilidad)
-	
-		
-		
 
+func set_habilidades():
+	var list_habi_green = player.get_child(0)
+	habilidades_green(list_habi_green)
+	
+func habilidades_green(lista_habilidades):
+	for name_habilidad in lista_habilidades:
+		set_sprite_habilidad_verde(name_habilidad)	
+	
 #Agrega como hijo/s al canvasLayer los iconos de las habilidades del estado rojo
 func set_sprite_habilidad_rojo(name_habilidad):
 	if get_parent().color_actual() == "Rojo":	
@@ -52,6 +48,7 @@ func set_sprite_habilidad_rojo(name_habilidad):
 		set_icono_habilidad(name_habilidad)
 
 
+
 #Lo mismo pero las habilidades del estado verde
 func set_sprite_habilidad_verde(name_habilidad):
 	if	name_habilidad == "shield":
@@ -66,6 +63,7 @@ func set_sprite_habilidad_azul(name_habilidad):
 		scene = HABILIDADES.CORAZON.instance()
 		add_child(scene)
 		set_icono_habilidad(name_habilidad)
+
 
 
 #Al icono que representa la habilidad del player lo agrega al CanvasLayer y le da un position
