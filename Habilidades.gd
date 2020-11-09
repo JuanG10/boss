@@ -35,23 +35,25 @@ func set_habilidades():
 	var list_habi_red   = GlobalVariables.habilidades_Red
 	var list_habi_blu   = GlobalVariables.habilidades_Blue
 	if player.color_actual() == "Green" && habilitar_habilidad_green && list_habi_green.size() > 0:
-		habilidades_green(list_habi_green)
-		habilitar_habilidad_green = false
-	elif !habilitar_habilidad_green && player.color_actual() != "Green" && habilidades_agregadas.size() > 0:
-		limpiar_habilidades()	
-		habilitar_habilidad_green = true
-	elif player.color_actual() == "Red" && habilitar_habilidad_red && list_habi_red.size() > 0:
-		habilidades_red(list_habi_red)
-		habilitar_habilidad_red = false 
-	elif !habilitar_habilidad_red && player.color_actual() != "Red" && habilidades_agregadas.size() > 0:
 		limpiar_habilidades()
-		habilitar_habilidad_red = true
+		habilidades_green(list_habi_green)
+		habilitar_habilidad_blue = true
+		habilitar_habilidad_green = false
+		habilitar_habilidad_red   = true
+	elif player.color_actual() == "Red" && habilitar_habilidad_red && list_habi_red.size() > 0:
+		limpiar_habilidades()
+		habilidades_red(list_habi_red)
+		habilitar_habilidad_blue = true
+		habilitar_habilidad_green = true
+		habilitar_habilidad_red   = false
 	elif player.color_actual() == "Blue" && habilitar_habilidad_blue && list_habi_blu.size() > 0:
+		limpiar_habilidades()
 		habilidades_blue(list_habi_blu)
 		habilitar_habilidad_blue = false
-	elif !habilitar_habilidad_blue && player.color_actual() != "Blue" && habilidades_agregadas.size() > 0:
-		limpiar_habilidades()
-		habilitar_habilidad_blue = true		
+		habilitar_habilidad_green = true
+		habilitar_habilidad_red   = true
+	
+	
 
 		
 
