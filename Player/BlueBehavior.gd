@@ -1,6 +1,6 @@
 extends Node
 
-var habilidades_actual
+var habilidades_actual = []
 var burn   = false
 var heal   = false
 var shield = true

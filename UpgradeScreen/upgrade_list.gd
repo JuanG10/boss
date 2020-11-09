@@ -32,7 +32,6 @@ func _input(event):
 				
 				
 func _ready():
-	print(get_tree().get_nodes_in_group(''))
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "BasePanel":
 		add_item("Bala: +Cadencia " + precio, BASE.bala) #0
@@ -80,7 +79,7 @@ func compra_base_panel():
 			GlobalVariables.add_habilidad_Red("damage")
 			music_compra_and_animation()
 	elif _get_selected_item() == 3:
-			GlobalVariables.add_habilidad_Red("shield")
+			GlobalVariables.add_habilidad_Green("shield")
 			music_compra_and_animation()
 
 func comprar_red_panel():

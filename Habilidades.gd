@@ -6,6 +6,9 @@ var posi_y = 0
 var scene 
 var habilidades_agregadas = []
 var player  
+var habilitar_habilidad_green = true
+var habilitar_habilidad_red   = true
+var habilitar_habilidad_blue  = true 
 
 const HABILIDADES = {
 	ESCUDO 	  = preload("res://Habilidades/Escudo.tscn"),
@@ -21,31 +24,75 @@ const HABILIDADES = {
 func _ready():
 	position = get_parent()
 	player   =  get_parent().get_parent().get_node("Player")
-	
+
+
+func _physics_process(delta):
+	set_habilidades()
+	var list_habi_blu   = GlobalVariables.habilidades_Blue
+	if player.color_actual() == "Blue" && habilitar_habilidad_blue && list_habi_blu.size() > 0:
+		habilidades_blue(list_habi_blu)
+		habilitar_habilidad_blue = false
+	elif !habilitar_habilidad_blue && player.color_actual() != "Blue" && habilidades_agregadas.size() > 0:
+		limpiar_habilidades()
+		habilitar_habilidad_blue = true	
+
 
 func set_habilidades():
-	var list_habi_green = player.get_child(0)
-	habilidades_green(list_habi_green)
+	var list_habi_green = GlobalVariables.habilidades_Green
+	var list_habi_red   = GlobalVariables.habilidades_Red
+	if player.color_actual() == "Green" && habilitar_habilidad_green && list_habi_green.size() > 0:
+		habilidades_green(list_habi_green)
+		habilitar_habilidad_green = false
+	elif !habilitar_habilidad_green && player.color_actual() != "Green" && habilidades_agregadas.size() > 0:
+		limpiar_habilidades()	
+		habilitar_habilidad_green = true
+	elif player.color_actual() == "Red" && habilitar_habilidad_red && list_habi_red.size() > 0:
+		habilidades_red(list_habi_red)
+		habilitar_habilidad_red = false 
+	elif !habilitar_habilidad_red && player.color_actual() != "Red" && habilidades_agregadas.size() > 0:
+		limpiar_habilidades()
+		habilitar_habilidad_red = true
+	
+
+		
+
+
 	
 func habilidades_green(lista_habilidades):
 	for name_habilidad in lista_habilidades:
-		set_sprite_habilidad_verde(name_habilidad)	
+		set_sprite_habilidad_verde(name_habilidad)
+
+func habilidades_red(lista_habilidades):
+
+	for name_habilidad in lista_habilidades:
+		set_sprite_habilidad_rojo(name_habilidad)
+
+func habilidades_blue(lista_habilidades):
+	for name_habilidad in lista_habilidades:
+		set_sprite_habilidad_azul(name_habilidad)
+							
 	
 #Agrega como hijo/s al canvasLayer los iconos de las habilidades del estado rojo
 func set_sprite_habilidad_rojo(name_habilidad):
-	if get_parent().color_actual() == "Rojo":	
+		var name = ""
 		if name_habilidad == "atk_speed":
 			scene = HABILIDADES.BALA.instance()
+			name = "Bala"
 		elif name_habilidad == "Speed":
 			scene = HABILIDADES.SPEED.instance()
+			name = "speed"
 		elif name_habilidad == "damage":
 			scene = HABILIDADES.PISTOLA_2.instance()
+			name = "Pistola_2"
 		elif name_habilidad == "damage_1":
 			scene = HABILIDADES.PISTOLA.instance()
+			name  = "Pistola" 
 		elif name_habilidad == "Cuchillo":
+			name = "Cuchillo"
 			scene = HABILIDADES.CUCHILLO.instance()
 		add_child(scene)
-		set_icono_habilidad(name_habilidad)
+		habilidades_agregadas.append(scene)
+		set_icono_habilidad(name)
 
 
 
@@ -54,6 +101,7 @@ func set_sprite_habilidad_verde(name_habilidad):
 	if	name_habilidad == "shield":
 		scene = HABILIDADES.ESCUDO.instance()
 		add_child(scene)
+		habilidades_agregadas.append(scene)
 		set_icono_habilidad('Escudo')
 
 #Con el estado azul
@@ -62,6 +110,7 @@ func set_sprite_habilidad_azul(name_habilidad):
 		limpiar_habilidades()
 		scene = HABILIDADES.CORAZON.instance()
 		add_child(scene)
+		habilidades_agregadas.append(scene)
 		set_icono_habilidad(name_habilidad)
 
 
@@ -79,5 +128,6 @@ func set_icono_habilidad(name_habilidad):
 func limpiar_habilidades():
 	for habilidad in habilidades_agregadas:
 		remove_child(habilidad)
+	habilidades_agregadas = []	
 	posi_y = 0
 

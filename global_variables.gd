@@ -37,7 +37,7 @@ func add_habilidad_Green(name_habilidad):
 func existe_habilidad(nombre_habilidad,list_habilidades):
 	var boolean = false 
 	for name_habilidad in list_habilidades:
-		boolean = nombre_habilidad == name_habilidad
+		boolean = boolean || nombre_habilidad == name_habilidad
 	return boolean		
 	
 	

@@ -61,10 +61,12 @@ func _ready():
 
 
 func set_habilidades():
-	$States.get_node("Red").set_habilidades(GlobalVariables.habilidades_Red)
+	$States.get_node("Red").habilidades_actual = GlobalVariables.habilidades_Red
 	$States.get_node("Blue").set_habilidades(GlobalVariables.habilidades_Blue)
-	$States.get_node("Green").set_habilidades(GlobalVariables.habilidades_Green)
-	
+	$States.get_node("Green").habilidades_actual = GlobalVariables.habilidades_Green
+
+func get_habiladades_de_state(state):
+	return $States.get_node(state).habilidades_actual	
 	
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
