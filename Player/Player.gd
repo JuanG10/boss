@@ -35,6 +35,7 @@ var habilidad_health 	= true
 var habilidad_speed  	= true
 var habilidad_atk_speed = true 
 var habilidad_damage    = true
+var habilidad_corazon   = true
 
 func initialize(l,c):
 	label = l
@@ -59,12 +60,15 @@ func _ready():
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
 	if sprite_modulate == Color(1,0,0,1):
-		return "Rojo"
+		return "Red"
 	elif sprite_modulate == Color(0,0,1,1):
 		return "Blue"
 	elif sprite_modulate == Color(0,1,0,1):
-		return "Verde"
-		
+		return "Green"
+	
+func add_habiliad_state(name_habilidad,color_player):
+	$States.get_node(color_player).add_habilidad(name_habilidad)
+				
 		
 func _physics_process(_delta):
 
@@ -109,6 +113,10 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Activate_shield") && existe_habilidad("shield") && habilidad_health && color_actual() == "Verde":
 		efecto_de_health()
 		activar_timer()	
+	if Input.is_action_just_released("Activate_corazon") && existe_habilidad("Corazon") && habilidad_corazon && color_actual() == "Blue":
+		efecto_de_corazon()
+		activar_timer()
+			
 	if Input.is_action_just_pressed("Activate_speed") && existe_habilidad("speed") && habilidad_speed:
 		efecto_de_speed()
 		activar_timer()
@@ -120,6 +128,11 @@ func _physics_process(_delta):
 		activar_timer()	
 		
 
+func efecto_de_corazon():
+	GlobalVariables.health += 30
+	health = GlobalVariables.health
+	label.on_update(health)
+	habilidad_corazon = false
 
 #El personaje recupera vida
 func efecto_de_health():

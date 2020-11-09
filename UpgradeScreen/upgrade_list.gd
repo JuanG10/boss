@@ -43,8 +43,6 @@ func _ready():
 		add_item("Pistola: +Daño a distancia contra rojo", GREEN.pistola)
 		add_item("Bala: +Cadencia " + precio, BASE.bala) 
 	elif parent_name == "GreenPanel":
-		#add_item("Cuchillo: +Daño a corta distancia contra verde", GREEN.cuchillo)
-		#add_item("Pistola: +Daño a distancia contra verde", GREEN.pistola)
 		add_item("Escudo: +Vida " + precio, GREEN.escudo) #2
 	elif parent_name == "BluePanel":
 		add_item("Corazon: +Vida" + precio,BLUE.corazon)
@@ -97,10 +95,14 @@ func compra_base_panel():
 func comprar_red_panel():
 	if _get_selected_item()   == 0: 
 			GlobalVariables.add_habilidad("Cuchillo")
+			print(get_tree().get_nodes_in_group("Player"))
+			get_tree().get_nodes_in_group("Player")[0].add_habiliad_state("Cuchillo","Red")
 			music_moneda_play()
+			animacion_monedas()
 	elif _get_selected_item() == 1: 
 			GlobalVariables.add_habilidad("damage_1")
 			music_moneda_play()
+			animacion_monedas()
 	elif _get_selected_item()   == 2: 
 			GlobalVariables.add_habilidad("atk_speed")
 			music_moneda_play()
@@ -108,11 +110,13 @@ func comprar_red_panel():
 func comprar_green_panel():
 	if _get_selected_item() == 0: 
 		GlobalVariables.add_habilidad("shield")
+		animacion_monedas()
 		music_moneda_play()
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
 		GlobalVariables.add_habilidad("Corazon")
+		animacion_monedas()
 		music_moneda_play()
 
 
