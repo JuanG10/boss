@@ -1,6 +1,7 @@
 extends Node
 
 var coin = preload("res://Coin.tscn")
+const EXPLOSION = preload("res://Enemies/Explosion.tscn")
 
 var points = 110
 

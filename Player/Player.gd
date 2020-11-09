@@ -73,8 +73,8 @@ func _physics_process(_delta):
 	if(states[n].heal and healT.is_stopped()):
 		healT.start()
 		heal(1)
-	#if(shootT.is_stopped()):
-	#	shoot()
+	if(shootT.is_stopped()):
+		shoot()
 	if Input.is_action_pressed('right'):
 		position.x += speed
 	if Input.is_action_pressed('left'):
