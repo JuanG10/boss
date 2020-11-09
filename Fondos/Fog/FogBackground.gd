@@ -18,4 +18,4 @@ func change_bg_color(next:bool)->void:
 
 func change_bg_octaves(octaves:int)->void:
 	material.set_shader_param("OCTAVES", octaves + 1)
-	material.set_shader_param("acceleration", (octaves/10.0) + 0.1)
+	material.set_shader_param("acceleration", (octaves/10.0) + 0.5)

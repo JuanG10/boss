@@ -1,6 +1,7 @@
 extends Area2D
 
-var Bullet = preload("res://Player/Bullet.tscn") 
+var Bullet = preload("res://Player/Bullet.tscn")
+const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 var label
 var coins
 
@@ -89,11 +90,13 @@ func heal(x):
 		health = GlobalVariables.health
 	else:
 		health += x
+		_create_floating_text(x, "Heal")
 	label.on_update(health)
 
 func takeDamage(x):
 	if not isShielded:
 		health -= x
+		_create_floating_text(x, "Damage")
 		label.on_update(health)
 		if health <= 0:
 			get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
@@ -127,3 +130,9 @@ func previous_color():
 func _on_grab_coin(area):
 	area.grab()
 	coins.on_update()
+
+func _create_floating_text(amount:int, type:String)->void:
+	var text = DMG_TEXT.instance()
+	text.amount = amount
+	text.type = type
+	add_child(text)
