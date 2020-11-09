@@ -28,18 +28,12 @@ func _ready():
 
 func _physics_process(delta):
 	set_habilidades()
-	var list_habi_blu   = GlobalVariables.habilidades_Blue
-	if player.color_actual() == "Blue" && habilitar_habilidad_blue && list_habi_blu.size() > 0:
-		habilidades_blue(list_habi_blu)
-		habilitar_habilidad_blue = false
-	elif !habilitar_habilidad_blue && player.color_actual() != "Blue" && habilidades_agregadas.size() > 0:
-		limpiar_habilidades()
-		habilitar_habilidad_blue = true	
 
 
 func set_habilidades():
 	var list_habi_green = GlobalVariables.habilidades_Green
 	var list_habi_red   = GlobalVariables.habilidades_Red
+	var list_habi_blu   = GlobalVariables.habilidades_Blue
 	if player.color_actual() == "Green" && habilitar_habilidad_green && list_habi_green.size() > 0:
 		habilidades_green(list_habi_green)
 		habilitar_habilidad_green = false
@@ -52,7 +46,12 @@ func set_habilidades():
 	elif !habilitar_habilidad_red && player.color_actual() != "Red" && habilidades_agregadas.size() > 0:
 		limpiar_habilidades()
 		habilitar_habilidad_red = true
-	
+	elif player.color_actual() == "Blue" && habilitar_habilidad_blue && list_habi_blu.size() > 0:
+		habilidades_blue(list_habi_blu)
+		habilitar_habilidad_blue = false
+	elif !habilitar_habilidad_blue && player.color_actual() != "Blue" && habilidades_agregadas.size() > 0:
+		limpiar_habilidades()
+		habilitar_habilidad_blue = true		
 
 		
 
@@ -63,7 +62,6 @@ func habilidades_green(lista_habilidades):
 		set_sprite_habilidad_verde(name_habilidad)
 
 func habilidades_red(lista_habilidades):
-
 	for name_habilidad in lista_habilidades:
 		set_sprite_habilidad_rojo(name_habilidad)
 
@@ -107,7 +105,6 @@ func set_sprite_habilidad_verde(name_habilidad):
 #Con el estado azul
 func set_sprite_habilidad_azul(name_habilidad):
 	if name_habilidad == 'Corazon':
-		limpiar_habilidades()
 		scene = HABILIDADES.CORAZON.instance()
 		add_child(scene)
 		habilidades_agregadas.append(scene)
