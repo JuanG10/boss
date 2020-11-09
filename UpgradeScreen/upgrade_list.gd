@@ -32,6 +32,7 @@ func _input(event):
 				
 				
 func _ready():
+	print(get_tree().get_nodes_in_group(''))
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "BasePanel":
 		add_item("Bala: +Cadencia " + precio, BASE.bala) #0
@@ -75,49 +76,43 @@ func _on_list_item_activated(_index):
 func compra_base_panel():
 	if _get_selected_item()   == 0: 
 			GlobalVariables.add_habilidad("atk_speed")
-			animacion_monedas()
-			music_moneda_play()
+			music_compra_and_animation()
 	elif _get_selected_item() == 1: 
 			GlobalVariables.add_habilidad("Speed")
-			animacion_monedas()
-			music_moneda_play()
+			music_compra_and_animation()
 	elif _get_selected_item() == 2: 
 			GlobalVariables.add_habilidad("damage")
-			animacion_monedas()
-			music_moneda_play()
+			music_compra_and_animation()
 	elif _get_selected_item() == 3:
-			animacion_monedas() 
 			GlobalVariables.add_habilidad("shield")
-			music_moneda_play()
+			music_compra_and_animation()
 
-
+func music_compra_and_animation():
+	animacion_monedas()
+	music_moneda_play()
 
 func comprar_red_panel():
 	if _get_selected_item()   == 0: 
 			GlobalVariables.add_habilidad("Cuchillo")
-			print(get_tree().get_nodes_in_group("Player"))
-			get_tree().get_nodes_in_group("Player")[0].add_habiliad_state("Cuchillo","Red")
-			music_moneda_play()
-			animacion_monedas()
+			music_compra_and_animation()
 	elif _get_selected_item() == 1: 
 			GlobalVariables.add_habilidad("damage_1")
-			music_moneda_play()
-			animacion_monedas()
+			music_compra_and_animation()
 	elif _get_selected_item()   == 2: 
 			GlobalVariables.add_habilidad("atk_speed")
 			music_moneda_play()
 
+
 func comprar_green_panel():
 	if _get_selected_item() == 0: 
 		GlobalVariables.add_habilidad("shield")
-		animacion_monedas()
-		music_moneda_play()
+		music_compra_and_animation()
+
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
 		GlobalVariables.add_habilidad("Corazon")
-		animacion_monedas()
-		music_moneda_play()
+		music_compra_and_animation()
 
 
 

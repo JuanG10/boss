@@ -69,7 +69,11 @@ func color_actual():
 func add_habiliad_state(name_habilidad,color_player):
 	$States.get_node(color_player).add_habilidad(name_habilidad)
 				
-		
+func habilidades_player():
+	return $States.get_node(color_actual()).habilidades_actual
+	
+	
+			
 func _physics_process(_delta):
 
 	#print(habilidad)
