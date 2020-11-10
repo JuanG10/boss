@@ -7,7 +7,6 @@ const intPrecio = 30
 const precio = "$" + str(intPrecio) # Debería ir incrementando.
 
 # Iconos. Hardcodeado por ahora.
-
 const BASE = {
 	bala = preload("res://Iconos/bala_base.png"),
 	limitador = preload("res://Iconos/limitador_base.png"),
@@ -24,6 +23,7 @@ const BLUE = {
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
+
 
 
 func _ready():
