@@ -40,12 +40,3 @@ func existe_habilidad(nombre_habilidad,list_habilidades):
 	for name_habilidad in list_habilidades:
 		boolean = boolean || nombre_habilidad == name_habilidad
 	return boolean		
-	
-	
-	
-	
-	
-	
-	
-
-

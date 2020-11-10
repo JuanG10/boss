@@ -7,7 +7,6 @@ const intPrecio = 30
 const precio = "$" + str(intPrecio) # Debería ir incrementando.
 
 # Iconos. Hardcodeado por ahora.
-
 const BASE = {
 	bala = preload("res://Iconos/bala_base.png"),
 	limitador = preload("res://Iconos/limitador_base.png"),
@@ -29,7 +28,7 @@ func _input(event):
 	if event is InputEventMouseButton :
 			if get_selected_items().size() > 0:
 				_on_list_item_activated(1)
-				
+
 
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
