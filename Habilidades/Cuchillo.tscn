@@ -3,5 +3,5 @@
 [ext_resource path="res://Iconos/cuchillo_azul-violeta.png" type="Texture" id=1]
 
 [node name="Cuchillo" type="Sprite"]
-scale = Vector2( 0.03, 0.03 )
+scale = Vector2( 0.039, 0.039 )
 texture = ExtResource( 1 )
