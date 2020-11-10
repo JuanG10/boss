@@ -20,6 +20,7 @@ size = 20
 outline_size = 1
 outline_color = Color( 0.666667, 0.670588, 0.0823529, 1 )
 font_data = ExtResource( 8 )
+[ext_resource path="res://Habilidades.gd" type="Script" id=8]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -39,6 +40,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+script = ExtResource( 8 )
 
 [node name="HP" type="Label" parent="Player/CanvasLayer"]
 margin_right = 50.0
@@ -57,7 +59,26 @@ margin_right = 96.0036
 margin_bottom = 42.7791
 custom_fonts/font = SubResource( 2 )
 text = "Coins: 0"
+
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position2D" type="Position2D" parent="Player/CanvasLayer"]
+position = Vector2( 837.59, 577.415 )
+
+[node name="Habilidades" type="Label" parent="Player/CanvasLayer"]
+anchor_left = 0.549
+anchor_top = 0.574
+anchor_right = 0.549
+anchor_bottom = 0.574
+margin_left = 273.939
+margin_top = 178.443
+margin_right = 369.939
+margin_bottom = 192.443
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -13,7 +13,9 @@ radius = 12.9594
 [sub_resource type="CircleShape2D" id=2]
 radius = 47.2431
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=[
+"Player",
+]]
 position = Vector2( 309, 184 )
 script = ExtResource( 1 )
 
@@ -48,4 +50,25 @@ collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="Timer_shield" type="Timer" parent="."]
+
+[node name="Timer_corazon" type="Timer" parent="."]
+
+[node name="Timer_Speed" type="Timer" parent="."]
+
+[node name="Timer_damage" type="Timer" parent="."]
+
+[node name="Timer_atk_speed" type="Timer" parent="."]
+
+[node name="Timer_damage_1" type="Timer" parent="."]
+
+[node name="Timer_cuchillo" type="Timer" parent="."]
 [connection signal="area_entered" from="Area2D" to="." method="_on_grab_coin"]
+[connection signal="timeout" from="Timer_shield" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer_corazon" to="." method="_on_Timer_corazon_timeout"]
+[connection signal="timeout" from="Timer_Speed" to="." method="_on_Timer_Speed_timeout"]
+[connection signal="timeout" from="Timer_damage" to="." method="_on_Timer_damage_timeout"]
+[connection signal="timeout" from="Timer_atk_speed" to="." method="_on_Timer_atk_speed_timeout"]
+[connection signal="timeout" from="Timer_damage_1" to="." method="_on_Timer_damage_1_timeout"]
+[connection signal="timeout" from="Timer_cuchillo" to="." method="_on_Timer_cuchillo_timeout"]
