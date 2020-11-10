@@ -3,10 +3,10 @@
 [ext_resource path="res://Trampas/TrapBehavior.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 587.626
+radius = 325.103
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 1895.44
+radius = 1346.3
 
 [node name="GenericTrap" type="Node2D"]
 scale = Vector2( 0.1, 0.1 )

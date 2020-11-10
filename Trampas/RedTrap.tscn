@@ -6,7 +6,7 @@
 [node name="RedTrap" instance=ExtResource( 2 )]
 
 [node name="RedTrapAnimation" parent="." index="0" instance=ExtResource( 1 )]
-scale = Vector2( 6, 6 )
+scale = Vector2( 8, 8 )
 animation = "esconderse"
-frame = 17
+frame = 37
 [connection signal="animation_finished" from="RedTrapAnimation" to="." method="_on_TrapAnimation_animation_finished"]
