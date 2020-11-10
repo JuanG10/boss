@@ -55,7 +55,9 @@ func animacion_monedas():
 	
 
 func _on_list_item_activated(_index):
-	if GlobalVariables.money >= intPrecio:
+	print(_index)
+	#GlobalVariables.money >= intPrecio
+	if true:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		if parent_name == "BasePanel":
