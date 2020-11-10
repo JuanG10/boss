@@ -16,12 +16,15 @@ __meta__ = {
 }
 
 [node name="Activation_area" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="Activation_collision" type="CollisionShape2D" parent="Activation_area"]
 shape = SubResource( 1 )
 
 [node name="Arise_area" type="Area2D" parent="."]
-collision_mask = 2147483649
+collision_layer = 3
+collision_mask = 2147483651
 
 [node name="Arise_collision" type="CollisionShape2D" parent="Arise_area"]
 shape = SubResource( 2 )

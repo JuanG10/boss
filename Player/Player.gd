@@ -43,6 +43,7 @@ var habilidad_cuchillo  = true
 onready var poison_timer = $Poison_timer
 var is_poisoned = false
 var poison_speed = 2
+onready var frezze_timer = $Frezze_timer
 
 func initialize(l,c):
 	label = l
@@ -394,6 +395,9 @@ func _on_Timer_cuchillo_timeout():
 #	Para las trampas azules.
 #	speed = GlobalVariables.speed
 #	get_tree().current_scene.get_node("freeze_timer").queue_free()
+
+func _on_Frezze_timer_timeout():
+	speed = GlobalVariables.speed
 
 func _on_Poison_timer_timeout():
 	# Los timers deberían ser manejados en otro lado.

@@ -43,11 +43,11 @@ func existe_habilidad(nombre_habilidad,list_habilidades):
 
 func create_timer(time:int, one_shot:bool, who, timer_name:String, timer_stop_function_name:String)->Timer:
 	# No la pude probar pero podría servir en un futuro.
-	if who.get_node(timer_name) == null:
+	if who.get_node_or_null(timer_name) == null:
 		var new_timer = Timer.new()
 		new_timer.set_one_shot(one_shot)
 		new_timer.set_wait_time(time)
 		new_timer.connect("timeout", who, timer_stop_function_name)
 		new_timer.set_name(timer_name)
 		return new_timer
-	else: return null
+	else: return null # Sino jode el tipado.

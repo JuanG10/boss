@@ -29,8 +29,8 @@ func _on_activated_trap_behavior(player:Area2D, animation_name:String):
 	if animation_name == "activar" && !maked_dmg_once:
 		match animation.name:
 			TRAP_NAMES.blue: 
-				player.add_child(GlobalVariables.create_timer(5, true, player, "frezze_timer", "_on_delete_frezze_timer"))
-				player.speed /= 2
+				player.speed *= 0.9
+				player.frezze_timer.start()
 			TRAP_NAMES.green:
 				player.is_poisoned = true
 				player.poison_timer.start()
