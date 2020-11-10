@@ -30,7 +30,7 @@ func _input(event):
 			if get_selected_items().size() > 0:
 				_on_list_item_activated(1)
 				
-				
+
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "BasePanel":
@@ -55,17 +55,17 @@ func animacion_monedas():
 	
 
 func _on_list_item_activated(_index):
-	if true:
+	if GlobalVariables.money >= intPrecio:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		if parent_name == "BasePanel":
 			compra_base_panel()
 		elif parent_name == "RedPanel":
-			comprar_red_panel()	
+			comprar_red_panel()
 		elif parent_name == "GreenPanel":
-			comprar_green_panel()	
+			comprar_green_panel()
 		elif parent_name == "BluePanel":
-			comprar_blue_panel()	
+			comprar_blue_panel()
 
 
 #Si alguno cumple la condicion, compra, y agrega el nombre de la habilidad en un lista de GlobalVariables
