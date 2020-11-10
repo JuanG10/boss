@@ -4,12 +4,24 @@ extends Node2D
 onready var animation:AnimatedSprite = get_child(0)
 var stop_animation = false
 
+const TRAP_NAMES = {
+	red = "RedTrapAnimation",
+	green = "GreenTrapAnimation",
+	blue = "BlueTrapAnimation"
+}
+
 func _ready():
-	animation.stop()
+	animation.play("esconderse")
 
 func _play_if_player(area:Area2D, animation_name:String)->void:
 	if area.name == "Player" && !stop_animation:
+		_flip_green_to_player(area)
 		animation.play(animation_name)
+
+func _flip_green_to_player(player:Area2D)->void:
+	if animation.name == TRAP_NAMES.green:
+		if player.position <= position: animation.flip_h = true
+		else: animation.flip_h = false
 
 func _on_Arise_area_entered(area):
 	_play_if_player(area,"surgir")
@@ -31,10 +43,10 @@ func _on_TrapAnimation_animation_finished():
 
 func _set_last_frame(actual_animation_name:String)->void:
 	match animation.name:
-		"BlueTrapAnimation": animation.set_frame(11)
-		"GreenTrapAnimation":
+		TRAP_NAMES.blue: animation.set_frame(11)
+		TRAP_NAMES.green:
 			if actual_animation_name == "esconderse":
 				animation.set_frame(5)
 			else: animation.set_frame(8)
-		"RedTrapAnimation": return
+		TRAP_NAMES.red: return
 	animation.stop()

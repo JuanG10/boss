@@ -6,6 +6,8 @@
 [node name="GreenTrap" instance=ExtResource( 2 )]
 
 [node name="GreenTrapAnimation" parent="." index="0" instance=ExtResource( 1 )]
-scale = Vector2( 4, 4 )
-animation = "default"
+scale = Vector2( 5, 5 )
+animation = "esconderse"
+frame = 5
+playing = false
 [connection signal="animation_finished" from="GreenTrapAnimation" to="." method="_on_TrapAnimation_animation_finished"]
