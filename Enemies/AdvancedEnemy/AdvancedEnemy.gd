@@ -17,6 +17,8 @@ var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0)]
 var collisiones = [0b1, 0b10, 0b100]
 var tipo
 
+var explosion_color:Color
+
 func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(.4)
@@ -26,6 +28,7 @@ func _ready():
 func initialize(t, n):
 	player = t
 	$Sprite.modulate = colores[n]
+	explosion_color = colores[n]
 	collision_layer = collisiones[n]
 	collision_mask  = collisiones[n]
 	tipo = n
@@ -53,7 +56,7 @@ func _on_area_entered(area):
 		player.takeDamage(10)
 
 func shoot():
-	for i in range(3):
+	for _i in range(3):
 		var b = Bullet.instance()
 		b.start($Muzzle.global_position, rotation, player, dmg, tipo)
 		get_parent().add_child(b)
@@ -62,8 +65,16 @@ func shoot():
 
 
 func _on_death():
+	_create_explosion()
 	get_parent().points += 30
 	for i in range(5):
 		var c = GlobalVariables.coin.instance()
 		c.initialize(position + Vector2(i,0))
-		get_parent().add_child(c)
+		get_parent().call_deferred("add_child", c)
+
+func _create_explosion():
+	var explosion = GlobalVariables.EXPLOSION.instance()
+	explosion.position = position
+	explosion.get_child(0).process_material.color_ramp.gradient.colors[1] = explosion_color
+	explosion.get_child(0).emitting = true
+	get_parent().call_deferred("add_child", explosion)

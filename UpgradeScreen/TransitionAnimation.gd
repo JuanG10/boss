@@ -8,7 +8,7 @@ signal end_animation
 var emit_once = true
 var not_reverse = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if can_start:
 		if not_reverse: temp_value = get_value() + TRANSITION_VELOCITY
 		else: temp_value = get_value() - TRANSITION_VELOCITY

@@ -20,5 +20,6 @@ __meta__ = {
 
 [node name="bg_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -10.0
 [connection signal="start_animation" from="." to="TransitionAnimation" method="_start_animation"]
 [connection signal="end_animation" from="TransitionAnimation" to="." method="_on_end_animation"]

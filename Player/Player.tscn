@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
+[ext_resource path="res://Player/RedBehavior.gd" type="Script" id=3]
+[ext_resource path="res://Player/GreenBehavior.gd" type="Script" id=4]
+[ext_resource path="res://Player/BlueBehavior.gd" type="Script" id=5]
+[ext_resource path="res://Player/shield.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
@@ -9,9 +13,22 @@ radius = 12.9594
 [sub_resource type="CircleShape2D" id=2]
 radius = 47.2431
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=[
+"Player",
+]]
 position = Vector2( 309, 184 )
 script = ExtResource( 1 )
+
+[node name="States" type="Node" parent="."]
+
+[node name="Red" type="Node" parent="States"]
+script = ExtResource( 3 )
+
+[node name="Green" type="Node" parent="States"]
+script = ExtResource( 4 )
+
+[node name="Blue" type="Node" parent="States"]
+script = ExtResource( 5 )
 
 [node name="Muzzle" type="Position2D" parent="."]
 position = Vector2( 12.4153, 0 )
@@ -19,6 +36,10 @@ position = Vector2( 12.4153, 0 )
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+
+[node name="Shield" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -29,4 +50,25 @@ collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="Timer_shield" type="Timer" parent="."]
+
+[node name="Timer_corazon" type="Timer" parent="."]
+
+[node name="Timer_Speed" type="Timer" parent="."]
+
+[node name="Timer_damage" type="Timer" parent="."]
+
+[node name="Timer_atk_speed" type="Timer" parent="."]
+
+[node name="Timer_damage_1" type="Timer" parent="."]
+
+[node name="Timer_cuchillo" type="Timer" parent="."]
 [connection signal="area_entered" from="Area2D" to="." method="_on_grab_coin"]
+[connection signal="timeout" from="Timer_shield" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer_corazon" to="." method="_on_Timer_corazon_timeout"]
+[connection signal="timeout" from="Timer_Speed" to="." method="_on_Timer_Speed_timeout"]
+[connection signal="timeout" from="Timer_damage" to="." method="_on_Timer_damage_timeout"]
+[connection signal="timeout" from="Timer_atk_speed" to="." method="_on_Timer_atk_speed_timeout"]
+[connection signal="timeout" from="Timer_damage_1" to="." method="_on_Timer_damage_1_timeout"]
+[connection signal="timeout" from="Timer_cuchillo" to="." method="_on_Timer_cuchillo_timeout"]
