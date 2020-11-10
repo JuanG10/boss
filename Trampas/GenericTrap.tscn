@@ -2,11 +2,11 @@
 
 [ext_resource path="res://Trampas/TrapBehavior.gd" type="Script" id=1]
 
-[sub_resource type="CircleShape2D" id=44]
-radius = 625.6
+[sub_resource type="CircleShape2D" id=1]
+radius = 325.103
 
-[sub_resource type="CircleShape2D" id=45]
-radius = 1979.43
+[sub_resource type="CircleShape2D" id=2]
+radius = 1346.3
 
 [node name="GenericTrap" type="Node2D"]
 scale = Vector2( 0.1, 0.1 )
@@ -16,15 +16,18 @@ __meta__ = {
 }
 
 [node name="Activation_area" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="Activation_collision" type="CollisionShape2D" parent="Activation_area"]
-shape = SubResource( 44 )
+shape = SubResource( 1 )
 
 [node name="Arise_area" type="Area2D" parent="."]
-collision_mask = 2147483649
+collision_layer = 3
+collision_mask = 2147483651
 
 [node name="Arise_collision" type="CollisionShape2D" parent="Arise_area"]
-shape = SubResource( 45 )
+shape = SubResource( 2 )
 [connection signal="area_entered" from="Activation_area" to="." method="_on_Activation_area_entered"]
 [connection signal="area_entered" from="Arise_area" to="." method="_on_Arise_area_entered"]
 [connection signal="area_exited" from="Arise_area" to="." method="_on_Arise_area_exited"]

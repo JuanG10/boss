@@ -15,12 +15,11 @@ var heal_speed    = GlobalVariables.heal_speed
 var shield_speed  = GlobalVariables.shield_speed
 
 
-
-
 var shootT  = Timer.new()
 var healT   = Timer.new()
 var shieldT = Timer.new()
 var isShielded = false
+var poisonT = Timer.new()
 
 var colores     = [Color(0,0,1),Color(0,1,0),Color(1,0,0)]
 var collisiones = [0b110, 0b101, 0b011]
@@ -41,6 +40,11 @@ var habilidad_corazon   = true
 var habilidad_damage_1  = true
 var habilidad_cuchillo  = true 
 
+onready var poison_timer = $Poison_timer
+var is_poisoned = false
+var poison_speed = 2
+onready var frezze_timer = $Frezze_timer
+
 func initialize(l,c):
 	label = l
 	coins = c
@@ -60,6 +64,9 @@ func _ready():
 	shieldT.set_one_shot(true)
 	shieldT.set_wait_time(shield_speed)
 	add_child(shieldT)
+	poisonT.set_one_shot(true)
+	poisonT.set_wait_time(poison_speed)
+	add_child(poisonT)
 	set_habilidades()
 
 
@@ -118,6 +125,9 @@ func _physics_process(_delta):
 	if(states[n].heal and healT.is_stopped()):
 		healT.start()
 		heal(1)
+	if(is_poisoned and poisonT.is_stopped()):
+		poisonT.start()
+		takeDamage(1)
 	if(shootT.is_stopped()):
 		shoot()
 	if Input.is_action_pressed('right'):
@@ -380,3 +390,15 @@ func active_cuchillo():
 
 func _on_Timer_cuchillo_timeout():
 	active_cuchillo()
+
+#func _on_delete_frezze_timer()->void:
+#	Para las trampas azules.
+#	speed = GlobalVariables.speed
+#	get_tree().current_scene.get_node("freeze_timer").queue_free()
+
+func _on_Frezze_timer_timeout():
+	speed = GlobalVariables.speed
+
+func _on_Poison_timer_timeout():
+	# Los timers deberían ser manejados en otro lado.
+	is_poisoned = false
