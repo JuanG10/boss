@@ -98,7 +98,7 @@ script = ExtResource( 4 )
 
 [node name="music_moneda" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-[connection signal="item_activated" from="upgrade_list" to="upgrade_list" method="_on_list_item_activated"]
+[connection signal="item_activated" from="upgrade_list" to="upgrade_list" method="_on_upgrade_list_item_activated"]
 [connection signal="timeout" from="upgrade_list/Timer" to="upgrade_list" method="_on_Timer_timeout"]
 [connection signal="button_up" from="Left_button" to="." method="_on_button_up" binds= [ 0, Vector2( -1, 0 ) ]]
 [connection signal="button_up" from="Right_button" to="." method="_on_button_up" binds= [ 1, Vector2( 1, 0 ) ]]
