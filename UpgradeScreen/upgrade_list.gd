@@ -7,7 +7,6 @@ const intPrecio = 30
 const precio = "$" + str(intPrecio) # Debería ir incrementando.
 
 # Iconos. Hardcodeado por ahora.
-
 const BASE = {
 	bala = preload("res://Iconos/bala_base.png"),
 	limitador = preload("res://Iconos/limitador_base.png"),
@@ -25,11 +24,7 @@ const BLUE = {
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
 
-func _input(event):
-	if event is InputEventMouseButton :
-			if get_selected_items().size() > 0:
-				_on_list_item_activated(1)
-				
+
 
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
@@ -54,18 +49,6 @@ func animacion_monedas():
 	add_child(monedas)
 	
 
-func _on_list_item_activated(_index):
-	if GlobalVariables.money >= intPrecio:
-		GlobalVariables.money -= intPrecio
-		get_parent().get_node("Coins").on_update()
-		if parent_name == "BasePanel":
-			compra_base_panel()
-		elif parent_name == "RedPanel":
-			comprar_red_panel()
-		elif parent_name == "GreenPanel":
-			comprar_green_panel()
-		elif parent_name == "BluePanel":
-			comprar_blue_panel()
 
 
 #Si alguno cumple la condicion, compra, y agrega el nombre de la habilidad en un lista de GlobalVariables
@@ -132,3 +115,23 @@ func _get_selected_item()->int:
 
 func _on_Timer_timeout():
 	music_moneda_stop()
+
+
+
+
+
+
+
+func _on_upgrade_list_item_activated(index):
+			#GlobalVariables.money >= intPrecio
+	if GlobalVariables.money >= intPrecio:
+		GlobalVariables.money -= intPrecio
+		get_parent().get_node("Coins").on_update()
+		if parent_name == "BasePanel":
+			compra_base_panel()
+		elif parent_name == "RedPanel":
+			comprar_red_panel()
+		elif parent_name == "GreenPanel":
+			comprar_green_panel()
+		elif parent_name == "BluePanel":
+			comprar_blue_panel()

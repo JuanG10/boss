@@ -39,7 +39,7 @@ func existe_habilidad(nombre_habilidad,list_habilidades):
 	var boolean = false 
 	for name_habilidad in list_habilidades:
 		boolean = boolean || nombre_habilidad == name_habilidad
-	return boolean		
+	return boolean
 
 func create_timer(time:int, one_shot:bool, who, timer_name:String, timer_stop_function_name:String)->Timer:
 	# No la pude probar pero podría servir en un futuro.

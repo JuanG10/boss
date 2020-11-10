@@ -4,7 +4,7 @@ const PANELS = {
 	BASE = preload("res://UpgradeScreen/BasePanel.tscn"),
 	RED = preload("res://UpgradeScreen/RedPanel.tscn"),
 	GREEN = preload("res://UpgradeScreen/GreenPanel.tscn"),
-	BLUE  = preload("res://UpgradeScreen/BluePanel.tscn")
+	BLUE = preload("res://UpgradeScreen/BluePanel.tscn")
 }
 
 const LEVELS = {
