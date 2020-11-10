@@ -121,7 +121,8 @@ func next_color():
 	n = (n + 1)%3
 	$Sprite.modulate = colores[n]
 	FogBackground.change_bg_color(true)
-	
+	TrapManager.change_trap_type(colores[n])
+
 func previous_color():
 	n = (n + 2)%3
 	$Sprite.modulate = colores[n]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Trampas/Sprites_and_animations/GreenTrapAnimation.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Trampas/GenericTrap.tscn" type="PackedScene" id=2]
+
+[node name="GreenTrap" instance=ExtResource( 2 )]
+
+[node name="GreenTrapAnimation" parent="." index="0" instance=ExtResource( 1 )]
+animation = "default"
+[connection signal="animation_finished" from="GreenTrapAnimation" to="." method="_on_TrapAnimation_animation_finished"]
