@@ -6,15 +6,11 @@ const COLORS = {
 	2 : Vector3(0.85, 0.38, 0.35) # Rojo
 }
 
-var pos:int = 0
-
 func change_bg_color_by_position(pos:int)->void:
 	material.set_shader_param("color", COLORS[pos])
 
-func change_bg_color(next:bool)->void:
-	if next: pos = (pos + 1) % COLORS.size()
-	else: pos = (pos + 2) % COLORS.size()
-	material.set_shader_param("color", COLORS[pos])
+func change_bg_color(next:int)->void:
+	material.set_shader_param("color", COLORS[next])
 
 func change_bg_octaves(octaves:int)->void:
 	material.set_shader_param("OCTAVES", octaves + 1)

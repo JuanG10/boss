@@ -119,22 +119,24 @@ func shoot():
 
 func next_color():
 	n = (n + 1)%3
-	$Sprite.modulate = colores[n]
-	FogBackground.change_bg_color(true)
-	TrapManager.change_trap_type(colores[n])
+	_change_with_color(n)
 
 func previous_color():
 	n = (n + 2)%3
-	$Sprite.modulate = colores[n]
-	FogBackground.change_bg_color(false)
+	_change_with_color(n)
 
 func _on_grab_coin(area):
 	area.grab()
 	coins.on_update()
 
+func _change_with_color(n:int)->void:
+	$Sprite.modulate = colores[n]
+	FogBackground.change_bg_color(n)
+	TrapManager.change_trap_type(colores[n])
+
 func _create_floating_text(amount:int, type:String)->void:
 	var text = DMG_TEXT.instance()
 	text.amount = amount
 	text.type = type
-	text.rotation_degrees = -45
+	text.rotation_degrees = 90
 	add_child(text)
