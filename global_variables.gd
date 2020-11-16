@@ -5,6 +5,8 @@ const EXPLOSION = preload("res://Enemies/Explosion/Explosion.tscn")
 
 var retry = false
 
+var invincibility_time = 2.5
+
 var money = 0
 var Pspeed = 3
 var Patk_speed = .4

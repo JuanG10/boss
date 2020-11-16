@@ -6,11 +6,13 @@
 [ext_resource path="res://Enemies/AdvancedEnemy/State_handler.gd" type="Script" id=4]
 [ext_resource path="res://Enemies/AdvancedEnemy/Minimun_range.gd" type="Script" id=5]
 [ext_resource path="res://Enemies/AdvancedEnemy/Red.gd" type="Script" id=6]
-[ext_resource path="res://Enemies/AdvancedEnemy/Green.gd" type="Script" id=7]
 [ext_resource path="res://Enemies/AdvancedEnemy/Blue.gd" type="Script" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.13498
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 103.211
 
 [node name="AdvancedEnemy" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -33,14 +35,18 @@ script = ExtResource( 3 )
 [node name="Minimun_range" type="Node" parent="State_handler"]
 script = ExtResource( 5 )
 
-[node name="Color_Special" type="Node" parent="State_handler"]
-
-[node name="Red" type="Node" parent="State_handler/Color_Special"]
+[node name="Red" type="Node" parent="State_handler"]
 script = ExtResource( 6 )
 
-[node name="Green" type="Node" parent="State_handler/Color_Special"]
-script = ExtResource( 7 )
-
-[node name="Blue" type="Node" parent="State_handler/Color_Special"]
+[node name="Blue" type="Node" parent="State_handler"]
 script = ExtResource( 8 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
 [connection signal="tree_exiting" from="." to="." method="_on_death"]
+[connection signal="area_entered" from="Area2D" to="." method="close_enough"]
+[connection signal="area_exited" from="Area2D" to="." method="far_enough"]

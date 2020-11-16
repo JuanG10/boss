@@ -3,19 +3,18 @@ extends Area2D
 var speed = 2
 var velocity = Vector2()
 var dmg
-var burn
+var state
 
-func start(pos, dir, damage, brn):
+func start(pos, dir, damage, state_):
 	rotation = dir
 	position = pos
 	dmg      = damage
-	burn     = brn
+	state    = state_
 	velocity = Vector2(speed, 0).rotated(rotation)
 
 func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
-	if burn:
-		body.burn()
-	body.takeDamage(dmg)
+	state.handle(body)
+	body.takeDamage(0)
 	remove()
 
 func _physics_process(_delta):

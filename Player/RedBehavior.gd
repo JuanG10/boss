@@ -1,12 +1,15 @@
 extends Node
 
-var habilidades_actual = []
+var player
 
-var burn = true
 var heal = false
 var shield = false
 
-func set_habilidades(lista):
-	habilidades_actual = lista
+func initialize(p):
+	player = p
 
+func handle(body):
+	body.stun(.1)
 
+func power():
+	pass

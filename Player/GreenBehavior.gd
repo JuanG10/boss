@@ -1,11 +1,26 @@
 extends Node
 
-var habilidades_actual = []
-var burn = false
+var player
+
 var heal = true
 var shield = false
 
-func set_habilidades(lista):
-	habilidades_actual = lista
+var timer = Timer.new()
 
-	
+func _ready():
+	timer.set_one_shot(true)
+	add_child(timer)
+
+func initialize(p):
+	player = p
+
+func handle(body):
+	pass
+
+func power():
+	player.invencibility = true
+	timer.start(GlobalVariables.invincibility_time)
+
+func _process(_delta):
+	if timer.is_stopped():
+		player.invencibility = false

@@ -6,6 +6,10 @@ var friction = 0.95
 var target := Vector2.ZERO
 var velocity := Vector2.ZERO
 
+var slow_timer = Timer.new()
+var stun_timer = Timer.new()
+var is_stunned = false
+
 var dmg = 15
 var health = 25
 
@@ -20,6 +24,16 @@ var explosion_color:Color
 
 func _ready():
 	$State_handler.init(player, self)
+	stun_timer.set_one_shot(true)
+	slow_timer.set_one_shot(true)
+	add_child(stun_timer)
+	add_child(slow_timer)
+
+func _process(_delta):
+	if stun_timer.is_stopped():
+		is_stunned = false
+	if slow_timer.is_stopped():
+		speed = 130
 
 func initialize(t, n):
 	player = t
@@ -45,30 +59,29 @@ func burn():
 		takeDamage(player.brn_dmg)
 		yield(get_tree().create_timer(.1), "timeout")
 
+func stun(time):
+	stun_timer.start(time)
+	is_stunned = true
 
-func _on_area_entered(area):
-	if area.filename == "res://Player/Bullet.tscn":
-		if area.burn:
-			burn()
-		takeDamage(player.dmg)
-		area.remove()
-	if area.name == player.name: 
-		player.takeDamage()
-
+func slow(slow, time):
+	if slow_timer.is_stopped():
+		slow_timer.start(time)
+		speed *= slow
 
 func _on_death():
 	_create_explosion()
-	
 	get_parent().points += 10
 	var c = GlobalVariables.coin.instance()
 	c.initialize(position)
 	get_parent().call_deferred("add_child", c)
 
-func close_enough(_area):
-	charge_flag = true
+func close_enough(area):
+	if area.name == player.name:
+		charge_flag = true
 
-func far_enough(_area):
-	charge_flag = false
+func far_enough(area):
+	if area.name == player.name:
+		charge_flag = false
 
 func _create_explosion():
 	var explosion = GlobalVariables.EXPLOSION.instance()

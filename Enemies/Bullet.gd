@@ -5,7 +5,7 @@ var velocity = Vector2()
 var player
 var dmg
 
-var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0)]
+var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
 var collisiones = [0b1, 0b10, 0b100]
 
 func start(pos, dir, p, damage, n):

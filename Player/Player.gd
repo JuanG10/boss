@@ -14,6 +14,7 @@ var brn_dmg       = GlobalVariables.brn_dmg
 var heal_speed    = GlobalVariables.heal_speed
 var shield_speed  = GlobalVariables.shield_speed
 
+var invencibility = false
 
 var shootT  = Timer.new()
 var healT   = Timer.new()
@@ -29,16 +30,19 @@ var states
 var pointer     = 0
 
 onready var R = get_node("States/Red")
-onready var G = get_node("States/Green")
+onready var O = get_node("States/Orange")
 onready var B = get_node("States/Blue")
 
 func initialize(l,c):
 	label = l
 	coins = c
 	label.on_update(health)
-	states = [B, G, R]
+	states = [B, O, R]
 
 func _ready():
+	R.initialize(self)
+	O.initialize(self)
+	B.initialize(self)
 	$Sprite.modulate = colores[pointer]
 	collision_layer = collisiones[pointer]
 	collision_mask  = collisiones[pointer]
@@ -55,7 +59,7 @@ func _ready():
 	poisonT.set_wait_time(5)
 	add_child(poisonT)
 	freezeT.set_one_shot(true)
-	freezeT.set_wait_time(5)
+	freezeT.set_wait_time(2.5)
 	add_child(freezeT)
 
 func color_actual():
@@ -74,7 +78,7 @@ func _physics_process(_delta):
 	#if Input.is_action_just_released("ui_accept"):
 	#	speed /= 3
 	if Input.is_action_just_pressed("ui_accept"):
-		print(GlobalVariables.Mhealth)
+		states[pointer].power()
 	if Input.is_action_just_pressed("next_color"):
 		next_color()
 		if not states[pointer].shield:
@@ -99,22 +103,22 @@ func _physics_process(_delta):
 		if freezeT.is_stopped():
 			position.x += speed
 		else:
-			position.x += speed * .8
+			position.x += speed * .75
 	if Input.is_action_pressed('left'):
 		if freezeT.is_stopped():
 			position.x -= speed
 		else:
-			position.x -= speed * .8
+			position.x -= speed * .75
 	if Input.is_action_pressed('down'):
 		if freezeT.is_stopped():
 			position.y += speed
 		else:
-			position.y += speed * .8
+			position.y += speed * .75
 	if Input.is_action_pressed('up'):
 		if freezeT.is_stopped():
 			position.y -= speed
 		else:
-			position.y -= speed * .8
+			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
 
@@ -127,16 +131,19 @@ func heal(x):
 	label.on_update(health)
 
 func takeDamage(x):
-	if not isShielded:
-		health -= x
-		_create_floating_text(x, "Damage")
-		label.on_update(health)
-		if health <= 0:
-			GlobalVariables.retry = true
-			get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
-	else:
-		remove_shield()
-		shieldT.start()
+	if not invencibility:
+		if not isShielded:
+			health -= x
+			_create_floating_text(x, "Damage")
+			label.on_update(health)
+			shieldT.stop()
+			shieldT.start()
+			if health <= 0:
+				GlobalVariables.retry = true
+				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
+		else:
+			remove_shield()
+			shieldT.start()
 
 func remove_shield():
 	isShielded = false
@@ -147,7 +154,7 @@ func shoot():
 	b.modulate        = colores[pointer]
 	b.collision_layer = collisiones[pointer]
 	b.collision_mask  = collisiones[pointer]
-	b.start($Muzzle.global_position, rotation, dmg, states[pointer].burn)
+	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
 	get_parent().add_child(b)
 	shootT.start()
 
