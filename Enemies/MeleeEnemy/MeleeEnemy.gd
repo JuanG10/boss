@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 var player
 var speed = 130
@@ -6,27 +6,33 @@ var friction = 0.95
 var target := Vector2.ZERO
 var velocity := Vector2.ZERO
 
+var dmg = 15
 var health = 25
 
-var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0)]
-var collisiones = [0b1, 0b10, 0b100]
+var special
+var charge_flag = false
+
+var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
+var collisiones = [0b100000001, 0b100000010, 0b100000100]
+var specials    = ["special_blue", "special_orange", "special_red"]
 
 var explosion_color:Color
 
-#acá habría que agregar el color y las colisiones
+func _ready():
+	$State_handler.init(player, self)
+
 func initialize(t, n):
 	player = t
 	$Sprite.modulate = colores[n]
 	explosion_color = colores[n]
 	collision_layer = collisiones[n]
 	collision_mask  = collisiones[n]
-
-func _process(delta):
-	target = player.global_position - global_position
-	velocity += target
-	velocity *= friction
-	look_at(player.global_position)
-	position += velocity.normalized() * speed * delta
+	special = specials[n]
+	if special == "special_orange" and GlobalVariables.retry == true:
+		GlobalVariables.Mdmg *= 1.1
+		GlobalVariables.Mhealth *= 1.1
+		dmg = GlobalVariables.Mdmg
+		health = GlobalVariables.Mhealth
 
 func takeDamage(n):
 	health -= n
@@ -35,7 +41,7 @@ func takeDamage(n):
 		queue_free()
 
 func burn():
-	for i in range(10):
+	for _i in range(10):
 		takeDamage(player.brn_dmg)
 		yield(get_tree().create_timer(.1), "timeout")
 
@@ -47,7 +53,7 @@ func _on_area_entered(area):
 		takeDamage(player.dmg)
 		area.remove()
 	if area.name == player.name: 
-		player.takeDamage(15)
+		player.takeDamage()
 
 
 func _on_death():
@@ -57,6 +63,12 @@ func _on_death():
 	var c = GlobalVariables.coin.instance()
 	c.initialize(position)
 	get_parent().call_deferred("add_child", c)
+
+func close_enough(_area):
+	charge_flag = true
+
+func far_enough(_area):
+	charge_flag = false
 
 func _create_explosion():
 	var explosion = GlobalVariables.EXPLOSION.instance()

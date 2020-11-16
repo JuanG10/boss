@@ -28,12 +28,11 @@ func _flip_green_to_player(player:Area2D)->void:
 func _on_activated_trap_behavior(player:Area2D, animation_name:String):
 	if animation_name == "activar" && !maked_dmg_once:
 		match animation.name:
-			TRAP_NAMES.blue: 
-				player.speed *= 0.9
-				player.frezze_timer.start()
+			TRAP_NAMES.blue:
+				player.freezeT.start()
 			TRAP_NAMES.green:
 				player.is_poisoned = true
-				player.poison_timer.start()
+				player.poisonT.start()
 			TRAP_NAMES.red: player.takeDamage(20)
 		maked_dmg_once = true
 

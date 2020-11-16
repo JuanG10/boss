@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 GlobalVariables="*res://global_variables.gd"
 FogBackground="*res://Fondos/Fog/FogBackground.tscn"
 TrapManager="*res://Trampas/TrapManager.gd"
+SignalManager="*res://state_machine/SignalManager.gd"
 
 [input]
 

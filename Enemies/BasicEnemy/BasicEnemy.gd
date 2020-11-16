@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 var player
 var speed = 60
@@ -14,12 +14,13 @@ var timer = Timer.new()
 var Bullet = preload("res://Enemies/Bullet.tscn")
 
 var colores = [Color(0, 0, 1),Color(0,1,0),Color(1,0,0)]
-var collisiones = [0b1, 0b10, 0b100]
+var collisiones = [0b100000001, 0b100000010, 0b100000100]
 var tipo
 
 var explosion_color:Color
 
 func _ready():
+	$State_handler.init(player, self)
 	timer.set_one_shot(true)
 	timer.set_wait_time(.8)
 	add_child(timer)
@@ -33,12 +34,10 @@ func initialize(t, n):
 	collision_mask  = collisiones[n]
 	tipo = n
 
-func _process(delta):
-	target = player.global_position - global_position
-	velocity += target
-	velocity *= friction
-	look_at(player.global_position)
-	position += velocity.normalized() * speed * delta
+func close_enough():
+	return false
+
+func _process(_delta):
 	if(timer.is_stopped()):
 		shoot()
 
@@ -66,7 +65,7 @@ func _on_death():
 	get_parent().points += 20
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
-		c.initialize(position + Vector2(i,0))
+		c.initialize(position + Vector2(rand_range(0, i*10),rand_range(0, i*10)))
 		get_parent().call_deferred("add_child", c)
 
 func _create_explosion():
