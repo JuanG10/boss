@@ -1,6 +1,7 @@
 extends Area2D
 
 var Bullet = preload("res://Player/Bullet.tscn")
+var disparo_explosivo = preload("res://Disparo/ExplosionDisparo.tscn")
 const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 var label
 var coins  
@@ -24,6 +25,7 @@ var isShielded = false
 var poisonT   = Timer.new()
 var freezeT   = Timer.new()
 var habilityT = Timer.new()
+var dash_use  = Timer.new()
 
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
 var collisiones = [0b10000000110, 0b10000000101, 0b10000000011]
@@ -104,6 +106,7 @@ func _physics_process(_delta):
 		heal(1)
 	if(shootT.is_stopped()):
 		shoot()
+
 	if Input.is_action_pressed('right'):
 		if freezeT.is_stopped():
 			position.x += speed
@@ -128,6 +131,8 @@ func _physics_process(_delta):
 		takeDamage(1)
 	if Input.is_action_just_pressed("Activate_dash") && posee_dash():
 		dash()	
+	if Input.is_action_just_pressed("Disparo_especial"):
+		explosion()	
 		
 func posee_dash():
 	var boolean = false
@@ -137,7 +142,7 @@ func posee_dash():
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
-		health = GlobalVariables.Phealth
+		health =  GlobalVariables.Phealth
 	else:
 		health += x
 		_create_floating_text(x, "Heal")
@@ -170,6 +175,14 @@ func shoot():
 	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
 	get_parent().add_child(b)
 	shootT.start()
+
+func explosion():
+	var d = disparo_explosivo.instance()
+	d.position = $Muzzle.global_position
+	d.rotation = rotation
+	d.set_values()
+	get_parent().add_child(d)
+	
 	
 func dash():
 	speed = 20

@@ -21,7 +21,7 @@ const HABILIDADES = {
 
 
 func _ready():
-	position = get_parent()
+	position = get_node("Habilidades/Position2D")
 	player   =  get_parent().get_parent().get_node("Player")
 
 
@@ -30,8 +30,7 @@ func _physics_process(_delta):
 
 
 func set_habilidades():
-	if habilitar_habilidad_orange:
-		print("sadasd")
+	if habilitar_habilidad_orange && player.color_actual() == "Blue":
 		var dash = HABILIDADES.DASH.instance()
 		dash.position.x = position.position.x 
 		dash.position.y = position.position.y

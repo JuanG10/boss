@@ -69,7 +69,6 @@ func _process(_delta):
 		shoot()
 
 func takeDamage(n):
-	print("holaaaaaaa")
 	health -= n
 	if health <= 0:
 		get_parent().call_deferred("remove_child", self)
