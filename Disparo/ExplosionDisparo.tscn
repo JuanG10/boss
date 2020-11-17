@@ -5,7 +5,7 @@
 [ext_resource path="res://Enemies/Bullet.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 2.76964
+radius = 4.9719
 
 [node name="ExplosionDisparo" type="Node2D"]
 position = Vector2( 367.06, 92.6704 )

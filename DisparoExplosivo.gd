@@ -18,7 +18,7 @@ func explosion():
 
 
 func _on_Area2D_body_entered(body):
-	print(body.name)
+	print(body)
 	if body.name.find_last("KinematicBody2D") == 1:
 		print(body)
 
