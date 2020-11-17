@@ -8,10 +8,9 @@ var timer = Timer.new()
 
 var points = 0
 
-
-
 func _ready():
 	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
+	spawnMelee(1)
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
@@ -48,21 +47,21 @@ func _process(_delta):
 
 func spawnMelee(n):
 	for _i in range(n):
-		var enemy:Area2D = melee_template.instance()
+		var enemy:KinematicBody2D = melee_template.instance()
 		enemy.initialize($Player,rand_range(0,3))
 		enemy.set_position(RandomPos()) 
 		add_child(enemy)
 
 func spawnBasic(n):
 	for _i in range(n):
-		var enemy:Area2D = basic_template.instance()
+		var enemy:KinematicBody2D = basic_template.instance()
 		enemy.initialize($Player,rand_range(0,3))
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
 	
 func spawnAdvanced(n):
 	for _i in range(n):
-		var enemy:Area2D = advanced_tmplt.instance()
+		var enemy:KinematicBody2D = advanced_tmplt.instance()
 		enemy.initialize($Player,rand_range(0,3))
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
