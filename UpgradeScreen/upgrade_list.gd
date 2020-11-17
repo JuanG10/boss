@@ -13,10 +13,12 @@ const BASE = {
 	escudo = preload("res://Iconos/defensa_base.png"),
 	pistola = preload("res://Iconos/pistola_base.png")
 }
-const GREEN = {
+##Naranja
+const ORANGE = {
 	cuchillo = preload("res://Iconos/cuchillo_azul-violeta.png"),
 	escudo = preload("res://Iconos/defensa_base.png"),
-	pistola = preload("res://Iconos/pistola_azul-violeta.png")
+	pistola = preload("res://Iconos/pistola_azul-violeta.png"),
+	dash    = preload("res://Iconos/relampago.png")
 }
 const BLUE = {
 	corazon = preload("res://Iconos/corazon.png")
@@ -28,19 +30,16 @@ var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
 
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
-	if parent_name == "BasePanel":
-		add_item("Bala: +Cadencia " + precio, BASE.bala) #0
-		add_item("Limitador: +Velocidad " + precio, BASE.limitador) #1
-		add_item("Pistola: +Daño " + precio, BASE.pistola) #3
-		add_item("Escudo: +Vida " + precio, GREEN.escudo) #2
-	elif parent_name == "RedPanel":
-		add_item("Cuchillo: +Daño a corta distancia contra rojo", GREEN.cuchillo)
-		add_item("Pistola: +Daño a distancia contra rojo", GREEN.pistola)
-		add_item("Bala: +Cadencia " + precio, BASE.bala) 
+	if parent_name == "RedPanel":
+		#add_item("Cuchillo: +Daño a corta distancia contra rojo", ORANGE.cuchillo)
+		#add_item("Pistola: +Daño a distancia contra rojo", ORANGE.pistola)
+		#add_item("Bala: +Cadencia " + precio, BASE.bala) 
+		pass
 	elif parent_name == "GreenPanel":
-		add_item("Escudo: +Vida " + precio, GREEN.escudo) #2
+		add_item("Dash: +Velocidad " + precio, ORANGE.dash) #2
 	elif parent_name == "BluePanel":
-		add_item("Corazon: +Vida" + precio,BLUE.corazon)
+		pass
+		#add_item("Corazon: +Vida" + precio,BLUE.corazon)
 
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
@@ -80,7 +79,7 @@ func comprar_red_panel():
 
 func comprar_green_panel():
 	if _get_selected_item() == 0: 
-		GlobalVariables.add_habilidad_Green("shield")
+		GlobalVariables.habilidades.append("dash")
 		music_compra_and_animation()
 
 
@@ -124,7 +123,7 @@ func _on_Timer_timeout():
 
 func _on_upgrade_list_item_activated(index):
 			#GlobalVariables.money >= intPrecio
-	if GlobalVariables.money >= intPrecio:
+	if true:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		if parent_name == "BasePanel":

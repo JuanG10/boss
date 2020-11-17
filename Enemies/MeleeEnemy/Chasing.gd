@@ -6,6 +6,7 @@ var target = Vector2.ZERO
 var velocity = Vector2.ZERO
 var friction
 
+
 func initialize(p, e):
 	player = p
 	enemy = e

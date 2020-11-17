@@ -1,6 +1,7 @@
 extends Area2D
 
 var Bullet = preload("res://Player/Bullet.tscn")
+var disparo_explosivo = preload("res://Disparo/ExplosionDisparo.tscn")
 const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 var label
 var coins  
@@ -24,6 +25,7 @@ var isShielded = false
 var poisonT   = Timer.new()
 var freezeT   = Timer.new()
 var habilityT = Timer.new()
+var dash_use  = Timer.new()
 
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
 var collisiones = [0b10000000110, 0b10000000101, 0b10000000011]
@@ -104,6 +106,7 @@ func _physics_process(_delta):
 		heal(1)
 	if(shootT.is_stopped()):
 		shoot()
+
 	if Input.is_action_pressed('right'):
 		if freezeT.is_stopped():
 			position.x += speed
@@ -126,10 +129,20 @@ func _physics_process(_delta):
 			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
+	if Input.is_action_just_pressed("Activate_dash") && posee_dash():
+		dash()	
+	if Input.is_action_just_pressed("Disparo_especial"):
+		explosion()	
+		
+func posee_dash():
+	var boolean = false
+	for habilidad in GlobalVariables.habilidades:
+		boolean = boolean || habilidad == "dash"
+	return boolean			
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
-		health = GlobalVariables.Phealth
+		health =  GlobalVariables.Phealth
 	else:
 		health += x
 		_create_floating_text(x, "Heal")
@@ -163,6 +176,19 @@ func shoot():
 	get_parent().add_child(b)
 	shootT.start()
 
+func explosion():
+	var d = disparo_explosivo.instance()
+	d.position = $Muzzle.global_position
+	d.rotation = rotation
+	d.set_values()
+	get_parent().add_child(d)
+	
+	
+func dash():
+	speed = 20
+	$Timer_dash.set_wait_time(0.1)
+	$Timer_dash.start()
+
 func next_color():
 	pointer = (pointer + 1)%3
 	_change_with_color(pointer)
@@ -177,7 +203,7 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int)->void:
 	$Sprite.modulate = colores[n]
-	FogBackground.change_bg_color(n)
+	FogBackground.change_bg_color(colores[n])
 	TrapManager.change_trap_type(colores[n])
 
 func _create_floating_text(amount:int, type:String)->void:
@@ -189,3 +215,7 @@ func _create_floating_text(amount:int, type:String)->void:
 
 func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
 	takeDamage(body.dmg)
+
+
+func _on_Timer_dash_timeout():
+	speed = GlobalVariables.Pspeed
