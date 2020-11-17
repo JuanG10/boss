@@ -28,7 +28,7 @@ var poisonT   = Timer.new()
 var freezeT   = Timer.new()
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
-
+#Blue, Orange and Red
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
 var collisiones = [0b10000000110, 0b10000000101, 0b10000000011]
 var states
@@ -72,14 +72,15 @@ func _ready():
 
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
-	if sprite_modulate == Color(1,0,0,1):
+	if sprite_modulate == Color(.702, .0823, .0706):
 		return "Red"
-	elif sprite_modulate == Color(0,0,1,1):
+	elif sprite_modulate == Color(.0627, .1255, .702):
 		return "Blue"
-	elif sprite_modulate == Color(0,1,0,1):
-		return "Green"
+	elif sprite_modulate == Color(.702, .3216, .1216):
+		return "Orange"
 
 func _physics_process(_delta):
+
 	look_at(get_global_mouse_position())
 	#if Input.is_action_just_pressed("ui_accept"):
 	#	speed *= 3
@@ -131,10 +132,10 @@ func _physics_process(_delta):
 			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
-	if Input.is_action_just_pressed("Activate_dash") && posee_habilidad("Dash") && !uso_dash:
+	if Input.is_action_just_pressed("Activate_dash") && posee_habilidad("Dash") && !uso_dash && color_actual() == "Orange":
 		dash()	
 		uso_dash = true
-	if Input.is_action_just_pressed("Disparo_especial") && posee_habilidad("Disparo explosivo") && !uso_disparo_explosivo:
+	if Input.is_action_just_pressed("Disparo_especial") && posee_habilidad("Disparo explosivo") && !uso_disparo_explosivo && color_actual() == "Red":
 		disparo_explosivo()	
 		uso_disparo_explosivo = true
 		
