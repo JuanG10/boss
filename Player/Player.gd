@@ -132,15 +132,20 @@ func _physics_process(_delta):
 			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
-	if Input.is_action_just_pressed("Activate_dash") && posee_habilidad("Dash") && !uso_dash && color_actual() == "Orange":
+	if Input.is_action_just_pressed("Activate_dash") && skill_condition("Dash",uso_dash,"Orange"):
 		dash()	
 		uso_dash = true
-	if Input.is_action_just_pressed("Disparo_especial") && posee_habilidad("Disparo explosivo") && !uso_disparo_explosivo && color_actual() == "Red":
+	if Input.is_action_just_pressed("Disparo_especial") && skill_condition("Disparo explosivo",uso_disparo_explosivo,"Red"):
 		disparo_explosivo()	
 		uso_disparo_explosivo = true
 		
 		
-		
+func skill_condition(name_habilidad,use_skill,color):
+	return 	posee_habilidad(name_habilidad) && !use_skill && color_actual() == color
+	
+	
+	
+	
 func posee_habilidad(name_habilidad):
 	var boolean = false
 	for habilidad in GlobalVariables.habilidades:

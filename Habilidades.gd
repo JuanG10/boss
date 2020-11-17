@@ -25,36 +25,34 @@ func _ready():
 	position = get_node("Habilidades/Position2D")
 	player   =  get_parent().get_parent().get_node("Player")
 
-
 func _physics_process(_delta):
 	set_habilidades()
 
 
 func set_habilidades():
-
-	if habilitar_habilidad_orange && player.color_actual() == "Orange" && player.posee_habilidad("Dash"):
+	if habilitar_habilidad_orange && condition_skill("Orange","Dash"):
 		remove_childs()
 		var dash = HABILIDADES.DASH.instance()
-		dash.position.x = position.position.x 
-		dash.position.y = position.position.y
-		position.add_child(dash)
-		habilidades_agregadas.append(dash)
+		add_habilidad_position(dash)
 		habilitar_habilidad_orange = false
-		habilitar_blue = true	
-	elif habilitar_habilidad_disparo_explosivo && player.color_actual() == "Red" && player.posee_habilidad("Disparo explosivo"):
+	elif habilitar_habilidad_disparo_explosivo && condition_skill("Red","Disparo explosivo"):
 		remove_childs()
 		var disparo_explosivo = HABILIDADES.DISPARO_EXPLOSIVO.instance()
-		disparo_explosivo.position.x = position.position.x 
-		disparo_explosivo.position.y = position.position.y
-		position.add_child(disparo_explosivo)
-		habilidades_agregadas.append(disparo_explosivo)
+		add_habilidad_position(disparo_explosivo)
 		habilitar_habilidad_disparo_explosivo = false
-		habilitar_blue = true	
 	elif player.color_actual() == "Blue" && habilitar_blue && habilidades_agregadas.size() > 0:
 		habilitar_blue = false
 		remove_childs()	
 
+func condition_skill(color,name_habilidad):
+	return player.color_actual() == color && player.posee_habilidad(name_habilidad)
 
+func add_habilidad_position(scene):
+	scene.position.x = position.position.x 
+	scene.position.y = position.position.y
+	position.add_child(scene)
+	habilidades_agregadas.append(scene)
+	habilitar_blue = true	
 
 func remove_childs():
 	for habilidad in habilidades_agregadas:
