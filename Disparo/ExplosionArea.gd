@@ -12,6 +12,7 @@ func _ready():
 func _physics_process(delta):
 	if emitting && $Area2D/CollisionShape2D.disabled:
 		$Area2D/CollisionShape2D.disabled = false
+
 	
 	
 		
@@ -25,3 +26,7 @@ func activate_senial():
 func _on_Area2D_area_entered(area):
 	pass
 	#print(area.get_name())
+
+
+func _on_Area2D_body_entered(body):
+	body.takeDamage(20)

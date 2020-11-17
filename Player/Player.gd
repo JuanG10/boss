@@ -15,7 +15,9 @@ var brn_dmg       = GlobalVariables.brn_dmg
 var heal_speed    = GlobalVariables.heal_speed
 var shield_speed  = GlobalVariables.shield_speed
 
-var invencibility = false
+var invencibility         = false
+var uso_dash              = false
+var uso_disparo_explosivo = false
 
 var shootT  = Timer.new()
 var healT   = Timer.new()
@@ -129,15 +131,19 @@ func _physics_process(_delta):
 			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
-	if Input.is_action_just_pressed("Activate_dash") && posee_dash():
+	if Input.is_action_just_pressed("Activate_dash") && posee_habilidad("Dash") && !uso_dash:
 		dash()	
-	if Input.is_action_just_pressed("Disparo_especial"):
-		explosion()	
+		uso_dash = true
+	if Input.is_action_just_pressed("Disparo_especial") && posee_habilidad("Disparo explosivo") && !uso_disparo_explosivo:
+		disparo_explosivo()	
+		uso_disparo_explosivo = true
 		
-func posee_dash():
+		
+		
+func posee_habilidad(name_habilidad):
 	var boolean = false
 	for habilidad in GlobalVariables.habilidades:
-		boolean = boolean || habilidad == "dash"
+		boolean = boolean || habilidad == name_habilidad
 	return boolean			
 
 func heal(x):
@@ -176,16 +182,20 @@ func shoot():
 	get_parent().add_child(b)
 	shootT.start()
 
-func explosion():
+func disparo_explosivo():
 	var d = disparo_explosivo.instance()
 	d.position = $Muzzle.global_position
 	d.rotation = rotation
 	d.set_values()
 	get_parent().add_child(d)
+	$Timer_Disparo_explosivo.set_wait_time(5)
+	$Timer_Disparo_explosivo.start()
 	
 	
 func dash():
 	speed = 20
+	$Timer_restar_Dash.set_wait_time(5)
+	$Timer_restar_Dash.start()
 	$Timer_dash.set_wait_time(0.1)
 	$Timer_dash.start()
 
@@ -219,3 +229,13 @@ func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
 
 func _on_Timer_dash_timeout():
 	speed = GlobalVariables.Pspeed
+	
+	
+	
+
+func _on_Timer_restar_Dash_timeout():
+	uso_dash = false
+
+
+func _on_Timer_Disparo_explosivo_timeout():
+	 uso_disparo_explosivo  = false
