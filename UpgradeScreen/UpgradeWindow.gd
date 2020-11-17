@@ -1,20 +1,20 @@
 extends Node2D
 
 const PANELS = {
-	BASE = preload("res://UpgradeScreen/BasePanel.tscn"),
+
 	RED = preload("res://UpgradeScreen/RedPanel.tscn"),
 	GREEN = preload("res://UpgradeScreen/GreenPanel.tscn"),
 	BLUE = preload("res://UpgradeScreen/BluePanel.tscn")
 }
 
 const LEVELS = {
-	color_level = [PANELS.RED,PANELS.GREEN,PANELS.BLUE],
-	base_level = [PANELS.BASE]
+	color_level = [PANELS.RED,PANELS.GREEN,PANELS.BLUE]
+
 }
 
-onready var panel_matrix = [LEVELS.color_level,LEVELS.base_level] # y
+onready var panel_matrix = [LEVELS.color_level] # y
 var actualPanel:Panel
-var actual_pos = Vector2(0,1) # Cuidado, 'y' es el segundo argumento
+var actual_pos = Vector2(0,0) # Cuidado, 'y' es el segundo argumento
 
 signal start_animation
 
