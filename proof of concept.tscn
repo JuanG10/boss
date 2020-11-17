@@ -64,7 +64,7 @@ __meta__ = {
 }
 
 [node name="Position2D" type="Position2D" parent="Player/CanvasLayer"]
-position = Vector2( 941.846, 560.697 )
+position = Vector2( 553.023, 327.615 )
 
 [node name="Habilidades" type="Label" parent="Player/CanvasLayer"]
 anchor_left = 0.58

@@ -59,7 +59,8 @@ func recibi_danio():
 
 	
 func takeDamage(n):
-	health -= n
+	health -= 10
+
 	recibi_danio()
 	if health <= 0:
 		get_parent().call_deferred("remove_child", self)

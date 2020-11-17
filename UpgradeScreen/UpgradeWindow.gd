@@ -3,12 +3,12 @@ extends Node2D
 const PANELS = {
 
 	RED = preload("res://UpgradeScreen/RedPanel.tscn"),
-	GREEN = preload("res://UpgradeScreen/GreenPanel.tscn"),
+	ORANGE = preload("res://UpgradeScreen/GreenPanel.tscn"),
 	BLUE = preload("res://UpgradeScreen/BluePanel.tscn")
 }
 
 const LEVELS = {
-	color_level = [PANELS.RED,PANELS.GREEN,PANELS.BLUE]
+	color_level = [PANELS.RED,PANELS.ORANGE,PANELS.BLUE]
 
 }
 

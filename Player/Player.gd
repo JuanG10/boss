@@ -126,6 +126,14 @@ func _physics_process(_delta):
 			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
+	if Input.is_action_just_pressed("Activate_dash") && posee_dash():
+		dash()	
+		
+func posee_dash():
+	var boolean = false
+	for habilidad in GlobalVariables.habilidades:
+		boolean = boolean || habilidad == "dash"
+	return boolean			
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
@@ -162,6 +170,11 @@ func shoot():
 	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
 	get_parent().add_child(b)
 	shootT.start()
+	
+func dash():
+	speed = 20
+	$Timer_dash.set_wait_time(0.1)
+	$Timer_dash.start()
 
 func next_color():
 	pointer = (pointer + 1)%3
@@ -189,3 +202,7 @@ func _create_floating_text(amount:int, type:String)->void:
 
 func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
 	takeDamage(body.dmg)
+
+
+func _on_Timer_dash_timeout():
+	speed = GlobalVariables.Pspeed

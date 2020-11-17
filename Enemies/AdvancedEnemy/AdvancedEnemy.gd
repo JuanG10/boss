@@ -84,7 +84,6 @@ func _process(_delta):
 
 func takeDamage(n):
 	health -= n
-	print("hace daño")
 	if health <= 0:
 		get_parent().call_deferred("remove_child", self)
 		queue_free()
