@@ -54,7 +54,7 @@ func animacion_monedas():
 #Si alguno cumple la condicion, compra, y agrega el nombre de la habilidad en un lista de GlobalVariables
 func compra_base_panel():
 	if _get_selected_item()   == 0: 
-		GlobalVariables.add_habilidad_Red("atk_speed")
+		GlobalVariables.Patk_speed *= 0.9
 		music_compra_and_animation()
 	elif _get_selected_item() == 1: 
 			GlobalVariables.add_habilidad_Red("Speed")

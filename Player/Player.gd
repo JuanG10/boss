@@ -21,8 +21,9 @@ var healT   = Timer.new()
 var shieldT = Timer.new()
 var isShielded = false
 
-var poisonT = Timer.new()
-var freezeT = Timer.new()
+var poisonT   = Timer.new()
+var freezeT   = Timer.new()
+var habilityT = Timer.new()
 
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
 var collisiones = [0b10000000110, 0b10000000101, 0b10000000011]
@@ -61,6 +62,9 @@ func _ready():
 	freezeT.set_one_shot(true)
 	freezeT.set_wait_time(2.5)
 	add_child(freezeT)
+	habilityT.set_one_shot(true)
+	habilityT.set_wait_time(15)
+	add_child(habilityT)
 
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
@@ -77,7 +81,8 @@ func _physics_process(_delta):
 	#	speed *= 3
 	#if Input.is_action_just_released("ui_accept"):
 	#	speed /= 3
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
+		habilityT.start()
 		states[pointer].power()
 	if Input.is_action_just_pressed("next_color"):
 		next_color()

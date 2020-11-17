@@ -7,15 +7,19 @@ var retry = false
 
 var invincibility_time = 2.5
 
-var money = 0
-var Pspeed = 3
-var Patk_speed = .4
-var Phealth = 100
-var Pdmg = 10
-var magnet_radius = 10
-var brn_dmg = 1
-var heal_speed = 1.5
-var shield_speed = 5
+var money            = 0
+var Pspeed           = 3    #mejora aumentando el valor
+var Patk_speed       = .4   #mejora disminuyendo el valor
+var Phealth          = 100  #mejora aumentando el valor
+var Pdmg             = 10   #mejora aumentando el valor
+var Pslow            = .8   #mejora disminuyendo el valor
+var Pstun            = .1   #mejora aumentando el valor
+var magnet_radius    = 10   #mejora aumentando el valor
+var brn_dmg          = 1    #mejora aumentando el valor
+var heal_speed       = 1.5  #mejora disminuyendo el valor
+var shield_speed     = 5    #mejora disminuyendo el valor
+var slow_ring_effect = .7   #mejora disminuyendo el valor
+var BFdmg            = 3   #mejora aumentando el valor
 
 var Mhealth = 25
 var Mdmg    = 15

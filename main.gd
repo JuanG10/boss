@@ -10,13 +10,13 @@ var points = 0
 
 func _ready():
 	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
-	spawnAdvanced(1)
+	spawnMelee(1)
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
 
 func _process(_delta):
-	if timer.is_stopped() and false:
+	if timer.is_stopped():
 		timer.start()
 		if points < 100:
 			FogBackground.change_bg_octaves(2)
