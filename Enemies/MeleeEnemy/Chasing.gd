@@ -3,7 +3,6 @@ extends "res://state_machine/state.gd"
 var player
 var enemy
 var target = Vector2.ZERO
-var velocity = Vector2.ZERO
 var friction
 
 func initialize(p, e):
@@ -14,15 +13,21 @@ func initialize(p, e):
 func red_condition():
 	return enemy.charge_flag and enemy.tipo == 2
 
-func blue_condition():
-	return enemy.get_node("ChargeRange").get_overlapping_bodies().size() > 0 and enemy.tipo == 0
+func flocking_condition():
+	return enemy.get_node("FlockingArea").get_overlapping_areas().size() > 1
 
-func update(_delta):
+func blue_condition():
+	return false
+
+func update(delta):
+	if red_condition() or blue_condition():
+			emit_signal("finished", enemy.special)
+	if flocking_condition():
+			emit_signal("finished", "flocking")
 	if not enemy.is_stunned:
 		target = player.global_position - enemy.global_position
-		velocity += target
-		velocity *= friction
+		enemy.velocity += target
+		enemy.velocity *= friction
+		enemy.velocity  = enemy.velocity.normalized()
 		enemy.look_at(player.global_position)
-		enemy.move_and_slide(velocity.normalized() * enemy.speed)
-	if red_condition() or blue_condition():
-		emit_signal("finished", enemy.special)
+		enemy.position += enemy.velocity * enemy.speed * delta

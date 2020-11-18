@@ -26,7 +26,6 @@ var freezeT   = Timer.new()
 var habilityT = Timer.new()
 
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
-var collisiones = [0b10000000110, 0b10000000101, 0b10000000011]
 var states
 var pointer     = 0
 
@@ -45,8 +44,6 @@ func _ready():
 	O.initialize(self)
 	B.initialize(self)
 	$Sprite.modulate = colores[pointer]
-	collision_layer = collisiones[pointer]
-	collision_mask  = collisiones[pointer]
 	shootT.set_one_shot(true)
 	shootT.set_wait_time(atk_speed)
 	add_child(shootT)
@@ -88,14 +85,10 @@ func _physics_process(_delta):
 		next_color()
 		if not states[pointer].shield:
 			remove_shield()
-		collision_layer = collisiones[pointer]
-		collision_mask  = collisiones[pointer]
 	if Input.is_action_just_pressed("previous_color"):
 		previous_color()
 		if not states[pointer].shield:
 			remove_shield()
-		collision_layer = collisiones[pointer]
-		collision_mask  = collisiones[pointer]
 	if(states[pointer].shield and shieldT.is_stopped()):
 		isShielded = true
 		$Shield.show()
@@ -156,9 +149,7 @@ func remove_shield():
 
 func shoot():
 	var b = Bullet.instance()
-	b.modulate        = colores[pointer]
-	b.collision_layer = collisiones[pointer]
-	b.collision_mask  = collisiones[pointer]
+	b.modulate = colores[pointer]
 	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
 	get_parent().add_child(b)
 	shootT.start()
@@ -170,6 +161,9 @@ func next_color():
 func previous_color():
 	pointer = (pointer + 2)%3
 	_change_with_color(pointer)
+
+func stop_shooting(n):
+	shootT.start(n)
 
 func _on_grab_coin(area):
 	area.grab()

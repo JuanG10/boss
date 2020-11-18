@@ -17,4 +17,5 @@ func power():
 	var BFLaser = BFLaser_template.instance()
 	BFLaser.modulate = Color(.702, .0823, .0706)
 	BFLaser.position = player.get_node("Muzzle").position
+	player.stop_shooting(2.1)
 	player.call_deferred("add_child", BFLaser)

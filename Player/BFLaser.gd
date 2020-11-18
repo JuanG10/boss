@@ -5,7 +5,7 @@ func _physics_process(_delta):
 		scale.x *= 1.1
 	if scale.y < 5:
 		scale.y *= 1.1
-	for body in get_overlapping_bodies():
+	for body in get_overlapping_areas():
 		body.burn()
 		body.takeDamage(GlobalVariables.BFdmg)
 

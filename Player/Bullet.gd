@@ -12,9 +12,9 @@ func start(pos, dir, damage, state_):
 	state    = state_
 	velocity = Vector2(speed, 0).rotated(rotation)
 
-func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
-	state.handle(body)
-	body.takeDamage(0)
+func on_enemy_entered(area):
+	state.handle(area)
+	area.takeDamage(0)
 	remove()
 
 func _physics_process(_delta):
