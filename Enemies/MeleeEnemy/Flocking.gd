@@ -13,11 +13,14 @@ func initialize(p, e):
 	enemy = e
 	friction = enemy.friction
 
+func red_condition():
+	return enemy.charge_flag and enemy.tipo == 2
+
 func update(delta):
 	if enemy.get_node("FlockingArea").get_overlapping_areas().size() < 2:
 		emit_signal("finished", "chasing")
-	if enemy.minimun_range_flag:
-		emit_signal("finished", "minimun_range")
+	if red_condition():
+		emit_signal("finished", enemy.special)
 	
 	var flock_mates = enemy.get_node("FlockingArea").get_overlapping_areas()
 	acc = Vector2.ZERO
@@ -40,7 +43,7 @@ func calc_cohesion(flock_mates):
 	
 	if flock_mates.size() > 1:
 		for f in flock_mates:
-			if f != enemy:
+			if f.is_in_group("Enemy") and f != enemy:
 				average += f.get_global_position() - enemy.get_global_position()
 		average /= flock_mates.size() - 1
 		#average -= enemy.get_global_position()
@@ -53,7 +56,7 @@ func calc_separation(flock_mates):
 	if flock_mates.size() > 1:
 		for f in flock_mates:
 			if f != enemy:
-				if (f.global_position - enemy.global_position).length() < 20:
+				if (f.global_position - enemy.global_position).length() < 13:
 					steer += (enemy.global_position - f.global_position).normalized() * 2
 
 func calc_alignment(flock_mates):
@@ -61,7 +64,7 @@ func calc_alignment(flock_mates):
 
 	if flock_mates.size() > 1:
 		for f in flock_mates:
-			if f != enemy:
+			if f.is_in_group("Enemy") and f != enemy:
 				average += f.velocity
 		average /= flock_mates.size() - 1
 		acc      = average.clamped(1)

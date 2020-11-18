@@ -46,12 +46,10 @@ func calc_cohesion(flock_mates):
 		#average -= enemy.get_global_position()
 	
 		acc      = average.normalized()
-		var u    = acos(acc.dot(enemy.velocity.normalized())) / PI
+		var _u    = acos(acc.dot(enemy.velocity.normalized())) / PI
 		steer   += acc
 
 func calc_separation(flock_mates):
-	var average = Vector2.ZERO
-
 	if flock_mates.size() > 1:
 		for f in flock_mates:
 			if f != enemy:
@@ -68,6 +66,5 @@ func calc_alignment(flock_mates):
 		average /= flock_mates.size() - 1
 		acc      = average.normalized()
 		
-		var v    = acos(acc.dot(enemy.velocity.normalized())) / PI
-		print(v)
+		var _v    = acos(acc.dot(enemy.velocity.normalized())) / PI
 		steer   += acc

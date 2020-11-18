@@ -18,7 +18,9 @@ radius = 103.178
 [sub_resource type="CircleShape2D" id=3]
 radius = 88.7916
 
-[node name="BasicEnemy" type="Area2D"]
+[node name="BasicEnemy" type="Area2D" groups=[
+"Enemy",
+]]
 collision_layer = 131329
 script = ExtResource( 2 )
 

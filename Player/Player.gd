@@ -150,9 +150,9 @@ func remove_shield():
 func shoot():
 	var b = Bullet.instance()
 	b.modulate = colores[pointer]
-	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
+	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
 	get_parent().add_child(b)
-	shootT.start()
+	shootT.start(atk_speed)
 
 func next_color():
 	pointer = (pointer + 1)%3
@@ -181,5 +181,6 @@ func _create_floating_text(amount:int, type:String)->void:
 	text.rotation_degrees = 90
 	add_child(text)
 
-func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
-	takeDamage(body.dmg)
+func on_enemy_entered(area):
+	if area.is_in_group("Enemy"):
+		takeDamage(area.dmg)
