@@ -12,6 +12,10 @@ func start(pos, dir, damage, state_):
 	state    = state_
 	velocity = Vector2(speed, 0).rotated(rotation)
 
+
+func set_speed(value_speed):
+	speed = value_speed
+
 func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
 	state.handle(body)
 	body.takeDamage(0)

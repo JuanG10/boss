@@ -17,7 +17,8 @@ var habilidades_agregadas_orange = []
 
 const HABILIDADES = {
 	DASH = preload("res://Habilidades/Dash.tscn"),
-	DISPARO_EXPLOSIVO = preload("res://Habilidades/Disparo_explosivo.tscn")
+	DISPARO_EXPLOSIVO = preload("res://Habilidades/Disparo_explosivo.tscn"),
+	Attack_speed      = preload("res://Habilidades/Attack_speed.tscn")
 }
 
 
@@ -40,12 +41,18 @@ func set_habilidades():
 		var disparo_explosivo = HABILIDADES.DISPARO_EXPLOSIVO.instance()
 		add_habilidad_position(disparo_explosivo)
 		habilitar_habilidad_disparo_explosivo = false
-	elif player.color_actual() == "Blue" && habilitar_blue && habilidades_agregadas.size() > 0:
+	elif habilitar_blue && condition_skill("Blue","Attack_speed"):
+		remove_childs()
+		var attack_speed = HABILIDADES.Attack_speed.instance()
+		add_habilidad_position(attack_speed)
 		habilitar_blue = false
-		remove_childs()	
+
 
 func condition_skill(color,name_habilidad):
 	return player.color_actual() == color && player.posee_habilidad(name_habilidad)
+
+
+
 
 func add_habilidad_position(scene):
 	scene.position.x = position.position.x 
@@ -61,10 +68,11 @@ func remove_childs():
 
 
 
-
 func habilitar_habilidad(name_habilidad):
 	if name_habilidad.get_name() == "Disparo_explosivo":
 		habilitar_habilidad_disparo_explosivo = true
 	elif name_habilidad.get_name() == "Dash":
 		habilitar_habilidad_orange = true	
+	elif name_habilidad.get_name() == "Attack_speed":
+		habilitar_blue = true	
 		

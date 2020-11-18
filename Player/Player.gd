@@ -18,6 +18,8 @@ var shield_speed  = GlobalVariables.shield_speed
 var invencibility         = false
 var uso_dash              = false
 var uso_disparo_explosivo = false
+var uso_Attack_speed      = false
+var speed_bullet          = 2
 
 var shootT  = Timer.new()
 var healT   = Timer.new()
@@ -138,12 +140,22 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Disparo_especial") && skill_condition("Disparo explosivo",uso_disparo_explosivo,"Red"):
 		disparo_explosivo()	
 		uso_disparo_explosivo = true
+	if Input.is_action_just_pressed("Attack_speed") && skill_condition("Attack_speed",uso_Attack_speed,"Blue"):
+		attack_speed()
+		uso_Attack_speed = true
+		
+		
+		
+		
+		
+func attack_speed():
+	speed_bullet = 5 
+	$Timer_attack_speed.set_wait_time(3)
+	$Timer_attack_speed.start()
 		
 		
 func skill_condition(name_habilidad,use_skill,color):
 	return 	posee_habilidad(name_habilidad) && !use_skill && color_actual() == color
-	
-	
 	
 	
 func posee_habilidad(name_habilidad):
@@ -184,6 +196,7 @@ func shoot():
 	b.modulate        = colores[pointer]
 	b.collision_layer = collisiones[pointer]
 	b.collision_mask  = collisiones[pointer]
+	b.set_speed(speed_bullet)
 	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
 	get_parent().add_child(b)
 	shootT.start()
@@ -245,3 +258,8 @@ func _on_Timer_restar_Dash_timeout():
 
 func _on_Timer_Disparo_explosivo_timeout():
 	 uso_disparo_explosivo  = false
+
+
+func _on_Timer_attack_speed_timeout():
+	speed_bullet = 2
+	uso_Attack_speed = false

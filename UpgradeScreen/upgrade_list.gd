@@ -22,7 +22,7 @@ const ORANGE = {
 	dash    = preload("res://Iconos/relampago.png")
 }
 const BLUE = {
-	corazon = preload("res://Iconos/corazon.png")
+	attack_speed = preload("res://Iconos/attack_speed.png")
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
@@ -36,8 +36,7 @@ func _ready():
 	elif parent_name == "GreenPanel":
 		add_item("Dash " + precio, ORANGE.dash) #2
 	elif parent_name == "BluePanel":
-		pass
-		#add_item("Corazon: +Vida" + precio,BLUE.corazon)
+		add_item("Attack_speed " + precio, BLUE.attack_speed)
 
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
@@ -76,7 +75,7 @@ func comprar_orange_panel():
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
-		GlobalVariables.add_habilidad_Blue("Corazon")
+		GlobalVariables.habilidades.append("Attack_speed")
 		music_compra_and_animation()
 
 
