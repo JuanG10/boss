@@ -1,13 +1,14 @@
 extends Area2D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if scale.x < 8:
 		scale.x *= 1.1
 	if scale.y < 5:
 		scale.y *= 1.1
-	for body in get_overlapping_bodies():
-		body.burn()
-		body.takeDamage(GlobalVariables.BFdmg)
+	for area in get_overlapping_areas():
+		if area.is_in_group("Enemy"):
+			area.burn()
+			area.takeDamage(GlobalVariables.BFdmg)
 
 func remove():
 	get_parent().call_deferred("remove_child", self)

@@ -10,7 +10,6 @@ var points = 0
 
 func _ready():
 	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
-	spawnMelee(1)
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
@@ -20,49 +19,49 @@ func _process(_delta):
 		timer.start()
 		if points < 100:
 			FogBackground.change_bg_octaves(2)
-			spawnMelee(6)
+			spawnMelee(6, randi()%3)
 		elif points < 300:
 			FogBackground.change_bg_octaves(3)
-			spawnMelee(4)
-			spawnBasic(2)
+			spawnMelee(4, randi()%3)
+			spawnBasic(2, randi()%3)
 		elif points < 500:
 			FogBackground.change_bg_octaves(4)
-			spawnMelee(3)
-			spawnBasic(2)
-			spawnAdvanced(1)
+			spawnMelee(3, randi()%3)
+			spawnBasic(2, randi()%3)
+			spawnAdvanced(1, randi()%3)
 		elif points < 1000:
 			FogBackground.change_bg_octaves(5)
-			spawnMelee(6)
-			spawnBasic(1)
-			spawnAdvanced(3)
+			spawnMelee(6, randi()%3)
+			spawnBasic(1, randi()%3)
+			spawnAdvanced(3, randi()%3)
 		elif points < 2000:
 			FogBackground.change_bg_octaves(6)
-			spawnMelee(4)
-			spawnBasic(6)
-			spawnAdvanced(2)
+			spawnMelee(4, randi()%3)
+			spawnBasic(6, randi()%3)
+			spawnAdvanced(2, randi()%3)
 		else:
 			FogBackground.change_bg_octaves(1)
-			spawnBasic(6)
-			spawnAdvanced(6)
+			spawnBasic(6, randi()%3)
+			spawnAdvanced(6, randi()%3)
 
-func spawnMelee(n):
+func spawnMelee(n, c):
 	for _i in range(n):
-		var enemy:KinematicBody2D = melee_template.instance()
-		enemy.initialize($Player,rand_range(0,3))
+		var enemy:Area2D = melee_template.instance()
+		enemy.initialize($Player, c)
 		enemy.set_position(RandomPos()) 
 		add_child(enemy)
 
-func spawnBasic(n):
+func spawnBasic(n, c):
 	for _i in range(n):
-		var enemy:KinematicBody2D = basic_template.instance()
-		enemy.initialize($Player,rand_range(0,3))
+		var enemy:Area2D = basic_template.instance()
+		enemy.initialize($Player, c)
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
 	
-func spawnAdvanced(n):
+func spawnAdvanced(n, c):
 	for _i in range(n):
-		var enemy:KinematicBody2D = advanced_tmplt.instance()
-		enemy.initialize($Player,rand_range(0,3))
+		var enemy:Area2D = advanced_tmplt.instance()
+		enemy.initialize($Player, c)
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
 

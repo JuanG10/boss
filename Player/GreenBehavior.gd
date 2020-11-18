@@ -15,7 +15,7 @@ func _ready():
 func initialize(p):
 	player = p
 
-func handle(body):
+func handle(_body):
 	pass
 
 func power():

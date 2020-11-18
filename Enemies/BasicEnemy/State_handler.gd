@@ -3,6 +3,7 @@ extends "res://state_machine/state_machine.gd"
 onready var chasing = $Chasing
 onready var minimun_range = $Minimun_range
 onready var special_red = $Red
+onready var flocking = $Flocking
 onready var special_blue = $Blue
 
 func _ready():
@@ -11,6 +12,7 @@ func _ready():
 		"minimun_range" : minimun_range,
 		"special_red"   : special_red,
 		"special_blue"  : special_blue,
+		"flocking"      : flocking,
 	}
 
 func init(player, enemy):

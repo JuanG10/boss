@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 var player
 var speed = 130
@@ -17,10 +17,11 @@ var special
 var charge_flag = false
 
 var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
-var collisiones = [0b100000001, 0b100000010, 0b100000100]
+
 var color_gris  = Color(0.345098,0.329412,0.329412,1)
 var color_actual 
 var specials    = ["special_blue", "special_orange", "special_red"]
+var tipo
 
 var explosion_color:Color
 
@@ -39,11 +40,10 @@ func _process(_delta):
 
 func initialize(t, n):
 	player = t
+	tipo = n
 	$Sprite.modulate = colores[n]
 	color_actual     = colores[n]
 	explosion_color = colores[n]
-	collision_layer = collisiones[n]
-	collision_mask  = collisiones[n]
 	special = specials[n]
 	if special == "special_orange" and GlobalVariables.retry == true:
 		GlobalVariables.Mdmg *= 1.1

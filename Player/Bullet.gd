@@ -4,22 +4,31 @@ var speed = 2
 var velocity = Vector2()
 var dmg
 var state
+var type
 
-func start(pos, dir, damage, state_):
+func start(pos, dir, damage, tipo, estado):
 	rotation = dir
 	position = pos
 	dmg      = damage
-	state    = state_
+	state    = estado
 	velocity = Vector2(speed, 0).rotated(rotation)
+	type = tipo
+
 
 
 func set_speed(value_speed):
 	speed = value_speed
 
-func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
-	state.handle(body)
-	body.takeDamage(0)
-	remove()
+
+func on_enemy_entered(_d, area, _a, _b):
+	if area.is_in_group("Enemy"):
+		state.handle(area)
+		if (area.tipo + 1)%3 == type:
+			area.takeDamage(dmg)
+		else:
+			area.takeDamage(dmg/3)
+		remove()
+
 
 func _physics_process(_delta):
 	position += velocity

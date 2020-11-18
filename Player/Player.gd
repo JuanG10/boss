@@ -32,7 +32,6 @@ var habilityT = Timer.new()
 var dash_use  = Timer.new()
 #Blue, Orange and Red
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
-var collisiones = [0b10000000110, 0b10000000101, 0b10000000011]
 var states
 var pointer     = 0
 
@@ -51,8 +50,6 @@ func _ready():
 	O.initialize(self)
 	B.initialize(self)
 	$Sprite.modulate = colores[pointer]
-	collision_layer = collisiones[pointer]
-	collision_mask  = collisiones[pointer]
 	shootT.set_one_shot(true)
 	shootT.set_wait_time(atk_speed)
 	add_child(shootT)
@@ -95,14 +92,10 @@ func _physics_process(_delta):
 		next_color()
 		if not states[pointer].shield:
 			remove_shield()
-		collision_layer = collisiones[pointer]
-		collision_mask  = collisiones[pointer]
 	if Input.is_action_just_pressed("previous_color"):
 		previous_color()
 		if not states[pointer].shield:
 			remove_shield()
-		collision_layer = collisiones[pointer]
-		collision_mask  = collisiones[pointer]
 	if(states[pointer].shield and shieldT.is_stopped()):
 		isShielded = true
 		$Shield.show()
@@ -193,13 +186,11 @@ func remove_shield():
 
 func shoot():
 	var b = Bullet.instance()
-	b.modulate        = colores[pointer]
-	b.collision_layer = collisiones[pointer]
-	b.collision_mask  = collisiones[pointer]
 	b.set_speed(speed_bullet)
-	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
+	b.modulate = colores[pointer]
+	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
 	get_parent().add_child(b)
-	shootT.start()
+	shootT.start(atk_speed)
 
 func disparo_explosivo():
 	var d = disparo_explosivo.instance()
@@ -226,6 +217,9 @@ func previous_color():
 	pointer = (pointer + 2)%3
 	_change_with_color(pointer)
 
+func stop_shooting(n):
+	shootT.start(n)
+
 func _on_grab_coin(area):
 	area.grab()
 	coins.on_update()
@@ -242,9 +236,6 @@ func _create_floating_text(amount:int, type:String)->void:
 	text.rotation_degrees = 90
 	add_child(text)
 
-func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
-	takeDamage(body.dmg)
-
 
 func _on_Timer_dash_timeout():
 	speed = GlobalVariables.Pspeed
@@ -260,3 +251,8 @@ func _on_Timer_Disparo_explosivo_timeout():
 func _on_Timer_attack_speed_timeout():
 	speed_bullet = 2
 	uso_Attack_speed = false
+
+func on_enemy_entered(area):
+	if area.is_in_group("Enemy"):
+		takeDamage(area.dmg)
+
