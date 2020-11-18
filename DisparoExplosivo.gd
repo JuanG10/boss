@@ -18,7 +18,6 @@ func explosion():
 
 
 func _on_Area2D_body_entered(body):
-		print(body)
 		activate_explosion()
 		$Timer.set_wait_time(1)
 		$Timer.start()

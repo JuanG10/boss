@@ -103,7 +103,7 @@ func _on_Timer_timeout():
 
 
 func _on_upgrade_list_item_activated(index):
-	if true:
+	if GlobalVariables.money >= intPrecio:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		if parent_name == "RedPanel":
