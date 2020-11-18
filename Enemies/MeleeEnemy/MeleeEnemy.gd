@@ -70,6 +70,9 @@ func burn():
 		takeDamage(player.brn_dmg)
 		yield(get_tree().create_timer(.1), "timeout")
 
+func get_class():
+	return "Meele"
+
 func stun(time):
 	stun_timer.start(time)
 	is_stunned = true
