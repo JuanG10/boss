@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Enemies/BasicEnemy/BasicEnemy.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/BasicEnemy/BasicEnemy.gd" type="Script" id=2]
@@ -14,7 +14,10 @@ radius = 9.13498
 [sub_resource type="CircleShape2D" id=2]
 radius = 103.178
 
-[node name="BasicEnemy" type="KinematicBody2D"]
+[sub_resource type="CircleShape2D" id=3]
+radius = 88.7916
+
+[node name="BasicEnemy" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -41,12 +44,19 @@ script = ExtResource( 6 )
 [node name="Blue" type="Node" parent="State_handler"]
 script = ExtResource( 8 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Minimun_range" type="Area2D" parent="."]
 collision_layer = 1024
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minimun_range"]
 shape = SubResource( 2 )
+
+[node name="FlockingArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 131072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlockingArea"]
+shape = SubResource( 3 )
 [connection signal="tree_exiting" from="." to="." method="_on_death"]
-[connection signal="area_entered" from="Area2D" to="." method="close_enough"]
-[connection signal="area_exited" from="Area2D" to="." method="far_enough"]
+[connection signal="area_entered" from="Minimun_range" to="." method="close_enough"]
+[connection signal="area_exited" from="Minimun_range" to="." method="far_enough"]

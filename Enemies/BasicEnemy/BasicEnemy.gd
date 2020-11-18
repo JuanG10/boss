@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 var player
 var speed = 60
@@ -22,7 +22,7 @@ var timer = Timer.new()
 var Bullet = preload("res://Enemies/Bullet.tscn")
 
 var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
-var collisiones = [0b100000001, 0b100000010, 0b100000100]
+var collisiones = [0b100000000100000001, 0b100000010, 0b100000100]
 var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
 
@@ -61,6 +61,8 @@ func far_enough(area):
 		minimun_range_flag = false
 
 func _process(_delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		print(get_global_position())
 	if stun_timer.is_stopped():
 		is_stunned = false
 	if slow_timer.is_stopped():
@@ -108,3 +110,9 @@ func _create_explosion():
 	explosion.get_child(0).process_material.color_ramp.gradient.colors[1] = explosion_color
 	explosion.get_child(0).emitting = true
 	get_parent().call_deferred("add_child", explosion)
+
+func _on_FlockingArea_body_entered(_body):
+	print("im working")
+
+func _on_FlockingArea_body_exited(_body):
+	print("still working")

@@ -1,6 +1,6 @@
 extends Area2D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if scale.x < 8:
 		scale.x *= 1.1
 	if scale.y < 5:

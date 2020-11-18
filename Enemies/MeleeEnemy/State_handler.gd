@@ -7,7 +7,6 @@ onready var special_blue = $Blue
 func _ready():
 	states_map = {
 		"chasing"        : chasing,
-		"special_orange" : chasing,
 		"special_red"    : special_red,
 		"special_blue"   : special_blue,
 	}

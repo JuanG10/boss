@@ -14,11 +14,11 @@ func initialize(p, e):
 	speed = enemy.speed
 
 func update(_delta):
+	if not enemy.minimun_range_flag:
+		emit_signal("finished", "chasing")
 	#side_to_side()
 	if not enemy.is_stunned:
 		enemy.look_at(player.global_position)
-	if not enemy.minimun_range_flag:
-		emit_signal("finished", "chasing")
 
 func side_to_side():
 	var even_iteration = false
