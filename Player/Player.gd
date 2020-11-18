@@ -249,9 +249,6 @@ func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
 func _on_Timer_dash_timeout():
 	speed = GlobalVariables.Pspeed
 	
-	
-	
-
 func _on_Timer_restar_Dash_timeout():
 	uso_dash = false
 
