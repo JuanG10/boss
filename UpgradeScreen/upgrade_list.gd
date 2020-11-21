@@ -62,21 +62,33 @@ func compra_base_panel():
 			music_compra_and_animation()
 
 func comprar_red_panel():
-	if _get_selected_item()   == 0: 
-			GlobalVariables.habilidades.append("Disparo explosivo")
-			music_compra_and_animation()
+	if _get_selected_item() == 0:
+		GlobalVariables.Pdmg  +=5
+		music_compra_and_animation()
+	elif _get_selected_item() == 1:
+		GlobalVariables.brn_dmg +=1
+		music_compra_and_animation() 
 
 func comprar_orange_panel():
 	if _get_selected_item() == 0: 
-		GlobalVariables.habilidades.append("Dash")
+		GlobalVariables.Pspeed += 1
 		music_compra_and_animation()
 
 
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
-		GlobalVariables.habilidades.append("Attack_speed")
+		GlobalVariables.heal_speed -= 0.5
 		music_compra_and_animation()
+	elif _get_selected_item() == 1:
+		GlobalVariables.shield_speed -= 1
+		music_compra_and_animation()
+	elif _get_selected_item() == 2:
+		GlobalVariables.Phealth += 20
+		music_compra_and_animation()
+	elif _get_selected_item() == 3:
+		GlobalVariables.Patk_speed -= 0.1 
+		music_compra_and_animation()	
 
 
 func music_compra_and_animation():

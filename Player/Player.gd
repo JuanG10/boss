@@ -6,14 +6,14 @@ const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 var label
 var coins  
 
-var speed         = GlobalVariables.Pspeed
-var atk_speed     = GlobalVariables.Patk_speed
-var health        = GlobalVariables.Phealth
-var dmg           = GlobalVariables.Pdmg
-var magnet_radius = GlobalVariables.magnet_radius
-var brn_dmg       = GlobalVariables.brn_dmg
-var heal_speed    = GlobalVariables.heal_speed
-var shield_speed  = GlobalVariables.shield_speed
+var speed         = GlobalVariables.Pspeed     		#Naranja, velocidad de movimiento
+var atk_speed     = GlobalVariables.Patk_speed 		#Azul, velocidad de ataque
+var health        = GlobalVariables.Phealth    		#Azul, vida
+var dmg           = GlobalVariables.Pdmg       		#Rojo, daño
+var magnet_radius = GlobalVariables.magnet_radius 	#De todos los colores
+var brn_dmg       = GlobalVariables.brn_dmg  		#Rojo, quemado de fuego
+var heal_speed    = GlobalVariables.heal_speed 		#Azul, velocidad de curacion
+var shield_speed  = GlobalVariables.shield_speed 	#Azul, escudo
 
 var invencibility         = false
 var uso_dash              = false
