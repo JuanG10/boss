@@ -127,35 +127,7 @@ func _physics_process(_delta):
 			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
-	if Input.is_action_just_pressed("Activate_dash") && skill_condition("Dash",uso_dash,"Orange"):
-		dash()	
-		uso_dash = true
-	if Input.is_action_just_pressed("Disparo_especial") && skill_condition("Disparo explosivo",uso_disparo_explosivo,"Red"):
-		disparo_explosivo()	
-		uso_disparo_explosivo = true
-	if Input.is_action_just_pressed("Attack_speed") && skill_condition("Attack_speed",uso_Attack_speed,"Blue"):
-		attack_speed()
-		uso_Attack_speed = true
-		
-		
-		
-		
-		
-func attack_speed():
-	speed_bullet = 5 
-	$Timer_attack_speed.set_wait_time(3)
-	$Timer_attack_speed.start()
-		
-		
-func skill_condition(name_habilidad,use_skill,color):
-	return 	posee_habilidad(name_habilidad) && !use_skill && color_actual() == color
-	
-	
-func posee_habilidad(name_habilidad):
-	var boolean = false
-	for habilidad in GlobalVariables.habilidades:
-		boolean = boolean || habilidad == name_habilidad
-	return boolean			
+			
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
@@ -192,22 +164,8 @@ func shoot():
 	get_parent().add_child(b)
 	shootT.start(atk_speed)
 
-func disparo_explosivo():
-	var d = disparo_explosivo.instance()
-	d.position = $Muzzle.global_position
-	d.rotation = rotation
-	d.set_values()
-	get_parent().add_child(d)
-	$Timer_Disparo_explosivo.set_wait_time(5)
-	$Timer_Disparo_explosivo.start()
 	
-	
-func dash():
-	speed = 20
-	$Timer_restar_Dash.set_wait_time(5)
-	$Timer_restar_Dash.start()
-	$Timer_dash.set_wait_time(0.1)
-	$Timer_dash.start()
+
 
 func next_color():
 	pointer = (pointer + 1)%3
@@ -237,20 +195,8 @@ func _create_floating_text(amount:int, type:String)->void:
 	add_child(text)
 
 
-func _on_Timer_dash_timeout():
-	speed = GlobalVariables.Pspeed
-	
-func _on_Timer_restar_Dash_timeout():
-	uso_dash = false
 
 
-func _on_Timer_Disparo_explosivo_timeout():
-	 uso_disparo_explosivo  = false
-
-
-func _on_Timer_attack_speed_timeout():
-	speed_bullet = 2
-	uso_Attack_speed = false
 
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):
