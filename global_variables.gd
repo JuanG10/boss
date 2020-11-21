@@ -21,7 +21,7 @@ var brn_dmg          = 1    #mejora aumentando el valor   Rojo
 var heal_speed       = 1.5  #mejora disminuyendo el valor Azul
 var shield_speed     = 5    #mejora disminuyendo el valor Azul
 var slow_ring_effect = .7   #mejora disminuyendo el valor
-var BFdmg            = 3   #mejora aumentando el valor    Rojo
+var BFdmg            = 3    #mejora aumentando el valor    Rojo
 
 #Pslow, Pstun, magnet_radius, slow_ring_effect, BFdmg
 var Mhealth = 25

@@ -9,15 +9,18 @@ const precio = "$" + str(intPrecio) # Debería ir incrementando.
 # Iconos. Hardcodeado por ahora.
 ##Naranja
 const ORANGE = {
-	SPEED = null            #Aumento de velocidad
+	SPEED =   preload("res://Iconos/attack_speed.png")          #Aumento de velocidad
 }
 const BLUE = {
-	PATK_SPEED = null,                                 #Velocidad de Ataque 
-	HEALTH     = preload("res://Iconos/HEALTH.jpg"),                                 #Mejora de vida  
+	PATK_SPEED   = preload("res://Iconos/meditation.png"),  #Velocidad de Ataque 
+	HEALTH       = preload("res://Iconos/Paz_Mental.png"),  #Mejora de vida  
+	HEAL_SPEED   = preload("res://Iconos/HEAL_SPEED.jpg"),  #Velocidad de curacion                              
+	SHIELD_SPEED = preload("res://Iconos/escudo.png")       #mejora de escudo
 }
 
 const RED = {
-	DAMAGE   = null,  #Aumento de danio
+	DAMAGE    	= preload("res://Iconos/DAMAGE.png"),  #Aumento de danio
+	BRN_DAMAGE	= preload("res://Iconos/BRN_DAMAGE.png")
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
@@ -28,11 +31,14 @@ func _ready():
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "RedPanel":
 		add_item("Agudeza mental " + precio, RED.DAMAGE)
+		add_item("BRN_DAMAGE " + precio,RED.BRN_DAMAGE)
 	elif parent_name == "GreenPanel":
 		add_item( "Speed " + precio, ORANGE.SPEED) #2		
 	elif parent_name == "BluePanel":
 		add_item("Paz mental  " + precio, BLUE.HEALTH)
 		add_item("Meditacion " + precio, BLUE.PATK_SPEED)
+		add_item("Velocidad de curacion " + precio, BLUE.HEAL_SPEED)
+		add_item("Mejora de escudo " + precio, BLUE.SHIELD_SPEED)
 
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
@@ -58,6 +64,12 @@ func comprar_blue_panel():
 	elif _get_selected_item() == 1:
 		GlobalVariables.Patk_speed -= 0.1 
 		music_compra_and_animation()	
+	elif _get_selected_item() == 2:
+		GlobalVariables.heal_speed -= 0.5
+		music_compra_and_animation()
+	elif _get_selected_item() == 3:
+		GlobalVariables.shield_speed -= 1
+		music_compra_and_animation()		
 
 
 func music_compra_and_animation():

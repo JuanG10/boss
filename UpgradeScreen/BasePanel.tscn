@@ -5,4 +5,10 @@
 
 [node name="BasePanel" instance=ExtResource( 1 )]
 background = ExtResource( 2 )
+
+[node name="Top_button" parent="." index="4"]
+margin_left = 455.964
+margin_top = 71.1271
+margin_right = 767.964
+margin_bottom = 431.127
 [connection signal="item_activated" from="upgrade_list" to="upgrade_list" method="_on_list_item_activated"]

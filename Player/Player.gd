@@ -16,9 +16,6 @@ var heal_speed    = GlobalVariables.heal_speed 		#Azul, velocidad de curacion
 var shield_speed  = GlobalVariables.shield_speed 	#Azul, escudo
 
 var invencibility         = false
-var uso_dash              = false
-var uso_disparo_explosivo = false
-var uso_Attack_speed      = false
 var speed_bullet          = 2
 
 var shootT  = Timer.new()

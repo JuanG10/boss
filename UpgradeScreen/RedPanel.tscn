@@ -6,6 +6,13 @@
 [node name="RedPanel" instance=ExtResource( 1 )]
 background = ExtResource( 2 )
 
+[node name="Left_button" parent="." index="1"]
+visible = false
+
 [node name="Bottom_button" parent="." index="3"]
+visible = false
 margin_left = 554.119
 margin_right = 866.119
+
+[node name="Top_button" parent="." index="4"]
+visible = false
