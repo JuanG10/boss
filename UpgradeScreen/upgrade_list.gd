@@ -9,19 +9,15 @@ const precio = "$" + str(intPrecio) # Debería ir incrementando.
 # Iconos. Hardcodeado por ahora.
 ##Naranja
 const ORANGE = {
-	SPEED = null
+	SPEED = null            #Aumento de velocidad
 }
 const BLUE = {
-	HEAL_SPEED = preload("res://Iconos/curacion.jpg"), #Velocidad de curacion
 	PATK_SPEED = null,                                 #Velocidad de Ataque 
-	HEALTH     = null,                                 #Aumento de vida
-	SHIELD_SPEED = null,                               #Escudo
-	  
+	HEALTH     = preload("res://Iconos/HEALTH.jpg"),                                 #Mejora de vida  
 }
 
 const RED = {
 	DAMAGE   = null,  #Aumento de danio
-	BRN_dAMAGE  = null   #Aumento de quemadura
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
@@ -56,10 +52,10 @@ func comprar_orange_panel():
 		music_compra_and_animation()
 
 func comprar_blue_panel():
-	if _get_selected_item() == 2:
+	if _get_selected_item() == 0:
 		GlobalVariables.Phealth += 20
 		music_compra_and_animation()
-	elif _get_selected_item() == 3:
+	elif _get_selected_item() == 1:
 		GlobalVariables.Patk_speed -= 0.1 
 		music_compra_and_animation()	
 
@@ -88,7 +84,8 @@ func _on_Timer_timeout():
 
 
 func _on_upgrade_list_item_activated(index):
-	if GlobalVariables.money >= intPrecio:
+	#GlobalVariables.money >= intPrecio
+	if true:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		if parent_name == "RedPanel":

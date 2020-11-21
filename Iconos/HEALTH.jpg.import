@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack_speed.png-3f728483fb8558313aa6116988188e51.stex"
+path="res://.import/HEALTH.jpg-95990f8a830e2df47c53275c53d8c209.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Iconos/attack_speed.png"
-dest_files=[ "res://.import/attack_speed.png-3f728483fb8558313aa6116988188e51.stex" ]
+source_file="res://Iconos/HEALTH.jpg"
+dest_files=[ "res://.import/HEALTH.jpg-95990f8a830e2df47c53275c53d8c209.stex" ]
 
 [params]
 
