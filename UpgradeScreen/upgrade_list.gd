@@ -15,12 +15,16 @@ const BLUE = {
 	PATK_SPEED   = preload("res://Iconos/meditation.png"),  #Velocidad de Ataque 
 	HEALTH       = preload("res://Iconos/Paz_Mental.png"),  #Mejora de vida  
 	HEAL_SPEED   = preload("res://Iconos/HEAL_SPEED.jpg"),  #Velocidad de curacion                              
-	SHIELD_SPEED = preload("res://Iconos/escudo.png")       #mejora de escudo
+	SHIELD_SPEED = preload("res://Iconos/escudo.png"),       #mejora de escudo
+	SLOWN        = null,
+	SLOW_RING_EFFEC = null,
 }
 
 const RED = {
 	DAMAGE    	= preload("res://Iconos/DAMAGE.png"),  #Aumento de danio
-	BRN_DAMAGE	= preload("res://Iconos/BRN_DAMAGE.png")
+	BRN_DAMAGE	= preload("res://Iconos/BRN_DAMAGE.png"),
+	STUN        = null,
+	BFdmg       = null
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
@@ -32,6 +36,8 @@ func _ready():
 	if parent_name == "RedPanel":
 		add_item("Agudeza mental " + precio, RED.DAMAGE)
 		add_item("BRN_DAMAGE " + precio,RED.BRN_DAMAGE)
+		add_item("STUN" + precio, RED.STUN)
+		add_item("BFDMG" + precio, RED.BFdmg)
 	elif parent_name == "GreenPanel":
 		add_item( "Speed " + precio, ORANGE.SPEED) #2		
 	elif parent_name == "BluePanel":
@@ -39,7 +45,8 @@ func _ready():
 		add_item("Meditacion " + precio, BLUE.PATK_SPEED)
 		add_item("Velocidad de curacion " + precio, BLUE.HEAL_SPEED)
 		add_item("Mejora de escudo " + precio, BLUE.SHIELD_SPEED)
-
+		add_item("SLOWN" + precio, BLUE.SLOWN)
+		add_item("SLOW_RING_EFFEC" + precio, BLUE.SLOW_RING_EFFEC)
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
 	var monedas         = preload("res://moneda_particula/Moneda_particula.tscn").instance()
