@@ -24,7 +24,7 @@ config/icon="res://icon.png"
 GlobalVariables="*res://global_variables.gd"
 TrapManager="*res://Trampas/TrapManager.gd"
 SignalManager="*res://state_machine/SignalManager.gd"
-Background="*res://Fondos/Prueba de shaders/Background.tscn"
+Background="*res://Fondos/Background.tscn"
 
 [display]
 
