@@ -36,6 +36,8 @@ onready var R = get_node("States/Red")
 onready var O = get_node("States/Orange")
 onready var B = get_node("States/Blue")
 
+onready var color_change_wait_time = Background.tiempo_transicion
+
 func initialize(l,c):
 	label = l
 	coins = c
@@ -65,6 +67,7 @@ func _ready():
 	habilityT.set_one_shot(true)
 	habilityT.set_wait_time(15)
 	add_child(habilityT)
+	$Change_color_timer.set_wait_time(color_change_wait_time)
 
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
@@ -85,11 +88,13 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
 		habilityT.start()
 		states[pointer].power()
-	if Input.is_action_just_pressed("next_color"):
+	if Input.is_action_just_pressed("next_color") && $Change_color_timer.is_stopped():
+		$Change_color_timer.start()
 		next_color()
 		if not states[pointer].shield:
 			remove_shield()
-	if Input.is_action_just_pressed("previous_color"):
+	if Input.is_action_just_pressed("previous_color") && $Change_color_timer.is_stopped():
+		$Change_color_timer.start()
 		previous_color()
 		if not states[pointer].shield:
 			remove_shield()
@@ -166,11 +171,11 @@ func shoot():
 
 func next_color():
 	pointer = (pointer + 1)%3
-	_change_with_color(pointer)
+	_change_with_color(pointer,true)
 
 func previous_color():
 	pointer = (pointer + 2)%3
-	_change_with_color(pointer)
+	_change_with_color(pointer,false)
 
 func stop_shooting(n):
 	shootT.start(n)
@@ -179,9 +184,9 @@ func _on_grab_coin(area):
 	area.grab()
 	coins.on_update()
 
-func _change_with_color(n:int)->void:
+func _change_with_color(n:int,next:bool)->void:
 	$Sprite.modulate = colores[n]
-	FogBackground.change_bg_color(colores[n])
+	Background.start_bg_transition(n, next, position.x, position.y)
 	TrapManager.change_trap_type(colores[n])
 
 func _create_floating_text(amount:int, type:String)->void:

@@ -22,9 +22,9 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalVariables="*res://global_variables.gd"
-FogBackground="*res://Fondos/Fog/FogBackground.tscn"
 TrapManager="*res://Trampas/TrapManager.gd"
 SignalManager="*res://state_machine/SignalManager.gd"
+Background="*res://Fondos/Prueba de shaders/Background.tscn"
 
 [display]
 
@@ -78,11 +78,6 @@ Activate_dash={
 Disparo_especial={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":49,"unicode":0,"echo":false,"script":null)
- ]
-}
-Attack_speed={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":50,"unicode":0,"echo":false,"script":null)
  ]
 }
 

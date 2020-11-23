@@ -53,5 +53,7 @@ collision_mask = 524288
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
+[node name="Change_color_timer" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_grab_coin"]
