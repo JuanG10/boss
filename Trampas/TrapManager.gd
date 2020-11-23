@@ -14,8 +14,6 @@ var open_simplex_noise:OpenSimplexNoise
 var trap:Node2D
 var trap_counter:int
 
-#onready var main:Node = get_tree().current_scene
-
 func _ready():
 	trap_counter = 0
 

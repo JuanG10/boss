@@ -5,6 +5,8 @@ onready var animation:AnimatedSprite = get_child(0)
 var stop_animation = false
 var maked_dmg_once = false
 
+const slowdown:float = .75
+
 const TRAP_NAMES = {
 	red = "RedTrapAnimation",
 	green = "GreenTrapAnimation",
@@ -29,6 +31,7 @@ func _on_activated_trap_behavior(player:Area2D, animation_name:String):
 	if animation_name == "activar" && !maked_dmg_once:
 		match animation.name:
 			TRAP_NAMES.blue:
+				player.ralentizacion = slowdown
 				player.freezeT.start()
 			TRAP_NAMES.green:
 				player.is_poisoned = true

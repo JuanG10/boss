@@ -24,7 +24,6 @@ var shieldT = Timer.new()
 var isShielded = false
 
 var poisonT   = Timer.new()
-var freezeT   = Timer.new()
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
 #Blue, Orange and Red
@@ -35,6 +34,9 @@ var pointer     = 0
 onready var R = get_node("States/Red")
 onready var O = get_node("States/Orange")
 onready var B = get_node("States/Blue")
+
+var freezeT   = Timer.new()
+var ralentizacion:float = 1
 
 onready var color_change_wait_time = Background.tiempo_transicion
 onready var trapManager = get_tree().get_nodes_in_group("Traps")[0]
@@ -67,6 +69,7 @@ func _ready():
 	add_child(poisonT)
 	freezeT.set_one_shot(true)
 	freezeT.set_wait_time(2.5)
+	freezeT.connect("timeout",self,"_on_freezeT_timeout")
 	add_child(freezeT)
 	habilityT.set_one_shot(true)
 	habilityT.set_wait_time(15)
@@ -121,30 +124,19 @@ func _physics_process(_delta):
 		heal(1)
 	if(shootT.is_stopped()):
 		shoot()
-
-	if Input.is_action_pressed('right'):
-		if freezeT.is_stopped():
-			position.x += speed
-		else:
-			position.x += speed * .75
-	if Input.is_action_pressed('left'):
-		if freezeT.is_stopped():
-			position.x -= speed
-		else:
-			position.x -= speed * .75
-	if Input.is_action_pressed('down'):
-		if freezeT.is_stopped():
-			position.y += speed
-		else:
-			position.y += speed * .75
-	if Input.is_action_pressed('up'):
-		if freezeT.is_stopped():
-			position.y -= speed
-		else:
-			position.y -= speed * .75
+	_movimiento()
 	if not poisonT.is_stopped():
 		takeDamage(1)
-			
+
+func _movimiento():
+	if Input.is_action_pressed('right'):
+		position.x += speed * ralentizacion
+	if Input.is_action_pressed('left'):
+		position.x -= speed * ralentizacion
+	if Input.is_action_pressed('down'):
+		position.y += speed * ralentizacion
+	if Input.is_action_pressed('up'):
+		position.y -= speed * ralentizacion
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
@@ -181,8 +173,6 @@ func shoot():
 	get_parent().add_child(b)
 	shootT.start(atk_speed)
 
-	
-
 
 func next_color():
 	pointer = (pointer + 1)%3
@@ -211,11 +201,9 @@ func _create_floating_text(amount:int, type:String)->void:
 	text.rotation_degrees = 90
 	add_child(text)
 
-
-
-
-
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):
 		takeDamage(area.dmg)
 
+func _on_freezeT_timeout():
+	ralentizacion = 1
