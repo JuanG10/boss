@@ -7,7 +7,7 @@
 [ext_resource path="res://moneda_particula/#SOUNDPERFECT  Money Coins In Hand  No Copyright SoundsSound Effect(HD).ogg" type="AudioStream" id=5]
 
 [node name="UpgradePanel" type="Panel"]
-margin_right = 1024.0
+margin_right = 1335.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
 __meta__ = {
@@ -15,9 +15,9 @@ __meta__ = {
 }
 
 [node name="upgrade_list" type="ItemList" parent="."]
-margin_left = 192.0
+margin_left = 238.448
 margin_top = 128.0
-margin_right = 832.0
+margin_right = 878.448
 margin_bottom = 456.0
 max_text_lines = 2
 max_columns = 4
@@ -31,10 +31,10 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="upgrade_list"]
 
 [node name="Left_button" type="Button" parent="."]
-margin_left = 64.0
-margin_top = 352.0
-margin_right = 376.0
-margin_bottom = 712.0
+margin_left = 140.414
+margin_top = 332.522
+margin_right = 452.414
+margin_bottom = 692.522
 rect_rotation = 180.0
 rect_scale = Vector2( 0.2, 0.2 )
 icon = ExtResource( 3 )
@@ -44,10 +44,10 @@ __meta__ = {
 }
 
 [node name="Right_button" type="Button" parent="."]
-margin_left = 960.0
-margin_top = 280.0
-margin_right = 1272.0
-margin_bottom = 640.0
+margin_left = 955.505
+margin_top = 253.112
+margin_right = 1267.51
+margin_bottom = 613.112
 rect_scale = Vector2( 0.2, 0.2 )
 icon = ExtResource( 3 )
 flat = true
