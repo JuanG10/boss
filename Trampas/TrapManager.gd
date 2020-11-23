@@ -6,19 +6,18 @@ const TRAPS = {
 	GREEN = preload("res://Trampas/GreenTrap.tscn")
 }
 
-const WIDTH:int = 1300
-const HEIGHT:int = 1000
+const WIDTH:int = 1024
+const HEIGHT:int = 550
 
 var open_simplex_noise:OpenSimplexNoise
 
 var trap:Node2D
 var trap_counter:int
 
-onready var main:Node = get_tree().current_scene
+#onready var main:Node = get_tree().current_scene
 
 func _ready():
 	trap_counter = 0
-	main = get_tree().current_scene # Creo que no hace nada...
 
 	randomize()
 	open_simplex_noise = OpenSimplexNoise.new()
@@ -45,21 +44,20 @@ func _add_new_trap(new_pos:Vector2, new_name:String, trap_type:PackedScene)->voi
 	var new_trap = trap_type.instance()
 	new_trap.position = new_pos
 	new_trap.set_name(new_name)
-	main.add_child(new_trap)
+	add_child(new_trap)
 
 func change_trap_type(color:Color)->void:
 	for i in trap_counter:
 		var trap_name:String = "trap" + str(i)
-		if main != null:
-			if main.get_node(trap_name) == null:
-				_add_new_trap(Vector2(randi() % 1024, randi() % 600), trap_name, _get_new_color_trap(color))
-			var actual_trap = main.get_node(trap_name)
-			var pos = actual_trap.position
-			main.remove_child(actual_trap)
-			match color:
-				Color.red: _add_new_trap(pos, trap_name, TRAPS.RED)
-				Color.green: _add_new_trap(pos, trap_name, TRAPS.GREEN)
-				Color.blue: _add_new_trap(pos, trap_name, TRAPS.BLUE)
+		if get_node(trap_name) == null:
+			_add_new_trap(Vector2(randi() % 1024, randi() % 600), trap_name, _get_new_color_trap(color))
+		var actual_trap = get_node(trap_name)
+		var pos = actual_trap.position
+		remove_child(actual_trap)
+		match color:
+			Color.red: _add_new_trap(pos, trap_name, TRAPS.RED)
+			Color.green: _add_new_trap(pos, trap_name, TRAPS.GREEN)
+			Color.blue: _add_new_trap(pos, trap_name, TRAPS.BLUE)
 
 func _get_new_color_trap(color:Color)->PackedScene:
 	match color:

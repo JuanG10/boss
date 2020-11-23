@@ -22,7 +22,6 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalVariables="*res://global_variables.gd"
-TrapManager="*res://Trampas/TrapManager.gd"
 SignalManager="*res://state_machine/SignalManager.gd"
 Background="*res://Fondos/Background.tscn"
 

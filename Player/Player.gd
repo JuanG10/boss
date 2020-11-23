@@ -37,6 +37,7 @@ onready var O = get_node("States/Orange")
 onready var B = get_node("States/Blue")
 
 onready var color_change_wait_time = Background.tiempo_transicion
+onready var trapManager = get_tree().get_nodes_in_group("Traps")[0]
 
 onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
 onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo")[0].global_position
@@ -201,7 +202,7 @@ func _on_grab_coin(area):
 func _change_with_color(n:int,next:bool)->void:
 	$Sprite.modulate = colores[n]
 	Background.start_bg_transition(n, next, position.x, position.y)
-	TrapManager.change_trap_type(colores[n])
+	trapManager.change_trap_type(colores[n])
 
 func _create_floating_text(amount:int, type:String)->void:
 	var text = DMG_TEXT.instance()
