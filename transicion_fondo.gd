@@ -6,7 +6,7 @@ onready var ancho_pantalla = ProjectSettings.get_setting("display/window/size/wi
 onready var alto_pantalla = ProjectSettings.get_setting("display/window/size/height")
 
 var tiempo_transicion:float = 1.1
-var fondo_actual:int = 0
+var fondo_actual:int
 var next:bool
 
 const FONDOS = {
@@ -16,6 +16,7 @@ const FONDOS = {
 }
 
 func _ready():
+	fondo_actual = 0
 	texture = FONDOS[fondo_actual]
 	get_material().set_shader_param("image",FONDOS[fondo_actual+1])
 

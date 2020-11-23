@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Label.gd" type="Script" id=2]
 [ext_resource path="res://main.gd" type="Script" id=3]
 [ext_resource path="res://Sound/CPUtalk.ogg" type="AudioStream" id=4]
-[ext_resource path="res://cursor.png" type="Texture" id=5]
-[ext_resource path="res://Cursor.gd" type="Script" id=6]
 [ext_resource path="res://Coins.gd" type="Script" id=7]
 [ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Habilidades.gd" type="Script" id=9]
@@ -29,7 +27,7 @@ script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
-zoom = Vector2( 0.6, 0.6 )
+zoom = Vector2( 0.85, 0.85 )
 limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -64,25 +62,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Habilidades" type="Label" parent="Player/CanvasLayer"]
-anchor_left = 0.58
-anchor_top = 0.58
-anchor_right = 0.58
-anchor_bottom = 0.58
-margin_left = -72.7852
-margin_top = -12.8853
-margin_right = 23.2148
-margin_bottom = 1.11475
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="min_pantalla" type="Position2D" parent="." groups=[
+"borde_minimo",
+]]
 
-[node name="Position2D" type="Position2D" parent="Player/CanvasLayer/Habilidades"]
-position = Vector2( 232.706, 113.823 )
-
-[node name="Cursor" type="Sprite" parent="."]
-scale = Vector2( 0.01, 0.01 )
-texture = ExtResource( 5 )
-script = ExtResource( 6 )
+[node name="max_pantalla" type="Position2D" parent="." groups=[
+"borde_maximo",
+]]
+position = Vector2( 1024, 600 )

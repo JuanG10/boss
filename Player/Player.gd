@@ -38,6 +38,9 @@ onready var B = get_node("States/Blue")
 
 onready var color_change_wait_time = Background.tiempo_transicion
 
+onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
+onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo")[0].global_position
+
 func initialize(l,c):
 	label = l
 	coins = c
@@ -77,6 +80,17 @@ func color_actual():
 		return "Blue"
 	elif sprite_modulate == Color(.702, .3216, .1216):
 		return "Orange"
+
+func _process(delta):
+	if global_position.x < limite_minimo_pantalla.x:
+		global_position.x = limite_minimo_pantalla.x + 2
+	elif global_position.x > limite_maximo_pantalla.x:
+		global_position.x = limite_maximo_pantalla.x - 2
+	
+	if global_position.y < limite_minimo_pantalla.y:
+		global_position.y = limite_minimo_pantalla.y + 2
+	elif global_position.y > limite_maximo_pantalla.y:
+		global_position.y = limite_maximo_pantalla.y - 2
 
 func _physics_process(_delta):
 
