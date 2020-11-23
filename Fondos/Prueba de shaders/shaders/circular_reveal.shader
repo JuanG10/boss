@@ -6,7 +6,7 @@ uniform float progress: hint_range(0,1);
 
 uniform vec2 center = vec2(0.5,0.5);
 
-const float diamontSize = 5f;
+const float diamontSize = 4f;
 
 void fragment() {
 	float xFraction = fract(FRAGCOORD.x / diamontSize);

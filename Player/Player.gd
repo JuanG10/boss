@@ -208,7 +208,7 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int,next:bool)->void:
 	$Sprite.modulate = colores[n]
-	Background.start_bg_transition(n, next, position/1024)
+	Background.start_bg_transition(n, next, position.x, position.y)
 	TrapManager.change_trap_type(colores[n])
 
 func _create_floating_text(amount:int, type:String)->void:
