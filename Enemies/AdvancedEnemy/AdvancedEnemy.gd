@@ -87,7 +87,8 @@ func takeDamage(n):
 
 func _on_death():
 	_create_explosion()
-	get_parent().points += 20
+	GlobalVariables.points += 200
+	get_tree().current_scene.update_score()
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
 		c.initialize(position + Vector2(rand_range(0, i*10),rand_range(0, i*10)))

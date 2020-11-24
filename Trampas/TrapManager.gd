@@ -48,6 +48,7 @@ func _add_new_trap(new_pos:Vector2, new_name:String, trap_type:PackedScene)->voi
 	var new_trap = trap_type.instance()
 	new_trap.position = new_pos
 	new_trap.set_name(new_name)
+	if trap_type == TRAPS.ORANGE: new_trap.modulate = Color.orangered
 	add_child(new_trap)
 
 func change_trap_type(color:Color)->void:

@@ -3,16 +3,13 @@ extends Position2D
 onready var label = $Label
 onready var twenn = $Tween
 
-var amount:int
-var type:String
-
 const Y_RANGE = 30
 var side_movement:int
 var velocity:Vector2
 
 var direction:bool
 
-func _ready():
+func show_damage(amount:int, type:String):
 	label.set_text(str(amount))
 	match type:
 		"Heal":
@@ -36,4 +33,8 @@ func _process(delta):
 	else: position += velocity * delta
 
 func _on_Tween_tween_all_completed():
-	self.queue_free()
+	twenn.stop_all()
+	twenn.reset_all()
+	label.rect_position = position
+	twenn.interpolate_property(self, 'scale', scale, Vector2(1,1), 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	twenn.interpolate_property(self, 'scale', Vector2(1,1), Vector2(0.1,0.1), 0.7, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.25)

@@ -56,8 +56,6 @@ func recibi_danio():
 	$Timer.set_wait_time(0.3)
 	$Timer.start()
 
-
-	
 func takeDamage(n):
 	health -= 10
 	recibi_danio()
@@ -84,7 +82,8 @@ func slow(slow, time):
 
 func _on_death():
 	_create_explosion()
-	get_parent().points += 10
+	GlobalVariables.points += 100
+	get_tree().current_scene.update_score()
 	var c = GlobalVariables.coin.instance()
 	c.initialize(position)
 	get_parent().call_deferred("add_child", c)
@@ -104,9 +103,8 @@ func _create_explosion():
 	explosion.get_child(0).emitting = true
 	get_parent().call_deferred("add_child", explosion)
 
-
 func volver_a_color_actual():
 	$Sprite.modulate = color_actual 
-	
+
 func _on_Timer_timeout():
 	volver_a_color_actual()

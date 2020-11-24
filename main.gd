@@ -6,7 +6,7 @@ onready var advanced_tmplt = preload("res://Enemies/AdvancedEnemy/AdvancedEnemy.
 
 var timer = Timer.new()
 
-var points = 0
+var points = GlobalVariables.points
 
 func _ready():
 	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
@@ -58,6 +58,9 @@ func spawnAdvanced(n, c):
 		enemy.initialize($Player, c)
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
+
+func update_score():
+	$Player/CanvasLayer/Score.set_text("Score: " + str(GlobalVariables.points))
 
 func RandomPos():
 	return(Vector2(random_x(), random_y()))

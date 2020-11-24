@@ -40,7 +40,7 @@ var ralentizacion:float = 1
 var poison_dmg_timer = Timer.new()
 var poisonT = Timer.new()
 
-onready var color_change_wait_time = Background.tiempo_transicion
+onready var color_change_wait_time = Background.tiempo_transicion + 0.1
 onready var trapManager = get_tree().get_nodes_in_group("Traps")[0]
 
 onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
@@ -136,20 +136,20 @@ func heal(x):
 		health =  GlobalVariables.Phealth
 	else:
 		health += x
-		_create_floating_text(x, "Heal")
+		$FloatingText.show_damage(x,"Heal")
 	label.on_update(health)
 
 func takeDamage(x):
 	if not invencibility:
 		if not isShielded:
 			health -= x
-			_create_floating_text(x, "Damage")
+			$FloatingText.show_damage(x,"Damage")
 			label.on_update(health)
 			shieldT.stop()
 			shieldT.start()
-			if health <= 0:
-				GlobalVariables.retry = true
-				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
+#			if health <= 0:
+#				GlobalVariables.retry = true
+#				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 		else:
 			remove_shield()
 			shieldT.start()
@@ -184,15 +184,9 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int,next:bool)->void:
 	$Sprite.modulate = colores[n]
+	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[n])
 	Background.start_bg_transition(n, next, position.x, position.y)
 	trapManager.change_trap_type(colores[n])
-
-func _create_floating_text(amount:int, type:String)->void:
-	var text = DMG_TEXT.instance()
-	text.amount = amount
-	text.type = type
-	text.rotation_degrees = 90
-	add_child(text)
 
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):
@@ -203,16 +197,15 @@ func _on_freezeT_timeout():
 	ralentizacion = 1
 
 func start_poison_timers():
-	$Sprite.modulate = Color.greenyellow # Buscar un color mejor
-	poison_dmg_timer.start()
+	$Sprite.modulate = Color(0,0.7,0.1) # Buscar un color mejor
+	#poison_dmg_timer.start() # Descomentar para tener daño por veneno.
 	poisonT.start()
-	$Change_color_timer.start(5) # Envenenado no puede cambiar de color
+	$Change_color_timer.start(6) # Envenenado no puede cambiar de color
 
 func _on_poison_dmg_timeout():
 	takeDamage(1)
 
 func _on_poisonT_timeout():
-	print("poisonT")
-	$Change_color_timer.set_wait_time(1)
+	$Change_color_timer.set_wait_time(color_change_wait_time)
 	$Sprite.modulate = colores[pointer]
 	poison_dmg_timer.stop()
