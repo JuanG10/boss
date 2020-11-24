@@ -10,6 +10,7 @@ var retry = false
 
 var invincibility_time = 2.5
 
+var last_points      = 0
 var points           = 0
 var money            = 0
 var Pspeed           = 3.5    #mejora aumentando el valor   Naranja

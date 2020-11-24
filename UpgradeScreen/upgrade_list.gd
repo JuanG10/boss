@@ -36,8 +36,8 @@ func _ready():
 	if parent_name == "RedPanel":
 		add_item("Agudeza mental " + precio, RED.DAMAGE)
 		add_item("BRN_DAMAGE " + precio,RED.BRN_DAMAGE)
-		add_item("STUN" + precio, RED.STUN)
-		add_item("BFDMG" + precio, RED.BFdmg)
+		#add_item("STUN" + precio, RED.STUN)
+		#add_item("BFDMG" + precio, RED.BFdmg)
 	elif parent_name == "GreenPanel":
 		add_item( "Speed " + precio, ORANGE.SPEED) #2		
 	elif parent_name == "BluePanel":
@@ -45,8 +45,9 @@ func _ready():
 		add_item("Meditacion " + precio, BLUE.PATK_SPEED)
 		add_item("Velocidad de curacion " + precio, BLUE.HEAL_SPEED)
 		add_item("Mejora de escudo " + precio, BLUE.SHIELD_SPEED)
-		add_item("SLOWN" + precio, BLUE.SLOWN)
-		add_item("SLOW_RING_EFFEC" + precio, BLUE.SLOW_RING_EFFEC)
+		#add_item("SLOWN" + precio, BLUE.SLOWN)
+		#add_item("SLOW_RING_EFFEC" + precio, BLUE.SLOW_RING_EFFEC)
+		
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
 	var monedas         = preload("res://moneda_particula/Moneda_particula.tscn").instance()

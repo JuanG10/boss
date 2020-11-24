@@ -143,6 +143,7 @@ func takeDamage(x):
 	if not invencibility:
 		if not isShielded:
 			health -= x
+			set_last_score()
 			label.on_update(health)
 			shieldT.stop()
 			shieldT.start()
@@ -152,6 +153,10 @@ func takeDamage(x):
 		else:
 			remove_shield()
 			shieldT.start()
+
+func set_last_score():
+	if GlobalVariables.last_points < GlobalVariables.points:
+		GlobalVariables.last_points = GlobalVariables.points
 
 func remove_shield():
 	isShielded = false
