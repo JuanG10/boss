@@ -34,17 +34,17 @@ var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "RedPanel":
-		add_item("Agudeza mental " + precio, RED.DAMAGE)
+		add_item("Damage " + precio, RED.DAMAGE)
 		add_item("BRN_DAMAGE " + precio,RED.BRN_DAMAGE)
 		#add_item("STUN" + precio, RED.STUN)
 		#add_item("BFDMG" + precio, RED.BFdmg)
 	elif parent_name == "GreenPanel":
 		add_item( "Speed " + precio, ORANGE.SPEED) #2		
 	elif parent_name == "BluePanel":
-		add_item("Paz mental  " + precio, BLUE.HEALTH)
-		add_item("Meditacion " + precio, BLUE.PATK_SPEED)
-		add_item("Velocidad de curacion " + precio, BLUE.HEAL_SPEED)
-		add_item("Mejora de escudo " + precio, BLUE.SHIELD_SPEED)
+		add_item("Health " + precio, BLUE.HEALTH)
+		add_item("Patk Speed " + precio, BLUE.PATK_SPEED)
+		add_item("Heal Speed " + precio, BLUE.HEAL_SPEED)
+		add_item("Shield Speed " + precio, BLUE.SHIELD_SPEED)
 		#add_item("SLOWN" + precio, BLUE.SLOWN)
 		#add_item("SLOW_RING_EFFEC" + precio, BLUE.SLOW_RING_EFFEC)
 		
