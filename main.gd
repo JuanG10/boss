@@ -4,19 +4,19 @@ onready var melee_template = preload("res://Enemies/MeleeEnemy/MeleeEnemy.tscn")
 onready var basic_template = preload("res://Enemies/BasicEnemy/BasicEnemy.tscn")
 onready var advanced_tmplt = preload("res://Enemies/AdvancedEnemy/AdvancedEnemy.tscn")
 
+var enemyCounter = 1000
+
 var timer = Timer.new()
 
 var points = GlobalVariables.points
 
 func _ready():
-	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
-	spawnBasic(50, 1)
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
 
 func _process(_delta):
-	if timer.is_stopped() and false:
+	if timer.is_stopped():
 		timer.start()
 		if points < 100:
 			spawnMelee(6, randi()%3)
@@ -52,16 +52,13 @@ func spawnBasic(n, c):
 		enemy.initialize($Player, c)
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
-	
+
 func spawnAdvanced(n, c):
 	for _i in range(n):
 		var enemy:Area2D = advanced_tmplt.instance()
 		enemy.initialize($Player, c)
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
-
-func update_score():
-	$Player/CanvasLayer/Score.set_text("Score: " + str(GlobalVariables.points))
 
 func RandomPos():
 	return(Vector2(random_x(), random_y()))

@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="max_pantalla" type="Position2D" groups=[
+"borde_maximo",
+]]
+position = Vector2( 1024, 600 )

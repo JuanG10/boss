@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Cursor.gd" type="Script" id=1]
 [ext_resource path="res://cursor.png" type="Texture" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/GotoShop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/Level 2.gd" type="Script" id=5]
+[ext_resource path="res://Complementos_y_ajustes/Complementos.tscn" type="PackedScene" id=6]
 
 [node name="Level 2" type="Node"]
 script = ExtResource( 5 )
@@ -37,3 +38,5 @@ Each color has different habilities"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Complementos" parent="." instance=ExtResource( 6 )]

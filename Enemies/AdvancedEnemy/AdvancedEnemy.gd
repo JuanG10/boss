@@ -87,9 +87,10 @@ func takeDamage(n):
 		queue_free()
 
 func _on_death():
+	_create_floating_text()
 	_create_explosion()
 	GlobalVariables.points += POINTS
-	get_tree().current_scene.update_score()
+	get_tree().current_scene.get_node("Player").update_score()
 	get_parent().enemyCounter -= 1
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()

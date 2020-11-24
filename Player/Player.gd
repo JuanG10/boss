@@ -3,8 +3,8 @@ extends Area2D
 var Bullet = preload("res://Player/Bullet.tscn")
 var disparo_explosivo = preload("res://Disparo/ExplosionDisparo.tscn")
 const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
-var label
-var coins  
+onready var label = $HUD/HP
+onready var coins = $HUD/Coins 
 
 var speed         = GlobalVariables.Pspeed     		#Naranja, velocidad de movimiento
 var atk_speed     = GlobalVariables.Patk_speed 		#Azul, velocidad de ataque
@@ -44,18 +44,13 @@ var poisonT = Timer.new()
 const POISONED_TIME = 3
 
 onready var color_change_wait_time = Background.tiempo_transicion + 0.1
-onready var trapManager = get_tree().get_nodes_in_group("Traps")[0]
 
 onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
 onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo")[0].global_position
 
-func initialize(l,c):
-	label = l
-	coins = c
+func _ready():
 	label.on_update(health)
 	states = [B, O, R]
-
-func _ready():
 	R.initialize(self)
 	O.initialize(self)
 	B.initialize(self)
@@ -193,11 +188,14 @@ func _change_with_color(n:int,next:bool)->void:
 	$Sprite.modulate = colores[n]
 	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[n])
 	Background.start_bg_transition(n, next, position.x, position.y)
-	trapManager.change_trap_type(colores[n])
+	get_tree().current_scene.get_node("Complementos/Traps").change_trap_type(colores[n])
 
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):
 		takeDamage(area.dmg)
+
+func update_score():
+	$HUD/Score.set_text("Score: " + str(GlobalVariables.points))
 
 ############## RELACIONADO A LAS TRAMPAS ########################
 func _on_freezeT_timeout():

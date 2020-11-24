@@ -54,7 +54,7 @@ func _add_new_trap(new_pos:Vector2, new_name:String, trap_type:PackedScene)->voi
 func change_trap_type(color:Color)->void:
 	for i in trap_counter:
 		var trap_name:String = "trap" + str(i)
-		if get_node(trap_name) == null:
+		if get_node(trap_name) == null: # Restaura las trampas usadas
 			_add_new_trap(Vector2(randi() % 1024, randi() % 600), trap_name, _get_new_color_trap(color))
 		var actual_trap = get_node(trap_name)
 		var pos = actual_trap.position
