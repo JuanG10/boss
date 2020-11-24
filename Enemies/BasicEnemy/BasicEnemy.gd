@@ -43,7 +43,7 @@ func initialize(t, n):
 	explosion_color = colores[n]
 	tipo = n
 	special = specials[n]
-	if special == "special_orange" and GlobalVariables.retry == true:
+	if special == "special_orange" and LevelPrimitives.retry == true:
 		GlobalVariables.Bdmg *= 1.1
 		GlobalVariables.Bhealth *= 1.1
 		dmg = GlobalVariables.Bdmg
@@ -58,8 +58,8 @@ func far_enough(area):
 		minimun_range_flag = false
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		print($FlockingArea.get_overlapping_areas())
+	#if Input.is_action_just_pressed("ui_accept"):
+		#($FlockingArea.get_overlapping_areas())
 	if stun_timer.is_stopped():
 		is_stunned = false
 	if slow_timer.is_stopped():
@@ -88,6 +88,7 @@ func slow(slow, time):
 		speed *= slow
 
 func shoot():
+	#BulletHandler.add_bullet([$Muzzle.global_position, colores[tipo], rotation, self])
 	var b = Bullet.instance()
 	b.start($Muzzle.global_position, rotation, player, dmg, tipo)
 	get_parent().add_child(b)
@@ -95,7 +96,8 @@ func shoot():
 
 func _on_death():
 	_create_explosion()
-	get_parent().points += 20
+	#get_parent().points += 20
+	get_parent().enemyCounter -= 1
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
 		c.initialize(position + Vector2(rand_range(0, i*10),rand_range(0, i*10)))

@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 2.4
+var speed = 4
 var velocity = Vector2()
 var player
 var dmg
@@ -22,7 +22,7 @@ func _physics_process(_delta):
 	position += velocity
 
 func _on_player_collision(area):
-	if area == player:
+	if area.is_in_group("Player"):
 		player.takeDamage(dmg)
 		remove()
 

@@ -1,26 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Label.gd" type="Script" id=2]
+[ext_resource path="res://Player/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main.gd" type="Script" id=3]
-[ext_resource path="res://Sound/CPUtalk.ogg" type="AudioStream" id=4]
 [ext_resource path="res://cursor.png" type="Texture" id=5]
 [ext_resource path="res://Cursor.gd" type="Script" id=6]
-[ext_resource path="res://Coins.gd" type="Script" id=7]
-[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://Habilidades.gd" type="Script" id=9]
-
-[sub_resource type="DynamicFont" id=1]
-size = 25
-outline_size = 1
-outline_color = Color( 0.2, 0.568627, 0.239216, 1 )
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 20
-outline_size = 1
-outline_color = Color( 0.666667, 0.670588, 0.0823529, 1 )
-font_data = ExtResource( 8 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -34,53 +18,7 @@ limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
-stream = ExtResource( 4 )
-volume_db = -10.0
-autoplay = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
-script = ExtResource( 9 )
-
-[node name="HP" type="Label" parent="Player/CanvasLayer"]
-margin_right = 50.0
-margin_bottom = 14.0
-custom_fonts/font = SubResource( 1 )
-text = "HP: 100"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Coins" type="Label" parent="Player/CanvasLayer"]
-margin_left = 0.00356674
-margin_top = 24.7791
-margin_right = 96.0036
-margin_bottom = 42.7791
-custom_fonts/font = SubResource( 2 )
-text = "Coins: 0"
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Position2D" type="Position2D" parent="Player/CanvasLayer"]
-position = Vector2( 941.846, 560.697 )
-
-[node name="Habilidades" type="Label" parent="Player/CanvasLayer"]
-anchor_left = 0.58
-anchor_top = 0.58
-anchor_right = 0.58
-anchor_bottom = 0.58
-margin_left = 242.195
-margin_top = 174.843
-margin_right = 338.195
-margin_bottom = 188.843
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CanvasLayer" parent="Player" instance=ExtResource( 2 )]
 
 [node name="Cursor" type="Sprite" parent="."]
 scale = Vector2( 0.01, 0.01 )

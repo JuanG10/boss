@@ -72,7 +72,7 @@ func color_actual():
 	elif sprite_modulate == Color(0,1,0,1):
 		return "Green"
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	#if Input.is_action_just_pressed("ui_accept"):
 	#	speed *= 3
@@ -137,7 +137,8 @@ func takeDamage(x):
 			shieldT.stop()
 			shieldT.start()
 			if health <= 0:
-				GlobalVariables.retry = true
+				LevelPrimitives.playing = false
+				LevelPrimitives.retry = true
 				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 		else:
 			remove_shield()
@@ -148,11 +149,13 @@ func remove_shield():
 	$Shield.hide()
 
 func shoot():
+#	BulletHandler.add_bullet([$Muzzle.global_position, colores[pointer], rotation, self])
 	var b = Bullet.instance()
 	b.modulate = colores[pointer]
 	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
 	get_parent().add_child(b)
 	shootT.start(atk_speed)
+	pass
 
 func next_color():
 	pointer = (pointer + 1)%3

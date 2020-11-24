@@ -3,8 +3,6 @@ extends Node
 var coin = preload("res://Coin.tscn")
 const EXPLOSION = preload("res://Enemies/Explosion/Explosion.tscn")
 
-var retry = false
-
 var invincibility_time = 2.5
 
 var money            = 0
@@ -19,7 +17,7 @@ var brn_dmg          = 1    #mejora aumentando el valor
 var heal_speed       = 1.5  #mejora disminuyendo el valor
 var shield_speed     = 5    #mejora disminuyendo el valor
 var slow_ring_effect = .7   #mejora disminuyendo el valor
-var BFdmg            = 3   #mejora aumentando el valor
+var BFdmg            = 20   #mejora aumentando el valor
 
 var Mhealth = 25
 var Mdmg    = 15
