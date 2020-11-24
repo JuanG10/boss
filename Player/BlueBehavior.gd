@@ -9,8 +9,8 @@ var shield = true
 func initialize(p):
 	player = p
 
-func handle(body):
-	body.slow(.8, 2)
+func handle(area):
+	area.slow(.8, 2)
 
 func power():
 	var slow_ring = slow_ring_template.instance()

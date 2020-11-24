@@ -17,13 +17,13 @@ func initialize(p, e):
 	enemy = e
 	friction = enemy.friction
 	
-func update(_delta):
+func update(delta):
 	if not enemy.is_stunned:
 		target = player.global_position - enemy.global_position
 		velocity += target
 		velocity *= friction
 		enemy.look_at(player.global_position)
-		enemy.move_and_slide(velocity.normalized() * enemy.speed * 1.5)
+		enemy.position += velocity.normalized() * enemy.speed * 1.5 * delta
 	if not enemy.charge_flag or timer.is_stopped():
 		timer.stop()
 		enemy.charge_flag = false

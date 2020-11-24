@@ -44,7 +44,7 @@ scale_curve = SubResource( 6 )
 color_ramp = SubResource( 2 )
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 0.328961
+radius = 48.7403
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -61,7 +61,5 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Particles2D/Area2D"]
 shape = SubResource( 8 )
-
-[node name="Timer" type="Timer" parent="."]
-[connection signal="area_entered" from="Particles2D/Area2D" to="Particles2D" method="_on_Area2D_area_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+disabled = true
+[connection signal="body_entered" from="Particles2D/Area2D" to="Particles2D" method="_on_Area2D_body_entered"]

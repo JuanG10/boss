@@ -17,12 +17,15 @@ func explosion():
 		$Explosion/Particles2D
 
 
-func _on_Area2D_body_entered(body):
-	print(body)
-	if body.name.find_last("KinematicBody2D") == 1:
-		print(body)
+
+func _on_Timer_timeout():
+	queue_free()
 
 
-
-
-
+func _on_Area2D_area_entered(area):
+	print(area.get_class())
+	if area.get_class() == "Meele":
+		activate_explosion()
+		$Timer.set_wait_time(1)
+		$Timer.start()
+		

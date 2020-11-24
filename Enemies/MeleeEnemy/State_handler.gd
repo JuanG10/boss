@@ -1,15 +1,16 @@
 extends "res://state_machine/state_machine.gd"
 
-onready var chasing = $Chasing
-onready var special_red = $Red
-onready var special_blue = $Blue
+onready var chasing       = $Chasing
+onready var special_red   = $Red
+onready var flocking      = $Flocking
+onready var special_blue  = $Blue
 
 func _ready():
 	states_map = {
-		"chasing"        : chasing,
-		"special_orange" : chasing,
-		"special_red"    : special_red,
-		"special_blue"   : special_blue,
+		"chasing"       : chasing,
+		"special_red"   : special_red,
+		"special_blue"  : special_blue,
+		"flocking"      : flocking,
 	}
 
 func init(player, enemy):

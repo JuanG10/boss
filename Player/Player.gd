@@ -15,7 +15,11 @@ var brn_dmg       = GlobalVariables.brn_dmg
 var heal_speed    = GlobalVariables.heal_speed
 var shield_speed  = GlobalVariables.shield_speed
 
-var invencibility = false
+var invencibility         = false
+var uso_dash              = false
+var uso_disparo_explosivo = false
+var uso_Attack_speed      = false
+var speed_bullet          = 2
 
 var shootT  = Timer.new()
 var healT   = Timer.new()
@@ -26,9 +30,8 @@ var poisonT   = Timer.new()
 var freezeT   = Timer.new()
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
-
+#Blue, Orange and Red
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
-var collisiones = [0b10000000110, 0b10000000101, 0b10000000011]
 var states
 var pointer     = 0
 
@@ -49,8 +52,6 @@ func _ready():
 	O.initialize(self)
 	B.initialize(self)
 	$Sprite.modulate = colores[pointer]
-	collision_layer = collisiones[pointer]
-	collision_mask  = collisiones[pointer]
 	shootT.set_one_shot(true)
 	shootT.set_wait_time(atk_speed)
 	add_child(shootT)
@@ -73,14 +74,15 @@ func _ready():
 
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
-	if sprite_modulate == Color(1,0,0,1):
+	if sprite_modulate == Color(.702, .0823, .0706):
 		return "Red"
-	elif sprite_modulate == Color(0,0,1,1):
+	elif sprite_modulate == Color(.0627, .1255, .702):
 		return "Blue"
-	elif sprite_modulate == Color(0,1,0,1):
-		return "Green"
+	elif sprite_modulate == Color(.702, .3216, .1216):
+		return "Orange"
 
 func _physics_process(_delta):
+
 	look_at(get_global_mouse_position())
 	#if Input.is_action_just_pressed("ui_accept"):
 	#	speed *= 3
@@ -101,8 +103,6 @@ func _physics_process(_delta):
 		previous_color()
 		if not states[pointer].shield:
 			remove_shield()
-		collision_layer = collisiones[pointer]
-		collision_mask  = collisiones[pointer]
 	if(states[pointer].shield and shieldT.is_stopped()):
 		isShielded = true
 		$Shield.show()
@@ -134,15 +134,34 @@ func _physics_process(_delta):
 			position.y -= speed * .75
 	if not poisonT.is_stopped():
 		takeDamage(1)
-	if Input.is_action_just_pressed("Activate_dash") && posee_dash():
+	if Input.is_action_just_pressed("Activate_dash") && skill_condition("Dash",uso_dash,"Orange"):
 		dash()	
-	if Input.is_action_just_pressed("Disparo_especial"):
-		explosion()	
+		uso_dash = true
+	if Input.is_action_just_pressed("Disparo_especial") && skill_condition("Disparo explosivo",uso_disparo_explosivo,"Red"):
+		disparo_explosivo()	
+		uso_disparo_explosivo = true
+	if Input.is_action_just_pressed("Attack_speed") && skill_condition("Attack_speed",uso_Attack_speed,"Blue"):
+		attack_speed()
+		uso_Attack_speed = true
 		
-func posee_dash():
+		
+		
+		
+		
+func attack_speed():
+	speed_bullet = 5 
+	$Timer_attack_speed.set_wait_time(3)
+	$Timer_attack_speed.start()
+		
+		
+func skill_condition(name_habilidad,use_skill,color):
+	return 	posee_habilidad(name_habilidad) && !use_skill && color_actual() == color
+	
+	
+func posee_habilidad(name_habilidad):
 	var boolean = false
 	for habilidad in GlobalVariables.habilidades:
-		boolean = boolean || habilidad == "dash"
+		boolean = boolean || habilidad == name_habilidad
 	return boolean			
 
 func heal(x):
@@ -174,23 +193,26 @@ func remove_shield():
 
 func shoot():
 	var b = Bullet.instance()
-	b.modulate        = colores[pointer]
-	b.collision_layer = collisiones[pointer]
-	b.collision_mask  = collisiones[pointer]
-	b.start($Muzzle.global_position, rotation, dmg, states[pointer])
+	b.set_speed(speed_bullet)
+	b.modulate = colores[pointer]
+	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
 	get_parent().add_child(b)
-	shootT.start()
+	shootT.start(atk_speed)
 
-func explosion():
+func disparo_explosivo():
 	var d = disparo_explosivo.instance()
 	d.position = $Muzzle.global_position
 	d.rotation = rotation
 	d.set_values()
 	get_parent().add_child(d)
+	$Timer_Disparo_explosivo.set_wait_time(5)
+	$Timer_Disparo_explosivo.start()
 	
 	
 func dash():
 	speed = 20
+	$Timer_restar_Dash.set_wait_time(5)
+	$Timer_restar_Dash.start()
 	$Timer_dash.set_wait_time(0.1)
 	$Timer_dash.start()
 
@@ -201,6 +223,9 @@ func next_color():
 func previous_color():
 	pointer = (pointer + 2)%3
 	_change_with_color(pointer,false)
+
+func stop_shooting(n):
+	shootT.start(n)
 
 func _on_grab_coin(area):
 	area.grab()
@@ -218,9 +243,23 @@ func _create_floating_text(amount:int, type:String)->void:
 	text.rotation_degrees = 90
 	add_child(text)
 
-func on_enemy_entered(_body_id, body, _body_shape, _area_shape):
-	takeDamage(body.dmg)
-
 
 func _on_Timer_dash_timeout():
 	speed = GlobalVariables.Pspeed
+	
+func _on_Timer_restar_Dash_timeout():
+	uso_dash = false
+
+
+func _on_Timer_Disparo_explosivo_timeout():
+	 uso_disparo_explosivo  = false
+
+
+func _on_Timer_attack_speed_timeout():
+	speed_bullet = 2
+	uso_Attack_speed = false
+
+func on_enemy_entered(area):
+	if area.is_in_group("Enemy"):
+		takeDamage(area.dmg)
+
