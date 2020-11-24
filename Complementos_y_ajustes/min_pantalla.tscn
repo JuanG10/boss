@@ -3,3 +3,4 @@
 [node name="min_pantalla" type="Position2D" groups=[
 "borde_minimo",
 ]]
+position = Vector2( 126.5, 81.5 )

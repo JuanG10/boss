@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Menues/Level 5.gd" type="Script" id=1]
+[ext_resource path="res://Menues/Level 2.gd" type="Script" id=2]
+[ext_resource path="res://Menues/Level 3.gd" type="Script" id=3]
+[ext_resource path="res://Menues/Level 4.gd" type="Script" id=4]
+[ext_resource path="res://Menues/MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://Menues/Level 6.gd" type="Script" id=6]
+[ext_resource path="res://Menues/Endless.gd" type="Script" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _pressed():
+	get_tree().change_scene(\"res://Levels/Level 1.tscn\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="Levles" type="Node"]
+
+[node name="Level 1" type="Button" parent="."]
+margin_left = 62.3185
+margin_top = 32.7525
+margin_right = 145.319
+margin_bottom = 62.7525
+text = "Level 1"
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level 2" type="Button" parent="."]
+margin_left = 62.6566
+margin_top = 70.7065
+margin_right = 145.657
+margin_bottom = 100.707
+text = "Level 2"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level 3" type="Button" parent="."]
+margin_left = 62.3416
+margin_top = 107.924
+margin_right = 145.342
+margin_bottom = 137.924
+text = "Level 3"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level 4" type="Button" parent="."]
+margin_left = 62.0085
+margin_top = 145.924
+margin_right = 145.009
+margin_bottom = 175.924
+text = "Level 4"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level 5" type="Button" parent="."]
+margin_left = 196.917
+margin_top = 33.5017
+margin_right = 279.917
+margin_bottom = 63.5017
+text = "Level 5"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level 6" type="Button" parent="."]
+margin_left = 196.755
+margin_top = 71.4557
+margin_right = 279.755
+margin_bottom = 101.456
+text = "Level 6"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Endless" type="Button" parent="."]
+margin_left = 196.44
+margin_top = 108.673
+margin_right = 279.44
+margin_bottom = 138.673
+text = "Endless"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoBack" type="Button" parent="."]
+margin_left = 196.107
+margin_top = 146.673
+margin_right = 279.107
+margin_bottom = 176.673
+text = "Back"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 174.371, 104.455 )
+current = true
+zoom = Vector2( 0.25, 0.25 )

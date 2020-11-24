@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Menues/Start.gd" type="Script" id=1]
+[ext_resource path="res://Menues/Levels.gd" type="Script" id=2]
+[ext_resource path="res://Menues/Endless.gd" type="Script" id=3]
+[ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
+
+[node name="MainMenu" type="Node"]
+
+[node name="Start" type="Button" parent="."]
+margin_left = 123.0
+margin_top = 35.0
+margin_right = 206.0
+margin_bottom = 65.0
+text = "Start Game"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Levels" type="Button" parent="."]
+margin_left = 123.338
+margin_top = 72.954
+margin_right = 206.338
+margin_bottom = 102.954
+text = "Levels"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Endless" type="Button" parent="."]
+margin_left = 123.023
+margin_top = 110.171
+margin_right = 206.023
+margin_bottom = 140.171
+text = "Endless"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 122.69
+margin_top = 148.171
+margin_right = 205.69
+margin_bottom = 178.171
+text = "Exit"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 163.134, 105.953 )
+current = true
+zoom = Vector2( 0.25, 0.25 )

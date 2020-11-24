@@ -21,6 +21,8 @@ func player_moved():
 	return Input.is_action_just_pressed('down') || Input.is_action_just_pressed('up') || Input.is_action_just_pressed('left') || Input.is_action_just_pressed('right')
 
 func _process(_delta):
+	if Input.is_action_just_pressed("pasue"):
+		LevelPrimitives.pause()
 	if timer.is_stopped() and counter < 2:
 		timer.start()
 		LevelPrimitives.spawnMelee(4)

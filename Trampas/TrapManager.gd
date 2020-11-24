@@ -12,8 +12,8 @@ const COLORS = {
 	blue = Color(.0627, .1255, .702)
 }
 
-const WIDTH:int = 1024
-const HEIGHT:int = 550
+const WIDTH:int = 740
+const HEIGHT:int = 460
 
 var open_simplex_noise:OpenSimplexNoise
 
@@ -55,7 +55,7 @@ func change_trap_type(color:Color)->void:
 	for i in trap_counter:
 		var trap_name:String = "trap" + str(i)
 		if get_node(trap_name) == null: # Restaura las trampas usadas
-			_add_new_trap(Vector2(randi() % 1024, randi() % 600), trap_name, _get_new_color_trap(color))
+			_add_new_trap(Vector2(randi() % 740 + 126, randi() % 460 + 81), trap_name, _get_new_color_trap(color))
 		var actual_trap = get_node(trap_name)
 		var pos = actual_trap.position
 		remove_child(actual_trap)

@@ -28,3 +28,11 @@ margin_right = 470.413
 margin_bottom = 302.858
 
 [node name="Complementos" parent="." instance=ExtResource( 6 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 515.643, 302.238 )
+current = true
+zoom = Vector2( 0.8, 0.8 )
+__meta__ = {
+"_editor_description_": ""
+}

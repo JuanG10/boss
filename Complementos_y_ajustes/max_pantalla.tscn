@@ -3,4 +3,4 @@
 [node name="max_pantalla" type="Position2D" groups=[
 "borde_maximo",
 ]]
-position = Vector2( 1024, 600 )
+position = Vector2( 906.5, 521.5 )
