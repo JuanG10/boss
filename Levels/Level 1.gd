@@ -30,5 +30,5 @@ func _process(_delta):
 	if enemyCounter == 0:
 		LevelPrimitives.playing   = false
 		LevelPrimitives.retry     = false
-		LevelPrimitives.nextLevel = "res://Levels/Level 2.tscn" 
-		$GotoShop.show()
+		LevelPrimitives.nextLevel = "res://Levels/Level 2.tscn"
+		$Player/HUD/GotoShop.show()

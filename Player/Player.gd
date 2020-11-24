@@ -137,7 +137,7 @@ func heal(x):
 	label.on_update(health)
 
 func takeDamage(x):
-	if not invencibility:
+	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
 			health -= x
 			set_last_score()

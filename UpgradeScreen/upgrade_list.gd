@@ -59,6 +59,9 @@ func comprar_red_panel():
 	if _get_selected_item() == 0:
 		GlobalVariables.Pdmg  +=5
 		music_compra_and_animation() 
+	elif _get_selected_item() == 1:
+		GlobalVariables.brn_dmg += 5
+		music_compra_and_animation()
 
 func comprar_orange_panel():
 	if _get_selected_item() == 0: 
@@ -105,7 +108,7 @@ func _on_Timer_timeout():
 
 func _on_upgrade_list_item_activated(index):
 	#GlobalVariables.money >= intPrecio
-	if true:
+	if GlobalVariables.money >= intPrecio:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		if parent_name == "RedPanel":

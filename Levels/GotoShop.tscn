@@ -3,13 +3,13 @@
 [ext_resource path="res://Levels/GotoShop.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 14
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 21
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -22,7 +22,7 @@ margin_left = 43.1823
 margin_top = 16.5178
 margin_right = 43.1263
 margin_bottom = 16.7178
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -37,7 +37,7 @@ margin_left = -32.9942
 margin_top = -19.7302
 margin_right = 75.0058
 margin_bottom = -0.730179
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "You win!!"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -3,8 +3,6 @@ extends Node
 var actual_level
 var next_level 
 
-
-
 const levels = {
 	1:"res://Levels/Level 1.tscn",
 	2:"res://Levels/Level 2.tscn",
@@ -20,9 +18,6 @@ func set_actual_level(level):
 
 func next_level()-> String:
 	return levels[next_level]
-		
+
 func get_actual_level():
 	return levels[actual_level]
-	
-			
-	

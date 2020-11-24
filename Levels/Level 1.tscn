@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/Level 1.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Cursor.gd" type="Script" id=3]
-[ext_resource path="res://Levels/GotoShop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://cursor.png" type="Texture" id=5]
 [ext_resource path="res://Complementos_y_ajustes/Complementos.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=7]
@@ -30,13 +29,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="GotoShop" parent="." instance=ExtResource( 4 )]
-visible = false
-margin_left = 480.542
-margin_top = 262.433
-margin_right = 480.486
-margin_bottom = 262.633
 
 [node name="Explicacion" type="Label" parent="."]
 anchor_left = 0.421

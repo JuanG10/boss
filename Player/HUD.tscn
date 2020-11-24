@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Coins.gd" type="Script" id=2]
 [ext_resource path="res://LastScore.gd" type="Script" id=3]
 [ext_resource path="res://Points.gd" type="Script" id=4]
 [ext_resource path="res://HP.gd" type="Script" id=5]
+[ext_resource path="res://Levels/GotoShop.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
@@ -77,3 +78,13 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GotoShop" parent="." instance=ExtResource( 6 )]
+anchor_left = 0.437
+anchor_top = 0.92
+anchor_right = 0.492
+anchor_bottom = 0.985
+margin_left = 8.51199
+margin_top = 8.0
+margin_right = -2.80804
+margin_bottom = -8.00006
