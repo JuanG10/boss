@@ -10,7 +10,7 @@
 [ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Points.gd" type="Script" id=9]
 
-[sub_resource type="Environment" id=4]
+[sub_resource type="Environment" id=1]
 background_mode = 4
 background_energy = 3.0
 background_canvas_max_layer = 1
@@ -33,19 +33,19 @@ glow_hdr_luminance_cap = 30.0
 glow_hdr_scale = 3.0
 glow_bicubic_upscale = true
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 35
 outline_size = 1
 outline_color = Color( 0.733333, 0.137255, 0.752941, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 35
 outline_size = 1
 outline_color = Color( 0.619608, 0.623529, 0.0901961, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 35
 outline_size = 1
 outline_color = Color( 0.27451, 0.647059, 0.219608, 1 )
@@ -55,7 +55,7 @@ font_data = ExtResource( 8 )
 script = ExtResource( 3 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
+environment = SubResource( 1 )
 
 [node name="Traps" parent="." instance=ExtResource( 5 )]
 z_index = 2
@@ -84,7 +84,7 @@ margin_left = 488.0
 margin_top = 8.0
 margin_right = 616.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "HP:100"
 script = ExtResource( 2 )
 __meta__ = {
@@ -96,7 +96,7 @@ margin_left = 824.0
 margin_top = 8.0
 margin_right = 992.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Coins:0"
 script = ExtResource( 7 )
 __meta__ = {
@@ -108,7 +108,7 @@ margin_left = 16.0
 margin_top = 8.0
 margin_right = 163.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "SCORE:	0"
 align = 1
 script = ExtResource( 9 )

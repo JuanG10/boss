@@ -83,5 +83,5 @@ Disparo_especial={
 [rendering]
 
 threads/thread_model=2
-environment/default_clear_color=Color( 0.294118, 0.266667, 0.266667, 1 )
+environment/default_clear_color=Color( 0.0588235, 0.239216, 0.0431373, 1 )
 environment/default_environment="res://default_env.tres"
