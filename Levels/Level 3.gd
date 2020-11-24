@@ -3,6 +3,7 @@ extends Node
 var timer = Timer.new()
 var enemyCounter = 21
 var counter = 0
+export(int) var level_id
 
 func _ready():
 	LevelPrimitives.initialize($Player, self)

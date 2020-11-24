@@ -4,6 +4,8 @@ var timer = Timer.new()
 var enemyCounter = 8
 var counter = 0
 
+export(int) var level_id
+
 func _ready():
 	LevelPrimitives.initialize($Player, self)
 	LevelPrimitives.playing = true
@@ -30,5 +32,5 @@ func _process(_delta):
 	if enemyCounter == 0:
 		LevelPrimitives.playing   = false
 		LevelPrimitives.retry     = false
-		LevelPrimitives.nextLevel = "res://Levels/Level 2.tscn" 
-		$GotoShop.show()
+		LevelPrimitives.nextLevel = "res://Levels/Level 2.tscn"
+		$Player/HUD/GotoShop.show()

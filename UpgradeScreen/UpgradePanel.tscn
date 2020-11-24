@@ -1,12 +1,27 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UpgradeScreen/Pannels.gd" type="Script" id=1]
 [ext_resource path="res://UpgradeScreen/upgrade_list.gd" type="Script" id=2]
 [ext_resource path="res://Iconos/Flecha.png" type="Texture" id=3]
 [ext_resource path="res://Coins.gd" type="Script" id=4]
 [ext_resource path="res://moneda_particula/#SOUNDPERFECT  Money Coins In Hand  No Copyright SoundsSound Effect(HD).ogg" type="AudioStream" id=5]
+[ext_resource path="res://Fonts/Almond Nougat.otf" type="DynamicFontData" id=6]
 
-[node name="UpgradePanel" type="Panel"]
+[sub_resource type="DynamicFont" id=1]
+size = 31
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[node name="UpgradePanel" type="Panel" groups=[
+"Shop",
+]]
 margin_right = 1335.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
@@ -55,46 +70,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bottom_button" type="Button" parent="."]
-margin_left = 552.0
-margin_top = 536.0
-margin_right = 864.0
-margin_bottom = 896.0
-rect_rotation = 90.0
-rect_scale = Vector2( 0.2, 0.2 )
-icon = ExtResource( 3 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Top_button" type="Button" parent="."]
-margin_left = 472.0
-margin_top = 64.0
-margin_right = 784.0
-margin_bottom = 424.0
-rect_rotation = 270.0
-rect_scale = Vector2( 0.2, 0.2 )
-icon = ExtResource( 3 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Play_again_button" type="Button" parent="."]
-margin_left = 24.0
-margin_top = 40.0
-margin_right = 192.0
-margin_bottom = 128.0
+margin_left = 455.184
+margin_top = 444.14
+margin_right = 623.184
+margin_bottom = 532.14
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.0509804, 0.666667, 0, 1 )
 text = "Jugar de nuevo"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Coins" type="Label" parent="."]
-margin_left = 768.0
-margin_top = 112.0
-margin_right = 832.0
-margin_bottom = 128.0
-text = "Coins: 0"
+margin_left = 779.906
+margin_top = 96.9197
+margin_right = 860.906
+margin_bottom = 127.92
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.870588, 0.901961, 0.317647, 1 )
+text = "Coins:  0"
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="music_moneda" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -102,6 +103,4 @@ stream = ExtResource( 5 )
 [connection signal="timeout" from="upgrade_list/Timer" to="upgrade_list" method="_on_Timer_timeout"]
 [connection signal="button_up" from="Left_button" to="." method="_on_button_up" binds= [ 0, Vector2( -1, 0 ) ]]
 [connection signal="button_up" from="Right_button" to="." method="_on_button_up" binds= [ 1, Vector2( 1, 0 ) ]]
-[connection signal="button_up" from="Bottom_button" to="." method="_on_button_up" binds= [ 3, Vector2( 0, 1 ) ]]
-[connection signal="button_up" from="Top_button" to="." method="_on_button_up" binds= [ 8, Vector2( 0, -1 ) ]]
 [connection signal="button_up" from="Play_again_button" to="." method="_on_Play_again_button_up"]

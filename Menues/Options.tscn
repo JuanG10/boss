@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Menues/MainMenu.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node"]
+
+[node name="Button" type="Button" parent="."]
+margin_left = -1483.93
+margin_top = 96.2192
+margin_right = -1400.93
+margin_bottom = 126.219
+text = "Back"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
+position = Vector2( -1440.89, 112.31 )
+current = true
+zoom = Vector2( 0.25, 0.25 )
+__meta__ = {
+"_editor_description_": ""
+}

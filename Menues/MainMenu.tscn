@@ -8,10 +8,11 @@
 [node name="MainMenu" type="Node"]
 
 [node name="Start" type="Button" parent="."]
-margin_left = 123.0
-margin_top = 35.0
-margin_right = 206.0
-margin_bottom = 65.0
+pause_mode = 2
+margin_left = -1610.08
+margin_top = 111.327
+margin_right = -1527.08
+margin_bottom = 141.327
 text = "Start Game"
 script = ExtResource( 1 )
 __meta__ = {
@@ -19,10 +20,10 @@ __meta__ = {
 }
 
 [node name="Levels" type="Button" parent="."]
-margin_left = 123.338
-margin_top = 72.954
-margin_right = 206.338
-margin_bottom = 102.954
+margin_left = -1609.74
+margin_top = 149.281
+margin_right = -1526.74
+margin_bottom = 179.281
 text = "Levels"
 script = ExtResource( 2 )
 __meta__ = {
@@ -30,10 +31,10 @@ __meta__ = {
 }
 
 [node name="Endless" type="Button" parent="."]
-margin_left = 123.023
-margin_top = 110.171
-margin_right = 206.023
-margin_bottom = 140.171
+margin_left = -1610.06
+margin_top = 186.498
+margin_right = -1527.06
+margin_bottom = 216.498
 text = "Endless"
 script = ExtResource( 3 )
 __meta__ = {
@@ -41,10 +42,10 @@ __meta__ = {
 }
 
 [node name="Exit" type="Button" parent="."]
-margin_left = 122.69
-margin_top = 148.171
-margin_right = 205.69
-margin_bottom = 178.171
+margin_left = -1610.39
+margin_top = 224.498
+margin_right = -1527.39
+margin_bottom = 254.498
 text = "Exit"
 script = ExtResource( 4 )
 __meta__ = {
@@ -52,6 +53,6 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 163.134, 105.953 )
+position = Vector2( -1569.95, 182.28 )
 current = true
 zoom = Vector2( 0.25, 0.25 )

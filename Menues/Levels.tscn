@@ -29,9 +29,9 @@ func _pressed():
 [node name="Levles" type="Node"]
 
 [node name="Level 1" type="Button" parent="."]
-margin_left = 62.3185
+margin_left = -985.366
 margin_top = 32.7525
-margin_right = 145.319
+margin_right = -902.366
 margin_bottom = 62.7525
 text = "Level 1"
 script = SubResource( 1 )
@@ -40,9 +40,9 @@ __meta__ = {
 }
 
 [node name="Level 2" type="Button" parent="."]
-margin_left = 62.6566
+margin_left = -985.028
 margin_top = 70.7065
-margin_right = 145.657
+margin_right = -902.028
 margin_bottom = 100.707
 text = "Level 2"
 script = ExtResource( 2 )
@@ -51,9 +51,9 @@ __meta__ = {
 }
 
 [node name="Level 3" type="Button" parent="."]
-margin_left = 62.3416
+margin_left = -985.343
 margin_top = 107.924
-margin_right = 145.342
+margin_right = -902.343
 margin_bottom = 137.924
 text = "Level 3"
 script = ExtResource( 3 )
@@ -62,9 +62,9 @@ __meta__ = {
 }
 
 [node name="Level 4" type="Button" parent="."]
-margin_left = 62.0085
+margin_left = -985.676
 margin_top = 145.924
-margin_right = 145.009
+margin_right = -902.676
 margin_bottom = 175.924
 text = "Level 4"
 script = ExtResource( 4 )
@@ -73,9 +73,9 @@ __meta__ = {
 }
 
 [node name="Level 5" type="Button" parent="."]
-margin_left = 196.917
+margin_left = -850.768
 margin_top = 33.5017
-margin_right = 279.917
+margin_right = -767.768
 margin_bottom = 63.5017
 text = "Level 5"
 script = ExtResource( 1 )
@@ -84,9 +84,9 @@ __meta__ = {
 }
 
 [node name="Level 6" type="Button" parent="."]
-margin_left = 196.755
+margin_left = -850.93
 margin_top = 71.4557
-margin_right = 279.755
+margin_right = -767.93
 margin_bottom = 101.456
 text = "Level 6"
 script = ExtResource( 6 )
@@ -95,9 +95,9 @@ __meta__ = {
 }
 
 [node name="Endless" type="Button" parent="."]
-margin_left = 196.44
+margin_left = -851.245
 margin_top = 108.673
-margin_right = 279.44
+margin_right = -768.245
 margin_bottom = 138.673
 text = "Endless"
 script = ExtResource( 7 )
@@ -106,9 +106,10 @@ __meta__ = {
 }
 
 [node name="GoBack" type="Button" parent="."]
-margin_left = 196.107
+pause_mode = 2
+margin_left = -851.578
 margin_top = 146.673
-margin_right = 279.107
+margin_right = -768.578
 margin_bottom = 176.673
 text = "Back"
 script = ExtResource( 5 )
@@ -117,6 +118,6 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 174.371, 104.455 )
+position = Vector2( -873.314, 104.455 )
 current = true
 zoom = Vector2( 0.25, 0.25 )

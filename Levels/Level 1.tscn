@@ -1,18 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/Level 1.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Cursor.gd" type="Script" id=3]
-[ext_resource path="res://Levels/GotoShop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://cursor.png" type="Texture" id=5]
 [ext_resource path="res://Complementos_y_ajustes/Complementos.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 21
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
 
 [node name="Level 1" type="Node"]
 script = ExtResource( 1 )
+level_id = 1
 
 [node name="Complementos" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 309, 183.47 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.01, 0.01 )
@@ -21,13 +29,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="GotoShop" parent="." instance=ExtResource( 4 )]
-visible = false
-margin_left = 480.542
-margin_top = 262.963
-margin_right = 480.486
-margin_bottom = 263.163
 
 [node name="Explicacion" type="Label" parent="."]
 anchor_left = 0.421
@@ -38,6 +39,7 @@ margin_left = -1.38913
 margin_top = 209.586
 margin_right = -1.61316
 margin_bottom = 209.386
+custom_fonts/font = SubResource( 1 )
 text = "WASD to move
 
 Mouse to aim"

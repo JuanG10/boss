@@ -2,8 +2,13 @@ extends Panel
 
 export (Resource) var background
 
+var nivel
+
 onready var upgradeMainWindow:Node2D = get_parent()
 var new_style = StyleBoxTexture.new()
+
+func set_nivel(level):
+	nivel = level
 
 func _ready():
 	new_style.texture = background

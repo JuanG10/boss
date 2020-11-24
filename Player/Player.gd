@@ -137,7 +137,7 @@ func heal(x):
 	label.on_update(health)
 
 func takeDamage(x):
-	if not invencibility:
+	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
 			health -= x
 			set_last_score()
@@ -147,6 +147,8 @@ func takeDamage(x):
 			if health <= 0:
 				LevelPrimitives.playing = false
 				LevelPrimitives.retry = true
+				var level_actual = get_tree().current_scene.level_id
+				ManagerLevels.set_actual_level(level_actual)
 				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 		else:
 			remove_shield()

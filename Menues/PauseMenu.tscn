@@ -11,10 +11,10 @@ pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="Resume" type="Button" parent="."]
-margin_left = 123.0
-margin_top = 35.0
-margin_right = 206.0
-margin_bottom = 65.0
+margin_left = -1481.03
+margin_top = 41.3568
+margin_right = -1398.03
+margin_bottom = 71.3568
 text = "Resume"
 script = ExtResource( 1 )
 __meta__ = {
@@ -22,10 +22,10 @@ __meta__ = {
 }
 
 [node name="Options" type="Button" parent="."]
-margin_left = 123.338
-margin_top = 72.954
-margin_right = 206.338
-margin_bottom = 102.954
+margin_left = -1480.69
+margin_top = 79.3108
+margin_right = -1397.69
+margin_bottom = 109.311
 text = "Options"
 script = ExtResource( 2 )
 __meta__ = {
@@ -33,10 +33,10 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="Button" parent="."]
-margin_left = 123.023
-margin_top = 110.171
-margin_right = 206.023
-margin_bottom = 140.171
+margin_left = -1481.0
+margin_top = 116.528
+margin_right = -1397.0
+margin_bottom = 146.528
 text = "Main menu"
 script = ExtResource( 3 )
 __meta__ = {
@@ -44,10 +44,10 @@ __meta__ = {
 }
 
 [node name="Exit" type="Button" parent="."]
-margin_left = 122.69
-margin_top = 148.171
-margin_right = 205.69
-margin_bottom = 178.171
+margin_left = -1481.34
+margin_top = 154.528
+margin_right = -1398.34
+margin_bottom = 184.528
 text = "Exit"
 script = ExtResource( 4 )
 __meta__ = {
@@ -55,5 +55,5 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 163.134, 105.953 )
+position = Vector2( -1440.89, 112.31 )
 zoom = Vector2( 0.25, 0.25 )
