@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fondo_naranja.jpg-4a8f10a2f888dbed772694c9ebf2f74d.stex"
+path="res://.import/naranja_vectorial.jpg-61770b8aa7f68477fa6f810dd17eb137.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fondos/Prueba de shaders/imagenes_de_fondo/fondo_naranja.jpg"
-dest_files=[ "res://.import/fondo_naranja.jpg-4a8f10a2f888dbed772694c9ebf2f74d.stex" ]
+source_file="res://Fondos/Prueba de shaders/imagenes_de_fondo/naranja_vectorial.jpg"
+dest_files=[ "res://.import/naranja_vectorial.jpg-61770b8aa7f68477fa6f810dd17eb137.stex" ]
 
 [params]
 
