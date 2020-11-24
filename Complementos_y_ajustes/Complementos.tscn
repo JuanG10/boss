@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://general_enviroment.tres" type="Environment" id=1]
 [ext_resource path="res://Complementos_y_ajustes/Marco.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Complementos_y_ajustes/min_pantalla.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Trampas/Trap_node.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Complementos_y_ajustes/max_pantalla.tscn" type="PackedScene" id=5]
 
 [node name="Complementos" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
 
 [node name="Traps" parent="." instance=ExtResource( 4 )]
 
