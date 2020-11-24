@@ -58,8 +58,6 @@ func far_enough(area):
 		minimun_range_flag = false
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		print($FlockingArea.get_overlapping_areas())
 	if stun_timer.is_stopped():
 		is_stunned = false
 	if slow_timer.is_stopped():

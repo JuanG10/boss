@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UpgradeScreen/UpgradePanel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Fondos/fondo-rojo.jpg" type="Texture" id=2]
+[ext_resource path="res://Fondos/Prueba de shaders/imagenes_de_prueba/fondo-rojo.jpg" type="Texture" id=2]
+
 
 [node name="RedPanel" instance=ExtResource( 1 )]
 background = ExtResource( 2 )

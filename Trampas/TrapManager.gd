@@ -3,7 +3,13 @@ extends Node2D
 const TRAPS = {
 	RED = preload("res://Trampas/RedTrap.tscn"),
 	BLUE = preload("res://Trampas/BlueTrap.tscn"),
-	GREEN = preload("res://Trampas/GreenTrap.tscn")
+	ORANGE = preload("res://Trampas/GreenTrap.tscn")
+}
+
+const COLORS = {
+	red = Color(.702, .0823, .0706),
+	orange = Color(.702, .3216, .1216),
+	blue = Color(.0627, .1255, .702)
 }
 
 const WIDTH:int = 1024
@@ -53,13 +59,13 @@ func change_trap_type(color:Color)->void:
 		var pos = actual_trap.position
 		remove_child(actual_trap)
 		match color:
-			Color.red: _add_new_trap(pos, trap_name, TRAPS.RED)
-			Color.green: _add_new_trap(pos, trap_name, TRAPS.GREEN)
-			Color.blue: _add_new_trap(pos, trap_name, TRAPS.BLUE)
+			COLORS.red: _add_new_trap(pos, trap_name, TRAPS.RED)
+			COLORS.orange: _add_new_trap(pos, trap_name, TRAPS.ORANGE)
+			COLORS.blue: _add_new_trap(pos, trap_name, TRAPS.BLUE)
 
 func _get_new_color_trap(color:Color)->PackedScene:
 	match color:
-		Color(.0627, .1255, .702): return TRAPS.RED
-		Color(.702, .3216, .1216): return TRAPS.GREEN
-		Color(.702, .0823, .0706): return TRAPS.BLUE
+		COLORS.red: return TRAPS.RED
+		COLORS.orange: return TRAPS.ORANGE
+		COLORS.blue: return TRAPS.BLUE
 		_: return null

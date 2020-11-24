@@ -23,7 +23,6 @@ var healT   = Timer.new()
 var shieldT = Timer.new()
 var isShielded = false
 
-var poisonT   = Timer.new()
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
 #Blue, Orange and Red
@@ -35,8 +34,11 @@ onready var R = get_node("States/Red")
 onready var O = get_node("States/Orange")
 onready var B = get_node("States/Blue")
 
+# Trap timers
 var freezeT   = Timer.new()
 var ralentizacion:float = 1
+var poison_dmg_timer = Timer.new()
+var poisonT = Timer.new()
 
 onready var color_change_wait_time = Background.tiempo_transicion
 onready var trapManager = get_tree().get_nodes_in_group("Traps")[0]
@@ -65,8 +67,13 @@ func _ready():
 	shieldT.set_wait_time(shield_speed)
 	add_child(shieldT)
 	poisonT.set_one_shot(true)
-	poisonT.set_wait_time(5)
+	poisonT.set_wait_time(6)
+	poisonT.connect("timeout",self,"_on_poisonT_timeout")
 	add_child(poisonT)
+	poison_dmg_timer.set_one_shot(false)
+	poison_dmg_timer.set_wait_time(1.5)
+	poison_dmg_timer.connect("timeout",self,"_on_poison_dmg_timeout")
+	add_child(poison_dmg_timer)
 	freezeT.set_one_shot(true)
 	freezeT.set_wait_time(2.5)
 	freezeT.connect("timeout",self,"_on_freezeT_timeout")
@@ -75,15 +82,6 @@ func _ready():
 	habilityT.set_wait_time(15)
 	add_child(habilityT)
 	$Change_color_timer.set_wait_time(color_change_wait_time)
-
-func color_actual():
-	var sprite_modulate = $Sprite.modulate
-	if sprite_modulate == Color(.702, .0823, .0706):
-		return "Red"
-	elif sprite_modulate == Color(.0627, .1255, .702):
-		return "Blue"
-	elif sprite_modulate == Color(.702, .3216, .1216):
-		return "Orange"
 
 func _process(delta):
 	if global_position.x < limite_minimo_pantalla.x:
@@ -99,10 +97,7 @@ func _process(delta):
 func _physics_process(_delta):
 
 	look_at(get_global_mouse_position())
-	#if Input.is_action_just_pressed("ui_accept"):
-	#	speed *= 3
-	#if Input.is_action_just_released("ui_accept"):
-	#	speed /= 3
+	
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
 		habilityT.start()
 		states[pointer].power()
@@ -125,8 +120,6 @@ func _physics_process(_delta):
 	if(shootT.is_stopped()):
 		shoot()
 	_movimiento()
-	if not poisonT.is_stopped():
-		takeDamage(1)
 
 func _movimiento():
 	if Input.is_action_pressed('right'):
@@ -205,5 +198,18 @@ func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):
 		takeDamage(area.dmg)
 
+############## RELACIONADO A LAS TRAMPAS ########################
 func _on_freezeT_timeout():
 	ralentizacion = 1
+
+func start_poison_timers():
+	$Sprite.modulate = Color.greenyellow # Buscar un color mejor
+	poison_dmg_timer.start()
+	poisonT.start()
+
+func _on_poison_dmg_timeout():
+	takeDamage(1)
+
+func _on_poisonT_timeout():
+	$Sprite.modulate = colores[pointer]
+	poison_dmg_timer.stop()
