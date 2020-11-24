@@ -26,6 +26,7 @@ var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
 
 var explosion_color:Color
+const POINTS = 250
 
 func _ready():
 	$State_handler.init(player, self)
@@ -87,7 +88,7 @@ func takeDamage(n):
 
 func _on_death():
 	_create_explosion()
-	GlobalVariables.points += 200
+	GlobalVariables.points += POINTS
 	get_tree().current_scene.update_score()
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
@@ -108,3 +109,10 @@ func shoot():
 		get_parent().add_child(b)
 		yield(get_tree().create_timer(.02), "timeout")
 	timer.start(atk_speed)
+
+func _create_floating_text()->void:
+	var text = GlobalVariables.TEXT.instance()
+	text.amount = POINTS
+	text.position = position
+	text.color = explosion_color
+	get_parent().add_child(text)

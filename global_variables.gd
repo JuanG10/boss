@@ -2,6 +2,7 @@ extends Node
 
 var coin = preload("res://Coin.tscn")
 const EXPLOSION = preload("res://Enemies/Explosion/Explosion.tscn")
+const TEXT = preload("res://Fonts/FloatingText.tscn")
 
 var habilidades = []
 

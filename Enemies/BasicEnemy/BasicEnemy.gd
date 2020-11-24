@@ -27,6 +27,8 @@ var tipo
 
 var explosion_color:Color
 
+const POINTS = 200
+
 func _ready():
 	$State_handler.init(player, self)
 	timer.set_one_shot(true)
@@ -93,7 +95,7 @@ func shoot():
 
 func _on_death():
 	_create_explosion()
-	GlobalVariables.points += 200
+	GlobalVariables.points += POINTS
 	get_tree().current_scene.update_score()
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
@@ -106,3 +108,10 @@ func _create_explosion():
 	explosion.get_child(0).process_material.color_ramp.gradient.colors[1] = explosion_color
 	explosion.get_child(0).emitting = true
 	get_parent().call_deferred("add_child", explosion)
+
+func _create_floating_text()->void:
+	var text = GlobalVariables.TEXT.instance()
+	text.amount = POINTS
+	text.position = position
+	text.color = explosion_color
+	get_parent().add_child(text)

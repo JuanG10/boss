@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Player/GreenBehavior.gd" type="Script" id=4]
 [ext_resource path="res://Player/BlueBehavior.gd" type="Script" id=5]
 [ext_resource path="res://Player/shield.png" type="Texture" id=6]
-[ext_resource path="res://Fonts/FloatingText.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
@@ -56,8 +55,6 @@ shape = SubResource( 2 )
 
 [node name="Change_color_timer" type="Timer" parent="."]
 one_shot = true
-
-[node name="FloatingText" parent="." instance=ExtResource( 7 )]
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_grab_coin"]

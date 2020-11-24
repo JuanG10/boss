@@ -136,20 +136,18 @@ func heal(x):
 		health =  GlobalVariables.Phealth
 	else:
 		health += x
-		$FloatingText.show_damage(x,"Heal")
 	label.on_update(health)
 
 func takeDamage(x):
 	if not invencibility:
 		if not isShielded:
 			health -= x
-			$FloatingText.show_damage(x,"Damage")
 			label.on_update(health)
 			shieldT.stop()
 			shieldT.start()
-#			if health <= 0:
-#				GlobalVariables.retry = true
-#				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
+			if health <= 0:
+				GlobalVariables.retry = true
+				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 		else:
 			remove_shield()
 			shieldT.start()

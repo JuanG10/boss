@@ -6,6 +6,8 @@ var friction = 0.95
 var target := Vector2.ZERO
 var velocity := Vector2.ZERO
 
+const POINTS = 100
+
 var slow_timer = Timer.new()
 var stun_timer = Timer.new()
 var is_stunned = false
@@ -81,8 +83,9 @@ func slow(slow, time):
 		speed *= slow
 
 func _on_death():
+	_create_floating_text()
 	_create_explosion()
-	GlobalVariables.points += 100
+	GlobalVariables.points += POINTS
 	get_tree().current_scene.update_score()
 	var c = GlobalVariables.coin.instance()
 	c.initialize(position)
@@ -108,3 +111,10 @@ func volver_a_color_actual():
 
 func _on_Timer_timeout():
 	volver_a_color_actual()
+
+func _create_floating_text()->void:
+	var text = GlobalVariables.TEXT.instance()
+	text.amount = POINTS
+	text.position = position
+	text.color = color_actual
+	get_parent().add_child(text)
