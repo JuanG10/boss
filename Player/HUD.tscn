@@ -67,9 +67,9 @@ __meta__ = {
 
 [node name="LastScore" type="Label" parent="."]
 margin_left = 14.5
-margin_top = 41.0
-margin_right = 161.5
-margin_bottom = 72.0
+margin_top = 39.6652
+margin_right = 266.5
+margin_bottom = 70.6652
 custom_fonts/font = SubResource( 3 )
 text = "LAST SCORE:	0"
 align = 1
