@@ -96,8 +96,6 @@ func _physics_process(_delta):
 		next_color()
 		if not states[pointer].shield:
 			remove_shield()
-		collision_layer = collisiones[pointer]
-		collision_mask  = collisiones[pointer]
 	if Input.is_action_just_pressed("previous_color") && $Change_color_timer.is_stopped():
 		$Change_color_timer.start()
 		previous_color()
