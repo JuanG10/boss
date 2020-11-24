@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fondo-de-tres-colores.jpg-2d7e5093da1b367f78c3514cbd5806dc.stex"
+path="res://.import/fondo-tres-futbol.jpg-ac74831373cd44967e655998a696a7a5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fondos/Prueba de shaders/imagenes_de_prueba/fondo-de-tres-colores.jpg"
-dest_files=[ "res://.import/fondo-de-tres-colores.jpg-2d7e5093da1b367f78c3514cbd5806dc.stex" ]
+source_file="res://Fondos/Prueba de shaders/imagenes_de_fondo/fondo-tres-futbol.jpg"
+dest_files=[ "res://.import/fondo-tres-futbol.jpg-ac74831373cd44967e655998a696a7a5.stex" ]
 
 [params]
 

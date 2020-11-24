@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fondo-azul-futbol_146x194.jpg-e2d3ebdf8eeb916b2be3a90c1edbd790.stex"
+path="res://.import/fondo-rojo.jpg-dfba1d0fd1686a06da34b2d452392ff7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fondos/Prueba de shaders/imagenes_de_prueba/fondo-azul-futbol_146x194.jpg"
-dest_files=[ "res://.import/fondo-azul-futbol_146x194.jpg-e2d3ebdf8eeb916b2be3a90c1edbd790.stex" ]
+source_file="res://Fondos/Prueba de shaders/imagenes_de_fondo/fondo-rojo.jpg"
+dest_files=[ "res://.import/fondo-rojo.jpg-dfba1d0fd1686a06da34b2d452392ff7.stex" ]
 
 [params]
 
