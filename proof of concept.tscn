@@ -76,12 +76,22 @@ __meta__ = {
 ]]
 position = Vector2( 1024, 600 )
 
-[node name="Borde" type="Sprite" parent="."]
-position = Vector2( -15.409, 302.387 )
-scale = Vector2( 0.0230588, 1.17124 )
+[node name="Borde_izquierdo" type="Sprite" parent="."]
+position = Vector2( -15.2421, 301.375 )
+scale = Vector2( 0.0230588, 1.23171 )
 texture = ExtResource( 6 )
 
-[node name="Borde2" type="Sprite" parent="."]
-position = Vector2( 1032.39, 300.289 )
-scale = Vector2( 0.0230588, 1.17124 )
+[node name="Borde_derecho" type="Sprite" parent="."]
+position = Vector2( 1038.57, 301.33 )
+scale = Vector2( 0.0230588, 1.23199 )
+texture = ExtResource( 6 )
+
+[node name="Borde_superior" type="Sprite" parent="."]
+position = Vector2( 511.882, -8.78685 )
+scale = Vector2( 2.03617, 0.0203389 )
+texture = ExtResource( 6 )
+
+[node name="Borde_inferior" type="Sprite" parent="."]
+position = Vector2( 511.704, 611.539 )
+scale = Vector2( 2.03617, 0.0200344 )
 texture = ExtResource( 6 )

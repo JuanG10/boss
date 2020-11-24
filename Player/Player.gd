@@ -206,10 +206,13 @@ func start_poison_timers():
 	$Sprite.modulate = Color.greenyellow # Buscar un color mejor
 	poison_dmg_timer.start()
 	poisonT.start()
+	$Change_color_timer.start(5) # Envenenado no puede cambiar de color
 
 func _on_poison_dmg_timeout():
 	takeDamage(1)
 
 func _on_poisonT_timeout():
+	print("poisonT")
+	$Change_color_timer.set_wait_time(1)
 	$Sprite.modulate = colores[pointer]
 	poison_dmg_timer.stop()
