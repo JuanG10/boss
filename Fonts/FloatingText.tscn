@@ -6,7 +6,7 @@
 [sub_resource type="DynamicFont" id=1]
 size = 20
 outline_size = 1
-outline_color = Color( 0.503906, 0, 0, 0.705882 )
+outline_color = Color( 0.501961, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
 

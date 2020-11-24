@@ -37,8 +37,9 @@ onready var B = get_node("States/Blue")
 # Trap timers
 var freezeT   = Timer.new()
 var ralentizacion:float = 1
-var poison_dmg_timer = Timer.new()
+#var poison_dmg_timer = Timer.new()
 var poisonT = Timer.new()
+const POISONED_TIME = 3
 
 onready var color_change_wait_time = Background.tiempo_transicion + 0.1
 onready var trapManager = get_tree().get_nodes_in_group("Traps")[0]
@@ -67,13 +68,13 @@ func _ready():
 	shieldT.set_wait_time(shield_speed)
 	add_child(shieldT)
 	poisonT.set_one_shot(true)
-	poisonT.set_wait_time(6)
+	poisonT.set_wait_time(POISONED_TIME)
 	poisonT.connect("timeout",self,"_on_poisonT_timeout")
 	add_child(poisonT)
-	poison_dmg_timer.set_one_shot(false)
-	poison_dmg_timer.set_wait_time(1.5)
-	poison_dmg_timer.connect("timeout",self,"_on_poison_dmg_timeout")
-	add_child(poison_dmg_timer)
+#	poison_dmg_timer.set_one_shot(false)
+#	poison_dmg_timer.set_wait_time(1.5)
+#	poison_dmg_timer.connect("timeout",self,"_on_poison_dmg_timeout")
+#	add_child(poison_dmg_timer)
 	freezeT.set_one_shot(true)
 	freezeT.set_wait_time(2.5)
 	freezeT.connect("timeout",self,"_on_freezeT_timeout")
@@ -198,7 +199,7 @@ func start_poison_timers():
 	$Sprite.modulate = Color(0,0.7,0.1) # Buscar un color mejor
 	#poison_dmg_timer.start() # Descomentar para tener daño por veneno.
 	poisonT.start()
-	$Change_color_timer.start(6) # Envenenado no puede cambiar de color
+	$Change_color_timer.start(POISONED_TIME) # Envenenado no puede cambiar de color
 
 func _on_poison_dmg_timeout():
 	takeDamage(1)
@@ -206,4 +207,4 @@ func _on_poison_dmg_timeout():
 func _on_poisonT_timeout():
 	$Change_color_timer.set_wait_time(color_change_wait_time)
 	$Sprite.modulate = colores[pointer]
-	poison_dmg_timer.stop()
+	#poison_dmg_timer.stop()
