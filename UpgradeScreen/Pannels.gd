@@ -2,8 +2,13 @@ extends Panel
 
 export (Resource) var background
 
+var nivel
+
 onready var upgradeMainWindow:Node2D = get_parent()
 var new_style = StyleBoxTexture.new()
+
+func set_nivel(level):
+	nivel = level
 
 func _ready():
 	new_style.texture = background
@@ -16,4 +21,4 @@ func _on_button_up(fill_mode:int, next_pos:Vector2)->void:
 func _on_Play_again_button_up():
 	Background._ready()
 	GlobalVariables.points = 0
-	upgradeMainWindow.get_tree().change_scene("res://proof of concept.tscn")
+	upgradeMainWindow.get_tree().change_scene(ManagerLevels.get_actual_level())

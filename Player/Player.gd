@@ -147,6 +147,8 @@ func takeDamage(x):
 			if health <= 0:
 				LevelPrimitives.playing = false
 				LevelPrimitives.retry = true
+				var level_actual = get_tree().current_scene.level_id
+				ManagerLevels.set_actual_level(level_actual)
 				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 		else:
 			remove_shield()
