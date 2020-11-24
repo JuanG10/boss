@@ -21,6 +21,7 @@ level_id = 1
 [node name="Complementos" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 309, 183.47 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.01, 0.01 )
