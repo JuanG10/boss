@@ -6,7 +6,7 @@ var speed = 2.4
 func activate_explosion():
 	$Explosion/Particles2D.emitting = true
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += velocity
 
 func set_values():	

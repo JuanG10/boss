@@ -44,7 +44,7 @@ func initialize(t, n):
 	explosion_color = colores[n]
 	tipo = n
 	special = specials[n]
-	if special == "special_orange" and GlobalVariables.retry == true:
+	if special == "special_orange" and LevelPrimitives.retry == true:
 		GlobalVariables.Admg *= 1.1
 		GlobalVariables.Ahealth *= 1.1
 		dmg = GlobalVariables.Admg
@@ -90,6 +90,7 @@ func _on_death():
 	_create_explosion()
 	GlobalVariables.points += POINTS
 	get_tree().current_scene.update_score()
+	get_parent().enemyCounter -= 1
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
 		c.initialize(position + Vector2(rand_range(0, i*10),rand_range(0, i*10)))

@@ -8,7 +8,7 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
-	if scale.length() < 15:
+	if scale.length() < 30:
 		scale *= 1 + delta*2
 	else:
 		remove()

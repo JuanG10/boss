@@ -10,12 +10,13 @@ var points = GlobalVariables.points
 
 func _ready():
 	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
+	spawnBasic(50, 1)
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
 
 func _process(_delta):
-	if timer.is_stopped():
+	if timer.is_stopped() and false:
 		timer.start()
 		if points < 100:
 			spawnMelee(6, randi()%3)

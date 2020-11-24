@@ -45,7 +45,7 @@ func initialize(t, n):
 	explosion_color = colores[n]
 	tipo = n
 	special = specials[n]
-	if special == "special_orange" and GlobalVariables.retry == true:
+	if special == "special_orange" and LevelPrimitives.retry == true:
 		GlobalVariables.Bdmg *= 1.1
 		GlobalVariables.Bhealth *= 1.1
 		dmg = GlobalVariables.Bdmg
@@ -88,6 +88,7 @@ func slow(slow, time):
 		speed *= slow
 
 func shoot():
+	#BulletHandler.add_bullet([$Muzzle.global_position, colores[tipo], rotation, self])
 	var b = Bullet.instance()
 	b.start($Muzzle.global_position, rotation, player, dmg, tipo)
 	get_parent().add_child(b)
@@ -97,6 +98,7 @@ func _on_death():
 	_create_explosion()
 	GlobalVariables.points += POINTS
 	get_tree().current_scene.update_score()
+	get_parent().enemyCounter -= 1
 	for i in range(3):
 		var c = GlobalVariables.coin.instance()
 		c.initialize(position + Vector2(rand_range(0, i*10),rand_range(0, i*10)))

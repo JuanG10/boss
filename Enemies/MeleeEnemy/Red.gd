@@ -12,6 +12,9 @@ func enter():
 	add_child(timer)
 	timer.start(2)
 
+func exit():
+	remove_child(timer)
+
 func initialize(p, e):
 	player = p
 	enemy = e

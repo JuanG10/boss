@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Levels/GotoShop.gd" type="Script" id=1]
+
+[node name="GotoShop" type="Button"]
+anchor_right = 0.044
+anchor_bottom = 0.038
+margin_right = -0.0560036
+margin_bottom = 0.199999
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = -5.89921
+margin_top = -13.9221
+margin_right = 51.1008
+margin_bottom = 0.0778503
+text = "You win!!"

@@ -47,7 +47,7 @@ func initialize(t, n):
 	color_actual     = colores[n]
 	explosion_color = colores[n]
 	special = specials[n]
-	if special == "special_orange" and GlobalVariables.retry == true:
+	if special == "special_orange" and LevelPrimitives.retry == true:
 		GlobalVariables.Mdmg *= 1.1
 		GlobalVariables.Mhealth *= 1.1
 		dmg = GlobalVariables.Mdmg
@@ -59,7 +59,7 @@ func recibi_danio():
 	$Timer.start()
 
 func takeDamage(n):
-	health -= 10
+	health -= n
 	recibi_danio()
 	if health <= 0:
 		get_parent().call_deferred("remove_child", self)
@@ -87,6 +87,7 @@ func _on_death():
 	_create_explosion()
 	GlobalVariables.points += POINTS
 	get_tree().current_scene.update_score()
+	get_parent().enemyCounter -= 1
 	var c = GlobalVariables.coin.instance()
 	c.initialize(position)
 	get_parent().call_deferred("add_child", c)

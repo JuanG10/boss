@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Boss"
-run/main_scene="res://proof of concept.tscn"
+run/main_scene="res://Levels/Level 1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -24,6 +24,8 @@ config/icon="res://icon.png"
 GlobalVariables="*res://global_variables.gd"
 SignalManager="*res://state_machine/SignalManager.gd"
 Background="*res://Fondos/Background.tscn"
+BulletHandler="*res://Test/BulletHandler.gd"
+LevelPrimitives="*res://Levels/LevelPrimitives.gd"
 
 [display]
 

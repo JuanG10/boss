@@ -15,6 +15,7 @@ var brn_dmg       = GlobalVariables.brn_dmg  		#Rojo, quemado de fuego
 var heal_speed    = GlobalVariables.heal_speed 		#Azul, velocidad de curacion
 var shield_speed  = GlobalVariables.shield_speed 	#Azul, escudo
 
+
 var invencibility         = false
 var speed_bullet          = 2
 
@@ -25,6 +26,7 @@ var isShielded = false
 
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
+
 #Blue, Orange and Red
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
 var states
@@ -134,7 +136,7 @@ func _movimiento():
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
-		health =  GlobalVariables.Phealth
+		health = GlobalVariables.Phealth
 	else:
 		health += x
 	label.on_update(health)
@@ -148,7 +150,8 @@ func takeDamage(x):
 			shieldT.stop()
 			shieldT.start()
 			if health <= 0:
-				GlobalVariables.retry = true
+				LevelPrimitives.playing = false
+				LevelPrimitives.retry = true
 				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 		else:
 			remove_shield()
@@ -163,13 +166,13 @@ func remove_shield():
 	$Shield.hide()
 
 func shoot():
+#	BulletHandler.add_bullet([$Muzzle.global_position, colores[pointer], rotation, self])
 	var b = Bullet.instance()
 	b.set_speed(speed_bullet)
 	b.modulate = colores[pointer]
 	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
 	get_parent().add_child(b)
 	shootT.start(atk_speed)
-
 
 func next_color():
 	pointer = (pointer + 1)%3

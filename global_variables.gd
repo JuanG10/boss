@@ -6,8 +6,6 @@ const TEXT = preload("res://Fonts/FloatingText.tscn")
 
 var habilidades = []
 
-var retry = false
-
 var invincibility_time = 2.5
 
 var last_points      = 0
@@ -24,7 +22,7 @@ var brn_dmg          = 1    #mejora aumentando el valor   Rojo
 var heal_speed       = 1.5  #mejora disminuyendo el valor Azul
 var shield_speed     = 5    #mejora disminuyendo el valor Azul
 var slow_ring_effect = .7   #mejora disminuyendo el valor
-var BFdmg            = 3    #mejora aumentando el valor    Rojo
+var BFdmg            = 20   #mejora aumentando el valor
 
 #Pslow, Pstun, magnet_radius, slow_ring_effect, BFdmg
 var Mhealth = 25
