@@ -1,9 +1,11 @@
 extends Area2D
 
+
 var speed = 4
 var velocity = Vector2()
 var player
 var dmg
+var explosion_collision = false
 
 var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
 var collisiones = [0b1, 0b10, 0b100]
@@ -23,8 +25,12 @@ func _physics_process(_delta):
 
 func _on_player_collision(area):
 	if area.is_in_group("Player"):
+		explosion_collision = true
 		player.takeDamage(dmg)
 		remove()
+
+func get_collision():
+	return explosion_collision
 
 func remove():
 	get_parent().call_deferred("remove_child", self)

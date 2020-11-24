@@ -1,6 +1,7 @@
 extends Area2D
 
 var Bullet = preload("res://Player/Bullet.tscn")
+var disparo_explosivo = preload("res://Disparo/ExplosionDisparo.tscn")
 const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 var label
 var coins  
@@ -14,7 +15,12 @@ var brn_dmg       = GlobalVariables.brn_dmg
 var heal_speed    = GlobalVariables.heal_speed
 var shield_speed  = GlobalVariables.shield_speed
 
-var invencibility = false
+
+var invencibility         = false
+var uso_dash              = false
+var uso_disparo_explosivo = false
+var uso_Attack_speed      = false
+var speed_bullet          = 2
 
 var shootT  = Timer.new()
 var healT   = Timer.new()
@@ -24,7 +30,9 @@ var isShielded = false
 var poisonT   = Timer.new()
 var freezeT   = Timer.new()
 var habilityT = Timer.new()
+var dash_use  = Timer.new()
 
+#Blue, Orange and Red
 var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
 var states
 var pointer     = 0
@@ -65,14 +73,15 @@ func _ready():
 
 func color_actual():
 	var sprite_modulate = $Sprite.modulate
-	if sprite_modulate == Color(1,0,0,1):
+	if sprite_modulate == Color(.702, .0823, .0706):
 		return "Red"
-	elif sprite_modulate == Color(0,0,1,1):
+	elif sprite_modulate == Color(.0627, .1255, .702):
 		return "Blue"
-	elif sprite_modulate == Color(0,1,0,1):
-		return "Green"
+	elif sprite_modulate == Color(.702, .3216, .1216):
+		return "Orange"
 
-func _physics_process(delta):
+func _physics_process(_delta):
+
 	look_at(get_global_mouse_position())
 	#if Input.is_action_just_pressed("ui_accept"):
 	#	speed *= 3
@@ -97,6 +106,20 @@ func _physics_process(delta):
 		heal(1)
 	if(shootT.is_stopped()):
 		shoot()
+	checkMovement()
+	if not poisonT.is_stopped():
+		takeDamage(1)
+	if Input.is_action_just_pressed("Activate_dash") && skill_condition("Dash",uso_dash,"Orange"):
+		dash()	
+		uso_dash = true
+	if Input.is_action_just_pressed("Disparo_especial") && skill_condition("Disparo explosivo",uso_disparo_explosivo,"Red"):
+		disparo_explosivo_()	
+		uso_disparo_explosivo = true
+	if Input.is_action_just_pressed("Attack_speed") && skill_condition("Attack_speed",uso_Attack_speed,"Blue"):
+		attack_speed()
+		uso_Attack_speed = true
+
+func checkMovement():
 	if Input.is_action_pressed('right'):
 		if freezeT.is_stopped():
 			position.x += speed
@@ -117,8 +140,23 @@ func _physics_process(delta):
 			position.y -= speed
 		else:
 			position.y -= speed * .75
-	if not poisonT.is_stopped():
-		takeDamage(1)
+
+
+func attack_speed():
+	speed_bullet = 5 
+	$Timer_attack_speed.set_wait_time(3)
+	$Timer_attack_speed.start()
+		
+		
+func skill_condition(name_habilidad,use_skill,color):
+	return 	posee_habilidad(name_habilidad) && !use_skill && color_actual() == color
+	
+	
+func posee_habilidad(name_habilidad):
+	var boolean = false
+	for habilidad in GlobalVariables.habilidades:
+		boolean = boolean || habilidad == name_habilidad
+	return boolean			
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
@@ -151,11 +189,28 @@ func remove_shield():
 func shoot():
 #	BulletHandler.add_bullet([$Muzzle.global_position, colores[pointer], rotation, self])
 	var b = Bullet.instance()
+	b.set_speed(speed_bullet)
 	b.modulate = colores[pointer]
 	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
 	get_parent().add_child(b)
 	shootT.start(atk_speed)
-	pass
+
+func disparo_explosivo_():
+	var d = disparo_explosivo.instance()
+	d.position = $Muzzle.global_position
+	d.rotation = rotation
+	d.set_values()
+	get_parent().add_child(d)
+	$Timer_Disparo_explosivo.set_wait_time(5)
+	$Timer_Disparo_explosivo.start()
+	
+	
+func dash():
+	speed = 20
+	$Timer_restar_Dash.set_wait_time(5)
+	$Timer_restar_Dash.start()
+	$Timer_dash.set_wait_time(0.1)
+	$Timer_dash.start()
 
 func next_color():
 	pointer = (pointer + 1)%3
@@ -174,7 +229,7 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int)->void:
 	$Sprite.modulate = colores[n]
-	FogBackground.change_bg_color(n)
+	FogBackground.change_bg_color(colores[n])
 	TrapManager.change_trap_type(colores[n])
 
 func _create_floating_text(amount:int, type:String)->void:
@@ -184,6 +239,23 @@ func _create_floating_text(amount:int, type:String)->void:
 	text.rotation_degrees = 90
 	add_child(text)
 
+
+func _on_Timer_dash_timeout():
+	speed = GlobalVariables.Pspeed
+	
+func _on_Timer_restar_Dash_timeout():
+	uso_dash = false
+
+
+func _on_Timer_Disparo_explosivo_timeout():
+	 uso_disparo_explosivo  = false
+
+
+func _on_Timer_attack_speed_timeout():
+	speed_bullet = 2
+	uso_Attack_speed = false
+
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):
 		takeDamage(area.dmg)
+

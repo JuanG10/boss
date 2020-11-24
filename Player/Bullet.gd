@@ -14,6 +14,12 @@ func start(pos, dir, damage, tipo, estado):
 	velocity = Vector2(speed, 0).rotated(rotation)
 	type = tipo
 
+
+
+func set_speed(value_speed):
+	speed = value_speed
+
+
 func on_enemy_entered(_d, area, _a, _b):
 	if area.is_in_group("Enemy"):
 		state.handle(area)
@@ -22,6 +28,7 @@ func on_enemy_entered(_d, area, _a, _b):
 		else:
 			area.takeDamage(dmg/3)
 		remove()
+
 
 func _physics_process(_delta):
 	position += velocity

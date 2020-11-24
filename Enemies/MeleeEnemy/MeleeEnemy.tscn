@@ -17,7 +17,7 @@ radius = 62.2762
 [sub_resource type="CircleShape2D" id=3]
 radius = 89.3743
 
-[node name="Node2D" type="Area2D" groups=[
+[node name="Meele" type="Area2D" groups=[
 "Enemy",
 ]]
 collision_layer = 131329
@@ -59,6 +59,9 @@ collision_mask = 2147614720
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlockingArea"]
 position = Vector2( -0.632813, -0.0234375 )
 shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
 [connection signal="tree_exiting" from="." to="." method="_on_death"]
 [connection signal="area_entered" from="ChargeRange" to="." method="close_enough"]
 [connection signal="area_exited" from="ChargeRange" to="." method="far_enough"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

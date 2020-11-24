@@ -11,15 +11,18 @@ const BASE = {
 	bala = preload("res://Iconos/bala_base.png"),
 	limitador = preload("res://Iconos/limitador_base.png"),
 	escudo = preload("res://Iconos/defensa_base.png"),
-	pistola = preload("res://Iconos/pistola_base.png")
+	pistola = preload("res://Iconos/pistola_base.png"),
+	explosion = preload("res://Iconos/explosion.jpg")
 }
-const GREEN = {
+##Naranja
+const ORANGE = {
 	cuchillo = preload("res://Iconos/cuchillo_azul-violeta.png"),
 	escudo = preload("res://Iconos/defensa_base.png"),
-	pistola = preload("res://Iconos/pistola_azul-violeta.png")
+	pistola = preload("res://Iconos/pistola_azul-violeta.png"),
+	dash    = preload("res://Iconos/relampago.png")
 }
 const BLUE = {
-	corazon = preload("res://Iconos/corazon.png")
+	attack_speed = preload("res://Iconos/attack_speed.png")
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
@@ -28,19 +31,12 @@ var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
 
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
-	if parent_name == "BasePanel":
-		add_item("Bala: +Cadencia " + precio, BASE.bala) #0
-		add_item("Limitador: +Velocidad " + precio, BASE.limitador) #1
-		add_item("Pistola: +Daño " + precio, BASE.pistola) #3
-		add_item("Escudo: +Vida " + precio, GREEN.escudo) #2
-	elif parent_name == "RedPanel":
-		add_item("Cuchillo: +Daño a corta distancia contra rojo", GREEN.cuchillo)
-		add_item("Pistola: +Daño a distancia contra rojo", GREEN.pistola)
-		add_item("Bala: +Cadencia " + precio, BASE.bala) 
+	if parent_name == "RedPanel":
+		add_item("Disparo explosivo " + precio, BASE.explosion)
 	elif parent_name == "GreenPanel":
-		add_item("Escudo: +Vida " + precio, GREEN.escudo) #2
+		add_item("Dash " + precio, ORANGE.dash) #2
 	elif parent_name == "BluePanel":
-		add_item("Corazon: +Vida" + precio,BLUE.corazon)
+		add_item("Attack_speed " + precio, BLUE.attack_speed)
 
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
@@ -51,7 +47,6 @@ func animacion_monedas():
 
 
 
-#Si alguno cumple la condicion, compra, y agrega el nombre de la habilidad en un lista de GlobalVariables
 func compra_base_panel():
 	if _get_selected_item()   == 0: 
 		GlobalVariables.Patk_speed *= 0.9
@@ -68,35 +63,25 @@ func compra_base_panel():
 
 func comprar_red_panel():
 	if _get_selected_item()   == 0: 
-			GlobalVariables.add_habilidad_Red("Cuchillo")
-			music_compra_and_animation()
-	elif _get_selected_item() == 1: 
-			GlobalVariables.add_habilidad_Red("damage_1")
-			music_compra_and_animation()
-	elif _get_selected_item()   == 2: 
-			GlobalVariables.add_habilidad_Red("atk_speed")
+			GlobalVariables.habilidades.append("Disparo explosivo")
 			music_compra_and_animation()
 
-
-func comprar_green_panel():
+func comprar_orange_panel():
 	if _get_selected_item() == 0: 
-		GlobalVariables.add_habilidad_Green("shield")
+		GlobalVariables.habilidades.append("Dash")
 		music_compra_and_animation()
 
 
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
-		GlobalVariables.add_habilidad_Blue("Corazon")
+		GlobalVariables.habilidades.append("Attack_speed")
 		music_compra_and_animation()
 
 
 func music_compra_and_animation():
 	animacion_monedas()
 	music_moneda_play()
-
-
-
 
 
 func music_moneda_play():
@@ -117,21 +102,13 @@ func _on_Timer_timeout():
 	music_moneda_stop()
 
 
-
-
-
-
-
 func _on_upgrade_list_item_activated(index):
-			#GlobalVariables.money >= intPrecio
 	if GlobalVariables.money >= intPrecio:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
-		if parent_name == "BasePanel":
-			compra_base_panel()
-		elif parent_name == "RedPanel":
+		if parent_name == "RedPanel":
 			comprar_red_panel()
 		elif parent_name == "GreenPanel":
-			comprar_green_panel()
+			comprar_orange_panel()
 		elif parent_name == "BluePanel":
 			comprar_blue_panel()

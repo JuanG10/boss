@@ -17,6 +17,9 @@ var special
 var charge_flag = false
 
 var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
+
+var color_gris  = Color(0.345098,0.329412,0.329412,1)
+var color_actual 
 var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
 
@@ -39,6 +42,7 @@ func initialize(t, n):
 	player = t
 	tipo = n
 	$Sprite.modulate = colores[n]
+	color_actual     = colores[n]
 	explosion_color = colores[n]
 	special = specials[n]
 	if special == "special_orange" and LevelPrimitives.retry == true:
@@ -47,8 +51,16 @@ func initialize(t, n):
 		dmg = GlobalVariables.Mdmg
 		health = GlobalVariables.Mhealth
 
+func recibi_danio():
+	$Sprite.modulate = color_gris
+	$Timer.set_wait_time(0.3)
+	$Timer.start()
+
+
+	
 func takeDamage(n):
 	health -= n
+	recibi_danio()
 	if health <= 0:
 		get_parent().call_deferred("remove_child", self)
 		queue_free()
@@ -57,6 +69,9 @@ func burn():
 	for _i in range(10):
 		takeDamage(player.brn_dmg)
 		yield(get_tree().create_timer(.1), "timeout")
+
+func get_class():
+	return "Meele"
 
 func stun(time):
 	stun_timer.start(time)
@@ -89,3 +104,10 @@ func _create_explosion():
 	explosion.get_child(0).process_material.color_ramp.gradient.colors[1] = explosion_color
 	explosion.get_child(0).emitting = true
 	get_parent().call_deferred("add_child", explosion)
+
+
+func volver_a_color_actual():
+	$Sprite.modulate = color_actual 
+	
+func _on_Timer_timeout():
+	volver_a_color_actual()

@@ -20,6 +20,49 @@ drag_margin_v_enabled = true
 
 [node name="CanvasLayer" parent="Player" instance=ExtResource( 2 )]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+script = ExtResource( 9 )
+
+[node name="HP" type="Label" parent="Player/CanvasLayer"]
+margin_right = 50.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+text = "HP: 100"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="Label" parent="Player/CanvasLayer"]
+margin_left = 0.00356674
+margin_top = 24.7791
+margin_right = 96.0036
+margin_bottom = 42.7791
+custom_fonts/font = SubResource( 2 )
+text = "Coins: 0"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Habilidades" type="Label" parent="Player/CanvasLayer"]
+anchor_left = 0.58
+anchor_top = 0.58
+anchor_right = 0.58
+anchor_bottom = 0.58
+margin_left = -72.7852
+margin_top = -12.8853
+margin_right = 23.2148
+margin_bottom = 1.11475
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position2D" type="Position2D" parent="Player/CanvasLayer/Habilidades"]
+position = Vector2( 232.706, 113.823 )
+
 [node name="Cursor" type="Sprite" parent="."]
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 5 )

@@ -63,7 +63,7 @@ func change_trap_type(color:Color)->void:
 
 func _get_new_color_trap(color:Color)->PackedScene:
 	match color:
-		Color.red: return TRAPS.RED
-		Color.green: return TRAPS.GREEN
-		Color.blue: return TRAPS.BLUE
+		Color(.0627, .1255, .702): return TRAPS.RED
+		Color(.702, .3216, .1216): return TRAPS.GREEN
+		Color(.702, .0823, .0706): return TRAPS.BLUE
 		_: return null

@@ -3,6 +3,8 @@ extends Node
 var coin = preload("res://Coin.tscn")
 const EXPLOSION = preload("res://Enemies/Explosion/Explosion.tscn")
 
+var habilidades = []
+
 var invincibility_time = 2.5
 
 var money            = 0
