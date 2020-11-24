@@ -9,6 +9,7 @@
 
 [node name="Level 5" type="Node"]
 script = ExtResource( 2 )
+level_id = 5
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 

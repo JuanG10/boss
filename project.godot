@@ -26,6 +26,7 @@ SignalManager="*res://state_machine/SignalManager.gd"
 Background="*res://Fondos/Background.tscn"
 BulletHandler="*res://Test/BulletHandler.gd"
 LevelPrimitives="*res://Levels/LevelPrimitives.gd"
+ManagerLevels="*res://UpgradeScreen/ManagerLevels.gd"
 
 [display]
 

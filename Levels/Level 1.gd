@@ -4,6 +4,8 @@ var timer = Timer.new()
 var enemyCounter = 8
 var counter = 0
 
+export(int) var level_id
+
 func _ready():
 	LevelPrimitives.initialize($Player, self)
 	LevelPrimitives.playing = true

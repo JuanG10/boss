@@ -9,6 +9,7 @@
 
 [node name="Level 1" type="Node"]
 script = ExtResource( 1 )
+level_id = 1
 
 [node name="Complementos" parent="." instance=ExtResource( 6 )]
 

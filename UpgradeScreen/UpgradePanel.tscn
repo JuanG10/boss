@@ -6,7 +6,9 @@
 [ext_resource path="res://Coins.gd" type="Script" id=4]
 [ext_resource path="res://moneda_particula/#SOUNDPERFECT  Money Coins In Hand  No Copyright SoundsSound Effect(HD).ogg" type="AudioStream" id=5]
 
-[node name="UpgradePanel" type="Panel"]
+[node name="UpgradePanel" type="Panel" groups=[
+"Shop",
+]]
 margin_right = 1335.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
@@ -87,6 +89,9 @@ margin_top = 40.0
 margin_right = 192.0
 margin_bottom = 128.0
 text = "Jugar de nuevo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Coins" type="Label" parent="."]
 margin_left = 768.0
