@@ -1,7 +1,6 @@
 extends Area2D
 
 var Bullet = preload("res://Player/Bullet.tscn")
-var disparo_explosivo = preload("res://Disparo/ExplosionDisparo.tscn")
 const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 onready var label = $HUD/HP
 onready var coins = $HUD/Coins 
