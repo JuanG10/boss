@@ -6,16 +6,17 @@ onready var ancho_pantalla = ProjectSettings.get_setting("display/window/size/wi
 onready var alto_pantalla = ProjectSettings.get_setting("display/window/size/height")
 
 var tiempo_transicion:float = 1.1
-var fondo_actual:int = 0
+var fondo_actual:int
 var next:bool
 
 const FONDOS = {
 	0 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/hexagonal_azul.jpg"),
-	1 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/fondo_naranja.jpg"),
+	1 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/naranja_vectorial.jpg"),
 	2 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/rojo_topografico.jpg")
 }
 
 func _ready():
+	fondo_actual = 0
 	texture = FONDOS[fondo_actual]
 	get_material().set_shader_param("image",FONDOS[fondo_actual+1])
 

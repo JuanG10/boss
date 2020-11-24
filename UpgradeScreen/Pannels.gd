@@ -14,5 +14,6 @@ func _on_button_up(fill_mode:int, next_pos:Vector2)->void:
 	upgradeMainWindow.change_panel_to(fill_mode, next_pos)
 
 func _on_Play_again_button_up():
+	Background._ready()
+	GlobalVariables.points = 0
 	upgradeMainWindow.get_tree().change_scene("res://proof of concept.tscn")
-	TrapManager._ready()

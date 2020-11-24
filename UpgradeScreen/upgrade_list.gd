@@ -7,22 +7,24 @@ const intPrecio = 30
 const precio = "$" + str(intPrecio) # Debería ir incrementando.
 
 # Iconos. Hardcodeado por ahora.
-const BASE = {
-	bala = preload("res://Iconos/bala_base.png"),
-	limitador = preload("res://Iconos/limitador_base.png"),
-	escudo = preload("res://Iconos/defensa_base.png"),
-	pistola = preload("res://Iconos/pistola_base.png"),
-	explosion = preload("res://Iconos/explosion.jpg")
-}
 ##Naranja
 const ORANGE = {
-	cuchillo = preload("res://Iconos/cuchillo_azul-violeta.png"),
-	escudo = preload("res://Iconos/defensa_base.png"),
-	pistola = preload("res://Iconos/pistola_azul-violeta.png"),
-	dash    = preload("res://Iconos/relampago.png")
+	SPEED =   preload("res://Iconos/attack_speed.png")          #Aumento de velocidad
 }
 const BLUE = {
-	attack_speed = preload("res://Iconos/attack_speed.png")
+	PATK_SPEED   = preload("res://Iconos/meditation.png"),  #Velocidad de Ataque 
+	HEALTH       = preload("res://Iconos/Paz_Mental.png"),  #Mejora de vida  
+	HEAL_SPEED   = preload("res://Iconos/HEAL_SPEED.jpg"),  #Velocidad de curacion                              
+	SHIELD_SPEED = preload("res://Iconos/escudo.png"),       #mejora de escudo
+	SLOWN        = null,
+	SLOW_RING_EFFEC = null,
+}
+
+const RED = {
+	DAMAGE    	= preload("res://Iconos/DAMAGE.png"),  #Aumento de danio
+	BRN_DAMAGE	= preload("res://Iconos/BRN_DAMAGE.png"),
+	STUN        = null,
+	BFdmg       = null
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
@@ -32,51 +34,49 @@ var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "RedPanel":
-		add_item("Disparo explosivo " + precio, BASE.explosion)
+		add_item("Agudeza mental " + precio, RED.DAMAGE)
+		add_item("BRN_DAMAGE " + precio,RED.BRN_DAMAGE)
+		add_item("STUN" + precio, RED.STUN)
+		add_item("BFDMG" + precio, RED.BFdmg)
 	elif parent_name == "GreenPanel":
-		add_item("Dash " + precio, ORANGE.dash) #2
+		add_item( "Speed " + precio, ORANGE.SPEED) #2		
 	elif parent_name == "BluePanel":
-		add_item("Attack_speed " + precio, BLUE.attack_speed)
-
+		add_item("Paz mental  " + precio, BLUE.HEALTH)
+		add_item("Meditacion " + precio, BLUE.PATK_SPEED)
+		add_item("Velocidad de curacion " + precio, BLUE.HEAL_SPEED)
+		add_item("Mejora de escudo " + precio, BLUE.SHIELD_SPEED)
+		add_item("SLOWN" + precio, BLUE.SLOWN)
+		add_item("SLOW_RING_EFFEC" + precio, BLUE.SLOW_RING_EFFEC)
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
 	var monedas         = preload("res://moneda_particula/Moneda_particula.tscn").instance()
 	monedas.position = posicion_mondea
 	add_child(monedas)
-	
 
-
-
-func compra_base_panel():
-	if _get_selected_item()   == 0: 
-		GlobalVariables.Patk_speed *= 0.9
-		music_compra_and_animation()
-	elif _get_selected_item() == 1: 
-			GlobalVariables.add_habilidad_Red("Speed")
-			music_compra_and_animation()
-	elif _get_selected_item() == 2: 
-			GlobalVariables.add_habilidad_Red("damage")
-			music_compra_and_animation()
-	elif _get_selected_item() == 3:
-			GlobalVariables.add_habilidad_Green("shield")
-			music_compra_and_animation()
 
 func comprar_red_panel():
-	if _get_selected_item()   == 0: 
-			GlobalVariables.habilidades.append("Disparo explosivo")
-			music_compra_and_animation()
+	if _get_selected_item() == 0:
+		GlobalVariables.Pdmg  +=5
+		music_compra_and_animation() 
 
 func comprar_orange_panel():
 	if _get_selected_item() == 0: 
-		GlobalVariables.habilidades.append("Dash")
+		GlobalVariables.Pspeed += 1
 		music_compra_and_animation()
-
-
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
-		GlobalVariables.habilidades.append("Attack_speed")
+		GlobalVariables.Phealth += 20
 		music_compra_and_animation()
+	elif _get_selected_item() == 1:
+		GlobalVariables.Patk_speed -= 0.1 
+		music_compra_and_animation()	
+	elif _get_selected_item() == 2:
+		GlobalVariables.heal_speed -= 0.5
+		music_compra_and_animation()
+	elif _get_selected_item() == 3:
+		GlobalVariables.shield_speed -= 1
+		music_compra_and_animation()		
 
 
 func music_compra_and_animation():
@@ -103,7 +103,8 @@ func _on_Timer_timeout():
 
 
 func _on_upgrade_list_item_activated(index):
-	if GlobalVariables.money >= intPrecio:
+	#GlobalVariables.money >= intPrecio
+	if true:
 		GlobalVariables.money -= intPrecio
 		get_parent().get_node("Coins").on_update()
 		if parent_name == "RedPanel":

@@ -1,8 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UpgradeScreen/UpgradePanel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Fondos/fondo-tres-futbol.jpg" type="Texture" id=2]
+[ext_resource path="res://Fondos/Prueba de shaders/imagenes_de_prueba/fondo-tres-futbol.jpg" type="Texture" id=2]
+
 
 [node name="BasePanel" instance=ExtResource( 1 )]
 background = ExtResource( 2 )
+
+[node name="Top_button" parent="." index="4"]
+margin_left = 455.964
+margin_top = 71.1271
+margin_right = 767.964
+margin_bottom = 431.127
 [connection signal="item_activated" from="upgrade_list" to="upgrade_list" method="_on_list_item_activated"]

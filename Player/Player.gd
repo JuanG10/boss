@@ -6,19 +6,16 @@ const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 var label
 var coins  
 
-var speed         = GlobalVariables.Pspeed
-var atk_speed     = GlobalVariables.Patk_speed
-var health        = GlobalVariables.Phealth
-var dmg           = GlobalVariables.Pdmg
-var magnet_radius = GlobalVariables.magnet_radius
-var brn_dmg       = GlobalVariables.brn_dmg
-var heal_speed    = GlobalVariables.heal_speed
-var shield_speed  = GlobalVariables.shield_speed
+var speed         = GlobalVariables.Pspeed     		#Naranja, velocidad de movimiento
+var atk_speed     = GlobalVariables.Patk_speed 		#Azul, velocidad de ataque
+var health        = GlobalVariables.Phealth    		#Azul, vida
+var dmg           = GlobalVariables.Pdmg       		#Rojo, daño
+var magnet_radius = GlobalVariables.magnet_radius 	#De todos los colores
+var brn_dmg       = GlobalVariables.brn_dmg  		#Rojo, quemado de fuego
+var heal_speed    = GlobalVariables.heal_speed 		#Azul, velocidad de curacion
+var shield_speed  = GlobalVariables.shield_speed 	#Azul, escudo
 
 var invencibility         = false
-var uso_dash              = false
-var uso_disparo_explosivo = false
-var uso_Attack_speed      = false
 var speed_bullet          = 2
 
 var shootT  = Timer.new()
@@ -26,8 +23,6 @@ var healT   = Timer.new()
 var shieldT = Timer.new()
 var isShielded = false
 
-var poisonT   = Timer.new()
-var freezeT   = Timer.new()
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
 #Blue, Orange and Red
@@ -39,7 +34,18 @@ onready var R = get_node("States/Red")
 onready var O = get_node("States/Orange")
 onready var B = get_node("States/Blue")
 
-onready var color_change_wait_time = Background.tiempo_transicion
+# Trap timers
+var freezeT   = Timer.new()
+var ralentizacion:float = 1
+#var poison_dmg_timer = Timer.new()
+var poisonT = Timer.new()
+const POISONED_TIME = 3
+
+onready var color_change_wait_time = Background.tiempo_transicion + 0.1
+onready var trapManager = get_tree().get_nodes_in_group("Traps")[0]
+
+onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
+onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo")[0].global_position
 
 func initialize(l,c):
 	label = l
@@ -62,32 +68,37 @@ func _ready():
 	shieldT.set_wait_time(shield_speed)
 	add_child(shieldT)
 	poisonT.set_one_shot(true)
-	poisonT.set_wait_time(5)
+	poisonT.set_wait_time(POISONED_TIME)
+	poisonT.connect("timeout",self,"_on_poisonT_timeout")
 	add_child(poisonT)
+#	poison_dmg_timer.set_one_shot(false)
+#	poison_dmg_timer.set_wait_time(1.5)
+#	poison_dmg_timer.connect("timeout",self,"_on_poison_dmg_timeout")
+#	add_child(poison_dmg_timer)
 	freezeT.set_one_shot(true)
 	freezeT.set_wait_time(2.5)
+	freezeT.connect("timeout",self,"_on_freezeT_timeout")
 	add_child(freezeT)
 	habilityT.set_one_shot(true)
 	habilityT.set_wait_time(15)
 	add_child(habilityT)
 	$Change_color_timer.set_wait_time(color_change_wait_time)
 
-func color_actual():
-	var sprite_modulate = $Sprite.modulate
-	if sprite_modulate == Color(.702, .0823, .0706):
-		return "Red"
-	elif sprite_modulate == Color(.0627, .1255, .702):
-		return "Blue"
-	elif sprite_modulate == Color(.702, .3216, .1216):
-		return "Orange"
+func _process(delta):
+	if global_position.x < limite_minimo_pantalla.x:
+		global_position.x = limite_minimo_pantalla.x + 2
+	elif global_position.x > limite_maximo_pantalla.x:
+		global_position.x = limite_maximo_pantalla.x - 2
+	
+	if global_position.y < limite_minimo_pantalla.y:
+		global_position.y = limite_minimo_pantalla.y + 2
+	elif global_position.y > limite_maximo_pantalla.y:
+		global_position.y = limite_maximo_pantalla.y - 2
 
 func _physics_process(_delta):
 
 	look_at(get_global_mouse_position())
-	#if Input.is_action_just_pressed("ui_accept"):
-	#	speed *= 3
-	#if Input.is_action_just_released("ui_accept"):
-	#	speed /= 3
+	
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
 		habilityT.start()
 		states[pointer].power()
@@ -109,72 +120,29 @@ func _physics_process(_delta):
 		heal(1)
 	if(shootT.is_stopped()):
 		shoot()
+	_movimiento()
 
+func _movimiento():
 	if Input.is_action_pressed('right'):
-		if freezeT.is_stopped():
-			position.x += speed
-		else:
-			position.x += speed * .75
+		position.x += speed * ralentizacion
 	if Input.is_action_pressed('left'):
-		if freezeT.is_stopped():
-			position.x -= speed
-		else:
-			position.x -= speed * .75
+		position.x -= speed * ralentizacion
 	if Input.is_action_pressed('down'):
-		if freezeT.is_stopped():
-			position.y += speed
-		else:
-			position.y += speed * .75
+		position.y += speed * ralentizacion
 	if Input.is_action_pressed('up'):
-		if freezeT.is_stopped():
-			position.y -= speed
-		else:
-			position.y -= speed * .75
-	if not poisonT.is_stopped():
-		takeDamage(1)
-	if Input.is_action_just_pressed("Activate_dash") && skill_condition("Dash",uso_dash,"Orange"):
-		dash()	
-		uso_dash = true
-	if Input.is_action_just_pressed("Disparo_especial") && skill_condition("Disparo explosivo",uso_disparo_explosivo,"Red"):
-		disparo_explosivo()	
-		uso_disparo_explosivo = true
-	if Input.is_action_just_pressed("Attack_speed") && skill_condition("Attack_speed",uso_Attack_speed,"Blue"):
-		attack_speed()
-		uso_Attack_speed = true
-		
-		
-		
-		
-		
-func attack_speed():
-	speed_bullet = 5 
-	$Timer_attack_speed.set_wait_time(3)
-	$Timer_attack_speed.start()
-		
-		
-func skill_condition(name_habilidad,use_skill,color):
-	return 	posee_habilidad(name_habilidad) && !use_skill && color_actual() == color
-	
-	
-func posee_habilidad(name_habilidad):
-	var boolean = false
-	for habilidad in GlobalVariables.habilidades:
-		boolean = boolean || habilidad == name_habilidad
-	return boolean			
+		position.y -= speed * ralentizacion
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
 		health =  GlobalVariables.Phealth
 	else:
 		health += x
-		_create_floating_text(x, "Heal")
 	label.on_update(health)
 
 func takeDamage(x):
 	if not invencibility:
 		if not isShielded:
 			health -= x
-			_create_floating_text(x, "Damage")
 			label.on_update(health)
 			shieldT.stop()
 			shieldT.start()
@@ -197,22 +165,6 @@ func shoot():
 	get_parent().add_child(b)
 	shootT.start(atk_speed)
 
-func disparo_explosivo():
-	var d = disparo_explosivo.instance()
-	d.position = $Muzzle.global_position
-	d.rotation = rotation
-	d.set_values()
-	get_parent().add_child(d)
-	$Timer_Disparo_explosivo.set_wait_time(5)
-	$Timer_Disparo_explosivo.start()
-	
-	
-func dash():
-	speed = 20
-	$Timer_restar_Dash.set_wait_time(5)
-	$Timer_restar_Dash.start()
-	$Timer_dash.set_wait_time(0.1)
-	$Timer_dash.start()
 
 func next_color():
 	pointer = (pointer + 1)%3
@@ -231,33 +183,28 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int,next:bool)->void:
 	$Sprite.modulate = colores[n]
+	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[n])
 	Background.start_bg_transition(n, next, position.x, position.y)
-	TrapManager.change_trap_type(colores[n])
-
-func _create_floating_text(amount:int, type:String)->void:
-	var text = DMG_TEXT.instance()
-	text.amount = amount
-	text.type = type
-	text.rotation_degrees = 90
-	add_child(text)
-
-
-func _on_Timer_dash_timeout():
-	speed = GlobalVariables.Pspeed
-	
-func _on_Timer_restar_Dash_timeout():
-	uso_dash = false
-
-
-func _on_Timer_Disparo_explosivo_timeout():
-	 uso_disparo_explosivo  = false
-
-
-func _on_Timer_attack_speed_timeout():
-	speed_bullet = 2
-	uso_Attack_speed = false
+	trapManager.change_trap_type(colores[n])
 
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):
 		takeDamage(area.dmg)
 
+############## RELACIONADO A LAS TRAMPAS ########################
+func _on_freezeT_timeout():
+	ralentizacion = 1
+
+func start_poison_timers():
+	$Sprite.modulate = Color(0,0.7,0.1) # Buscar un color mejor
+	#poison_dmg_timer.start() # Descomentar para tener daño por veneno.
+	poisonT.start()
+	$Change_color_timer.start(POISONED_TIME) # Envenenado no puede cambiar de color
+
+func _on_poison_dmg_timeout():
+	takeDamage(1)
+
+func _on_poisonT_timeout():
+	$Change_color_timer.set_wait_time(color_change_wait_time)
+	$Sprite.modulate = colores[pointer]
+	#poison_dmg_timer.stop()

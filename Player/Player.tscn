@@ -53,14 +53,8 @@ collision_mask = 524288
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
 
-[node name="Timer_dash" type="Timer" parent="."]
-
 [node name="Change_color_timer" type="Timer" parent="."]
 one_shot = true
-[connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
+[connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_grab_coin"]
-[connection signal="timeout" from="Timer_dash" to="." method="_on_Timer_dash_timeout"]
-[connection signal="timeout" from="Timer_restar_Dash" to="." method="_on_Timer_restar_Dash_timeout"]
-[connection signal="timeout" from="Timer_Disparo_explosivo" to="." method="_on_Timer_Disparo_explosivo_timeout"]
-[connection signal="timeout" from="Timer_attack_speed" to="." method="_on_Timer_attack_speed_timeout"]

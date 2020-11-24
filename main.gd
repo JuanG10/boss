@@ -6,7 +6,7 @@ onready var advanced_tmplt = preload("res://Enemies/AdvancedEnemy/AdvancedEnemy.
 
 var timer = Timer.new()
 
-var points = 0
+var points = GlobalVariables.points
 
 func _ready():
 	$Player.initialize($Player/CanvasLayer/HP, $Player/CanvasLayer/Coins)
@@ -18,25 +18,25 @@ func _process(_delta):
 	if timer.is_stopped():
 		timer.start()
 		if points < 100:
-			spawnMelee(6,randi()%3)
+			spawnMelee(6, randi()%3)
 		elif points < 300:
-			spawnMelee(4,randi()%3)
-			spawnBasic(2,randi()%3)
+			spawnMelee(4, randi()%3)
+			spawnBasic(2, randi()%3)
 		elif points < 500:
-			spawnMelee(3,randi()%3)
-			spawnBasic(2,randi()%3)
-			spawnAdvanced(1,randi()%3)
+			spawnMelee(3, randi()%3)
+			spawnBasic(2, randi()%3)
+			spawnAdvanced(1, randi()%3)
 		elif points < 1000:
-			spawnMelee(6,randi()%3)
-			spawnBasic(1,randi()%3)
-			spawnAdvanced(3,randi()%3)
+			spawnMelee(6, randi()%3)
+			spawnBasic(1, randi()%3)
+			spawnAdvanced(3, randi()%3)
 		elif points < 2000:
-			spawnMelee(4,randi()%3)
-			spawnBasic(6,randi()%3)
-			spawnAdvanced(2,randi()%3)
+			spawnMelee(4, randi()%3)
+			spawnBasic(6, randi()%3)
+			spawnAdvanced(2, randi()%3)
 		else:
-			spawnBasic(6,randi()%3)
-			spawnAdvanced(6,randi()%3)
+			spawnBasic(6, randi()%3)
+			spawnAdvanced(6, randi()%3)
 
 func spawnMelee(n, c):
 	for _i in range(n):
@@ -58,6 +58,9 @@ func spawnAdvanced(n, c):
 		enemy.initialize($Player, c)
 		enemy.set_position(Vector2(RandomPos())) 
 		add_child(enemy)
+
+func update_score():
+	$Player/CanvasLayer/Score.set_text("Score: " + str(GlobalVariables.points))
 
 func RandomPos():
 	return(Vector2(random_x(), random_y()))
