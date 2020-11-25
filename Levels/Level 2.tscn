@@ -45,7 +45,7 @@ __meta__ = {
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 515.643, 302.238 )
 current = true
-zoom = Vector2( 0.8, 0.8 )
+zoom = Vector2( 1.1, 1.1 )
 __meta__ = {
 "_editor_description_": ""
 }

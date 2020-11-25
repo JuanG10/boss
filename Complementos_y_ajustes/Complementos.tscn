@@ -14,7 +14,9 @@ environment = ExtResource( 1 )
 [node name="Traps" parent="." instance=ExtResource( 4 )]
 
 [node name="min_pantalla" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )
 
 [node name="max_pantalla" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1024, 600 )
 
 [node name="Marco" parent="." instance=ExtResource( 2 )]
