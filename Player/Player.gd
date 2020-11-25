@@ -14,7 +14,7 @@ var magnet_radius = GlobalVariables.magnet_radius 	#De todos los colores
 var brn_dmg       = GlobalVariables.brn_dmg  		#Rojo, quemado de fuego
 var heal_speed    = GlobalVariables.heal_speed 		#Azul, velocidad de curacion
 var shield_speed  = GlobalVariables.shield_speed 	#Azul, escudo
-
+var color_gris  = Color(0.345098,0.329412,0.329412,1)
 
 var invencibility         = false
 var speed_bullet          = 5
@@ -43,6 +43,7 @@ var ralentizacion:float = 1
 var poisonT = Timer.new()
 const POISONED_TIME = 3
 
+var color_actual
 onready var color_change_wait_time = Background.tiempo_transicion + 0.1
 
 onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
@@ -55,6 +56,7 @@ func _ready():
 	O.initialize(self)
 	B.initialize(self)
 	$Sprite.modulate = colores[pointer]
+	color_actual     = colores[pointer]
 	shootT.set_one_shot(true)
 	shootT.set_wait_time(atk_speed)
 	add_child(shootT)
@@ -84,6 +86,18 @@ func _ready():
 func _process(delta):
 	_not_pass_frame_limit()
 
+func recibi_danio():
+	$Sprite.modulate = color_gris
+	$Timer.set_wait_time(0.3)
+	$Timer.start()
+	
+
+func volver_a_color_actual():
+	$Sprite.modulate = color_actual 
+
+func _on_Timer_timeout():
+	volver_a_color_actual()
+	
 func _physics_process(_delta):
 
 	look_at(get_global_mouse_position())
@@ -91,6 +105,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
 		habilityT.start()
 		hability_bar.start_progress(colores[pointer])
+		color_actual = colores[pointer]
 		states[pointer].power()
 	if Input.is_action_just_pressed("next_color") && $Change_color_timer.is_stopped():
 		$Change_color_timer.start()
@@ -147,6 +162,7 @@ func takeDamage(x):
 	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
 			health -= x
+			recibi_danio()
 			set_last_score()
 			label.on_update(health)
 			shieldT.stop()
@@ -181,6 +197,7 @@ func shoot():
 
 func next_color():
 	pointer = (pointer + 1)%3
+	color_actual = colores[pointer]
 	_change_with_color(pointer,true)
 
 func previous_color():
