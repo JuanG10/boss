@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Menues/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=1]
 
 [node name="Node2D" type="Node"]
 
@@ -15,6 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+route = "res://Menues/MainMenu.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2

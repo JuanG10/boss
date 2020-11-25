@@ -48,4 +48,5 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512.831, 299.04 )
+current = true
 zoom = Vector2( 1.1, 1.1 )

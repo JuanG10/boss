@@ -1,32 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Menues/Level 5.gd" type="Script" id=1]
-[ext_resource path="res://Menues/Level 2.gd" type="Script" id=2]
-[ext_resource path="res://Menues/Level 3.gd" type="Script" id=3]
-[ext_resource path="res://Menues/Level 4.gd" type="Script" id=4]
-[ext_resource path="res://Menues/MainMenu.gd" type="Script" id=5]
-[ext_resource path="res://Menues/Level 6.gd" type="Script" id=6]
-[ext_resource path="res://Menues/Endless.gd" type="Script" id=7]
+[ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=8]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Button
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _pressed():
-	get_tree().change_scene(\"res://Levels/Level 1.tscn\")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
-
-[node name="Levles" type="Node"]
+[node name="Levels" type="Node"]
 
 [node name="Level 1" type="Button" parent="."]
 margin_left = -985.366
@@ -34,10 +10,11 @@ margin_top = 32.7525
 margin_right = -902.366
 margin_bottom = 62.7525
 text = "Level 1"
-script = SubResource( 1 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Levels/Level 1.tscn"
 
 [node name="Level 2" type="Button" parent="."]
 margin_left = -985.028
@@ -45,10 +22,11 @@ margin_top = 70.7065
 margin_right = -902.028
 margin_bottom = 100.707
 text = "Level 2"
-script = ExtResource( 2 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Levels/Level 2.tscn"
 
 [node name="Level 3" type="Button" parent="."]
 margin_left = -985.343
@@ -56,10 +34,11 @@ margin_top = 107.924
 margin_right = -902.343
 margin_bottom = 137.924
 text = "Level 3"
-script = ExtResource( 3 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Levels/Level 3.tscn"
 
 [node name="Level 4" type="Button" parent="."]
 margin_left = -985.676
@@ -67,10 +46,11 @@ margin_top = 145.924
 margin_right = -902.676
 margin_bottom = 175.924
 text = "Level 4"
-script = ExtResource( 4 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Levels/Level 4.tscn"
 
 [node name="Level 5" type="Button" parent="."]
 margin_left = -850.768
@@ -78,10 +58,11 @@ margin_top = 33.5017
 margin_right = -767.768
 margin_bottom = 63.5017
 text = "Level 5"
-script = ExtResource( 1 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Levels/Level 5.tscn"
 
 [node name="Level 6" type="Button" parent="."]
 margin_left = -850.93
@@ -89,10 +70,11 @@ margin_top = 71.4557
 margin_right = -767.93
 margin_bottom = 101.456
 text = "Level 6"
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Levels/Level 6.tscn"
 
 [node name="Endless" type="Button" parent="."]
 margin_left = -851.245
@@ -100,10 +82,11 @@ margin_top = 108.673
 margin_right = -768.245
 margin_bottom = 138.673
 text = "Endless"
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Levels/Endless.tscn"
 
 [node name="GoBack" type="Button" parent="."]
 pause_mode = 2
@@ -112,10 +95,11 @@ margin_top = 146.673
 margin_right = -768.578
 margin_bottom = 176.673
 text = "Back"
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Menues/MainMenu.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -873.314, 104.455 )

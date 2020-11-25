@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Menues/Resume.gd" type="Script" id=1]
 [ext_resource path="res://Menues/Options.gd" type="Script" id=2]
-[ext_resource path="res://Menues/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=3]
 [ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
 [ext_resource path="res://Menues/PauseMenu.gd" type="Script" id=5]
 
@@ -42,6 +42,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+route = "res://Menues/MainMenu.tscn"
 
 [node name="Exit" type="Button" parent="."]
 margin_left = -1481.34
