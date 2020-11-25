@@ -1,5 +1,7 @@
 extends Node
 
+export(int) var level_id
+
 onready var melee_template = preload("res://Enemies/MeleeEnemy/MeleeEnemy.tscn")
 onready var basic_template = preload("res://Enemies/BasicEnemy/BasicEnemy.tscn")
 onready var advanced_tmplt = preload("res://Enemies/AdvancedEnemy/AdvancedEnemy.tscn")

@@ -15,7 +15,6 @@ font_data = ExtResource( 7 )
 
 [node name="Level 1" type="Node"]
 script = ExtResource( 1 )
-level_id = 1
 
 [node name="Complementos" parent="." instance=ExtResource( 6 )]
 
@@ -48,6 +47,5 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 515.643, 302.238 )
-current = true
-zoom = Vector2( 0.8, 0.8 )
+position = Vector2( 512.831, 299.04 )
+zoom = Vector2( 1.1, 1.1 )
