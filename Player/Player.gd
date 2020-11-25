@@ -4,6 +4,7 @@ var Bullet = preload("res://Player/Bullet.tscn")
 const DMG_TEXT = preload("res://Fonts/FloatingText.tscn")
 onready var label = $HUD/HP
 onready var coins = $HUD/Coins 
+onready var hability_bar = $HabilityCircleBar
 
 var speed         = GlobalVariables.Pspeed     		#Naranja, velocidad de movimiento
 var atk_speed     = GlobalVariables.Patk_speed 		#Azul, velocidad de ataque
@@ -16,7 +17,7 @@ var shield_speed  = GlobalVariables.shield_speed 	#Azul, escudo
 
 
 var invencibility         = false
-var speed_bullet          = 2
+var speed_bullet          = 5
 
 var shootT  = Timer.new()
 var healT   = Timer.new()
@@ -27,7 +28,7 @@ var habilityT = Timer.new()
 var dash_use  = Timer.new()
 
 #Blue, Orange and Red
-var colores     = [Color(.0627, .1255, .702), Color(.702, .3216, .1216), Color(.702, .0823, .0706)]
+var colores     = [Color(.0627, .1255, .702), Color(.9, .56, .0), Color(.702, .0823, .0706)]
 var states
 var pointer     = 0
 
@@ -76,20 +77,12 @@ func _ready():
 	freezeT.connect("timeout",self,"_on_freezeT_timeout")
 	add_child(freezeT)
 	habilityT.set_one_shot(true)
-	habilityT.set_wait_time(15)
+	habilityT.set_wait_time(10)
 	add_child(habilityT)
 	$Change_color_timer.set_wait_time(color_change_wait_time)
 
 func _process(delta):
-	if global_position.x < limite_minimo_pantalla.x:
-		global_position.x = limite_minimo_pantalla.x + 2
-	elif global_position.x > limite_maximo_pantalla.x:
-		global_position.x = limite_maximo_pantalla.x - 2
-	
-	if global_position.y < limite_minimo_pantalla.y:
-		global_position.y = limite_minimo_pantalla.y + 2
-	elif global_position.y > limite_maximo_pantalla.y:
-		global_position.y = limite_maximo_pantalla.y - 2
+	_not_pass_frame_limit()
 
 func _physics_process(_delta):
 
@@ -97,6 +90,7 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
 		habilityT.start()
+		hability_bar.start_progress(colores[pointer])
 		states[pointer].power()
 	if Input.is_action_just_pressed("next_color") && $Change_color_timer.is_stopped():
 		$Change_color_timer.start()
@@ -129,6 +123,18 @@ func _movimiento():
 		position.y += speed * ralentizacion
 	if Input.is_action_pressed('up'):
 		position.y -= speed * ralentizacion
+
+func _not_pass_frame_limit():
+	# frame = marco de los bordes de la pantalla.
+	if global_position.x < limite_minimo_pantalla.x:
+		global_position.x = limite_minimo_pantalla.x + 2
+	elif global_position.x > limite_maximo_pantalla.x:
+		global_position.x = limite_maximo_pantalla.x - 2
+	
+	if global_position.y < limite_minimo_pantalla.y:
+		global_position.y = limite_minimo_pantalla.y + 2
+	elif global_position.y > limite_maximo_pantalla.y:
+		global_position.y = limite_maximo_pantalla.y - 2
 
 func heal(x):
 	if(health + x > GlobalVariables.Phealth):
@@ -190,6 +196,7 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int,next:bool)->void:
 	$Sprite.modulate = colores[n]
+	hability_bar.tint_progress = colores[n]
 	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[n])
 	Background.start_bg_transition(n, next, position.x, position.y)
 	get_tree().current_scene.get_node("Complementos/Traps").change_trap_type(colores[n])

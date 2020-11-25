@@ -8,7 +8,7 @@ const TRAPS = {
 
 const COLORS = {
 	red = Color(.702, .0823, .0706),
-	orange = Color(.702, .3216, .1216),
+	orange = Color(.9, .56, .0),
 	blue = Color(.0627, .1255, .702)
 }
 
