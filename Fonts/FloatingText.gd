@@ -31,7 +31,7 @@ func _ready():
 #	side_movement = randi() % 100
 	
 	
-	twenn.interpolate_property(self, 'scale', scale, Vector2(1.1,1.1), 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	twenn.interpolate_property(self, 'scale', scale, Vector2(1.1,1.1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	twenn.interpolate_property(self, 'scale', Vector2(1.1,1.1), Vector2(0.1,0.1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.25)
 	twenn.start()
 
