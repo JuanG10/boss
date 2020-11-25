@@ -22,7 +22,7 @@ func _on_button_up(fill_mode:int, next_pos:Vector2)->void:
 func _on_Play_again_button_up():
 	Background._ready()
 	GlobalVariables.points = 0
-	upgradeMainWindow.get_tree().change_scene(LevelPrimitives.nextLevel)
+	upgradeMainWindow.get_tree().change_scene(ManagerLevels.get_actual_level())
 
 
 func _on_Next_Level_pressed():
