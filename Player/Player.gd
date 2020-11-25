@@ -230,15 +230,18 @@ func _on_freezeT_timeout():
 	ralentizacion = 1
 
 func start_poison_timers():
-	$Sprite.modulate = Color(0,0.7,0.1) # Buscar un color mejor
+	# Envenenado no puede cambiar de color
+	color_actual     = Color(0,0.7,0.1)
+	$Sprite.modulate = Color(0,0.7,0.1)
 	#poison_dmg_timer.start() # Descomentar para tener daño por veneno.
 	poisonT.start()
-	$Change_color_timer.start(POISONED_TIME) # Envenenado no puede cambiar de color
+	$Change_color_timer.start(POISONED_TIME)
 
 func _on_poison_dmg_timeout():
 	takeDamage(1)
 
 func _on_poisonT_timeout():
+	color_actual = colores[pointer]
 	$Change_color_timer.set_wait_time(color_change_wait_time)
 	$Sprite.modulate = colores[pointer]
 	#poison_dmg_timer.stop()
