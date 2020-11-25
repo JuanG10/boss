@@ -24,5 +24,4 @@ func _process(_delta):
 		LevelPrimitives.playing   = false
 		LevelPrimitives.retry     = false
 		LevelPrimitives.nextLevel = "res://Levels/Level 3.tscn" 
-		$GotoShop.show()
-	
+		$Player/HUD/GotoShop.show()

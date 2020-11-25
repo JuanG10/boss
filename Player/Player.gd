@@ -197,7 +197,6 @@ func shoot():
 
 func next_color():
 	pointer = (pointer + 1)%3
-	color_actual = colores[pointer]
 	_change_with_color(pointer,true)
 
 func previous_color():
@@ -212,6 +211,7 @@ func _on_grab_coin(area):
 	coins.on_update()
 
 func _change_with_color(n:int,next:bool)->void:
+	color_actual = colores[pointer]
 	$Sprite.modulate = colores[n]
 	hability_bar.tint_progress = colores[n]
 	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[n])
