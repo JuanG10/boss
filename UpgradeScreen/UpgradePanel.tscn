@@ -72,13 +72,27 @@ __meta__ = {
 
 [node name="Play_again_button" type="Button" parent="."]
 margin_left = 455.184
-margin_top = 444.14
+margin_top = 443.14
 margin_right = 623.184
-margin_bottom = 532.14
+margin_bottom = 531.14
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.0509804, 0.666667, 0, 1 )
 text = "Jugar de nuevo"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next_Level" type="Button" parent="."]
+margin_left = 720.187
+margin_top = 445.15
+margin_right = 888.187
+margin_bottom = 533.15
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.184314, 0.890196, 0.0823529, 1 )
+text = "Next Level"
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -104,3 +118,4 @@ stream = ExtResource( 5 )
 [connection signal="button_up" from="Left_button" to="." method="_on_button_up" binds= [ 0, Vector2( -1, 0 ) ]]
 [connection signal="button_up" from="Right_button" to="." method="_on_button_up" binds= [ 1, Vector2( 1, 0 ) ]]
 [connection signal="button_up" from="Play_again_button" to="." method="_on_Play_again_button_up"]
+[connection signal="pressed" from="Next_Level" to="." method="_on_Next_Level_pressed"]

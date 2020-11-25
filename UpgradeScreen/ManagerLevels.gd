@@ -2,6 +2,8 @@ extends Node
 
 var actual_level
 var next_level 
+var level_crossing = false
+
 
 const levels = {
 	1:"res://Levels/Level 1.tscn",

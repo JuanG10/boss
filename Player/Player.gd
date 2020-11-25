@@ -117,6 +117,8 @@ func _physics_process(_delta):
 	if(shootT.is_stopped()):
 		shoot()
 	_movimiento()
+	if get_tree().current_scene.enemyCounter == 0 && !ManagerLevels.level_crossing:
+		ManagerLevels.level_crossing = true
 
 func _movimiento():
 	if Input.is_action_pressed('right'):
@@ -152,6 +154,7 @@ func takeDamage(x):
 		else:
 			remove_shield()
 			shieldT.start()
+			
 
 func set_last_score():
 	if GlobalVariables.last_points < GlobalVariables.points:
