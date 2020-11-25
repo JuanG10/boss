@@ -6,6 +6,7 @@ var counter = 0
 export(int) var level_id
 
 func _ready():
+	ManagerLevels.level_crossing = false
 	LevelPrimitives.initialize($Player, self)
 	LevelPrimitives.playing = true
 	timer.set_one_shot(true)
