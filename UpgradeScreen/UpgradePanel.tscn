@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UpgradeScreen/Pannels.gd" type="Script" id=1]
 [ext_resource path="res://UpgradeScreen/upgrade_list.gd" type="Script" id=2]
@@ -15,6 +15,12 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -113,6 +119,17 @@ __meta__ = {
 
 [node name="music_moneda" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 523.378
+margin_top = 72.6489
+margin_right = 584.378
+margin_bottom = 111.649
+custom_fonts/font = SubResource( 3 )
+text = "SHOP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="item_activated" from="upgrade_list" to="upgrade_list" method="_on_upgrade_list_item_activated"]
 [connection signal="timeout" from="upgrade_list/Timer" to="upgrade_list" method="_on_Timer_timeout"]
 [connection signal="button_up" from="Left_button" to="." method="_on_button_up" binds= [ 0, Vector2( -1, 0 ) ]]
