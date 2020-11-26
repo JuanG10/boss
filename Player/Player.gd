@@ -49,6 +49,8 @@ onready var color_change_wait_time = Background.tiempo_transicion + 0.1
 onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
 onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo")[0].global_position
 
+onready var camera = get_tree().get_nodes_in_group("camera")[0]
+
 func _ready():
 	label.on_update(health)
 	states = [B, O, R]
@@ -161,6 +163,7 @@ func heal(x):
 func takeDamage(x):
 	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
+			camera.shake(1,0.8)
 			health -= x
 			recibi_danio()
 			set_last_score()

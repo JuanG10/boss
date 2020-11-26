@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://general_enviroment.tres" type="Environment" id=1]
 [ext_resource path="res://Complementos_y_ajustes/Marco.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Complementos_y_ajustes/min_pantalla.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Trampas/Trap_node.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Complementos_y_ajustes/max_pantalla.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Complementos_y_ajustes/Camera.tscn" type="PackedScene" id=6]
 
 [node name="Complementos" type="Node"]
 
@@ -20,3 +21,5 @@ position = Vector2( 0, 0 )
 position = Vector2( 1024, 600 )
 
 [node name="Marco" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera" parent="." instance=ExtResource( 6 )]

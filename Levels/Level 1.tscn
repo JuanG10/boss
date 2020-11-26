@@ -46,8 +46,3 @@ Mouse to aim"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 511.945, 299.813 )
-current = true
-zoom = Vector2( 1.1, 1.1 )
