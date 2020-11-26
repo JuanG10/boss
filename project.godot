@@ -26,6 +26,7 @@ Background="*res://Fondos/Background.tscn"
 BulletHandler="*res://Test/BulletHandler.gd"
 LevelPrimitives="*res://Levels/LevelPrimitives.gd"
 ManagerLevels="*res://UpgradeScreen/ManagerLevels.gd"
+Upgrades="*res://UpgradeScreen/Upgrades.gd"
 
 [display]
 

@@ -190,12 +190,12 @@ func remove_shield():
 	$Shield.hide()
 
 func shoot():
-#	BulletHandler.add_bullet([$Muzzle.global_position, colores[pointer], rotation, self])
-	var b = Bullet.instance()
-	b.set_speed(speed_bullet)
-	b.modulate = colores[pointer]
-	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
-	get_parent().add_child(b)
+	BulletHandler.add_bullet([$Muzzle.global_position, colores[pointer], rotation, self])
+#	var b = Bullet.instance()
+#	b.set_speed(speed_bullet)
+#	b.modulate = colores[pointer]
+#	b.start($Muzzle.global_position, rotation, dmg, pointer, states[pointer])
+#	get_parent().add_child(b)
 	shootT.start(atk_speed)
 
 func next_color():

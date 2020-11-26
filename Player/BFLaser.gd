@@ -8,7 +8,7 @@ func _physics_process(delta):
 	for area in get_overlapping_areas():
 		if area.is_in_group("Enemy"):
 			#area.burn()
-			area.takeDamage(GlobalVariables.BFdmg * delta)
+			area.takeDamage(GlobalVariables.LaserDMG * delta)
 
 func remove():
 	get_parent().call_deferred("remove_child", self)
