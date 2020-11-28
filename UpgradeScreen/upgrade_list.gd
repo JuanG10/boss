@@ -3,35 +3,6 @@ extends ItemList
 onready var parent_name = get_parent().name
 const ICON_SIZE = Vector2(100,100)
 
-var DMGUpgCounter     = 0
-var intPrecioDMG      = 30
-var precioDMG         = "$" + str(intPrecioDMG)
-var BRNUpgCounter     = 0
-var intPrecioBRN      = 30
-var precioBRN         = "$" + str(intPrecioBRN)
-var SpeedUpgCounter   = 0
-var intPrecioSpeed    = 100
-var precioSpeed       = "$" + str(intPrecioSpeed)
-var HPUpgCounter      = 0
-var intPrecioHP       = 15
-var precioHP          = "$" + str(intPrecioHP)
-var AtkSUpgCounter    = 0
-var intPrecioAtkS     = 80
-var preciAtkS         = "$" + str(intPrecioAtkS)
-var HealSUpgCounter   = 0
-var intPrecioHealS    = 150
-var preciHealS        = "$" + str(intPrecioHealS)
-var ShieldSUpgCounter = 0
-var intPrecioShieldS  = 70
-var precioShieldS     = "$" + str(intPrecioShieldS)
-var StunUpgCounter    = 0
-var intPrecioStun     = 10
-var preciStun         = "$" + str(intPrecioStun)
-var InvTUpgCounter    = 0
-var intPrecioInvT     = 90
-var precioInvT        = "$" + str(intPrecioInvT)
-
-
 # Iconos. Hardcodeado por ahora.
 ##Naranja
 const ORANGE = {
@@ -61,18 +32,18 @@ var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
 func _ready():
 	set_fixed_icon_size(ICON_SIZE)
 	if parent_name == "RedPanel":
-		add_item("Damage: " + precioDMG, RED.DAMAGE)
+		add_item("Damage: " + Upgrades.precioDMG, RED.DAMAGE)
 		#add_item("BRN_DAMAGE: " + precioBRN, RED.BRN_DAMAGE)
 		#add_item("STUN" + precio, RED.STUN)
 		#add_item("Laser Damage: " + precio, RED.LaserDMG)
 	elif parent_name == "GreenPanel":
-		add_item( "Speed: " + precioSpeed, ORANGE.SPEED) #2
-		add_item("Heal Speed: " + preciHealS, ORANGE.HEAL_SPEED)
-		add_item("Health: " + precioHP, ORANGE.HEALTH)
+		add_item("Speed: " + Upgrades.precioSpeed, ORANGE.SPEED) #2
+		add_item("Heal Speed: " + Upgrades.precioHealS, ORANGE.HEAL_SPEED)
+		add_item("Health: " + Upgrades.precioHP, ORANGE.HEALTH)
 		#add_item("Invulnerability Time: " + precioInvT, ORANGE.INVULNERABILITY)
 	elif parent_name == "BluePanel":
-		add_item("Patk Speed: " + preciAtkS, BLUE.PATK_SPEED)
-		add_item("Shield Speed: " + precioShieldS, BLUE.SHIELD_SPEED)
+		add_item("Patk Speed: " + Upgrades.precioAtkS, BLUE.PATK_SPEED)
+		add_item("Shield Speed: " + Upgrades.precioShieldS, BLUE.SHIELD_SPEED)
 		#add_item("SLOWN" + precio, BLUE.SLOWN)
 		#add_item("SLOW_RING_EFFEC" + precio, BLUE.SLOW_RING_EFFEC)
 		
@@ -85,7 +56,7 @@ func animacion_monedas():
 
 func comprar_red_panel():
 	if _get_selected_item() == 0:
-		Upgrades.dmgUpgrade()
+		Upgrades.dmgUpgrade(self)
 		music_compra_and_animation() 
 	elif _get_selected_item() == 1:
 		GlobalVariables.brn_dmg += 5
@@ -93,21 +64,21 @@ func comprar_red_panel():
 
 func comprar_orange_panel():
 	if _get_selected_item() == 0: 
-		GlobalVariables.Pspeed += 1
+		Upgrades.speedUpgrade(self)
+		music_compra_and_animation()
+	elif _get_selected_item() == 1:
+		Upgrades.healUpgrade(self)
+		music_compra_and_animation()
+	elif _get_selected_item() == 2:
+		Upgrades.HPUpgrade(self)
 		music_compra_and_animation()
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
-		GlobalVariables.Phealth += 20
+		Upgrades.atkSpeedUpgrade(self)
 		music_compra_and_animation()
 	elif _get_selected_item() == 1:
-		GlobalVariables.Patk_speed -= 0.1 
-		music_compra_and_animation()
-	elif _get_selected_item() == 2:
-		GlobalVariables.heal_speed -= 0.5
-		music_compra_and_animation()
-	elif _get_selected_item() == 3:
-		GlobalVariables.shield_speed -= 1
+		Upgrades.shieldUpgrade(self)
 		music_compra_and_animation()
 
 
@@ -136,12 +107,31 @@ func _on_Timer_timeout():
 
 func _on_upgrade_list_item_activated(index):
 	#GlobalVariables.money >= intPrecio
-	if GlobalVariables.money >= intPrecio:
-		GlobalVariables.money -= intPrecio
-		get_parent().get_node("Coins").on_update()
-		if parent_name == "RedPanel":
-			comprar_red_panel()
-		elif parent_name == "GreenPanel":
-			comprar_orange_panel()
-		elif parent_name == "BluePanel":
-			comprar_blue_panel()
+	if parent_name == "RedPanel":
+		if _get_selected_item() == 0:
+			if GlobalVariables.money >= Upgrades.intPrecioDMG:
+				GlobalVariables.money -= Upgrades.intPrecioDMG
+				comprar_red_panel()
+	elif parent_name == "GreenPanel":
+		if _get_selected_item() == 0:
+			if GlobalVariables.money >= Upgrades.intPrecioSpeed:
+				GlobalVariables.money -= Upgrades.intPrecioSpeed
+				comprar_orange_panel()
+		if _get_selected_item() == 1:
+			if GlobalVariables.money >= Upgrades.intPrecioHealS:
+				GlobalVariables.money -= Upgrades.intPrecioHealS
+				comprar_orange_panel()
+		if _get_selected_item() == 2:
+			if GlobalVariables.money >= Upgrades.intPrecioHP:
+				GlobalVariables.money -= Upgrades.intPrecioHP
+				comprar_orange_panel()
+	elif parent_name == "BluePanel":
+		if _get_selected_item() == 0:
+			if GlobalVariables.money >= Upgrades.intPrecioAtkS:
+				GlobalVariables.money -= Upgrades.intPrecioAtkS
+				comprar_blue_panel()
+		if _get_selected_item() == 1:
+			if GlobalVariables.money >= Upgrades.intPrecioShieldS:
+				GlobalVariables.money -= Upgrades.intPrecioShieldS
+				comprar_blue_panel()
+	get_parent().get_node("Coins").on_update()

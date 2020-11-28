@@ -15,4 +15,7 @@ func grab():
 	remove()
 
 func _on_Timer_timeout():
+	$Timer2.start()
+
+func _on_Timer2_timeout():
 	remove()
