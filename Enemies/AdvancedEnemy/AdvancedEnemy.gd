@@ -25,6 +25,11 @@ var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color
 var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
 
+var relativeVel = Vector2.ZERO
+var closingPos  = Vector2.ZERO
+var closingTime = Vector2.ZERO
+var prediction  = Vector2.ZERO
+
 var explosion_color:Color
 const POINTS = 250
 
@@ -73,6 +78,7 @@ func slow(slow, time):
 		speed *= slow
 
 func _process(_delta):
+	update()
 	if stun_timer.is_stopped():
 		is_stunned = false
 	if slow_timer.is_stopped():
@@ -80,9 +86,16 @@ func _process(_delta):
 	if(timer.is_stopped() and not is_stunned):
 		shoot()
 
+func update():
+	relativeVel = player.velocity*player.speed - Vector2(4,0).rotated(rotation)
+	closingPos  = player.global_position - global_position
+	closingTime = closingPos.length() / relativeVel.length()
+	prediction  = player.global_position + (player.velocity * player.speed * closingTime)
+
 func takeDamage(n):
 	health -= n
 	if health <= 0:
+		BulletHandler.reParent(self)
 		get_parent().call_deferred("remove_child", self)
 		queue_free()
 
@@ -106,10 +119,11 @@ func _create_explosion():
 
 func shoot():
 	for _i in range(3):
-		var b = Bullet.instance()
-		b.start($Muzzle.global_position, rotation, player, dmg, tipo)
-		get_parent().add_child(b)
-		yield(get_tree().create_timer(.02), "timeout")
+		BulletHandler.add_bullet([$Muzzle.global_position, colores[tipo], rotation, self])
+#		var b = Bullet.instance()
+#		b.start($Muzzle.global_position, rotation, player, dmg, tipo)
+#		get_parent().add_child(b)
+		yield(get_tree().create_timer(.005), "timeout")
 	timer.start(atk_speed)
 
 func _create_floating_text()->void:

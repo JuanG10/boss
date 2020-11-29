@@ -48,8 +48,8 @@ script = ExtResource( 6 )
 script = ExtResource( 7 )
 
 [node name="ChargeRange" type="Area2D" parent="."]
-collision_layer = 1024
-collision_mask = 0
+collision_layer = 0
+collision_mask = 1024
 
 [node name="ChargeRange" type="CollisionShape2D" parent="ChargeRange"]
 shape = SubResource( 2 )

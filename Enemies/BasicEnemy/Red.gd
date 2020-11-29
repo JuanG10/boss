@@ -18,7 +18,7 @@ func update(_delta):
 		emit_signal("finished", "chasing")
 	#side_to_side()
 	if not enemy.is_stunned:
-		enemy.look_at(player.global_position)
+		enemy.look_at(enemy.prediction)
 
 func side_to_side():
 	var even_iteration = false

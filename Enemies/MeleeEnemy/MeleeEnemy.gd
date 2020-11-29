@@ -118,4 +118,4 @@ func _create_floating_text()->void:
 	text.amount = POINTS
 	text.position = position
 	text.color = color_actual
-	get_parent().add_child(text)
+	get_parent().call_deferred("add_child", text)

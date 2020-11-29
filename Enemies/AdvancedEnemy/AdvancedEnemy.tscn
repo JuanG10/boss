@@ -53,8 +53,8 @@ script = ExtResource( 7 )
 script = ExtResource( 8 )
 
 [node name="Minimun_range" type="Area2D" parent="."]
-collision_layer = 1024
-collision_mask = 0
+collision_layer = 0
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Minimun_range"]
 shape = SubResource( 2 )
