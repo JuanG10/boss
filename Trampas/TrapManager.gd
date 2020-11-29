@@ -12,8 +12,8 @@ const COLORS = {
 	blue = Color(.0627, .1255, .702)
 }
 
-const WIDTH:int = 740
-const HEIGHT:int = 460
+const WIDTH:int = 900
+const HEIGHT:int = 600
 
 var open_simplex_noise:OpenSimplexNoise
 

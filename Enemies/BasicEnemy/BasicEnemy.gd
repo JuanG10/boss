@@ -76,7 +76,7 @@ func _process(_delta):
 func update():
 	relativeVel = player.velocity*player.speed - Vector2(4,0).rotated(rotation)
 	closingPos  = player.global_position - global_position
-	closingTime = closingPos.length() / relativeVel.length()
+	closingTime = closingPos.length() / relativeVel.length() + 0.0000001
 	prediction  = player.global_position + (player.velocity * player.speed * closingTime)
 
 func takeDamage(n):

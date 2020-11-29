@@ -24,6 +24,8 @@ var healT   = Timer.new()
 var shieldT = Timer.new()
 var isShielded = false
 
+onready var shield = $Shield
+
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
 
@@ -45,6 +47,7 @@ const POISONED_TIME = 3
 
 var color_actual
 onready var color_change_wait_time = Background.tiempo_transicion + 0.1
+onready var change_color_timer = $Change_color_timer
 
 onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
 onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo")[0].global_position
@@ -85,7 +88,7 @@ func _ready():
 	habilityT.set_one_shot(true)
 	habilityT.set_wait_time(10)
 	add_child(habilityT)
-	$Change_color_timer.set_wait_time(color_change_wait_time)
+	change_color_timer.set_wait_time(color_change_wait_time)
 
 func _process(delta):
 	_not_pass_frame_limit()
@@ -111,19 +114,19 @@ func _physics_process(_delta):
 		hability_bar.start_progress(colores[pointer])
 		color_actual = colores[pointer]
 		states[pointer].power()
-	if Input.is_action_just_pressed("next_color") && $Change_color_timer.is_stopped():
-		$Change_color_timer.start()
+	if Input.is_action_just_pressed("next_color") && change_color_timer.is_stopped():
+		change_color_timer.start()
 		next_color()
 		if not states[pointer].shield:
 			remove_shield()
-	if Input.is_action_just_pressed("previous_color") && $Change_color_timer.is_stopped():
-		$Change_color_timer.start()
+	if Input.is_action_just_pressed("previous_color") && change_color_timer.is_stopped():
+		change_color_timer.start()
 		previous_color()
 		if not states[pointer].shield:
 			remove_shield()
 	if(states[pointer].shield and shieldT.is_stopped()):
 		isShielded = true
-		$Shield.show()
+		shield.show()
 	if(states[pointer].heal and healT.is_stopped()):
 		healT.start()
 		heal(1)
