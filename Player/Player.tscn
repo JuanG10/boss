@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sound/CPUtalk.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Player/HabilityCircleBar.png" type="Texture" id=9]
 [ext_resource path="res://Player/HabilityCircleBar.gd" type="Script" id=10]
+[ext_resource path="res://Explosion/DamageParticles.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
@@ -89,6 +90,8 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="ExplosionParticles" parent="." instance=ExtResource( 11 )]
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="tween_all_completed" from="HabilityCircleBar/Tween" to="HabilityCircleBar" method="_on_Tween_tween_all_completed"]

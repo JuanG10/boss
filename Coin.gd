@@ -4,7 +4,7 @@ var show_hide = false
 var twinkle_time:float = 1
 
 onready var coin_animation:AnimatedSprite = $AnimatedSprite
-onready var twinkle_timer:Timer = 
+onready var twinkle_timer = $Twinkle_timer
 
 func initialize(pos):
 	position = pos
@@ -24,4 +24,4 @@ func _on_Timer2_timeout():
 	else: coin_animation.show()
 	twinkle_time -= 0.15
 	show_hide = not show_hide
-	$Timer2.start(twinkle_time)
+	twinkle_timer.start(twinkle_time)
