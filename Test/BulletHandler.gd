@@ -1,6 +1,7 @@
 extends Node2D
 
 var bullets = []
+export var dummy_template = preload("res://Enemies/DeadDummy/DeadDummy.tscn")
 
 func _physics_process(delta):
 	if not bullets.empty():
@@ -20,9 +21,9 @@ func _physics_process(delta):
 func reParent(enemy):
 	for b in bullets:
 		if b[3].get_instance_id() == enemy.get_instance_id():
-			var new_parent = Area2D.new()
-			new_parent.name = "DEAD"
-			b[3] = new_parent
+			var dummy = dummy_template.instance()
+			dummy.dmg = b[3].dmg
+			b[3] = dummy
 
 func clear():
 	bullets.clear()

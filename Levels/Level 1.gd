@@ -18,7 +18,7 @@ func _ready():
 		$Explicacion.hide() 
 	else:
 		yield(get_tree().create_timer(5), "timeout")
-		$Explicacion.hide() 
+		$Explicacion.hide()
 
 func player_moved():
 	return Input.is_action_just_pressed('down') || Input.is_action_just_pressed('up') || Input.is_action_just_pressed('left') || Input.is_action_just_pressed('right')

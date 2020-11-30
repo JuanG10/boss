@@ -35,14 +35,17 @@ anchor_left = 0.421
 anchor_top = 0.084
 anchor_right = 0.597
 anchor_bottom = 0.221
-margin_left = -1.38913
-margin_top = 209.586
-margin_right = -1.61316
-margin_bottom = 209.386
+margin_left = -16.4911
+margin_top = 196.372
+margin_right = -16.7151
+margin_bottom = 243.172
 custom_fonts/font = SubResource( 1 )
 text = "WASD to move
 
-Mouse to aim"
+Mouse to aim
+
+Mouse buttons
+to change color"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -19,8 +19,6 @@ var minimun_range_flag = false
 
 var timer = Timer.new()
 
-var Bullet = preload("res://Enemies/Bullet.tscn")
-
 var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
 var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
