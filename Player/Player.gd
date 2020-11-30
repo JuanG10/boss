@@ -189,7 +189,6 @@ func heal(x):
 func takeDamage(x):
 	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
-			camera.shake(0.5,0.5)
 			dmg_explosion.process_material.color_ramp.gradient.colors[1] = color_actual
 			dmg_explosion.emitting = true
 			#health -= x
