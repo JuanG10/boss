@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Cursor.gd" type="Script" id=1]
 [ext_resource path="res://cursor.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Levels/letrasFondt.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Levels/Level 2.gd" type="Script" id=5]
 [ext_resource path="res://Complementos_y_ajustes/Complementos.tscn" type="PackedScene" id=6]
+[ext_resource path="res://keys/Key_Space.tscn" type="PackedScene" id=7]
 
 [node name="Level 2" type="Node"]
 script = ExtResource( 5 )
@@ -23,11 +24,11 @@ __meta__ = {
 
 [node name="Explicacion" type="Label" parent="."]
 margin_left = 401.963
-margin_top = 242.01
-margin_right = 613.963
-margin_bottom = 341.01
+margin_top = 241.261
+margin_right = 821.963
+margin_bottom = 340.261
 custom_fonts/font = ExtResource( 4 )
-text = "Space to use habilities
+text = "To use habilities
 
 Each color has different habilities"
 __meta__ = {
@@ -35,3 +36,7 @@ __meta__ = {
 }
 
 [node name="Complementos" parent="." instance=ExtResource( 6 )]
+
+[node name="Key_Space" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272.5, 247.946 )
+scale = Vector2( 0.0593641, 0.0772554 )
