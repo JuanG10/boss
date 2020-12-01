@@ -20,6 +20,8 @@ func handle(_body):
 
 func power():
 	if GlobalVariables.OrangeSpecial:
+		player.habilityT.start()
+		player.hability_bar.start_progress(player.colores[player.pointer])
 		player.invencibility = true
 		timer.start(GlobalVariables.invincibility_time)
 

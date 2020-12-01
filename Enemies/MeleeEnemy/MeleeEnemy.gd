@@ -6,7 +6,7 @@ var friction = 0.95
 var target := Vector2.ZERO
 var velocity := Vector2.ZERO
 
-const POINTS = 100
+const POINTS = 10
 
 var slow_timer = Timer.new()
 var stun_timer = Timer.new()

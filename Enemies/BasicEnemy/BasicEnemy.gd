@@ -30,7 +30,7 @@ var closingPos  = Vector2.ZERO
 var closingTime = Vector2.ZERO
 var prediction  = Vector2.ZERO
 
-const POINTS = 200
+const POINTS = 20
 
 func _ready():
 	$State_handler.init(player, self)

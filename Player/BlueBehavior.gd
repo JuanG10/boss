@@ -14,6 +14,8 @@ func handle(area):
 
 func power():
 	if GlobalVariables.BlueSpecial:
+		player.habilityT.start()
+		player.hability_bar.start_progress(player.colores[player.pointer])
 		var slow_ring = slow_ring_template.instance()
 		slow_ring.position = player.position
 		player.get_parent().call_deferred("add_child", slow_ring)

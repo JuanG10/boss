@@ -29,7 +29,7 @@ var closingTime = Vector2.ZERO
 var prediction  = Vector2.ZERO
 
 var explosion_color:Color
-const POINTS = 250
+const POINTS = 30
 
 func _ready():
 	$State_handler.init(player, self)

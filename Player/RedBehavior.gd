@@ -15,6 +15,8 @@ func handle(body):
 
 func power():
 	if GlobalVariables.RedSpecial:
+		player.habilityT.start()
+		player.hability_bar.start_progress(player.colores[player.pointer])
 		var BFLaser = BFLaser_template.instance()
 		BFLaser.modulate = Color(.702, .0823, .0706)
 		BFLaser.position = player.get_node("Muzzle").position

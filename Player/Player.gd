@@ -107,10 +107,8 @@ func _physics_process(_delta):
 	look_at(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
-		habilityT.start()
-		hability_bar.start_progress(colores[pointer])
-		color_actual = colores[pointer]
 		states[pointer].power()
+		color_actual = colores[pointer]
 	if Input.is_action_just_pressed("next_color") && $Change_color_timer.is_stopped():
 		$Change_color_timer.start()
 		next_color()
@@ -184,6 +182,7 @@ func heal(x):
 func takeDamage(x):
 	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
+			$hurting.play()
 			camera.shake(1,0.8)
 			health -= x
 			recibi_danio()

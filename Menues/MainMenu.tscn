@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=1]
+[ext_resource path="res://Menues/endless_menu_script.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 21
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Node"]
 
@@ -16,7 +24,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-route = "res://Levels/Level 1.tscn"
 
 [node name="Levels" type="Button" parent="."]
 margin_left = -1609.74
@@ -28,7 +35,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-route = "res://Menues/Levels.tscn"
 
 [node name="Endless" type="Button" parent="."]
 margin_left = -1610.06
@@ -36,11 +42,29 @@ margin_top = 186.498
 margin_right = -1527.06
 margin_bottom = 216.498
 text = "Endless"
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 route = "res://Levels/Endless.tscn"
+
+[node name="Label" type="Label" parent="Endless"]
+visible = false
+anchor_left = 0.421
+anchor_top = 0.084
+anchor_right = 0.597
+anchor_bottom = 0.221
+margin_left = -69.5667
+margin_top = -47.4162
+margin_right = 71.8253
+margin_bottom = -10.5262
+custom_fonts/font = SubResource( 1 )
+text = "Endless isn't
+unlocked yet"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 
 [node name="Exit" type="Button" parent="."]
 margin_left = -1610.39

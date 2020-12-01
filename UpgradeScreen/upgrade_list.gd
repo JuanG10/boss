@@ -9,7 +9,7 @@ const ORANGE = {
 	SPEED           = preload("res://Iconos/speed.png"),          #Aumento de velocidad
 	HEAL_SPEED      = preload("res://Iconos/HEAL_SPEED.jpg"),  #Velocidad de curacion
 	HEALTH          = preload("res://Iconos/health.png"),  #Mejora de vida  
-	INVULNERABILITY = null,
+	INVULNERABILITY = preload("res://Iconos/invulnerability.png"),
 }
 const BLUE = {
 	PATK_SPEED   = preload("res://Iconos/attack_speed.png"),  #Velocidad de Ataque 

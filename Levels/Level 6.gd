@@ -20,6 +20,7 @@ func _process(_delta):
 		LevelPrimitives.spawnMelee(10)
 		counter += 1
 	if enemyCounter == 0:
+		LevelPrimitives.endless_unlocked = true
 		LevelPrimitives.playing   = false
 		LevelPrimitives.retry     = false
 		LevelPrimitives.nextLevel = "res://Levels/Level 6.tscn" 
