@@ -16,9 +16,13 @@ func _ready():
 	if LevelPrimitives.retry:
 		yield(get_tree().create_timer(2), "timeout")
 		$Explicacion.hide() 
+		$Key_E.hide()
+		$Key_Q.hide()
 	else:
 		yield(get_tree().create_timer(5), "timeout")
 		$Explicacion.hide() 
+		$Key_Q.hide()
+		$Key_E.hide()
 
 func player_moved():
 	return Input.is_action_just_pressed('down') || Input.is_action_just_pressed('up') || Input.is_action_just_pressed('left') || Input.is_action_just_pressed('right')

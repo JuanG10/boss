@@ -19,7 +19,9 @@ func _ready():
 	fondo_actual = 0
 	texture = FONDOS[fondo_actual]
 	get_material().set_shader_param("image",FONDOS[fondo_actual+1])
-
+	
+	
+	
 func start_bg_transition(num_fondo:int, next_or_previous:bool, pos_jugador_x,pos_jugador_y)->void:
 	next = next_or_previous
 	get_material().set_shader_param("image",

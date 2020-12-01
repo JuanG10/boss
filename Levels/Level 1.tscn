@@ -1,17 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/Level 1.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Cursor.gd" type="Script" id=3]
+[ext_resource path="res://Levels/letrasFondt.tres" type="DynamicFont" id=4]
 [ext_resource path="res://cursor.png" type="Texture" id=5]
 [ext_resource path="res://Complementos_y_ajustes/Complementos.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=7]
-
-[sub_resource type="DynamicFont" id=1]
-size = 21
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
+[ext_resource path="res://keys/Key_Q.tscn" type="PackedScene" id=7]
+[ext_resource path="res://keys/Key_E.tscn" type="PackedScene" id=8]
 
 [node name="Level 1" type="Node"]
 script = ExtResource( 1 )
@@ -39,10 +35,18 @@ margin_left = -1.38913
 margin_top = 209.586
 margin_right = -1.61316
 margin_bottom = 209.386
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 4 )
 text = "WASD to move
 
 Mouse to aim"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Key_Q" parent="." instance=ExtResource( 7 )]
+position = Vector2( 282.986, 289.66 )
+frame = 0
+
+[node name="Key_E" parent="." instance=ExtResource( 8 )]
+position = Vector2( 188.212, 291.663 )
+frame = 0

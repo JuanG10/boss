@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=1]
+[ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
 
 [node name="MainMenu" type="Node"]
@@ -11,6 +12,7 @@ margin_left = -1610.08
 margin_top = 111.327
 margin_right = -1527.08
 margin_bottom = 141.327
+custom_fonts/font = ExtResource( 2 )
 text = "Start Game"
 script = ExtResource( 1 )
 __meta__ = {
