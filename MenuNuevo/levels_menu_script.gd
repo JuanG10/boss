@@ -4,6 +4,7 @@ export (String) var route
 
 func _pressed():
 	get_tree().change_scene(route)
+	Background.show()
 
 
 func _on_Start_mouse_entered():

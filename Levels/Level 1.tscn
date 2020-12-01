@@ -43,10 +43,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Explicacion2" type="Label" parent="."]
+anchor_left = 0.421
+anchor_top = 0.084
+anchor_right = 0.597
+anchor_bottom = 0.221
+margin_left = -363.273
+margin_top = 194.975
+margin_right = -291.497
+margin_bottom = 194.775
+custom_fonts/font = ExtResource( 4 )
+text = "Press to change color
+
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Key_Q" parent="." instance=ExtResource( 7 )]
-position = Vector2( 282.986, 289.66 )
-frame = 0
+position = Vector2( 145.466, 306.909 )
+frame = 1
 
 [node name="Key_E" parent="." instance=ExtResource( 8 )]
-position = Vector2( 188.212, 291.663 )
-frame = 0
+position = Vector2( 213.854, 309.396 )
+frame = 1

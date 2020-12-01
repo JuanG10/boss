@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=1]
 [ext_resource path="res://MenuNuevo/levels_menu_script.gd" type="Script" id=2]
+[ext_resource path="res://MenuNuevo/ParallaxBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MenuNuevo/Levels.gd" type="Script" id=4]
 
 [node name="Levels" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -137,3 +140,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 route = "res://MenuNuevo/Menu.tscn"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]

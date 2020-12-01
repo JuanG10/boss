@@ -16,11 +16,13 @@ func _ready():
 	if LevelPrimitives.retry:
 		yield(get_tree().create_timer(2), "timeout")
 		$Explicacion.hide() 
+		$Explicacion2.hide()
 		$Key_E.hide()
 		$Key_Q.hide()
 	else:
 		yield(get_tree().create_timer(5), "timeout")
 		$Explicacion.hide() 
+		$Explicacion2.hide()
 		$Key_Q.hide()
 		$Key_E.hide()
 

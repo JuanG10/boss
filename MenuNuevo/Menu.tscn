@@ -8,6 +8,12 @@
 [ext_resource path="res://MenuNuevo/ParallaxBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://MenuNuevo/Menu.gd" type="Script" id=7]
 
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 60
 outline_size = 4
@@ -15,12 +21,6 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 60
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=4]
 size = 60
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -62,7 +62,7 @@ route = "res://Levels/Level 1.tscn"
 margin_top = 128.0
 margin_right = 592.0
 margin_bottom = 225.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.266667, 1, 0, 1 )
 text = "Levels"
 flat = true
@@ -73,7 +73,7 @@ route = "res://MenuNuevo/Levels.tscn"
 margin_top = 256.0
 margin_right = 592.0
 margin_bottom = 353.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_hover = Color( 0.054902, 1, 0, 1 )
 text = "Endless"
 flat = true
@@ -84,7 +84,7 @@ route = "res://Levels/Endless.tscn"
 margin_top = 384.0
 margin_right = 592.0
 margin_bottom = 481.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color_hover = Color( 0.172549, 1, 0, 1 )
 text = "Exit"
 flat = true
