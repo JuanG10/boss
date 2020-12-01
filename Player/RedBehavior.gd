@@ -14,8 +14,9 @@ func handle(body):
 	body.stun(.1)
 
 func power():
-	var BFLaser = BFLaser_template.instance()
-	BFLaser.modulate = Color(.702, .0823, .0706)
-	BFLaser.position = player.get_node("Muzzle").position
-	player.stop_shooting(2.1)
-	player.call_deferred("add_child", BFLaser)
+	if GlobalVariables.RedSpecial:
+		var BFLaser = BFLaser_template.instance()
+		BFLaser.modulate = Color(.702, .0823, .0706)
+		BFLaser.position = player.get_node("Muzzle").position
+		player.stop_shooting(2.1)
+		player.call_deferred("add_child", BFLaser)

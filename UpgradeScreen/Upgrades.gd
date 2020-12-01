@@ -3,30 +3,50 @@ extends Node
 var DMGUpgCounter     = 0
 var intPrecioDMG      = 30
 var precioDMG         = "$" + str(intPrecioDMG)
+
 var BRNUpgCounter     = 0
 var intPrecioBRN      = 30
 var precioBRN         = "$" + str(intPrecioBRN)
+
 var SpeedUpgCounter   = 0
 var intPrecioSpeed    = 50
 var precioSpeed       = "$" + str(intPrecioSpeed)
+
 var HPUpgCounter      = 0
-var intPrecioHP       = 15
+var intPrecioHP       = 20
 var precioHP          = "$" + str(intPrecioHP)
+
 var AtkSUpgCounter    = 0
 var intPrecioAtkS     = 80
 var precioAtkS        = "$" + str(intPrecioAtkS)
+
 var HealSUpgCounter   = 0
 var intPrecioHealS    = 150
 var precioHealS        = "$" + str(intPrecioHealS)
+
 var ShieldSUpgCounter = 0
 var intPrecioShieldS  = 70
 var precioShieldS     = "$" + str(intPrecioShieldS)
+
 var StunUpgCounter    = 0
-var intPrecioStun     = 10
-var preciStun         = "$" + str(intPrecioStun)
+var intPrecioStun     = 40
+var precioStun        = "$" + str(intPrecioStun)
+
 var InvTUpgCounter    = 0
-var intPrecioInvT     = 90
+var intPrecioInvT     = 270
 var precioInvT        = "$" + str(intPrecioInvT)
+
+var laserUpgCounter   = 0
+var intPrecioLaser    = 340
+var precioLaser       = "$" + str(intPrecioInvT)
+
+var SlowUpgCounter    = 0
+var intPrecioSlow     = 30
+var precioSlow        = "$" + str(intPrecioInvT)
+
+var SlowRngUpgCounter = 0
+var intPrecioSlowRing = 190
+var precioSlowRing    = "$" + str(intPrecioInvT)
 
 func dmgUpgrade(upgradeList):
 	if DMGUpgCounter == 0:
@@ -92,28 +112,28 @@ func speedUpgrade(upgradeList):
 
 func healUpgrade(upgradeList):
 	if HealSUpgCounter == 0:
-		GlobalVariables.heal_speed   = 1.3
+		GlobalVariables.heal_speed = 1.3
 		intPrecioHealS   = 200
 		HealSUpgCounter += 1
-		precioHealS      = "$" + str(intPrecioSpeed)
+		precioHealS      = "$" + str(intPrecioHealS)
 		upgradeList.set_item_text(1, "Heal Speed: " + precioHealS)
 	elif HealSUpgCounter == 1:
 		GlobalVariables.heal_speed   = 1
 		intPrecioHealS   = 320
 		HealSUpgCounter += 1
-		precioHealS      = "$" + str(intPrecioSpeed)
+		precioHealS      = "$" + str(intPrecioHealS)
 		upgradeList.set_item_text(1, "Heal Speed: " + precioHealS)
 	elif HealSUpgCounter == 2:
 		GlobalVariables.heal_speed   = .5
 		intPrecioHealS   = 700
 		HealSUpgCounter += 1
-		precioHealS      = "$" + str(intPrecioSpeed)
+		precioHealS      = "$" + str(intPrecioHealS)
 		upgradeList.set_item_text(1, "Heal Speed: " + precioHealS)
 	elif HealSUpgCounter == 3:
 		GlobalVariables.heal_speed   = .3
 		intPrecioHealS   = 1000
 		HealSUpgCounter += 1
-		precioHealS      = "$" + str(intPrecioSpeed)
+		precioHealS      = "$" + str(intPrecioHealS)
 		upgradeList.set_item_text(1, "Heal Speed: " + precioHealS)
 	elif HealSUpgCounter == 4:
 		GlobalVariables.heal_speed   = .2
@@ -213,3 +233,158 @@ func shieldUpgrade(upgradeList):
 		precioShieldS      = "SOLD OUT"
 		ShieldSUpgCounter += 1
 		upgradeList.set_item_text(1, "Shield Speed: " + precioShieldS)
+
+func laserUpgrade(upgradeList):
+	if laserUpgCounter == 0:
+		GlobalVariables.RedSpecial = true
+		intPrecioLaser   = 200
+		laserUpgCounter += 1
+		precioLaser      = "$" + str(intPrecioLaser)
+		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
+	elif laserUpgCounter == 1:
+		GlobalVariables.LaserDMG = 30
+		intPrecioLaser   = 410
+		laserUpgCounter += 1
+		precioLaser      = "$" + str(intPrecioLaser)
+		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
+	elif laserUpgCounter == 2:
+		GlobalVariables.LaserDMG = 50
+		intPrecioLaser   = 560
+		laserUpgCounter += 1
+		precioLaser      = "$" + str(intPrecioLaser)
+		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
+	elif laserUpgCounter == 3:
+		GlobalVariables.LaserDMG = 70
+		intPrecioLaser   = 800
+		laserUpgCounter += 1
+		precioLaser      = "$" + str(intPrecioLaser)
+		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
+	elif laserUpgCounter == 4:
+		GlobalVariables.LaserDMG = 90
+		precioLaser      = "SOLD OUT"
+		laserUpgCounter += 1
+		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
+
+func InvuleravilityUpgrade(upgradeList):
+	if InvTUpgCounter == 0:
+		GlobalVariables.OrangeSpecial = true
+		intPrecioInvT   = 160
+		InvTUpgCounter += 1
+		precioInvT      = "$" + str(intPrecioInvT)
+		upgradeList.set_item_text(3, "Invulnerability Time: " + precioInvT)
+	elif InvTUpgCounter == 1:
+		GlobalVariables.invincibility_time = 3
+		intPrecioInvT   = 300
+		InvTUpgCounter += 1
+		precioInvT      = "$" + str(intPrecioInvT)
+		upgradeList.set_item_text(3, "Invulnerability Time: " + precioInvT)
+	elif InvTUpgCounter == 2:
+		GlobalVariables.invincibility_time = 3.5
+		intPrecioInvT   = 470
+		InvTUpgCounter += 1
+		precioInvT      = "$" + str(intPrecioInvT)
+		upgradeList.set_item_text(3, "Invulnerability Time: " + precioInvT)
+	elif InvTUpgCounter == 3:
+		GlobalVariables.invincibility_time = 4
+		intPrecioInvT   = 650
+		InvTUpgCounter += 1
+		precioInvT      = "$" + str(intPrecioInvT)
+		upgradeList.set_item_text(3, "Invulnerability Time: " + precioInvT)
+	elif InvTUpgCounter == 4:
+		GlobalVariables.invincibility_time = 5
+		precioInvT      = "SOLD OUT"
+		InvTUpgCounter += 1
+		upgradeList.set_item_text(3, "Invulnerability Time: " + precioInvT)
+
+func slowRingUpgrade(upgradeList):
+	if SlowRngUpgCounter == 0:
+		GlobalVariables.BlueSpecial = true
+		intPrecioSlowRing   = 100
+		SlowRngUpgCounter  += 1
+		precioSlowRing      = "$" + str(intPrecioSlowRing)
+		upgradeList.set_item_text(3, "Slow ring: " + precioSlowRing)
+	elif SlowRngUpgCounter == 1:
+		GlobalVariables.slow_ring_effect = .6
+		intPrecioSlowRing   = 230
+		SlowRngUpgCounter  += 1
+		precioSlowRing      = "$" + str(intPrecioSlowRing)
+		upgradeList.set_item_text(3, "Slow ring: " + precioSlowRing)
+	elif SlowRngUpgCounter == 2:
+		GlobalVariables.slow_ring_effect = .5
+		intPrecioSlowRing   = 370
+		SlowRngUpgCounter  += 1
+		precioSlowRing      = "$" + str(intPrecioSlowRing)
+		upgradeList.set_item_text(3, "Slow ring: " + precioSlowRing)
+	elif SlowRngUpgCounter == 3:
+		GlobalVariables.slow_ring_effect = .4
+		intPrecioSlowRing   = 590
+		SlowRngUpgCounter  += 1
+		precioSlowRing      = "$" + str(intPrecioSlowRing)
+		upgradeList.set_item_text(3, "Slow ring: " + precioSlowRing)
+	elif SlowRngUpgCounter == 4:
+		GlobalVariables.slow_ring_effect = .2
+		precioSlowRing      = "SOLD OUT"
+		SlowRngUpgCounter  += 1
+		upgradeList.set_item_text(3, "Slow ring: " + precioSlowRing)
+
+func slowUpgrade(upgradeList):
+	if SlowUpgCounter == 0:
+		GlobalVariables.Pslow = .7
+		intPrecioSlow   = 50
+		SlowUpgCounter += 1
+		precioSlow      = "$" + str(intPrecioSlow)
+		upgradeList.set_item_text(2, "Slow: " + precioSlow)
+	elif SlowUpgCounter == 1:
+		GlobalVariables.Pslow   = .65
+		intPrecioSlow   = 80
+		SlowUpgCounter += 1
+		precioSlow      = "$" + str(intPrecioSlow)
+		upgradeList.set_item_text(2, "Slow: " + precioSlow)
+	elif SlowUpgCounter == 2:
+		GlobalVariables.Pslow   = .6
+		intPrecioSlow   = 120
+		SlowUpgCounter += 1
+		precioSlow      = "$" + str(intPrecioSlow)
+		upgradeList.set_item_text(2, "Slow: " + precioSlow)
+	elif SlowUpgCounter == 3:
+		GlobalVariables.Pslow   = .55
+		intPrecioSlow   = 150
+		SlowUpgCounter += 1
+		precioSlow      = "$" + str(intPrecioSlow)
+		upgradeList.set_item_text(2, "Slow: " + precioSlow)
+	elif SlowUpgCounter == 4:
+		GlobalVariables.Pslow   = .5
+		precioSlow      = "SOLD OUT"
+		SlowUpgCounter += 1
+		upgradeList.set_item_text(2, "Slow: " + precioSlow)
+
+func stunUpgrade(upgradeList):
+	if StunUpgCounter == 0:
+		GlobalVariables.Pstun = .2
+		intPrecioStun   = 60
+		StunUpgCounter += 1
+		precioStun      = "$" + str(intPrecioStun)
+		upgradeList.set_item_text(1, "Stun Duration: " + precioStun)
+	elif StunUpgCounter == 1:
+		GlobalVariables.Pstun   = .25
+		intPrecioStun   = 90
+		StunUpgCounter += 1
+		precioStun      = "$" + str(intPrecioStun)
+		upgradeList.set_item_text(1, "Stun Duration: " + precioStun)
+	elif StunUpgCounter == 2:
+		GlobalVariables.Pstun   = .3
+		intPrecioStun   = 130
+		StunUpgCounter += 1
+		precioStun      = "$" + str(intPrecioStun)
+		upgradeList.set_item_text(1, "Stun Duration: " + precioStun)
+	elif StunUpgCounter == 3:
+		GlobalVariables.Pstun   = .35
+		intPrecioStun   = 160
+		StunUpgCounter += 1
+		precioStun      = "$" + str(intPrecioStun)
+		upgradeList.set_item_text(1, "Stun Duration: " + precioStun)
+	elif StunUpgCounter == 4:
+		GlobalVariables.Pstun   = .4
+		precioStun      = "SOLD OUT"
+		StunUpgCounter += 1
+		upgradeList.set_item_text(1, "Stun Duration: " + precioStun)
