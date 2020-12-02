@@ -5,10 +5,15 @@ export(int) var level_id
 var timer = Timer.new()
 
 var points = GlobalVariables.points
+var enemyCounter = 1000
+
+
 
 func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
+	LevelPrimitives.initialize($Player, self)
+	LevelPrimitives.playing = true
 	add_child(timer)
 
 func _process(_delta):
