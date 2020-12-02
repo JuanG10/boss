@@ -78,7 +78,6 @@ func stun(time):
 	is_stunned = true
 
 func slow(slow, time):
-	print("Slow")
 	if slow_timer.is_stopped():
 		slow_timer.start(time)
 		speed *= slow
