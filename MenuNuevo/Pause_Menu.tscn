@@ -8,7 +8,7 @@
 [ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=6]
 [ext_resource path="res://Menues/Resume.gd" type="Script" id=7]
 
-[node name="Control" type="Control"]
+[node name="PauseMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -72,4 +72,7 @@ script = ExtResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 401.952, 371.033 )
+zoom = Vector2( 2, 2 )

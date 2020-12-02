@@ -1,11 +1,19 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+func myShow():
+	show()
+	$ParallaxBackground/ParallaxLayer.show()
+	#$Camera2D._set_current(true)
+
+func myHide():
+	hide()
+	$ParallaxBackground/ParallaxLayer.hide()
+	#$Camera2D._set_current(false)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	Background.hide()
+	#Background.hide()
+	Background.show()
+	pass
