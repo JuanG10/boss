@@ -35,7 +35,7 @@ func pause():
 func unPause():
 	get_tree().paused = false
 	level.get_node("PauseMenu").myHide()
-	level.get_node("Camera2D")._set_current(true)
+	level.get_node("Complementos").get_node("Camera")._set_current(true)
 
 func spawnMelee(n):
 	for _i in range(n):
