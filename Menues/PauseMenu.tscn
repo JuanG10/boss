@@ -1,60 +1,68 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Menues/Resume.gd" type="Script" id=1]
-[ext_resource path="res://Menues/Options.gd" type="Script" id=2]
 [ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=3]
 [ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
 [ext_resource path="res://Menues/PauseMenu.gd" type="Script" id=5]
+[ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=6]
+[ext_resource path="res://MenuNuevo/fondo.jpg" type="Texture" id=7]
 
 [node name="PauseMenu" type="Node2D"]
 pause_mode = 2
+position = Vector2( -36.6877, 35.8328 )
 script = ExtResource( 5 )
 
 [node name="Resume" type="Button" parent="."]
-margin_left = -1481.03
-margin_top = 41.3568
-margin_right = -1398.03
-margin_bottom = 71.3568
+margin_left = -1538.84
+margin_top = -5.33273
+margin_right = -1239.84
+margin_bottom = 91.6673
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_hover = Color( 0.0823529, 0.686275, 0.0470588, 1 )
 text = "Resume"
+flat = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Options" type="Button" parent="."]
-margin_left = -1480.69
-margin_top = 79.3108
-margin_right = -1397.69
-margin_bottom = 109.311
-text = "Options"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="MainMenu" type="Button" parent="."]
-margin_left = -1481.0
-margin_top = 116.528
-margin_right = -1397.0
-margin_bottom = 146.528
+margin_left = -1586.24
+margin_top = 103.851
+margin_right = -1182.24
+margin_bottom = 200.851
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_hover = Color( 0.0705882, 0.768627, 0.227451, 1 )
 text = "Main menu"
+flat = true
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-route = "res://Menues/MainMenu.tscn"
+route = "res://MenuNuevo/Menu.tscn"
 
 [node name="Exit" type="Button" parent="."]
-margin_left = -1481.34
-margin_top = 154.528
-margin_right = -1398.34
-margin_bottom = 184.528
+margin_left = -1487.35
+margin_top = 220.411
+margin_right = -1307.35
+margin_bottom = 317.411
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_hover = Color( 0.0862745, 0.67451, 0.121569, 1 )
 text = "Exit"
+flat = true
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -1440.89, 112.31 )
-zoom = Vector2( 0.25, 0.25 )
+position = Vector2( -1385.2, 167.999 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -1452.91, 214.251 )
+scale = Vector2( 1.8, 1.798 )
+texture = ExtResource( 7 )
