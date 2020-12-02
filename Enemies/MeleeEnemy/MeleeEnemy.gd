@@ -26,6 +26,7 @@ var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
 
 var explosion_color:Color
+onready var stun_particles = $StunParticles
 onready var slow_waves = $slow_waves_master.get_children()
 
 func _ready():
@@ -79,6 +80,7 @@ func get_class():
 func stun(time):
 	stun_timer.start(time)
 	is_stunned = true
+	stun_particles.emitting = true
 
 func slow(slow, time):
 	if slow_timer.is_stopped():
@@ -88,6 +90,7 @@ func slow(slow, time):
 
 func _on_stun_timer_timeout():
 	is_stunned = false
+	stun_particles.emitting = false
 
 func _on_slow_timer_timeout():
 	speed = 130

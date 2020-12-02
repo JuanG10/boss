@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Enemies/MeleeEnemy/MeleeEnemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/MeleeEnemy/Rojo_mod.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Enemies/MeleeEnemy/Flocking.gd" type="Script" id=6]
 [ext_resource path="res://Enemies/MeleeEnemy/Blue.gd" type="Script" id=7]
 [ext_resource path="res://Explosion/slow_waves_master.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Explosion/StunParticles.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.00114
@@ -64,6 +65,8 @@ collision_mask = 2147614720
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlockingArea"]
 position = Vector2( -0.632813, -0.0234375 )
 shape = SubResource( 3 )
+
+[node name="StunParticles" parent="." instance=ExtResource( 9 )]
 
 [node name="Timer" type="Timer" parent="."]
 [connection signal="tree_exiting" from="." to="." method="_on_death"]

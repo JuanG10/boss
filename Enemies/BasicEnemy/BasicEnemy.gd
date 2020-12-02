@@ -34,6 +34,7 @@ var prediction  = Vector2.ZERO
 
 const POINTS = 20
 
+onready var stun_particles = $StunParticles
 onready var slow_waves = $slow_waves_master.get_children()
 
 func _ready():
@@ -69,7 +70,7 @@ func recibi_danio():
 func volver_a_color_actual():
 	$Sprite.modulate = color_actual 
 	
-		
+
 func close_enough(area):
 	if area.name == player.name:
 		minimun_range_flag = true
@@ -109,6 +110,7 @@ func burn():
 func stun(time):
 	stun_timer.start(time)
 	is_stunned = true
+	stun_particles.emmiting = true
 
 func slow(slow, time):
 	if slow_timer.is_stopped():
@@ -118,6 +120,7 @@ func slow(slow, time):
 
 func _on_stun_timer_timeout():
 	is_stunned = false
+	stun_particles.emmiting = false
 
 func _on_slow_timer_timeout():
 	speed = 130

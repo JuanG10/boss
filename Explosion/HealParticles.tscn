@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Player/heal_icon.png" type="Texture" id=1]
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
 emission_sphere_radius = 50.0
 flag_disable_z = true
@@ -22,5 +22,5 @@ amount = 15
 lifetime = 0.25
 one_shot = true
 explosiveness = 0.5
-process_material = SubResource( 3 )
+process_material = SubResource( 1 )
 texture = ExtResource( 1 )

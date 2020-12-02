@@ -58,7 +58,8 @@ onready var dmg_explosion:Particles2D = $ExplosionParticles
 onready var heal_particles:Particles2D = $HealParticles
 
 onready var slow_waves = $slow_waves_master.get_children()
-# No hay tiempo para hacerlo bien. Tengo sueño. -Juan G. 2/12/2020
+onready var invencibility_shield = $invencibility_shield
+# Tengo sueño. -Juan G. 2/12/2020 03:47 a.m.
 
 var velocity = Vector2.ZERO
 

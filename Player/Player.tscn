@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
@@ -13,12 +13,141 @@
 [ext_resource path="res://Explosion/DamageParticles.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Explosion/HealParticles.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Explosion/slow_waves_master.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Player/shields.png" type="Texture" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 47.2431
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2216, 0, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2493, 0, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2770, 0, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3047, 0, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3324, 0, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2216, 288, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2493, 288, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2770, 288, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3047, 288, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3324, 288, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2216, 576, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2493, 576, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2770, 576, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3047, 576, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3324, 576, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2216, 864, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2493, 864, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2770, 864, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3047, 864, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3324, 864, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2216, 1152, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2493, 1152, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 2770, 1152, 277, 288 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 3047, 1152, 277, 288 )
+
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "default",
+"speed": 30.0
+} ]
 
 [node name="Player" type="Area2D" groups=[
 "Player",
@@ -103,6 +232,14 @@ explosiveness = 1.0
 [node name="HealParticles" parent="." instance=ExtResource( 12 )]
 
 [node name="slow_waves_master" parent="." instance=ExtResource( 13 )]
+
+[node name="invencibility_shield" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 4.45972, 0.374512 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 27 )
+frame = 8
+playing = true
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="tween_all_completed" from="HabilityCircleBar/Tween" to="HabilityCircleBar" method="_on_Tween_tween_all_completed"]

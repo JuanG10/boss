@@ -37,7 +37,7 @@ var intPrecioInvT     = 270
 var precioInvT        = "$" + str(intPrecioInvT)
 
 var laserUpgCounter   = 0
-var intPrecioLaser    = 340
+var intPrecioLaser    = 270
 var precioLaser       = "$" + str(intPrecioInvT)
 
 var SlowUpgCounter    = 0
