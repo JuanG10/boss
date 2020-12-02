@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Fonts/kenpixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://MenuNuevo/ParallaxBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://MenuNuevo/Menu.gd" type="Script" id=7]
 [ext_resource path="res://MenuNuevo/480932__wi-photos__menu.wav" type="AudioStream" id=8]
+[ext_resource path="res://MenuNuevo/Endless.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -22,6 +23,12 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 30
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 60
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
@@ -78,14 +85,26 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_hover = Color( 0.054902, 1, 0, 1 )
 text = "Endless"
 flat = true
-script = ExtResource( 2 )
-route = "res://Levels/Endless.tscn"
+script = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Endless"]
+visible = false
+margin_left = -201.398
+margin_top = -102.473
+margin_right = 320.602
+margin_bottom = 82.5271
+custom_fonts/font = SubResource( 3 )
+text = "Endless isn't 
+unlocked yet"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 margin_top = 384.0
 margin_right = 592.0
 margin_bottom = 481.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color_hover = Color( 0.172549, 1, 0, 1 )
 text = "Exit"
 flat = true

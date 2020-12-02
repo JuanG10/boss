@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=1]
 [ext_resource path="res://MenuNuevo/levels_menu_script.gd" type="Script" id=2]
 [ext_resource path="res://MenuNuevo/ParallaxBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://MenuNuevo/Levels.gd" type="Script" id=4]
+[ext_resource path="res://Fonts/kenpixel.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://MenuNuevo/Endless.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
 
 [node name="Levels" type="Control"]
 anchor_right = 1.0
@@ -119,11 +127,24 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
 text = "Endless"
 flat = true
-script = ExtResource( 2 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-route = "res://Levels/Endless.tscn"
+
+[node name="Label" type="Label" parent="Endless"]
+visible = false
+margin_left = -253.31
+margin_top = -68.1353
+margin_right = 11.6904
+margin_bottom = 26.8647
+custom_fonts/font = SubResource( 4 )
+text = "Endless isn't 
+unlocked yet"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 
 [node name="Back" type="Button" parent="."]
 anchor_bottom = 0.003

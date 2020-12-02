@@ -14,6 +14,11 @@ func _ready():
 	yield(get_tree().create_timer(3), "timeout")
 	$Explicacion.hide()
 	$Key_Space.hide()
+	if GlobalVariables.RedSpecial or GlobalVariables.BlueSpecial or GlobalVariables.OrangeSpecial:
+		$Complementos.get_node("Habilities").show()
+		yield(get_tree().create_timer(2), "timeout")
+		$Complementos.get_node("Habilities").hide()
+
 
 func _process(_delta):
 	if timer.is_stopped() and counter < 2:

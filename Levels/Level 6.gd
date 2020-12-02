@@ -11,6 +11,11 @@ func _ready():
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)
+	if GlobalVariables.RedSpecial or GlobalVariables.BlueSpecial or GlobalVariables.OrangeSpecial:
+		$Complementos.get_node("Habilities").show()
+		yield(get_tree().create_timer(2), "timeout")
+		$Complementos.get_node("Habilities").hide()
+
 
 func _process(_delta):
 	if timer.is_stopped() and counter < 3:

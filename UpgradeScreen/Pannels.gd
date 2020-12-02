@@ -24,7 +24,8 @@ func _on_Play_again_button_up():
 	GlobalVariables.points = 0
 	upgradeMainWindow.get_tree().change_scene(ManagerLevels.get_actual_level())
 
-
+func update_coins():
+	$Coins.on_update()
 
 func _on_Next_Level_pressed():
 	if(ManagerLevels.level_crossing):

@@ -41,3 +41,8 @@ func _add_actual_panel()->void:
 	actualPanel = panel_matrix[actual_pos.y][actual_pos.x].instance()
 	actualPanel.show_behind_parent = true
 	get_node("/root/UpgradeWindow").add_child(actualPanel)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("cheat"):
+		GlobalVariables.money += 1000
+		actualPanel.update_coins()

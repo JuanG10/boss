@@ -242,25 +242,25 @@ func laserUpgrade(upgradeList):
 		precioLaser      = "$" + str(intPrecioLaser)
 		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
 	elif laserUpgCounter == 1:
-		GlobalVariables.LaserDMG = 30
+		GlobalVariables.LaserDMG = 50
 		intPrecioLaser   = 410
 		laserUpgCounter += 1
 		precioLaser      = "$" + str(intPrecioLaser)
 		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
 	elif laserUpgCounter == 2:
-		GlobalVariables.LaserDMG = 50
+		GlobalVariables.LaserDMG = 90
 		intPrecioLaser   = 560
 		laserUpgCounter += 1
 		precioLaser      = "$" + str(intPrecioLaser)
 		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
 	elif laserUpgCounter == 3:
-		GlobalVariables.LaserDMG = 70
+		GlobalVariables.LaserDMG = 140
 		intPrecioLaser   = 800
 		laserUpgCounter += 1
 		precioLaser      = "$" + str(intPrecioLaser)
 		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
 	elif laserUpgCounter == 4:
-		GlobalVariables.LaserDMG = 90
+		GlobalVariables.LaserDMG = 200
 		precioLaser      = "SOLD OUT"
 		laserUpgCounter += 1
 		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)

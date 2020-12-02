@@ -8,8 +8,8 @@ func _pressed():
 
 
 func _on_Start_mouse_entered():
-	print("sdadasdsadssd")
-
+	#print("sdadasdsadssd")
+	pass
 
 func _on_Endless_mouse_entered():
 	pass # Replace with function body.

@@ -20,13 +20,7 @@ func initialize(p, l):
 	pause_menu = p_menu_tmplt.instance()
 	level.add_child(pause_menu)
 	level.get_node("PauseMenu").myHide()
-	var label = Label.new()
-	label.set_text("Orange enemies grow stronger each time you die. Watch out!")
-	label.set_position(Vector2(430,160))
-	if retry:
-		level.add_child(label)
-		yield(get_tree().create_timer(2), "timeout")
-		label.hide()
+
 
 func pause():
 	get_tree().paused = true
