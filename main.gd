@@ -17,6 +17,8 @@ func _ready():
 	add_child(timer)
 
 func _process(_delta):
+	if Input.is_action_just_pressed("pasue"):
+		LevelPrimitives.pause()
 	if timer.is_stopped():
 		timer.start()
 		if points < 100:

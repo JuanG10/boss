@@ -16,6 +16,8 @@ func _ready():
 	$Key_Space.hide()
 
 func _process(_delta):
+	if Input.is_action_just_pressed("pasue"):
+		LevelPrimitives.pause()
 	if timer.is_stopped() and counter < 2:
 		timer.start()
 		LevelPrimitives.spawnBasic(1)

@@ -14,6 +14,8 @@ func _ready():
 	add_child(timer)
 
 func _process(_delta):
+	if Input.is_action_just_pressed("pasue"):
+		LevelPrimitives.pause()
 	if timer.is_stopped() and counter < 3:
 		timer.start()
 		LevelPrimitives.spawnBasic(2)

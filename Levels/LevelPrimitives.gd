@@ -30,12 +30,15 @@ func initialize(p, l):
 
 func pause():
 	get_tree().paused = true
-	level.get_node("PauseMenu").myShow()
+	var pause_menu = level.get_node("PauseMenu")
+	pause_menu.myShow()
+	pause_menu.get_node("AudioStreamPlayer").playing = true
 
 
 func unPause():
 	get_tree().paused = false
 	level.get_node("PauseMenu").myHide()
+	level.get_node("PauseMenu").get_node("AudioStreamPlayer").playing  = false
 	level.get_node("Complementos").get_node("Camera")._set_current(true)
 
 func spawnMelee(n):
