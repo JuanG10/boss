@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://general_enviroment.tres" type="Environment" id=1]
 [ext_resource path="res://Complementos_y_ajustes/Marco.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Complementos_y_ajustes/max_pantalla.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Complementos_y_ajustes/Camera.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Complementos_y_ajustes/Complementos.gd" type="Script" id=7]
+[ext_resource path="res://Levels/letrasFondt.tres" type="DynamicFont" id=8]
 
 [node name="Complementos" type="Node"]
 script = ExtResource( 7 )
@@ -25,3 +26,33 @@ position = Vector2( 1024, 600 )
 [node name="Marco" parent="." instance=ExtResource( 2 )]
 
 [node name="Camera" parent="." instance=ExtResource( 6 )]
+
+[node name="Habilities" type="Label" parent="."]
+visible = false
+margin_left = 333.01
+margin_top = 256.397
+margin_right = 753.01
+margin_bottom = 355.397
+custom_fonts/font = ExtResource( 8 )
+text = "Space to use habilities
+
+Each color has different habilities"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Retry" type="Label" parent="."]
+visible = false
+margin_left = 252.284
+margin_top = 116.808
+margin_right = 792.284
+margin_bottom = 215.808
+custom_fonts/font = ExtResource( 8 )
+text = "Orange enemies get stronger each time you die
+
+Watch out!"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}

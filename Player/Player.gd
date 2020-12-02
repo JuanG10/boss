@@ -223,7 +223,7 @@ func remove_shield():
 	$Shield.hide()
 
 func shoot():
-	BulletHandler.add_bullet([$Muzzle.global_position, colores[pointer], rotation, self])
+	BulletHandler.add_bullet([$Muzzle.global_position, colores[pointer], rotation, self, pointer])
 #	var b = Bullet.instance()
 #	b.set_speed(speed_bullet)
 #	b.modulate = colores[pointer]

@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Menues/endless_menu_script.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Fonts/kenpixel.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=8]
 
-[sub_resource type="DynamicFont" id=1]
-size = 21
-outline_size = 1
+[sub_resource type="DynamicFont" id=4]
+size = 30
+outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
@@ -91,19 +91,15 @@ __meta__ = {
 route = "res://Levels/Endless.tscn"
 
 [node name="Label" type="Label" parent="Endless"]
-visible = false
-anchor_left = 0.421
-anchor_top = 0.084
-anchor_right = 0.597
-anchor_bottom = 0.221
-margin_left = -129.491
-margin_top = -47.4162
-margin_right = 11.901
-margin_bottom = -10.5262
-custom_fonts/font = SubResource( 1 )
-text = "Endless isn't
+margin_left = -110.492
+margin_top = -35.1908
+margin_right = 66.5084
+margin_bottom = 29.8092
+custom_fonts/font = SubResource( 4 )
+text = "Endless isn't 
 unlocked yet"
 __meta__ = {
+"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
