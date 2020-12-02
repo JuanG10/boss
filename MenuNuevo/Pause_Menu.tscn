@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=1]
 [ext_resource path="res://MenuNuevo/ParallaxBackground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MenuNuevo/Pause_Menu.gd" type="Script" id=3]
 [ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
 [ext_resource path="res://MenuNuevo/480932__wi-photos__menu.wav" type="AudioStream" id=5]
+[ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=6]
+[ext_resource path="res://Menues/Resume.gd" type="Script" id=7]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -34,6 +36,7 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.113725, 0.698039, 0.152941, 1 )
 text = "Resume"
 flat = true
+script = ExtResource( 7 )
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 margin_top = 101.0
@@ -52,6 +55,8 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_hover = Color( 0.254902, 0.709804, 0.0901961, 1 )
 text = "Main Menu"
 flat = true
+script = ExtResource( 6 )
+route = "res://MenuNuevo/Menu.tscn"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 margin_top = 303.0
