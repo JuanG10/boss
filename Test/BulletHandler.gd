@@ -11,7 +11,12 @@ func _physics_process(delta):
 	for b in bullets:
 		if b[3].name == "Player":
 			for dicc in get_world_2d().get_direct_space_state().intersect_point(b[0], 1, bullets, 0b100000000, false, true):
-				dicc.get("collider").takeDamage(b[3].dmg)
+				var enemy = dicc.get("collider")
+				b[3].states[b[4]].handle(enemy)
+				if (enemy.tipo + 1) % 3 == b[4]:
+					enemy.takeDamage(b[3].dmg)
+				else:
+					enemy.takeDamage(b[3].dmg / 3)
 				bullets.erase(b)
 		else:
 			for dicc in get_world_2d().get_direct_space_state().intersect_point(b[0], 1, bullets, 0b10000000000, false, true):
@@ -31,9 +36,9 @@ func clear():
 func _draw():
 	for b in bullets:
 		if b[3].name == "Player":
-			draw_bullet(b[0], 1, b[1])
+			draw_bullet(b[0], 2, b[1])
 		else:
-			draw_bullet(b[0], 2.5, b[1])
+			draw_bullet(b[0], 3.5, b[1])
 
 func draw_bullet(pos, rad, col):
 		draw_circle(pos, rad, col)
