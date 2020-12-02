@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=1]
+[ext_resource path="res://MenuNuevo/levels_menu_script.gd" type="Script" id=2]
+[ext_resource path="res://MenuNuevo/ParallaxBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MenuNuevo/Levels.gd" type="Script" id=4]
+
+[node name="Levels" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level 1" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 62.5949
+margin_top = 49.7841
+margin_right = 333.595
+margin_bottom = 144.984
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.219608, 1, 0, 1 )
+text = "Level 1"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://Levels/Level 1.tscn"
+
+[node name="Level 2" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 62.595
+margin_top = 185.354
+margin_right = 347.595
+margin_bottom = 280.554
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
+text = "Level 2"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://Levels/Level 2.tscn"
+
+[node name="Level 3" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 66.1625
+margin_top = 334.005
+margin_right = 351.162
+margin_bottom = 429.205
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
+text = "Level 3"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://Levels/Level 3.tscn"
+
+[node name="Level 4" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 67.3518
+margin_top = 461.25
+margin_right = 352.352
+margin_bottom = 556.45
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
+text = "Level 4"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://Levels/Level 4.tscn"
+
+[node name="Level 5" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 588.117
+margin_top = 49.6329
+margin_right = 873.117
+margin_bottom = 144.833
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
+text = "Level 5"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://Levels/Level 5.tscn"
+
+[node name="Level 6" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 588.636
+margin_top = 176.467
+margin_right = 873.636
+margin_bottom = 271.667
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
+text = "Level 6"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://Levels/Level 6.tscn"
+
+[node name="Endless" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 588.376
+margin_top = 322.999
+margin_right = 917.376
+margin_bottom = 418.199
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
+text = "Endless"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://Levels/Endless.tscn"
+
+[node name="Back" type="Button" parent="."]
+anchor_bottom = 0.003
+margin_left = 593.133
+margin_top = 457.547
+margin_right = 786.133
+margin_bottom = 552.747
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.227451, 1, 0, 1 )
+text = "Back"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://MenuNuevo/Menu.tscn"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]

@@ -13,6 +13,7 @@ func _ready():
 	add_child(timer)
 	yield(get_tree().create_timer(3), "timeout")
 	$Explicacion.hide()
+	$Key_Space.hide()
 
 func _process(_delta):
 	if timer.is_stopped() and counter < 2:
@@ -23,5 +24,5 @@ func _process(_delta):
 	if enemyCounter == 0:
 		LevelPrimitives.playing   = false
 		LevelPrimitives.retry     = false
-		LevelPrimitives.nextLevel = "res://Levels/Level 3.tscn" 
+		LevelPrimitives.nextLevel = "res://Levels/Level 3.tscn"
 		$Player/HUD/GotoShop.show()

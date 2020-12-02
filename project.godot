@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Boss"
-run/main_scene="res://Menues/MainMenu.tscn"
+run/main_scene="res://MenuNuevo/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -27,6 +27,7 @@ BulletHandler="*res://Test/BulletHandler.gd"
 LevelPrimitives="*res://Levels/LevelPrimitives.gd"
 ManagerLevels="*res://UpgradeScreen/ManagerLevels.gd"
 Upgrades="*res://UpgradeScreen/Upgrades.gd"
+MusicController="*res://Sound/MusicController.tscn"
 
 [display]
 

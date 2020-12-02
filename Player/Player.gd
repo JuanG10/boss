@@ -24,6 +24,8 @@ var healT   = Timer.new()
 var shieldT = Timer.new()
 var isShielded = false
 
+onready var shield = $Shield
+
 var habilityT = Timer.new()
 var dash_use  = Timer.new()
 
@@ -45,11 +47,14 @@ const POISONED_TIME = 3
 
 var color_actual
 onready var color_change_wait_time = Background.tiempo_transicion + 0.1
+onready var change_color_timer = $Change_color_timer
 
 onready var limite_minimo_pantalla = get_tree().get_nodes_in_group("borde_minimo")[0].global_position
 onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo")[0].global_position
 
 onready var camera = get_tree().get_nodes_in_group("camera")[0]
+
+onready var dmg_explosion:Particles2D = $ExplosionParticles
 
 var velocity = Vector2.ZERO
 
@@ -85,7 +90,7 @@ func _ready():
 	habilityT.set_one_shot(true)
 	habilityT.set_wait_time(10)
 	add_child(habilityT)
-	$Change_color_timer.set_wait_time(color_change_wait_time)
+	change_color_timer.set_wait_time(color_change_wait_time)
 
 func _process(delta):
 	_not_pass_frame_limit()
@@ -108,20 +113,20 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
 		states[pointer].power()
-		color_actual = colores[pointer]
-	if Input.is_action_just_pressed("next_color") && $Change_color_timer.is_stopped():
-		$Change_color_timer.start()
+		#color_actual = colores[pointer]
+	if Input.is_action_just_pressed("next_color") && change_color_timer.is_stopped():
+		change_color_timer.start()
 		next_color()
 		if not states[pointer].shield:
 			remove_shield()
-	if Input.is_action_just_pressed("previous_color") && $Change_color_timer.is_stopped():
-		$Change_color_timer.start()
+	if Input.is_action_just_pressed("previous_color") && change_color_timer.is_stopped():
+		change_color_timer.start()
 		previous_color()
 		if not states[pointer].shield:
 			remove_shield()
 	if(states[pointer].shield and shieldT.is_stopped()):
 		isShielded = true
-		$Shield.show()
+		shield.show()
 	if(states[pointer].heal and healT.is_stopped()):
 		healT.start()
 		heal(1)
@@ -183,9 +188,10 @@ func takeDamage(x):
 	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
 			$hurting.play()
-			camera.shake(1,0.8)
+			dmg_explosion.process_material.color_ramp.gradient.colors[1] = color_actual
+			dmg_explosion.emitting = true
 			health -= x
-			recibi_danio()
+			#recibi_danio()
 			set_last_score()
 			label.on_update(health)
 			shieldT.stop()
@@ -196,6 +202,7 @@ func takeDamage(x):
 				var level_actual = get_tree().current_scene.level_id
 				ManagerLevels.set_actual_level(level_actual)
 				BulletHandler.clear()
+				MusicController.stop()
 				get_tree().change_scene("res://UpgradeScreen/UpgradeWindow.tscn")
 		else:
 			remove_shield()
@@ -236,11 +243,12 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int,next:bool)->void:
 	color_actual = colores[pointer]
-	$Sprite.modulate = colores[n]
-	hability_bar.tint_progress = colores[n]
-	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[n])
-	Background.start_bg_transition(n, next, position.x, position.y)
-	get_tree().current_scene.get_node("Complementos/Traps").change_trap_type(colores[n])
+	$Sprite.modulate = colores[pointer]
+	hability_bar.tint_progress = colores[pointer]
+	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[pointer])
+	Background.start_bg_transition(pointer, next, position.x, position.y)
+	MusicController.change_bgm(pointer)
+	get_tree().current_scene.get_node("Complementos/Traps").change_trap_type(colores[pointer])
 
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):

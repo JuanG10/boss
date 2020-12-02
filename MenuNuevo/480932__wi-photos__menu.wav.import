@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/480932__wi-photos__menu.wav-ded5525ba9862a06ecdb38ac74f51cfb.sample"
+
+[deps]
+
+source_file="res://MenuNuevo/480932__wi-photos__menu.wav"
+dest_files=[ "res://.import/480932__wi-photos__menu.wav-ded5525ba9862a06ecdb38ac74f51cfb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
