@@ -12,7 +12,7 @@
 [ext_resource path="res://Player/HabilityCircleBar.gd" type="Script" id=10]
 [ext_resource path="res://Explosion/DamageParticles.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Explosion/HealParticles.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Explosion/slow_wave.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Explosion/slow_waves_master.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
@@ -102,20 +102,7 @@ explosiveness = 1.0
 
 [node name="HealParticles" parent="." instance=ExtResource( 12 )]
 
-[node name="slow_wave" parent="." instance=ExtResource( 13 )]
-emitting = false
-
-[node name="slow_wave2" parent="." instance=ExtResource( 13 )]
-rotation = 3.14159
-emitting = false
-
-[node name="slow_wave3" parent="." instance=ExtResource( 13 )]
-rotation = 1.5708
-emitting = false
-
-[node name="slow_wave4" parent="." instance=ExtResource( 13 )]
-rotation = -1.5708
-emitting = false
+[node name="slow_waves_master" parent="." instance=ExtResource( 13 )]
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="tween_all_completed" from="HabilityCircleBar/Tween" to="HabilityCircleBar" method="_on_Tween_tween_all_completed"]
