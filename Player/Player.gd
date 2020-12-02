@@ -57,7 +57,7 @@ onready var camera = get_tree().get_nodes_in_group("camera")[0]
 onready var dmg_explosion:Particles2D = $ExplosionParticles
 onready var heal_particles:Particles2D = $HealParticles
 
-onready var slow_waves = [$slow_wave,$slow_wave2,$slow_wave3,$slow_wave4]
+onready var slow_waves = $slow_waves_master.get_children()
 # No hay tiempo para hacerlo bien. Tengo sueño. -Juan G. 2/12/2020
 
 var velocity = Vector2.ZERO
