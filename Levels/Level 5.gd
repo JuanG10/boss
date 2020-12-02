@@ -18,6 +18,8 @@ func _ready():
 
 
 func _process(_delta):
+	if Input.is_action_just_pressed("pasue"):
+		LevelPrimitives.pause()
 	if timer.is_stopped() and counter < 3:
 		timer.start()
 		LevelPrimitives.spawnAdvanced(3)

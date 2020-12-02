@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Menues/Resume.gd" type="Script" id=1]
+[ext_resource path="res://MenuNuevo/480932__wi-photos__menu.wav" type="AudioStream" id=2]
 [ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=3]
 [ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
 [ext_resource path="res://Menues/PauseMenu.gd" type="Script" id=5]
 [ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=6]
 [ext_resource path="res://MenuNuevo/fondo.jpg" type="Texture" id=7]
+[ext_resource path="res://Menues/AudioStreamPlayer.gd" type="Script" id=8]
 
 [node name="PauseMenu" type="Node2D"]
 pause_mode = 2
@@ -66,3 +68,7 @@ position = Vector2( -1385.2, 167.999 )
 position = Vector2( -1452.91, 214.251 )
 scale = Vector2( 1.8, 1.798 )
 texture = ExtResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+script = ExtResource( 8 )
