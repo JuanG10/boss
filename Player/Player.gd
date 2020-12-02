@@ -57,6 +57,9 @@ onready var camera = get_tree().get_nodes_in_group("camera")[0]
 onready var dmg_explosion:Particles2D = $ExplosionParticles
 onready var heal_particles:Particles2D = $HealParticles
 
+onready var slow_waves = [$slow_wave,$slow_wave2,$slow_wave3,$slow_wave4]
+# No hay tiempo para hacerlo bien. Tengo sueño. -Juan G. 2/12/2020
+
 var velocity = Vector2.ZERO
 
 func _ready():
@@ -262,6 +265,7 @@ func update_score():
 ############## RELACIONADO A LAS TRAMPAS ########################
 func _on_freezeT_timeout():
 	ralentizacion = 1
+	for wave in slow_waves: wave.emitting = false
 
 func start_poison_timers():
 	# Envenenado no puede cambiar de color
@@ -279,3 +283,8 @@ func _on_poisonT_timeout():
 	$Change_color_timer.set_wait_time(color_change_wait_time)
 	$Sprite.modulate = colores[pointer]
 	#poison_dmg_timer.stop()
+
+func ralentizar(slowdown:float)->void:
+	ralentizacion = slowdown
+	for wave in slow_waves: wave.emitting = true
+	freezeT.start()

@@ -31,8 +31,7 @@ func _on_activated_trap_behavior(player:Area2D, animation_name:String):
 	if animation_name == "activar" && !maked_dmg_once:
 		match animation.name:
 			TRAP_NAMES.blue:
-				player.ralentizacion = slowdown
-				player.freezeT.start()
+				player.ralentizar(slowdown)
 			TRAP_NAMES.green:
 				player.start_poison_timers()
 			TRAP_NAMES.red: player.takeDamage(20)
