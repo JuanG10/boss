@@ -10,7 +10,7 @@ var invincibility_time = 2.5
 
 var last_points      = 0
 var points           = 0
-var money            = 300
+var money            = 0
 var Pspeed           = 3.5  #mejora aumentando el valor   Naranja
 var Patk_speed       = .4   #mejora disminuyendo el valor 
 var Phealth          = 100  #mejora aumentando el valor   Azul
