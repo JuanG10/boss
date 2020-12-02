@@ -124,6 +124,14 @@ func _on_upgrade_list_item_activated(index):
 			if GlobalVariables.money >= Upgrades.intPrecioDMG:
 				GlobalVariables.money -= Upgrades.intPrecioDMG
 				comprar_red_panel()
+		if _get_selected_item() == 1:
+			if GlobalVariables.money >= Upgrades.intPrecioStun:
+				GlobalVariables.money -= Upgrades.intPrecioStun
+				comprar_red_panel()
+		if _get_selected_item() == 2:
+			if GlobalVariables.money >= Upgrades.intPrecioLaser:
+				GlobalVariables.money -= Upgrades.intPrecioLaser
+				comprar_red_panel()
 	elif parent_name == "GreenPanel":
 		if _get_selected_item() == 0:
 			if GlobalVariables.money >= Upgrades.intPrecioSpeed:
