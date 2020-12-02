@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Explosion/Explosion_take_dmg_curve.tres" type="Curve" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.15894 )
+colors = PoolColorArray( 0.344868, 0.347656, 0.328644, 0.862745, 0.898438, 0.0210571, 0.0210571, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="CurveTexture" id=4]
+curve = ExtResource( 1 )
+
+[sub_resource type="Curve" id=5]
+max_value = 2.5
+_data = [ Vector2( 0, 2.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.659091 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 3.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 0.3
+linear_accel_curve = SubResource( 4 )
+scale = 2.0
+scale_random = 1.0
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 3 )
+
+[node name="ExplosionParticles" type="Particles2D"]
+material = SubResource( 1 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 2
+emitting = false
+amount = 30
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.5
+local_coords = false
+process_material = SubResource( 7 )

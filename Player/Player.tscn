@@ -11,6 +11,7 @@
 [ext_resource path="res://Player/HabilityCircleBar.png" type="Texture" id=9]
 [ext_resource path="res://Player/HabilityCircleBar.gd" type="Script" id=10]
 [ext_resource path="res://Player/hurt.wav" type="AudioStream" id=11]
+[ext_resource path="res://Explosion/DamageParticles.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
@@ -76,6 +77,7 @@ collision_layer = 524288
 collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 0.0936584 )
 shape = SubResource( 2 )
 
 [node name="Change_color_timer" type="Timer" parent="."]
@@ -84,7 +86,6 @@ one_shot = true
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
 volume_db = -10.0
-autoplay = true
 __meta__ = {
 "_editor_description_": ""
 }
@@ -94,6 +95,10 @@ __meta__ = {
 [node name="hurting" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
 volume_db = 10.0
+
+[node name="ExplosionParticles" parent="." instance=ExtResource( 11 )]
+amount = 40
+explosiveness = 1.0
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="tween_all_completed" from="HabilityCircleBar/Tween" to="HabilityCircleBar" method="_on_Tween_tween_all_completed"]

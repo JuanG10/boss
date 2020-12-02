@@ -10,8 +10,8 @@ var fondo_actual:int
 var next:bool
 
 const FONDOS = {
-	0 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/hexagonal_azul.jpg"),
-	1 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/naranja_vectorial.jpg"),
+	0 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/hexagonal_azul_02.jpg"),
+	1 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/naranja_vectorial_03.jpg"),
 	2 : preload("res://Fondos/Prueba de shaders/imagenes_de_fondo/rojo_topografico.jpg")
 }
 

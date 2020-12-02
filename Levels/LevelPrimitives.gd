@@ -50,7 +50,7 @@ func spawnBasic(n):
 		enemy.initialize(player, randi()%3)
 		enemy.set_position(Vector2(RandomPos())) 
 		level.add_child(enemy)
-	
+
 func spawnAdvanced(n):
 	for _i in range(n):
 		var enemy:Area2D = advanced_tmplt.instance()

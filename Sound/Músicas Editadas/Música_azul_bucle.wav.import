@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Música_azul_bucle.wav-6ccf22092ead1fc0b4d11330b553b83d.sample"
+
+[deps]
+
+source_file="res://Sound/Músicas Editadas/Música_azul_bucle.wav"
+dest_files=[ "res://.import/Música_azul_bucle.wav-6ccf22092ead1fc0b4d11330b553b83d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
