@@ -145,6 +145,10 @@ func _on_upgrade_list_item_activated(index):
 			if GlobalVariables.money >= Upgrades.intPrecioHP:
 				GlobalVariables.money -= Upgrades.intPrecioHP
 				comprar_orange_panel()
+		if _get_selected_item() == 3:
+			if GlobalVariables.money >= Upgrades.intPrecioInvT:
+				GlobalVariables.money -= Upgrades.intPrecioInvT
+				comprar_orange_panel()
 	elif parent_name == "BluePanel":
 		if _get_selected_item() == 0:
 			if GlobalVariables.money >= Upgrades.intPrecioAtkS:
@@ -153,5 +157,13 @@ func _on_upgrade_list_item_activated(index):
 		if _get_selected_item() == 1:
 			if GlobalVariables.money >= Upgrades.intPrecioShieldS:
 				GlobalVariables.money -= Upgrades.intPrecioShieldS
+				comprar_blue_panel()
+		if _get_selected_item() == 2:
+			if GlobalVariables.money >= Upgrades.intPrecioSlow:
+				GlobalVariables.money -= Upgrades.intPrecioSlow
+				comprar_blue_panel()
+		if _get_selected_item() == 3:
+			if GlobalVariables.money >= Upgrades.intPrecioSlowRing:
+				GlobalVariables.money -= Upgrades.intPrecioSlowRing
 				comprar_blue_panel()
 	get_parent().get_node("Coins").on_update()
