@@ -19,12 +19,20 @@ func _ready():
 		$Explicacion2.hide()
 		$Key_E.hide()
 		$Key_Q.hide()
+		$Key_W.hide()
+		$Key_A.hide()
+		$Key_S.hide()
+		$Key_D.hide()
 	else:
 		yield(get_tree().create_timer(5), "timeout")
 		$Explicacion.hide() 
 		$Explicacion2.hide()
 		$Key_Q.hide()
 		$Key_E.hide()
+		$Key_W.hide()
+		$Key_A.hide()
+		$Key_S.hide()
+		$Key_D.hide()
 
 func player_moved():
 	return Input.is_action_just_pressed('down') || Input.is_action_just_pressed('up') || Input.is_action_just_pressed('left') || Input.is_action_just_pressed('right')
