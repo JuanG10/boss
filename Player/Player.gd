@@ -55,6 +55,7 @@ onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo
 onready var camera = get_tree().get_nodes_in_group("camera")[0]
 
 onready var dmg_explosion:Particles2D = $ExplosionParticles
+onready var heal_particles:Particles2D = $HealParticles
 
 var velocity = Vector2.ZERO
 
@@ -181,6 +182,7 @@ func heal(x):
 	if(health + x > GlobalVariables.Phealth):
 		health = GlobalVariables.Phealth
 	else:
+		heal_particles.emitting = true
 		health += x
 	label.on_update(health)
 
