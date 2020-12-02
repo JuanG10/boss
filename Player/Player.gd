@@ -51,6 +51,8 @@ onready var limite_maximo_pantalla = get_tree().get_nodes_in_group("borde_maximo
 
 onready var camera = get_tree().get_nodes_in_group("camera")[0]
 
+var velocity = Vector2.ZERO
+
 func _ready():
 	label.on_update(health)
 	states = [B, O, R]
@@ -105,10 +107,8 @@ func _physics_process(_delta):
 	look_at(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed("ui_accept") and habilityT.is_stopped():
-		habilityT.start()
-		hability_bar.start_progress(colores[pointer])
-		color_actual = colores[pointer]
 		states[pointer].power()
+		color_actual = colores[pointer]
 	if Input.is_action_just_pressed("next_color") && $Change_color_timer.is_stopped():
 		$Change_color_timer.start()
 		next_color()
@@ -134,12 +134,31 @@ func _physics_process(_delta):
 func _movimiento():
 	if Input.is_action_pressed('right'):
 		position.x += speed * ralentizacion
+	if Input.is_action_just_pressed('right'):
+		velocity += Vector2(1, 0)
+	if Input.is_action_just_released("right"):
+		velocity -= Vector2(1, 0)
+
 	if Input.is_action_pressed('left'):
 		position.x -= speed * ralentizacion
+	if Input.is_action_just_pressed('left'):
+		velocity += Vector2(-1, 0)
+	if Input.is_action_just_released("left"):
+		velocity -= Vector2(-1, 0)
+
 	if Input.is_action_pressed('down'):
 		position.y += speed * ralentizacion
+	if Input.is_action_just_pressed('down'):
+		velocity += Vector2(0, 1)
+	if Input.is_action_just_released("down"):
+		velocity -= Vector2(0, 1)
+
 	if Input.is_action_pressed('up'):
 		position.y -= speed * ralentizacion
+	if Input.is_action_just_pressed('up'):
+		velocity += Vector2(0, -1)
+	if Input.is_action_just_released("up"):
+		velocity -= Vector2(0, -1)
 
 func _not_pass_frame_limit():
 	# frame = marco de los bordes de la pantalla.
@@ -163,6 +182,7 @@ func heal(x):
 func takeDamage(x):
 	if not invencibility && get_tree().current_scene.enemyCounter != 0:
 		if not isShielded:
+			$hurting.play()
 			camera.shake(1,0.8)
 			health -= x
 			recibi_danio()

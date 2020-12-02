@@ -29,7 +29,7 @@ func update(delta):
 	enemy.velocity += steer.normalized()
 	#enemy.move_and_slide(velocity.normalized() * enemy.speed)
 	enemy.position += enemy.velocity.normalized() * enemy.speed * delta
-	enemy.look_at(player.global_position)
+	enemy.look_at(player.global_position + (player.velocity * player.speed))
 
 func calc_seek():
 	acc = (player.global_position - enemy.global_position).normalized()

@@ -6,23 +6,23 @@ const ICON_SIZE = Vector2(100,100)
 # Iconos. Hardcodeado por ahora.
 ##Naranja
 const ORANGE = {
-	SPEED           = preload("res://Iconos/attack_speed.png"),          #Aumento de velocidad
+	SPEED           = preload("res://Iconos/speed.png"),          #Aumento de velocidad
 	HEAL_SPEED      = preload("res://Iconos/HEAL_SPEED.jpg"),  #Velocidad de curacion
-	HEALTH          = preload("res://Iconos/Paz_Mental.png"),  #Mejora de vida  
-	INVULNERABILITY = null,
+	HEALTH          = preload("res://Iconos/health.png"),  #Mejora de vida  
+	INVULNERABILITY = preload("res://Iconos/invulnerability.png"),
 }
 const BLUE = {
-	PATK_SPEED   = preload("res://Iconos/meditation.png"),  #Velocidad de Ataque 
+	PATK_SPEED   = preload("res://Iconos/attack_speed.png"),  #Velocidad de Ataque 
 	SHIELD_SPEED = preload("res://Iconos/escudo.png"),       #mejora de escudo
-	SLOWN        = null,
-	SLOW_RING_EFFEC = null,
+	SLOW         = preload("res://Iconos/slow.png"),
+	SLOW_RING_EFFEC = preload("res://Iconos/Slow_ring.png"),
 }
 
 const RED = {
 	DAMAGE      = preload("res://Iconos/DAMAGE.png"),  #Aumento de danio
 	BRN_DAMAGE  = preload("res://Iconos/BRN_DAMAGE.png"),
-	STUN        = null,
-	LaserDMG    = null
+	STUN        = preload("res://Iconos/stun.png"),
+	LaserDMG    = preload("res://Iconos/laser.jpg")
 }
 
 var MONEDA = preload("res://moneda_particula/Moneda_particula.tscn").instance()
@@ -34,18 +34,18 @@ func _ready():
 	if parent_name == "RedPanel":
 		add_item("Damage: " + Upgrades.precioDMG, RED.DAMAGE)
 		#add_item("BRN_DAMAGE: " + precioBRN, RED.BRN_DAMAGE)
-		#add_item("STUN" + precio, RED.STUN)
-		#add_item("Laser Damage: " + precio, RED.LaserDMG)
+		add_item("Stun Duration: " + Upgrades.precioStun, RED.STUN)
+		add_item("Activate Laser: " + Upgrades.precioLaser, RED.LaserDMG)
 	elif parent_name == "GreenPanel":
 		add_item("Speed: " + Upgrades.precioSpeed, ORANGE.SPEED) #2
 		add_item("Heal Speed: " + Upgrades.precioHealS, ORANGE.HEAL_SPEED)
 		add_item("Health: " + Upgrades.precioHP, ORANGE.HEALTH)
-		#add_item("Invulnerability Time: " + precioInvT, ORANGE.INVULNERABILITY)
+		add_item("Activate Invulnerability: " + Upgrades.precioInvT, ORANGE.INVULNERABILITY)
 	elif parent_name == "BluePanel":
-		add_item("Patk Speed: " + Upgrades.precioAtkS, BLUE.PATK_SPEED)
+		add_item("Atack Speed: " + Upgrades.precioAtkS, BLUE.PATK_SPEED)
 		add_item("Shield Speed: " + Upgrades.precioShieldS, BLUE.SHIELD_SPEED)
-		#add_item("SLOWN" + precio, BLUE.SLOWN)
-		#add_item("SLOW_RING_EFFEC" + precio, BLUE.SLOW_RING_EFFEC)
+		add_item("Slow: " + Upgrades.precioSlow, BLUE.SLOW)
+		add_item("Activate Slow Ring: " + Upgrades.precioSlowRing, BLUE.SLOW_RING_EFFEC)
 		
 func animacion_monedas():
 	var posicion_mondea = get_local_mouse_position()
@@ -59,7 +59,10 @@ func comprar_red_panel():
 		Upgrades.dmgUpgrade(self)
 		music_compra_and_animation() 
 	elif _get_selected_item() == 1:
-		GlobalVariables.brn_dmg += 5
+		Upgrades.stunUpgrade(self)
+		music_compra_and_animation()
+	elif _get_selected_item() == 2:
+		Upgrades.laserUpgrade(self)
 		music_compra_and_animation()
 
 func comprar_orange_panel():
@@ -72,6 +75,9 @@ func comprar_orange_panel():
 	elif _get_selected_item() == 2:
 		Upgrades.HPUpgrade(self)
 		music_compra_and_animation()
+	elif _get_selected_item() == 3:
+		Upgrades.InvuleravilityUpgrade(self)
+		music_compra_and_animation()
 
 func comprar_blue_panel():
 	if _get_selected_item() == 0:
@@ -79,6 +85,12 @@ func comprar_blue_panel():
 		music_compra_and_animation()
 	elif _get_selected_item() == 1:
 		Upgrades.shieldUpgrade(self)
+		music_compra_and_animation()
+	elif _get_selected_item() == 2:
+		Upgrades.slowUpgrade(self)
+		music_compra_and_animation()
+	elif _get_selected_item() == 3:
+		Upgrades.slowRingUpgrade(self)
 		music_compra_and_animation()
 
 

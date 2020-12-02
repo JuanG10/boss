@@ -16,7 +16,7 @@ func initialize(p, e):
 func update(_delta):
 	#side_to_side()
 	if not enemy.is_stunned:
-		enemy.look_at(player.global_position)
+		enemy.look_at(enemy.prediction)
 	if not enemy.minimun_range_flag:
 		emit_signal("finished", "chasing")
 

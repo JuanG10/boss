@@ -19,15 +19,18 @@ var minimun_range_flag = false
 
 var timer = Timer.new()
 
-var Bullet = preload("res://Enemies/Bullet.tscn")
-
 var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
 var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
 
 var explosion_color:Color
 
-const POINTS = 200
+var relativeVel = Vector2.ZERO
+var closingPos  = Vector2.ZERO
+var closingTime = Vector2.ZERO
+var prediction  = Vector2.ZERO
+
+const POINTS = 20
 
 func _ready():
 	$State_handler.init(player, self)
@@ -60,6 +63,7 @@ func far_enough(area):
 		minimun_range_flag = false
 
 func _process(_delta):
+	update()
 	if stun_timer.is_stopped():
 		is_stunned = false
 	if slow_timer.is_stopped():
@@ -67,9 +71,16 @@ func _process(_delta):
 	if(timer.is_stopped() and not is_stunned):
 		shoot()
 
+func update():
+	relativeVel = player.velocity*player.speed - Vector2(4,0).rotated(rotation)
+	closingPos  = player.global_position - global_position
+	closingTime = closingPos.length() / relativeVel.length()
+	prediction  = player.global_position + (player.velocity * player.speed * closingTime)
+
 func takeDamage(n):
 	health -= n
 	if health <= 0:
+		BulletHandler.reParent(self)
 		get_parent().call_deferred("remove_child", self)
 		queue_free()
 
@@ -88,10 +99,10 @@ func slow(slow, time):
 		speed *= slow
 
 func shoot():
-	#BulletHandler.add_bullet([$Muzzle.global_position, colores[tipo], rotation, self])
-	var b = Bullet.instance()
-	b.start($Muzzle.global_position, rotation, player, dmg, tipo)
-	get_parent().add_child(b)
+	BulletHandler.add_bullet([$Muzzle.global_position, colores[tipo], rotation, self])
+	#var b = Bullet.instance()
+	#b.start($Muzzle.global_position, rotation, player, dmg, tipo)
+	#get_parent().add_child(b)
 	timer.start(atk_speed)
 
 func _on_death():
@@ -117,4 +128,4 @@ func _create_floating_text()->void:
 	text.amount = POINTS
 	text.position = position
 	text.color = explosion_color
-	get_parent().add_child(text)
+	get_parent().call_deferred("add_child", text)

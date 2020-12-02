@@ -19,17 +19,18 @@ func update(delta):
 	if enemy.minimun_range_flag:
 		emit_signal("finished", "minimun_range")
 	
-	var flock_mates = enemy.get_node("FlockingArea").get_overlapping_areas()
-	acc = Vector2.ZERO
-	steer = Vector2.ZERO
-	calc_cohesion(flock_mates)
-	calc_seek()
-	calc_alignment(flock_mates)
-	calc_separation(flock_mates)
-	enemy.velocity += steer.normalized()
-	#enemy.move_and_slide(velocity.normalized() * enemy.speed)
-	enemy.position += enemy.velocity.normalized() * enemy.speed * delta
-	enemy.look_at(player.global_position)
+	if not enemy.is_stunned:
+		var flock_mates = enemy.get_node("FlockingArea").get_overlapping_areas()
+		acc = Vector2.ZERO
+		steer = Vector2.ZERO
+		calc_cohesion(flock_mates)
+		calc_seek()
+		calc_alignment(flock_mates)
+		calc_separation(flock_mates)
+		enemy.velocity += steer.normalized()
+		#enemy.move_and_slide(velocity.normalized() * enemy.speed)
+		enemy.position += enemy.velocity.normalized() * enemy.speed * delta
+		enemy.look_at(enemy.prediction)
 
 func calc_seek():
 	acc = (player.global_position - enemy.global_position).normalized()

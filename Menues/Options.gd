@@ -8,5 +8,5 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _pressed():
-	print("Banzinga, no está implementado")
+	pass
 	#get_tree().change_scene("res://Menues/Options.tscn")

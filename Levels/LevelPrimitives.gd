@@ -9,6 +9,7 @@ var player
 var level
 var nextLevel = "res://Levels/Level 1.tscn"
 var pause_menu
+var endless_unlocked = false
 
 var retry   = false
 var playing = true

@@ -42,7 +42,10 @@ margin_bottom = 201.894
 custom_fonts/font = ExtResource( 4 )
 text = "To move
 
-Mouse to aim"
+Mouse to aim
+
+Mouse buttons
+to change color"
 __meta__ = {
 "_edit_use_anchors_": false
 }

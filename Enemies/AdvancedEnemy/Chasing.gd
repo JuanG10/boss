@@ -31,5 +31,5 @@ func update(delta):
 		enemy.velocity += target
 		enemy.velocity *= friction
 		enemy.velocity  = enemy.velocity.normalized()
-		enemy.look_at(player.global_position)
+		enemy.look_at(enemy.prediction)
 		enemy.position += enemy.velocity * enemy.speed * delta

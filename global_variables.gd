@@ -24,6 +24,10 @@ var shield_speed     = 5    #mejora disminuyendo el valor Azul
 var slow_ring_effect = .7   #mejora disminuyendo el valor
 var LaserDMG         = 20   #mejora aumentando el valor
 
+var RedSpecial    = false
+var BlueSpecial   = false
+var OrangeSpecial = false
+
 var Mhealth = 25
 var Mdmg    = 15
 
