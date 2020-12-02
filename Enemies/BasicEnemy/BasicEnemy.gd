@@ -22,6 +22,8 @@ var timer = Timer.new()
 var colores     = [Color(0.0627, 0.102, 0.451),Color(0.551, 0.1582, 0.041),Color(0.251, 0.051, 0.0431)]
 var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
+var color_actual
+var color_gris  = Color(0.345098,0.329412,0.329412,1)
 
 var explosion_color:Color
 
@@ -45,6 +47,7 @@ func _ready():
 func initialize(t, n):
 	player = t
 	$Sprite.modulate = colores[n]
+	color_actual     = colores[n]
 	explosion_color = colores[n]
 	tipo = n
 	special = specials[n]
@@ -54,6 +57,15 @@ func initialize(t, n):
 		dmg = GlobalVariables.Bdmg
 		health = GlobalVariables.Bhealth
 
+func recibi_danio():
+	$Sprite.modulate = color_gris
+	$Timer.set_wait_time(0.3)
+	$Timer.start()
+
+func volver_a_color_actual():
+	$Sprite.modulate = color_actual 
+	
+		
 func close_enough(area):
 	if area.name == player.name:
 		minimun_range_flag = true
@@ -79,6 +91,7 @@ func update():
 
 func takeDamage(n):
 	health -= n
+	recibi_danio()
 	if health <= 0:
 		BulletHandler.reParent(self)
 		get_parent().call_deferred("remove_child", self)
@@ -129,3 +142,7 @@ func _create_floating_text()->void:
 	text.position = position
 	text.color = explosion_color
 	get_parent().call_deferred("add_child", text)
+
+
+func _on_Timer_timeout():
+	volver_a_color_actual()
