@@ -75,6 +75,7 @@ func dmgUpgrade(upgradeList):
 		upgradeList.set_item_text(0, "Damage: " + precioDMG)
 	elif DMGUpgCounter == 4:
 		GlobalVariables.Pdmg       = 40
+		intPrecioDMG   = 0
 		precioDMG      = "SOLD OUT"
 		DMGUpgCounter += 1
 		upgradeList.set_item_text(0, "Damage: " + precioDMG)
@@ -106,6 +107,7 @@ func speedUpgrade(upgradeList):
 		upgradeList.set_item_text(0, "Speed: " + precioSpeed)
 	elif SpeedUpgCounter == 4:
 		GlobalVariables.Pspeed       = 6
+		intPrecioSpeed   = 0
 		precioSpeed      = "SOLD OUT"
 		SpeedUpgCounter += 1
 		upgradeList.set_item_text(0, "Speed: " + precioSpeed)
@@ -137,6 +139,7 @@ func healUpgrade(upgradeList):
 		upgradeList.set_item_text(1, "Heal Speed: " + precioHealS)
 	elif HealSUpgCounter == 4:
 		GlobalVariables.heal_speed   = .2
+		intPrecioHealS   = 0
 		precioHealS      = "SOLD OUT"
 		HealSUpgCounter += 1
 		upgradeList.set_item_text(1, "Heal Speed: " + precioHealS)
@@ -168,6 +171,7 @@ func HPUpgrade(upgradeList):
 		upgradeList.set_item_text(2, "Health: " + precioHP)
 	elif HPUpgCounter == 4:
 		GlobalVariables.Phealth   = 400
+		intPrecioHP   = 0
 		precioHP      = "SOLD OUT"
 		HPUpgCounter += 1
 		upgradeList.set_item_text(2, "Health: " + precioHP)
@@ -199,6 +203,7 @@ func atkSpeedUpgrade(upgradeList):
 		upgradeList.set_item_text(0, "Patk Speed: " + precioAtkS)
 	elif AtkSUpgCounter == 4:
 		GlobalVariables.Patk_speed  = .1
+		intPrecioAtkS   = 0
 		precioAtkS      = "SOLD OUT"
 		AtkSUpgCounter += 1
 		upgradeList.set_item_text(0, "Patk Speed: " + precioAtkS)
@@ -230,6 +235,7 @@ func shieldUpgrade(upgradeList):
 		upgradeList.set_item_text(1, "Shield Speed: " + precioShieldS)
 	elif ShieldSUpgCounter == 4:
 		GlobalVariables.shield_speed   = 2.5
+		intPrecioShieldS   = 0
 		precioShieldS      = "SOLD OUT"
 		ShieldSUpgCounter += 1
 		upgradeList.set_item_text(1, "Shield Speed: " + precioShieldS)
@@ -261,6 +267,7 @@ func laserUpgrade(upgradeList):
 		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
 	elif laserUpgCounter == 4:
 		GlobalVariables.LaserDMG = 200
+		intPrecioLaser   = 0
 		precioLaser      = "SOLD OUT"
 		laserUpgCounter += 1
 		upgradeList.set_item_text(2, "Laser Damage: " + precioLaser)
@@ -292,6 +299,7 @@ func InvuleravilityUpgrade(upgradeList):
 		upgradeList.set_item_text(3, "Invulnerability Time: " + precioInvT)
 	elif InvTUpgCounter == 4:
 		GlobalVariables.invincibility_time = 5
+		intPrecioInvT   = 0
 		precioInvT      = "SOLD OUT"
 		InvTUpgCounter += 1
 		upgradeList.set_item_text(3, "Invulnerability Time: " + precioInvT)
@@ -323,6 +331,7 @@ func slowRingUpgrade(upgradeList):
 		upgradeList.set_item_text(3, "Slow ring: " + precioSlowRing)
 	elif SlowRngUpgCounter == 4:
 		GlobalVariables.slow_ring_effect = .2
+		intPrecioSlowRing   = 0
 		precioSlowRing      = "SOLD OUT"
 		SlowRngUpgCounter  += 1
 		upgradeList.set_item_text(3, "Slow ring: " + precioSlowRing)
@@ -354,6 +363,7 @@ func slowUpgrade(upgradeList):
 		upgradeList.set_item_text(2, "Slow: " + precioSlow)
 	elif SlowUpgCounter == 4:
 		GlobalVariables.Pslow   = .5
+		intPrecioSlow   = 0
 		precioSlow      = "SOLD OUT"
 		SlowUpgCounter += 1
 		upgradeList.set_item_text(2, "Slow: " + precioSlow)
@@ -385,6 +395,7 @@ func stunUpgrade(upgradeList):
 		upgradeList.set_item_text(1, "Stun Duration: " + precioStun)
 	elif StunUpgCounter == 4:
 		GlobalVariables.Pstun   = .4
+		intPrecioStun   = 0
 		precioStun      = "SOLD OUT"
 		StunUpgCounter += 1
 		upgradeList.set_item_text(1, "Stun Duration: " + precioStun)

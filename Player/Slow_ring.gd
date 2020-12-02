@@ -18,5 +18,6 @@ func remove():
 	get_parent().call_deferred("remove_child", self)
 	queue_free()
 
-func _on_enemy_collition(body):
-	body.slow(GlobalVariables.slow_ring_effect, 5)
+func _on_enemy_collition(area):
+	if area.is_in_group("Enemy"):
+		area.slow(GlobalVariables.slow_ring_effect, 5)
