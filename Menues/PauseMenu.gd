@@ -7,3 +7,7 @@ func myShow():
 func myHide():
 	hide()
 	$Camera2D._set_current(false)
+
+
+func _ready():
+	Background.hide()

@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://MenuNuevo/LetraDeBotones.tres" type="DynamicFont" id=1]
+[ext_resource path="res://MenuNuevo/ParallaxBackground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MenuNuevo/Pause_Menu.gd" type="Script" id=3]
+[ext_resource path="res://Menues/Exit.gd" type="Script" id=4]
+[ext_resource path="res://MenuNuevo/480932__wi-photos__menu.wav" type="AudioStream" id=5]
+[ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=6]
+[ext_resource path="res://Menues/Resume.gd" type="Script" id=7]
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -202.0
+margin_top = -200.0
+margin_right = 202.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+margin_right = 404.0
+margin_bottom = 97.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.113725, 0.698039, 0.152941, 1 )
+text = "Resume"
+flat = true
+script = ExtResource( 7 )
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+margin_top = 101.0
+margin_right = 404.0
+margin_bottom = 198.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.0705882, 0.690196, 0.0784314, 1 )
+text = "Options"
+flat = true
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+margin_top = 202.0
+margin_right = 404.0
+margin_bottom = 299.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.254902, 0.709804, 0.0901961, 1 )
+text = "Main Menu"
+flat = true
+script = ExtResource( 6 )
+route = "res://MenuNuevo/Menu.tscn"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+margin_top = 303.0
+margin_right = 404.0
+margin_bottom = 400.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_hover = Color( 0.113725, 0.768627, 0.0588235, 1 )
+text = "Exit"
+flat = true
+script = ExtResource( 4 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 401.952, 371.033 )
+zoom = Vector2( 2, 2 )
