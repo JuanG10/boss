@@ -33,11 +33,15 @@ var prediction  = Vector2.ZERO
 var explosion_color:Color
 const POINTS = 30
 
+onready var slow_waves = $slow_waves_master.get_children()
+
 func _ready():
 	$State_handler.init(player, self)
 	timer.set_one_shot(true)
 	stun_timer.set_one_shot(true)
 	slow_timer.set_one_shot(true)
+	stun_timer.connect("timeout",self,"_on_stun_timer_timeout")
+	slow_timer.connect("timeout",self,"_on_slow_timer_timeout")
 	add_child(stun_timer)
 	add_child(slow_timer)
 	add_child(timer)
@@ -83,15 +87,26 @@ func stun(time):
 
 func slow(slow, time):
 	if slow_timer.is_stopped():
+		_set_waves(true)
 		slow_timer.start(time)
 		speed *= slow
 
+func _on_stun_timer_timeout():
+	is_stunned = false
+
+func _on_slow_timer_timeout():
+	speed = 130
+	_set_waves(false)
+
+func _set_waves(on_off:bool)->void:
+	for wave in slow_waves: wave.emitting = on_off
+
 func _process(_delta):
 	update()
-	if stun_timer.is_stopped():
-		is_stunned = false
-	if slow_timer.is_stopped():
-		speed = 130
+#	if stun_timer.is_stopped():
+#		is_stunned = false
+#	if slow_timer.is_stopped():
+#		speed = 130
 	if(timer.is_stopped() and not is_stunned):
 		shoot()
 

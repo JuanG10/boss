@@ -76,24 +76,22 @@ func burn():
 func get_class():
 	return "Meele"
 
-func _on_stun_timer_timeout():
-	is_stunned = false
-
-func _on_slow_timer_timeout():
-	print("stop_slow")
-	speed = 130
-	_set_waves(false)
-
 func stun(time):
 	stun_timer.start(time)
 	is_stunned = true
 
 func slow(slow, time):
-	print("slow")
 	if slow_timer.is_stopped():
 		_set_waves(true)
 		slow_timer.start(time)
 		speed *= slow
+
+func _on_stun_timer_timeout():
+	is_stunned = false
+
+func _on_slow_timer_timeout():
+	speed = 130
+	_set_waves(false)
 
 func _set_waves(on_off:bool)->void:
 	for wave in slow_waves: wave.emitting = on_off

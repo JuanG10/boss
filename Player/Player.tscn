@@ -13,7 +13,6 @@
 [ext_resource path="res://Explosion/DamageParticles.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Explosion/HealParticles.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Explosion/slow_waves_master.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Player/hurt.wav" type="AudioStream" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
@@ -95,7 +94,6 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 
 [node name="hurting" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
 volume_db = 10.0
 
 [node name="ExplosionParticles" parent="." instance=ExtResource( 11 )]
