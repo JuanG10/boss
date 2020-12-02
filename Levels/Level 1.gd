@@ -10,7 +10,6 @@ func _ready():
 	ManagerLevels.level_crossing = false
 	LevelPrimitives.initialize($Player, self)
 	LevelPrimitives.playing = true
-	MusicController.change_bgm(0)
 	timer.set_one_shot(true)
 	timer.set_wait_time(5)
 	add_child(timer)

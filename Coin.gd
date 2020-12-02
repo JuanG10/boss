@@ -22,6 +22,6 @@ func _on_Timer_timeout():
 func _on_Timer2_timeout():
 	if show_hide: coin_animation.hide()
 	else: coin_animation.show()
-	twinkle_time -= 0.15
+	twinkle_time -= 0.18
 	show_hide = not show_hide
 	twinkle_timer.start(twinkle_time)

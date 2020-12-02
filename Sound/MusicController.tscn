@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sound/MusicController.gd" type="Script" id=1]
-[ext_resource path="res://Sound/Músicas Editadas/Victory_music.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Sound/Músicas Editadas/Música_rojo_bucle.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sound/Músicas Editadas/Música_naranja_bucle.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sound/Músicas Editadas/Música_azul_bucle.wav" type="AudioStream" id=5]
@@ -17,6 +16,3 @@ stream = ExtResource( 4 )
 
 [node name="rojo_bucle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-
-[node name="victoria" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
