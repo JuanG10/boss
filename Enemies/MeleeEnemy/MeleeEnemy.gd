@@ -26,19 +26,22 @@ var specials    = ["special_blue", "special_orange", "special_red"]
 var tipo
 
 var explosion_color:Color
+onready var slow_waves = $slow_waves_master.get_children()
 
 func _ready():
 	$State_handler.init(player, self)
 	stun_timer.set_one_shot(true)
 	slow_timer.set_one_shot(true)
+	stun_timer.connect("timeout",self,"_on_stun_timer_timeout")
+	slow_timer.connect("timeout",self,"_on_slow_timer_timeout")
 	add_child(stun_timer)
 	add_child(slow_timer)
 
-func _process(_delta):
-	if stun_timer.is_stopped():
-		is_stunned = false
-	if slow_timer.is_stopped():
-		speed = 130
+#func _process(_delta):
+#	if stun_timer.is_stopped():
+#		is_stunned = false
+#	if slow_timer.is_stopped():
+#		speed = 130
 
 func initialize(t, n):
 	player = t
@@ -73,14 +76,27 @@ func burn():
 func get_class():
 	return "Meele"
 
+func _on_stun_timer_timeout():
+	is_stunned = false
+
+func _on_slow_timer_timeout():
+	print("stop_slow")
+	speed = 130
+	_set_waves(false)
+
 func stun(time):
 	stun_timer.start(time)
 	is_stunned = true
 
 func slow(slow, time):
+	print("slow")
 	if slow_timer.is_stopped():
+		_set_waves(true)
 		slow_timer.start(time)
 		speed *= slow
+
+func _set_waves(on_off:bool)->void:
+	for wave in slow_waves: wave.emitting = on_off
 
 func _on_death():
 	_create_floating_text()
