@@ -9,5 +9,3 @@ func myHide():
 	$Camera2D._set_current(false)
 
 
-func _ready():
-	Background.hide()

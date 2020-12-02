@@ -69,11 +69,9 @@ __meta__ = {
 
 [node name="Key_Q" parent="." instance=ExtResource( 7 )]
 position = Vector2( 504, 176 )
-frame = 0
 
 [node name="Key_E" parent="." instance=ExtResource( 8 )]
 position = Vector2( 608, 176 )
-frame = 0
 
 [node name="Key_W" parent="." instance=ExtResource( 10 )]
 position = Vector2( 521.637, 306.718 )

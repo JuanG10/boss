@@ -3,7 +3,7 @@ extends Node
 onready var melee_template = preload("res://Enemies/MeleeEnemy/MeleeEnemy.tscn")
 onready var basic_template = preload("res://Enemies/BasicEnemy/BasicEnemy.tscn")
 onready var advanced_tmplt = preload("res://Enemies/AdvancedEnemy/AdvancedEnemy.tscn")
-onready var p_menu_tmplt   = preload("res://MenuNuevo/Pause_Menu.tscn")
+onready var p_menu_tmplt   = preload("res://Menues/PauseMenu.tscn")
 
 var player
 var level
