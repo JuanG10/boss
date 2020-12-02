@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UpgradeScreen/Pannels.gd" type="Script" id=1]
 [ext_resource path="res://UpgradeScreen/upgrade_list.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Coins.gd" type="Script" id=4]
 [ext_resource path="res://moneda_particula/#SOUNDPERFECT  Money Coins In Hand  No Copyright SoundsSound Effect(HD).ogg" type="AudioStream" id=5]
 [ext_resource path="res://Fonts/Almond Nougat.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://Menues/levels_menu_script.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 31
@@ -21,6 +22,12 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 33
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -91,10 +98,10 @@ __meta__ = {
 }
 
 [node name="Next_Level" type="Button" parent="."]
-margin_left = 728.0
-margin_top = 456.0
-margin_right = 896.0
-margin_bottom = 544.0
+margin_left = 728.707
+margin_top = 455.293
+margin_right = 896.707
+margin_bottom = 543.293
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.184314, 0.890196, 0.0823529, 1 )
@@ -130,9 +137,25 @@ text = "SHOP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Main Menu" type="Button" parent="."]
+margin_left = 471.636
+margin_top = 480.634
+margin_right = 654.636
+margin_bottom = 520.635
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_hover = Color( 0.109804, 0.662745, 0.0941176, 1 )
+text = "Main Menu"
+flat = true
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+route = "res://MenuNuevo/Menu.tscn"
 [connection signal="item_activated" from="upgrade_list" to="upgrade_list" method="_on_upgrade_list_item_activated"]
 [connection signal="timeout" from="upgrade_list/Timer" to="upgrade_list" method="_on_Timer_timeout"]
 [connection signal="button_up" from="Left_button" to="." method="_on_button_up" binds= [ 0, Vector2( -1, 0 ) ]]
 [connection signal="button_up" from="Right_button" to="." method="_on_button_up" binds= [ 1, Vector2( 1, 0 ) ]]
 [connection signal="button_up" from="Play_again_button" to="." method="_on_Play_again_button_up"]
 [connection signal="pressed" from="Next_Level" to="." method="_on_Next_Level_pressed"]
+[connection signal="pressed" from="Main Menu" to="Main Menu" method="_on_Main_Menu_pressed"]
