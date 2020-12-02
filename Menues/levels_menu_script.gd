@@ -14,3 +14,7 @@ func _on_Start_mouse_entered():
 
 func _on_Endless_mouse_entered():
 	pass # Replace with function body.
+
+
+func _on_Main_Menu_pressed():
+		get_tree().change_scene(route)
