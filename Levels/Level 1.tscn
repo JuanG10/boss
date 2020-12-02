@@ -35,54 +35,54 @@ anchor_left = 0.421
 anchor_top = 0.084
 anchor_right = 0.597
 anchor_bottom = 0.221
-margin_left = -67.3147
-margin_top = 202.094
-margin_right = -67.5387
-margin_bottom = 201.894
+margin_left = 5.81476
+margin_top = 328.952
+margin_right = 5.59076
+margin_bottom = 331.752
 custom_fonts/font = ExtResource( 4 )
 text = "To move
 
 Mouse to aim
-
-Mouse buttons
-to change color"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Explicacion2" type="Label" parent="."]
-anchor_left = 0.421
-anchor_top = 0.084
-anchor_right = 0.597
-anchor_bottom = 0.221
-margin_left = -363.273
-margin_top = 194.975
-margin_right = -291.497
-margin_bottom = 194.775
-custom_fonts/font = ExtResource( 4 )
-text = "Press to change color
-
 "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Explicacion2" type="Label" parent="."]
+anchor_left = 0.403
+anchor_top = 0.084
+anchor_right = 0.649
+anchor_bottom = 0.382
+margin_left = -0.160187
+margin_top = 72.0916
+margin_right = -0.064209
+margin_bottom = 0.291534
+custom_fonts/font = ExtResource( 4 )
+text = "Press to change color
+
+
+
+Or use mouse buttons"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Key_Q" parent="." instance=ExtResource( 7 )]
-position = Vector2( 145.466, 306.909 )
+position = Vector2( 504, 176 )
 frame = 0
 
 [node name="Key_E" parent="." instance=ExtResource( 8 )]
-position = Vector2( 213.854, 307.018 )
+position = Vector2( 608, 176 )
 frame = 0
 
 [node name="Key_W" parent="." instance=ExtResource( 10 )]
-position = Vector2( 448.986, 179.735 )
+position = Vector2( 521.637, 306.718 )
 
 [node name="Key_A" parent="." instance=ExtResource( 9 )]
-position = Vector2( 398.036, 230.904 )
+position = Vector2( 470.687, 357.887 )
 
 [node name="Key_S" parent="." instance=ExtResource( 12 )]
-position = Vector2( 449.942, 229.123 )
+position = Vector2( 522.593, 356.106 )
 
 [node name="Key_D" parent="." instance=ExtResource( 11 )]
-position = Vector2( 501.835, 228.899 )
+position = Vector2( 574.486, 355.882 )

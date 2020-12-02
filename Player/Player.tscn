@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
@@ -10,14 +10,24 @@
 [ext_resource path="res://Sound/CPUtalk.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Player/HabilityCircleBar.png" type="Texture" id=9]
 [ext_resource path="res://Player/HabilityCircleBar.gd" type="Script" id=10]
-[ext_resource path="res://Player/hurt.wav" type="AudioStream" id=11]
 [ext_resource path="res://Explosion/DamageParticles.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Player/heal_icon.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.9594
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 47.2431
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 50.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5000.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
 
 [node name="Player" type="Area2D" groups=[
 "Player",
@@ -93,12 +103,22 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 
 [node name="hurting" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 11 )
 volume_db = 10.0
 
 [node name="ExplosionParticles" parent="." instance=ExtResource( 11 )]
 amount = 40
 explosiveness = 1.0
+
+[node name="HealParticles" type="Particles2D" parent="."]
+show_behind_parent = true
+scale = Vector2( 0.02, 0.02 )
+emitting = false
+amount = 15
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 3 )
+texture = ExtResource( 12 )
 [connection signal="area_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_enemy_entered"]
 [connection signal="tween_all_completed" from="HabilityCircleBar/Tween" to="HabilityCircleBar" method="_on_Tween_tween_all_completed"]
