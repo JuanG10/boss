@@ -13,7 +13,7 @@
 [ext_resource path="res://Iconos/Moneda/Gold_5.png" type="Texture" id=11]
 [ext_resource path="res://Iconos/Moneda/Gold_6.png" type="Texture" id=12]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
@@ -21,7 +21,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 5.41615
 height = 0.788895
 
@@ -32,19 +32,20 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.02, 0.02 )
-frames = SubResource( 2 )
-frame = 5
+frames = SubResource( 1 )
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 4.0
 one_shot = true
 autostart = true
 
 [node name="Twinkle_timer" type="Timer" parent="."]
+wait_time = 0.6
 autostart = true
 
 [node name="PickUpSound" type="AudioStreamPlayer" parent="."]

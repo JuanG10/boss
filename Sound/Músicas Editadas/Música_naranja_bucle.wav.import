@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Música_naranja_bucle.wav-1cb5375f2c63cfc9e120548174a009a7.sample"
+
+[deps]
+
+source_file="res://Sound/Músicas Editadas/Música_naranja_bucle.wav"
+dest_files=[ "res://.import/Música_naranja_bucle.wav-1cb5375f2c63cfc9e120548174a009a7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

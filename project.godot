@@ -27,6 +27,7 @@ BulletHandler="*res://Test/BulletHandler.gd"
 LevelPrimitives="*res://Levels/LevelPrimitives.gd"
 ManagerLevels="*res://UpgradeScreen/ManagerLevels.gd"
 Upgrades="*res://UpgradeScreen/Upgrades.gd"
+MusicController="*res://Sound/MusicController.tscn"
 
 [display]
 

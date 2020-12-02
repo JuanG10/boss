@@ -191,7 +191,7 @@ func takeDamage(x):
 		if not isShielded:
 			dmg_explosion.process_material.color_ramp.gradient.colors[1] = color_actual
 			dmg_explosion.emitting = true
-			#health -= x
+			health -= x
 			#recibi_danio()
 			set_last_score()
 			label.on_update(health)
@@ -243,11 +243,12 @@ func _on_grab_coin(area):
 
 func _change_with_color(n:int,next:bool)->void:
 	color_actual = colores[pointer]
-	$Sprite.modulate = colores[n]
-	hability_bar.tint_progress = colores[n]
-	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[n])
-	Background.start_bg_transition(n, next, position.x, position.y)
-	get_tree().current_scene.get_node("Complementos/Traps").change_trap_type(colores[n])
+	$Sprite.modulate = colores[pointer]
+	hability_bar.tint_progress = colores[pointer]
+	get_tree().get_nodes_in_group("labels")[0].change_outline(colores[pointer])
+	Background.start_bg_transition(pointer, next, position.x, position.y)
+	MusicController.change_bgm(pointer)
+	get_tree().current_scene.get_node("Complementos/Traps").change_trap_type(colores[pointer])
 
 func on_enemy_entered(area):
 	if area.is_in_group("Enemy"):

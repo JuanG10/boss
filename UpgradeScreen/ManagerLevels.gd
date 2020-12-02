@@ -4,14 +4,14 @@ var actual_level
 var next_level 
 var level_crossing = false
 
-
 const levels = {
+	0:"res://Levels/Endless.tscn",
 	1:"res://Levels/Level 1.tscn",
 	2:"res://Levels/Level 2.tscn",
 	3:"res://Levels/Level 3.tscn",
 	4:"res://Levels/Level 4.tscn",
 	5:"res://Levels/Level 5.tscn",
-	6:"res://Levels/Level 6.tscn"	
+	6:"res://Levels/Level 6.tscn"
 }
 
 func set_actual_level(level):
