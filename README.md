@@ -6,5 +6,5 @@ El juego es un bullet hell con temática de color. Al cambiar de color cambian v
 Se puede jugar los varias niveles creados o un modo endless (infinito).
 
 Hay dos formas de jugarlo:
-  La primera es entrando a este link para acceder a la versión html5: https://juang10.github.io/boss/
-  La segunda es acceder al archivo .exe que se encuentra dentro de la rama 'ejecutable'
+La primera es entrando a este link para acceder a la versión html5: https://juang10.github.io/boss/
+La segunda es acceder al archivo .exe que se encuentra dentro de la rama 'ejecutable'
